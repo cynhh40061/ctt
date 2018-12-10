@@ -1,0 +1,3639 @@
+/* 20180903 Ason */
+/* 通用設定 */
+* {
+    box-sizing: border-box;
+    font-family: 微軟正黑體;
+    font-style: normal;
+}
+body, nav, ul, li, span, h1, h2, h3, h4, h6, div, header, img, a, div {
+    margin: 0;
+    padding: 0;
+}
+a {
+    color: #000;
+    text-decoration: none;
+}
+input {
+    color: #ddd;
+/*    padding-left: 6px;*/
+}
+button {
+    outline: none;
+}
+.turn-off {
+    display: none !important;
+}
+/*每次給RD套程式前hidden註解要清除*/
+.hidden {
+    display: none !important;
+}
+.show {
+    display: block !important;
+}
+.invisible {
+    display: none !important;
+}
+.text-center {
+    text-align: center !important;
+}
+.margin-fix-1 {
+    margin-top: 0;
+}
+.margin-fix-2 {
+    margin-left: 90px;
+}
+.margin-fix-3 {
+    margin-top: 8px !important;
+}
+.width-fix-1 {
+    width: 50px;
+    margin-left: 5px;
+}
+.disfix {
+    display: inline-block;
+}
+.wrapper {
+    min-width: 1300px;
+    background: #333333;
+}
+.read-more {
+    display: inline-block;
+}
+.no-more {
+    display: none;
+}
+.posfix {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+.posfix-2 {
+    position: absolute;
+    top: 0;
+}
+.btn-v {
+    display: inline-block;
+    font-style: normal;
+    color: white;
+}
+.container-lottery .right-side.light .btn-v {
+    color: #555;
+    font-style: normal;
+}
+.rotate-180 {
+    transform: rotate(180deg);
+} 
+.container-lottery {
+    width: 1300px;
+    height: 768px;
+    margin: 0;
+    position: relative;
+    background-image: url(../img/bg_lottery_dark.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    font-weight: 300;
+    position: relative;
+    background-color: #141414; 
+    overflow: auto;
+}
+.container-lottery button {
+    cursor: pointer;
+}
+
+/* 動畫_載人頁 */
+.loader-page {
+    display: none;
+    width: 1300px;
+    height: 768px;
+    background: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+}
+.loader-page .loader {
+  width: 80px;
+  height: 80px;
+  border: 10px solid #f3f3f3;
+  border-top: 10px solid #aaa;
+  border-radius: 50%;
+  -webkit-animation: spin 0.5s linear infinite; /* Safari */
+  animation: spin 0.5s linear infinite;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  top: calc(50% - 55px);
+  left: calc(50% - 55px);
+}
+
+/* 動畫_倒數 */
+.count-down {
+    display: none;
+    width: 1300px;
+    height: 768px;
+    background: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+}
+.count-down .number {
+    width: 210px;
+    height: 210px;
+    border: 1px solid #7e8686;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: calc(50%);
+    left: calc(50%);
+    background: #fff;
+    font-weight: bolder;
+    padding-top: 48px;
+    border-radius: 23px;
+    color: #000;
+}
+.count-down .number p {
+    font-size: 68px;
+    color: #e21414;
+    margin: 0;
+    font-weight: bolder;
+    margin-top: 9px;
+}
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* 開獎球號動畫 */
+.ani-ball01 {
+    background-image: url(../img/bg_ani_ball_v1.gif) !important;
+    background-repeat: no-repeat;
+}
+.ani-ball02 {
+    background-image: url(../img/bg_ani_ball_v2.gif) !important;
+    background-repeat: no-repeat;
+}
+.ani-ball03 {
+    background-image: url(../img/bg_ani_ball_v3.gif) !important;
+    background-repeat: no-repeat;
+}
+.ani-ball04 {
+    background-image: url(../img/bg_ani_ball_v4.gif) !important;
+    background-repeat: no-repeat;
+}
+.ani-ball05 {
+    background-image: url(../img/bg_ani_ball_v5.gif) !important;
+    background-repeat: no-repeat;
+}
+.ani-ball06 {
+    background-image: url(../img/bg_ani_ball_v6.gif) !important;
+    background-repeat: no-repeat;
+}
+.ani-ball07 {
+    background-image: url(../img/bg_ani_ball_v7.gif) !important;
+    background-repeat: no-repeat;
+}
+.ani-ball08 {
+    background-image: url(../img/bg_ani_ball_v8.gif) !important;
+    background-repeat: no-repeat;
+}
+.ani-ballmarksix1 {
+    background-image: url(../img/bg_ani_ball_marksix1.gif) !important;
+    background-repeat: no-repeat;
+    background-size: 32px !important;
+}
+.ani-ballmarksix2 {
+    background-image: url(../img/bg_ani_ball_marksix2.gif) !important;
+    background-repeat: no-repeat;
+    background-size: 32px !important;
+}
+.ani-ballmarksix3 {
+    background-image: url(../img/bg_ani_ball_marksix3.gif) !important;
+    background-repeat: no-repeat;
+    background-size: 32px !important;
+}
+.ani-ballmarksix4 {
+    background-image: url(../img/bg_ani_ball_marksix4.gif) !important;
+    background-repeat: no-repeat;
+    background-size: 32px !important;
+}
+.ani-ballmarksix5 {
+    background-image: url(../img/bg_ani_ball_marksix5.gif) !important;
+    background-repeat: no-repeat;
+    background-size: 32px !important;
+}
+.ani-ballmarksix6 {
+    background-image: url(../img/bg_ani_ball_marksix6.gif) !important;
+    background-repeat: no-repeat;
+    background-size: 32px !important;
+}
+.ani-ballmarksix7 {
+    background-image: url(../img/bg_ani_ball_marksix7.gif) !important;
+    background-repeat: no-repeat;
+    background-size: 32px !important;
+}
+.ani-animal1_dark {
+    background-image: url(../img/bg_ani_ball_marksix_animal.gif) !important;
+    background-repeat: no-repeat;
+    background-size: 20px !important;
+}
+.ani-animal2_dark {
+    background-image: url(../img/bg_ani_ball_marksix_animal1.gif) !important;
+    background-repeat: no-repeat;
+    background-size: 20px !important;
+}
+.ani-animal3_dark {
+    background-image: url(../img/bg_ani_ball_marksix_animal2.gif) !important;
+    background-repeat: no-repeat;
+    background-size: 20px !important;
+}
+.ani-animal4_dark {
+    background-image: url(../img/bg_ani_ball_marksix_animal3.gif) !important;
+    background-repeat: no-repeat;
+    background-size: 20px !important;
+}
+.ani-animal5_dark {
+    background-image: url(../img/bg_ani_ball_marksix_animal4.gif) !important;
+    background-repeat: no-repeat;
+    background-size: 20px !important;
+}
+.ani-animal6_dark {
+    background-image: url(../img/bg_ani_ball_marksix_animal5.gif) !important;
+    background-repeat: no-repeat;
+    background-size: 20px !important;
+}
+.ani-animal7_dark {
+    background-image: url(../img/bg_ani_ball_marksix_animal6.gif) !important;
+    background-repeat: no-repeat;
+    background-size: 20px !important;
+}
+.ani-animal1_light {
+    background-image: url(../img/bg_ani_ball_marksix_animal.gif) !important;
+    background-repeat: no-repeat;
+    background-size: 20px !important;
+}
+.ani-animal1_light {
+    background-image: url(../img/ani_animal_light1.gif) !important;
+    background-repeat: no-repeat;
+    background-size: 20px !important;
+}
+.ani-animal2_light {
+    background-image: url(../img/ani_animal_light2.gif) !important;
+    background-repeat: no-repeat;
+    background-size: 20px !important;
+}
+.ani-animal3_light {
+    background-image: url(../img/ani_animal_light3.gif) !important;
+    background-repeat: no-repeat;
+    background-size: 20px !important;
+}
+.ani-animal4_light {
+    background-image: url(../img/ani_animal_light4.gif) !important;
+    background-repeat: no-repeat;
+    background-size: 20px !important;
+}
+.ani-animal5_light {
+    background-image: url(../img/ani_animal_light5.gif) !important;
+    background-repeat: no-repeat;
+    background-size: 20px !important;
+}
+.ani-animal6_light {
+    background-image: url(../img/ani_animal_light6.gif) !important;
+    background-repeat: no-repeat;
+    background-size: 20px !important;
+}
+.ani-animal7_light {
+    background-image: url(../img/ani_animal_light7.gif) !important;
+    background-repeat: no-repeat;
+    background-size: 20px !important;
+}
+/* 開獎骰子動畫 */
+.ani-dice {
+    width: 45px !important;
+    height: 45px !important;
+}
+.ani-dice01 {
+    -webkit-animation-name: mydice01 !important; /* Safari 4.0 - 8.0 */
+    animation: mydice01 0.48s infinite !important;
+}
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes mydice01 {
+    0%   {background-image: url(../img/ani_dice01.png);}
+    25%  {background-image: url(../img/ani_dice02.png);}
+    50%  {background-image: url(../img/ani_dice03.png);}
+    100% {background-image: url(../img/ani_dice04.png);}
+}
+
+/* Standard syntax */
+@keyframes mydice01 {
+    0%   {background-image: url(../img/ani_dice01.png);}
+    25%  {background-image: url(../img/ani_dice02.png);}
+    50%  {background-image: url(../img/ani_dice03.png);}
+    100% {background-image: url(../img/ani_dice04.png);}
+}
+.ani-dice02 {
+    -webkit-animation-name: mydice02 !important; /* Safari 4.0 - 8.0 */
+    animation: mydice02 0.5s infinite !important;
+}
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes mydice02 {
+    0%   {background-image: url(../img/ani_dice02.png);}
+    25%  {background-image: url(../img/ani_dice04.png);}
+    50%  {background-image: url(../img/ani_dice01.png);}
+    100% {background-image: url(../img/ani_dice03.png);}
+}
+
+/* Standard syntax */
+@keyframes mydice02 {
+    0%   {background-image: url(../img/ani_dice02.png);}
+    25%  {background-image: url(../img/ani_dice04.png);}
+    50%  {background-image: url(../img/ani_dice01.png);}
+    100% {background-image: url(../img/ani_dice03.png);}
+}
+
+.ani-dice03 {
+    -webkit-animation-name: mydice03 !important; /* Safari 4.0 - 8.0 */
+    animation: mydice03 0.55s infinite !important;
+}
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes mydice03 {
+    0%   {background-image: url(../img/ani_dice03.png);}
+    25%  {background-image: url(../img/ani_dice02.png);}
+    50%  {background-image: url(../img/ani_dice04.png);}
+    100% {background-image: url(../img/ani_dice01.png);}
+}
+
+/* Standard syntax */
+@keyframes mydice03 {
+    0%   {background-image: url(../img/ani_dice03.png);}
+    25%  {background-image: url(../img/ani_dice02.png);}
+    50%  {background-image: url(../img/ani_dice04.png);}
+    100% {background-image: url(../img/ani_dice01.png);}
+}
+
+/* 縮合menu */
+.accordion-menu {
+    width: 91%;
+    text-align: center;
+    margin: 0 auto;
+    list-style: none;
+    position: relative;
+    z-index: 0;
+    box-shadow: 0px 0px 5px rgba(130, 130, 130, 0.23);
+}
+.accordion-menu li:hover {
+    cursor: pointer;
+}
+.accordion-menu li.open .dropdownlink {
+  color: #fdb919;
+  background-image: url(../img/button-bg01.png);
+}
+.accordion-menu li:last-child .dropdownlink {
+  border-bottom: 0;
+}
+.dropdownlink {
+  width: 168px;
+  height: 63px;
+  display: inline-block;
+  font-size: 21px !important;
+}
+.dropdownlink img {
+  width: 110px;
+  padding-top: 11px !important;
+}
+.submenuItems {
+  display: block;
+  height: auto;
+  margin: 0 auto;
+  overflow: hidden;
+  transition: all 0.5s ease-in-out;
+}
+.hide {
+  height: 0px;
+}
+.submenuItems a {
+    height: 32px !important;
+    display: block;
+    color: #ffffff;
+    font-size: 16px !important;
+    padding-top: 6px !important;
+    transition: all 0s ease-in-out;
+    background-image: none !important;
+    background-color: #747474;
+    font-weight: 200 !important;
+}
+.submenuItems a:hover {
+  background-color: rgba(200,200,200,0.8);
+  color: #fff;
+  transition: all 0 ease-in-out;
+}
+.submenuItems a.submenu-active {
+  background-color: #fdb919;
+  color: #fff;
+}
+
+/* 提示訊息 */
+.tooltip {
+    display: inline-block;
+    position: relative;
+}
+.tooltip .tooltiptext {
+    visibility: hidden;
+    opacity: 0;
+    width: 162px;
+    background-color: #555;
+    border-radius: 6px;
+    font-size: 13px;
+    color: #fff;
+    transition: opacity 0s;
+    margin-left: -107px;
+    padding: 7px;
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    z-index: 2;
+}
+.tooltip .tooltiptext::after {
+    content: "";
+    border-width: 5px;
+    border-style: solid;
+    border-color: #000 transparent transparent transparent;
+    margin-left: -5px;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+}
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* 左側列 */
+.container-lottery .left-side {
+    width: 14%;
+    text-align: center;
+    float: left;
+    position: relative;
+    left: 7px;
+}
+.container-lottery .left-side .account {
+    padding-top: 19px;
+    padding-bottom: 8px;
+    text-align: center;
+}
+.container-lottery .left-side .account ul {
+    display: inline-block;
+    list-style: none;
+}
+.container-lottery .left-side .account ul li:last-child {
+    margin-top: -3px;
+}
+.container-lottery .left-side .account ul li p {
+    font-size: 14px;
+    color: white;
+    text-align: left;
+    margin: 0;
+    padding-bottom: 0;
+    margin-bottom: 2px;
+    position: relative;
+}
+.container-lottery .left-side .account ul li p select {
+    margin-top: 5px;
+    border: none;
+    background-color: #eee;
+    background: linear-gradient(#ffffff, #cecece);
+    color: black;
+    height: 24px;
+    width: 46px;
+    box-shadow: 0 0 2px rgba(0,0,0,0.3);
+    margin-left: -5px;
+    border-radius: 5px; /* for IE */
+    padding-left: 3px; /* for IE */
+}
+.select-fix-1 {
+    display: inline-block;
+    width: 46px;
+    height: 24px;
+    /*background: linear-gradient(#ffffff, #cecece);*/
+    border-radius: 5px;
+    position: absolute;
+    top: -2px;
+    left: 43px;
+}
+.select-fix-1 select {
+    width: 46px;
+    height: 24px;
+    position: absolute;
+    top: -5px;
+    left: 5px;
+}
+/* Internet Explorer 10+, Microsoft Edge Browser */
+_:-ms-lang(x), .container-lottery .left-side .account ul li span.select-fix-1,
+.container-lottery.light .left-side .account ul li span.select-fix-1 { 
+    display: inline-block;
+    width: 46px;
+    height: 24px;
+    background: linear-gradient(#ffffff, #cecece);
+    border-radius: 5px;
+    position: absolute;
+    top: -2px;
+    left: 43px;
+}
+_:-ms-lang(x), .container-lottery .left-side .account ul li span.select-fix-1 select,
+.container-lottery.light .left-side .account ul li span.select-fix-1 select {
+    background: url(../img/bg_arrow_02.svg) 85% center no-repeat !important;
+    border-radius: 0 !important;
+    box-shadow: none;
+    position: absolute;
+    top: -5px;
+    left: 5px;
+}
+_:-ms-lang(x), .container-lottery .left-side .account ul li span.select-fix-1 select::-ms-expand,
+.container-lottery.light .left-side .account ul li span.select-fix-1 select::-ms-expand { 
+    display: none;
+}
+.container-lottery .left-side .account ul li p span {
+    font-size: 14px;
+    color: #ffeaa1;
+    text-align: left;
+}
+.container-lottery .left-side .account a {
+    display: block;
+    margin: 0 auto;
+    width: 168px;
+    border-radius: 4px;
+    margin-top: 8px;
+    margin-bottom: 2px;
+    color: #000;
+    font-size: 12px;
+    background: linear-gradient(#ffffff, #cecece);
+    border: none;
+    font-weight: normal;
+}
+.container-lottery.light .left-side .account a:hover {
+	background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.5));
+}
+.container-lottery .left-side .account a:hover {
+    background: linear-gradient(rgba(255,255,255,0.6), rgba(255,255,255,0.3));
+}
+.container-lottery .left-side .account i.btn-refresh {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    background: url(../img/btn_refresh.svg);
+    background-repeat: no-repeat;
+    font-style: normal;
+    vertical-align: text-top;
+    cursor: pointer;
+    /*margin-left: 4px;*/
+    position: absolute;
+    top: 0;
+    right: -21px;
+}
+.container-lottery .left-side .account i.btn-refresh:hover {
+    background: url(../img/btn_refresh_hover.svg);
+}
+.container-lottery .left-side .accordion-menu li.open .dropdownlink {
+    background: linear-gradient(#7b7b7b, #484747);
+    border-right: 6px solid #fdb919;
+    border-left: 6px solid #fdb919;
+}
+.container-lottery .left-side a.dropdownlink {
+    display: inline-block;
+    width: 100%;
+    height: 63px;
+    background-image: linear-gradient(#454545, #222121);
+    font-size: 21px;
+    color: #e9e9e9;
+    box-shadow: 0px -1px 21px 0 rgba(50,50,50, 0.5), 0px 0 2px 0 rgba(50,50,50, 0.5);
+    border-right: 6px solid #7c7c7c;
+    border-left: 6px solid #7c7c7c;
+}
+.container-lottery .left-side a.dropdownlink:hover {
+    background-image: linear-gradient(#454545, #222121);
+    color: #ffffff;
+    border-right: 6px solid #fdb919;
+    border-left: 6px solid #fdb919;
+}
+.container-lottery .left-side .button-active {
+    background-image: linear-gradient(#454545, #222121);
+    border-right: 6px solid #fdb919;
+    border-left: 6px solid #fdb919;
+}
+
+/* 暗亮共用 */
+.container-lottery .right-side {
+    width: 86%;
+    /*height: 576px;*/
+    font-size: 16px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    position: relative;
+    margin: 0 auto;
+}
+
+/* 主內容 左區塊 */
+.container-lottery .right-side div.left {
+    width: 72%;
+    display: inline-block;
+    margin-left: 16px;
+}
+
+/* 投注區 */
+.container-lottery .right-side div.left .bet-area {
+    width: 101%;
+    background-color: rgba(191, 191, 191, 0.21);
+    border: 1px solid #8b8b8b;
+    border-radius: 10px;
+    box-shadow: 0px 0px 9px rgba(0,0,0,0.25);
+    margin: 0 auto;
+    position: relative;
+}
+.container-lottery .right-side div.left .six-bet-area {
+    width: 134%;
+}
+
+.container-lottery .right-side div.left .bet-area p.rule {
+    font-size: 12px;
+    color: #dadddd;
+    margin-top: 4px;
+    margin-bottom: 0;
+    position: absolute;
+    left: 27px;
+}
+.container-lottery .right-side.light div.left .bet-area p.rule {
+    color: #555;
+}
+
+/* 投注區上側 */
+/* 分類 */
+.container-lottery .right-side div.left .bet-area .top-area .kind {
+    width: 100%;
+    height: 34px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    background-color: #3a3a3a;
+    overflow: auto;
+    position: relative;
+}
+.container-lottery .right-side div.left .bet-area .top-area .kind  ul {
+    list-style: none;
+}
+.container-lottery .right-side div.left .bet-area .top-area .kind  ul li {
+    height: 34px;
+    padding-right: 8px;
+    padding-left: 8px;
+    float: left;
+}
+.container-lottery .right-side div.left .bet-area .top-area .kind  ul li:first-child {
+    border-top-left-radius: 10px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+.container-lottery .right-side div.left .bet-area .top-area .kind  ul li:hover,
+.container-lottery .right-side div.left .bet-area .top-area .kind  ul li.kind-act {
+    border: none;
+    background-color: #727575;
+    z-index: 2;
+}
+.container-lottery .right-side div.left .bet-area .top-area .kind  ul li a {
+    display: block;
+    font-size: 13px;
+    color: #e5d591;
+    margin-top: 8px;
+    height: 25px;
+}
+.container-lottery .right-side a.fullscreenbutton {
+    display: block;
+    width: 24px;
+    height: 24px;
+    float: right;
+    border-radius: 5px;
+    margin-top: 5px;
+    margin-right: 7px;
+    padding-left: 3px;
+    padding-top: 3px;
+    position: absolute;
+    right: 11px;
+    top: 26px;
+    z-index: 1;
+    background-repeat: none;
+}
+.container-lottery .right-side  a.fullscreenbutton div {
+    width: 21px;
+    height: 21px;
+    background-image: url(../img/icon_fullscreen_dark.png);
+
+}
+.container-lottery .right-side.light  a.fullscreenbutton div {
+    background-image: url(../img/icon_fullscreen_light.png);
+}
+.container-lottery .right-side a.fullscreenbutton:hover {
+    background: rgba(255,255,255,0.5);
+}
+
+/* 選組區 */
+.container-lottery .right-side div.left .bet-area .top-area .pick-area {
+    margin-top: 10px;
+}
+.container-lottery .right-side div.left .bet-area .top-area .pick-area ul {
+    list-style: none;
+}
+.container-lottery .right-side div.left .bet-area .top-area .pick-area ul ul {
+    list-style: none;
+    position: relative;
+    top: -10px;
+    padding: 7px 0 6px 0;
+    background: rgba(255,255,255,0.1);
+    box-shadow: 0 0 6px rgba(0,0,0,0.15);
+}
+.container-lottery .right-side div.left .bet-area .top-area .pick-area ul li ul li span {
+    font-size: 12px;
+    color: Orange;
+    padding: 3px 8px 3px 27px;
+}
+.container-lottery .right-side div.left .bet-area .top-area .pick-area ul li ul li a {
+    display: inline-block;
+    font-size: 12px;
+    color: white;
+    border-radius: 10px;
+    padding: 3px 8px;
+}
+.container-lottery .right-side div.left .bet-area .top-area .pick-area ul li ul li a:hover,
+.container-lottery .right-side div.left .bet-area .top-area .pick-area ul li ul li a.pick-act {
+    background-color: #ff9f00;
+    font-weight: normal;
+    color: black;
+}
+_:-ms-lang(x), .container-lottery .right-side div.left .bet-area .top-area .pick-area ul li ul li a:hover,
+.container-lottery .right-side div.left .bet-area .top-area .pick-area ul li ul li a.pick-act {
+    font-weight: none;
+} 
+.container-lottery .right-side div.left .bet-area div.note {
+    position: absolute;
+    right: 27px; 
+}
+.container-lottery .right-side div.left .bet-area .highlight {
+    color: #ff9f00;
+    font-size: 14px;
+    margin: 0 7px;
+}
+.container-lottery .right-side div.left .bet-area div.note i {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    background-color: #ff9f00;
+    border-radius: 50px;
+    font-family: Courier New;
+    font-size: 12px;
+    font-style: normal;
+    color: #ffffff;
+    text-align: center;
+    margin-right: 4px;
+    padding-top: 1px; 
+}
+.container-lottery .right-side div.left .bet-area div.note > span {
+    font-size: 12px;
+    color: #dadddd;
+}
+.container-lottery .right-side div.left .bet-area div.note > a {
+    font-size: 12px;
+    color: #dddddd;
+}
+.container-lottery .right-side .tooltip .tooltiptext {
+    background-color: white;
+    color: black;
+    font-weight: normal;
+}
+.container-lottery .right-side .tooltip .tooltiptext::after {
+    border-color: white transparent transparent transparent;
+}
+
+/* 直選複式 */
+.container-lottery .right-side div.left .bet-area .number-area {
+    -webkit-user-select: none; /* Safari 3.1+ */
+    -moz-user-select: none; /* Firefox 2+ */
+    -ms-user-select: none; /* IE 10+ */
+    user-select: none; /* Standard syntax */
+    min-height: 120px;
+    margin-top: 29px;
+    padding-left: 27px;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul {
+    list-style: none;
+}
+.container-lottery .right-side div.left .bet-area .number-area > ul {
+    padding-top: 5px;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li {
+    float: left;
+    position: relative;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-unit {
+    width: 7.5%;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-unit.width-fix-12 {
+    width: 12%;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number {
+    width: 92.5%;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number.width-fix {
+    width: 97.5%;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number.width-fix-88 {
+    width: 88%;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number.width-fix-100 {
+    width: 100%;
+}
+.ball.ball-fix-70 button {
+    width: 70px !important;
+}
+.ball.ball-fix-100 button {
+    width: 100px !important;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.width-fix-80px {
+    width: 84px !important;
+    margin: 0 18px 10px 0;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.width-fix-100px {
+    width: 100px !important;
+    margin: 0 18px 10px 0;
+}
+/*.container-lottery .right-side div.left .bet-area .number-area ul.total li.ball-unit {
+    width: 8%;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul.total li.ball-number {
+    width: 92%;
+}*/
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-play {
+    width: 0%;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-unit span {
+    display: block;
+    font-size: 15px;
+    color: white;
+    margin-right: 10px;
+    padding-top: 4px;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li ul li button {
+    display: inline-block;
+    width: auto;
+    min-width: 28px;
+    height: 28px;
+    background: linear-gradient(#ffffff, #d9d7d7);
+    border-radius: 20px;
+    border: 1px solid #efeaea;
+    font-size: 15px;
+    color: #555;
+    text-align: center;
+    margin-right: 2px;
+    margin-bottom: 10px;
+    padding: 0;
+}
+
+/* Internet Explorer 10+, Microsoft Edge Browser */
+_:-ms-lang(x), .container-lottery .right-side div.left .bet-area .number-area ul li ul li button {
+    background: #fff;
+}
+_:-ms-lang(x), .container-lottery .right-side.light div.left .bet-area .number-area ul li ul li button {
+    background: #fff;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li ul li.ball-number.ball-text button {
+    min-width: 70px !important;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li ul li button:hover {
+    background: #e1dfdf;/* For browsers that do not support gradients */
+    background: linear-gradient(#e1dfdf,#ffffff);
+    border: 1px solid #b1b1b1;
+    color: #555;
+}
+
+/* 六合彩 */
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-play.ball-play-marksix {
+    position: absolute;
+    top: 137px;
+    right: 199px;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-play.ball-play-marksix div.btn-area {
+    position: relative;
+    top: 0;
+    right: 0;
+    min-width: 176px;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-play.ball-play-marksix div.marksix_quickbtn {
+    width: 176px;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-play.ball-play-marksix div.marksix_quickbtn.btn-fix-100 button {
+    width: 172px;
+    margin-top: 2px;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-play.ball-play-marksix div.marksix_quickbtn.btn-fix-50 button {
+    width: 51px;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-play.ball-play-marksix div.marksix_quickbtn button {
+    min-width: 36px;
+    border-radius: 6px;
+    font-size: 13px;
+    height: 24px;
+    margin: 0;
+    margin-right: 4px;
+    margin-bottom: 9px;
+    padding: 0;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball p {
+    margin: 0 0 6px 0;
+    color: white;
+    font-size: 13px;
+    text-align: right;
+    padding-right: 12px;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball > span {
+    display: inline-block;
+    position: relative;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball > span i {
+    display: inline-block;
+    width: 44px;
+    font-size: 13px;
+    font-weight: 200;
+    color: #fff;
+    text-align: center;
+    pointer-events: none;
+    position: absolute;
+    top: 8px;
+    right: 5px;
+    text-shadow: -1px 0px 1px #6f6e6e, 1px 0px 1px #6f6e6e, 0px -1px 1px #6f6e6e, 0px 1px 1px #6f6e6e;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball > span i.num-single {
+    display: block;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball > span > span.num-double {
+    display: none;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball > span > span.num-double i.num-top {
+    font-size:12px;
+    top:0;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball > span > span.num-double i.num-bottom {
+    font-size:12px;
+    top:16px;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball > span > span.num-double i.num-line {
+    width:40%;
+    height:0;
+    border-bottom:1px solid rgba(0,0,0,0.3);
+    position:absolute;
+    top:16px;
+    right:10px;
+}
+.container-lottery .right-side.red div.left .bet-area .number-area ul li.ball-number ul li.marksixball > span i,
+.container-lottery .right-side.green div.left .bet-area .number-area ul li.ball-number ul li.marksixball > span i,
+.container-lottery .right-side.light div.left .bet-area .number-area ul li.ball-number ul li.marksixball > span i {
+    text-shadow: -1px 0px 1px #555, 1px 0px 1px #555, 0px -1px 1px #555, 0px 1px 1px #555;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul.marksix_18ball li.ball-number ul li.marksixball > span i {
+    width: 24px;
+    text-align: center;
+    top: 12px;
+    right: 16px;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul.marksix_09ball li.ball-number ul li.marksixball > span i {
+    top: 15px;
+    right: 4px;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul.marksix_animalball li.ball-number ul li.marksixball > span i {
+    top: 15px;
+    right: 5px;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul.marksix_10ball li.ball-number ul li.marksixball > span i {
+    top: 15px;
+    right: 4px;
+}
+.container-lottery .right-side.light div.left .bet-area .number-area ul li.ball-number ul li.marksixball p {
+    color: #555;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball p span {
+    color: white;
+    font-size: 13px;
+    display: inline-block;
+    width: 88px;
+    text-align: right;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball button {
+    min-width: 84px !important;
+    min-height: 32px !important;
+    border-radius: 10px;
+    font-family: arial;
+    font-size: 21px;
+    font-weight: 600;
+    color: #585858;
+    text-align: left;
+    margin-bottom: 11px;
+    padding-left: 14px;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.ball-act + i {
+    color: white;
+    text-shadow: none;
+}
+.tooltip1 {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip1 .tooltiptext1 {
+    visibility: hidden;
+    background-color: #ffffff;
+    border-radius: 6px;
+    font-size: 12px !important;
+    font-weight: normal;
+    text-align: center;
+    color: #555;
+    box-shadow: 0 0 3px rgba(0,0,0,0.3);
+    margin-bottom: -17px;
+    padding: 3px 8px;
+    position: absolute;
+    bottom: 125%;
+    left: 50%;
+    z-index: 1;
+}
+
+.tooltip1 .tooltiptext1::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 25%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #fff transparent transparent transparent;
+}
+
+.tooltip1:hover .tooltiptext1 {
+    visibility: visible;
+    transition-delay: 1s;
+}
+
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball.large-btn button {
+    min-width: 105px !important;
+    min-height: 42px !important;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball.large-btn .tooltip1 .tooltiptext1 {
+    min-width: 204px;
+    margin-left: -52px;
+    padding: 3px 5px;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball.large-btn2 button {
+    min-width: 94px !important;
+    min-height: 44px !important;
+    background: linear-gradient(#fcd3d3,#fba9a9);
+    border: none;
+    padding-left: 20px;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball.large-btn2 button:hover {
+    background: linear-gradient(#fba9a9,#fcd3d3);
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball.large-btn2 .tooltip1 .tooltiptext1 {
+    min-width: 132px;
+    margin-left: -32px;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball.large-btn3 {
+    margin: 0 8px 10px 0;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball.large-btn3 button {
+    min-width: 94px !important;
+    min-height: 44px !important;
+    background: linear-gradient(#fcd3d3,#fba9a9);
+    border: none;
+    margin-bottom: 18px;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball.large-btn3 button:hover {
+    background: linear-gradient(#fba9a9,#fcd3d3);
+}
+
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball.large-btn3 .tooltip1 .tooltiptext1 {
+    min-width: 110px;
+    margin-left: -25px;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball.large-btn4 button {
+    min-width: 94px !important;
+    min-height: 44px !important;
+    border: none;
+    padding-left: 20px;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball.large-btn4 button span {
+    padding-left: 15px;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball.large-btn4 button.btn-fix {
+    padding-left: 10px;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball.large-btn2 button span {
+    padding-left: 15px;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball.large-btn2 p{
+    padding-right: 19px;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball.large-btn3 p {
+    padding-right: 17px;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball.large-btn4 p {
+    padding-right: 18px;
+}
+
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball.large-btn p {
+    padding-right: 6px;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball.large-btn p.padding-fix {
+    padding-right: 0px;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball button span {
+    font-size: 14px;
+    font-weight: normal;
+    display: inline-block;
+    width: 41px;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.txtfix {
+    padding-left: 8px;
+    font-size: 20px;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball span.fix-i i {
+    right: 10px;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.red {
+    background: linear-gradient(#ffd9e1, #ffa0b4);
+    border: none;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.red:hover {
+    background: linear-gradient(#ffa0b4,#ffd9e1);
+}
+.container-lottery .right-side.light div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.red,
+.container-lottery .right-side.red div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.red,
+.container-lottery .right-side.green div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.red {
+    border: 1px solid #ffc2cf;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.blue {
+    background: linear-gradient(#bbeffd, #55d3f9);
+    border: none;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.blue:hover {
+    background: linear-gradient(#55d3f9,#bbeffd);
+}
+.container-lottery .right-side.light div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.blue,
+.container-lottery .right-side.red div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.blue,
+.container-lottery .right-side.green div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.blue {
+    border: 1px solid #a5eaff;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.green {
+    background: linear-gradient(#e0f7b2,#b9f14a);
+    border: none;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.green:hover {
+    background: linear-gradient(#b9f14a,#e0f7b2);
+}
+.container-lottery .right-side.light div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.green,
+.container-lottery .right-side.red div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.green,
+.container-lottery .right-side.green div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.green {
+    border: 1px solid #b9f14a;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.gold {
+    background: linear-gradient(#fffae5,#ffefa7);
+    border: none;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.gold:hover {
+    background: linear-gradient(#ffefa7,#fffae5);
+}
+.container-lottery .right-side.light div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.gold,
+.container-lottery .right-side.red div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.gold,
+.container-lottery .right-side.green div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.gold {
+    border: 1px solid #f5e59c;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.silver {
+    background: linear-gradient(#ffffff, #d9d7d7);
+    border: none;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.silver:hover {
+    background: linear-gradient(#d9d7d7, #ffffff);
+}
+.container-lottery .right-side.light div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.silver,
+.container-lottery .right-side.red div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.silver,
+.container-lottery .right-side.green div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.silver {
+    border: 1px solid #ddd;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.lightred {
+    background: linear-gradient(#ffe9ee,#ffb8c6);
+    border: 1px solid #f1d2d8;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.lightred:hover {
+    background: linear-gradient(#ffb8c6,#ffe9ee);
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.mediumred {
+    background: linear-gradient(#ffa3b6,#fb6785);
+    border: 1px solid #ffa3b6;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.mediumred:hover {
+    background: linear-gradient(#fb6785,#ffa3b6);
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.heavyred {
+    background: linear-gradient(#fc8383,#e86666);
+    border: 1px solid #fb8181;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.heavyred:hover {
+    background: linear-gradient(#e86666,#fc8383);
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.lightgreen {
+    background: linear-gradient(#f3fedc,#d8f49f);
+    border: 1px solid #ceef89;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.lightgreen:hover {
+    background: linear-gradient(#d8f49f,#f3fedc);
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.mediumgreen {
+    background: linear-gradient(#98fca1,#65d86f);
+    border: 1px solid #93f89c;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.mediumgreen:hover {
+    background: linear-gradient(#65d86f,#98fca1);
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.heavygreen {
+    background: linear-gradient(#b7e35f,#85b524);
+    border: 1px solid #b4e15c;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.heavygreen:hover {
+    background: linear-gradient(#85b524,#b7e35f);
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.lightblue {
+    background: linear-gradient(#e2f9ff,#b9f0ff);
+    border: 1px solid #bee5ef;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.lightblue:hover {
+    background: linear-gradient(#b9f0ff,#e2f9ff);
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.mediumblue {
+    background: linear-gradient(#92f6fa,#36d8d8);
+    border: 1px solid #92f6fa;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.mediumblue:hover {
+    background: linear-gradient(#36d8d8,#92f6fa);
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.heavyblue {
+    background: linear-gradient(#6dc5f9,#5a99cc);
+    border: 1px solid #6dc5f9;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.heavyblue:hover {
+    background: linear-gradient(#5a99cc,#6dc5f9);
+}
+
+
+
+/* Internet Explorer 10+, Microsoft Edge Browser */
+_:-ms-lang(x), .container-lottery .right-side div.left .bet-area .number-area ul li ul li button:hover {
+    background: #fbfbfb;
+    border: 1px solid #777;
+}
+_:-ms-lang(x), .container-lottery .right-side.light div.left .bet-area .number-area ul li ul li button:hover {
+    background: #fbfbfb;
+    border: 1px solid #777;
+}
+
+.container-lottery .right-side div.left .bet-area .number-area ul li ul li button.ball-act {
+    background: #ffae32;
+    background: linear-gradient(#ffb127, #ff7d05) !important;
+    border: 1px solid #ff970c !important;
+    color: white !important;
+}
+
+/* Internet Explorer 10+, Microsoft Edge Browser */
+_:-ms-lang(x), .container-lottery .right-side div.left .bet-area .number-area ul li ul li button.ball-act {
+    background: #ff970c !important;
+}
+
+.container-lottery .right-side div.left .bet-area .number-area ul li > button > span {
+    display: block;
+    text-align: center;
+    padding-right: 10px;
+    padding-left: 10px;
+ }
+.container-lottery .right-side div.left .bet-area .number-area ul li .btn-area {
+    min-width: 150px;
+    text-align: right;
+    position: absolute;
+    top: 2px;
+    right: 29px;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li .btn-area button {
+    width: 20px;
+    height: 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 12px;
+    color: #555;
+    padding-left: 4px;
+    background: linear-gradient(#ffffff, #e1dfdf);
+    box-shadow: 0 0px 1px rgba(0,0,0,0.5);
+    color: #555;
+}
+/* IE/Edge CSS hack sample */
+
+/* Internet Explorer 10+, Microsoft Edge Browser */
+_:-ms-lang(x), .container-lottery .right-side div.left .bet-area .number-area ul li .btn-area button { 
+    background: #ffffff !important;
+} 
+_:-ms-lang(x), .container-lottery .right-side.light div.left .bet-area .number-area ul li .btn-area button { 
+    background: #ffffff;
+    border: none;
+    box-shadow: 0px 0px 6px rgba(38,37,33,0.23);
+} 
+_:-ms-lang(x), .container-lottery .right-side.blue div.left .bet-area .number-area ul li .btn-area button { 
+    background: none !important;
+} 
+
+.container-lottery .right-side div.left .bet-area .number-area ul li .btn-area button:hover {
+    background: linear-gradient(#e1dfdf,#ffffff);
+    border: 1px solid #b1b1b1;
+    color: #555;
+}
+/* Internet Explorer 10+, Microsoft Edge Browser */
+_:-ms-lang(x), .container-lottery .right-side div.left .bet-area .number-area ul li .btn-area button:hover { 
+    background: #fbfbfb;
+} 
+_:-ms-lang(x), .container-lottery .right-side.light div.left .bet-area .number-area ul li .btn-area button:hover { 
+    background: #fbfbfb;
+} 
+_:-ms-lang(x), .container-lottery .right-side.red div.left .bet-area .number-area ul li .btn-area button:hover { 
+    background: #fbfbfb;
+    color: #c11618;
+    border: 1px solid #c11618;
+} 
+_:-ms-lang(x), .container-lottery .right-side.green div.left .bet-area .number-area ul li .btn-area button:hover { 
+    background: #fbfbfb;
+    color: #519a5d;
+    border:1px solid #519a5d;
+} 
+.container-lottery .right-side div.left .bet-area .number-area ul li .btn-area button.ball-act {
+    background: #ffae32;
+    background: linear-gradient(#ffb127, #ff7d05);
+    color: white;
+    font-weight: 200;
+    pointer-events: none;
+}
+/* Internet Explorer 10+, Microsoft Edge Browser */
+_:-ms-lang(x), .container-lottery .right-side div.left .bet-area .number-area ul li .btn-area button.ball-act { 
+    background: #ff970c !important;
+}
+/* Internet Explorer 10+, Microsoft Edge Browser */
+_:-ms-lang(x), .container-lottery .right-side.light div.left .bet-area .number-area ul li .btn-area button.ball-act { 
+    background: #ff970c !important;
+} 
+.container-lottery .right-side div.left .bet-area .number-area ul li ul li .ball-checkbox-area {
+    font-size: 12px;
+    color: white;
+}
+
+/* 直式選單 */
+.container-lottery .right-side div.left .bet-area .import-area {
+    width: 92%;
+    margin: 30px auto 0;
+}
+.container-lottery .right-side div.left .bet-area .import-area button {
+    background-color: #eee;/* For browsers that do not support gradients */
+    background: linear-gradient(#ffffff, #cecece);
+    border: none;
+    border-radius: 5px;
+    font-size: 12px;
+    margin-right: 5px;
+    border: 1px solid #d6d6d6;
+}
+.container-lottery .right-side div.left .bet-area .import-area .btn-area-top {
+    margin-bottom: 10px;
+}
+.container-lottery .right-side div.left .bet-area .import-area .import-checkbox-area {
+    font-size: 12px;
+    color: white;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+.container-lottery .right-side div.left .bet-area .import-area .btn-area-bottom {
+    margin-top: 5px;
+    margin-bottom: 12px;
+}
+.container-lottery .right-side div.left .bet-area .import-area textarea {
+    width: 100%;
+    height: 140px;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 18px;
+    padding: 10px 20px 0;
+    border: 1px solid #969696;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: white;
+}
+.container-lottery .right-side div.left .bet-area .import-area textarea::-webkit-input-placeholder { /* WebKit browsers */
+    color: #c5c5c5;
+}
+.container-lottery .right-side div.left .bet-area .import-area textarea:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #c5c5c5;
+}
+.container-lottery .right-side div.left .bet-area .import-area textarea::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #c5c5c5;
+}
+.container-lottery .right-side div.left .bet-area .import-area textarea:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: #c5c5c5;
+}
+
+/* 立即投注區 */
+.container-lottery .right-side div.left .bet-area .bottom-area {
+    width: 100%;
+    height: 54px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: rgba(255,255,255,0.1);
+    box-shadow: 0px 0 4px rgba(0,0,0,0.15);
+    padding-left: 8px;
+    clear: both;
+    position: relative;
+}
+.container-lottery .right-side div.left .bet-area .bottom-area ul {
+    list-style: none;
+    z-index: 1;
+    box-shadow: 0 0 2px rgba(0,0,0,0.3);
+}
+.container-lottery .right-side div.left .bet-area .bottom-area ul li {
+    font-style: normal;
+    float: left;
+}
+.container-lottery .right-side div.left .bet-area .bottom-area ul li p {
+    font-size: 14px;
+    color: white;
+    margin: 0;
+    padding-top: 20px;
+}
+
+/* range-slider start */
+input[type='range'] {
+    display: block;
+    margin: 0.2em auto;
+    padding: 0;
+    width: 105px;
+    height: 6px;
+    border-radius: .25em;
+    background: transparent;
+    font-size: 1em;
+    cursor: pointer;
+    position: relative;
+    top: -7px;
+    left: 14px;
+    margin-right: 27px;
+}
+
+/* Microsoft Edge Browser 12+ (All) - @supports method */
+@supports (-ms-ime-align:auto) {
+  input[type='range'] { height: 10px; } 
+}
+
+/* Internet Explorer 10+, Microsoft Edge Browser */
+_:-ms-lang(x), input[type='range'] { height: 10px; } 
+
+input[type='range'], 
+input[type='range']::-webkit-slider-runnable-track, 
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+}
+input[type='range']::-webkit-slider-runnable-track {
+  width: 120px;
+  height: 6px;
+  border-radius: 0.25em;
+  background:#e4e4e4;
+}
+input[type='range']::-webkit-slider-runnable-track {
+  background: linear-gradient(#ffb127, #ff7d05) no-repeat #e4e4e4;
+}
+input[type='range']::-moz-range-track {
+  width: 120px;
+  height: 6px;
+  border-radius: 0.25em;
+  background: #e4e4e4;
+}
+input[type='range']::-moz-range-track {
+  background: linear-gradient(#ffb127, #ff7d05) no-repeat #e4e4e4;
+}
+input[type='range']::-ms-track {
+  border: none;
+  width: 120px;
+  height: 6px;
+  border-radius: 0.25em;
+  background: #e4e4e4;
+  color: transparent;
+}
+input[type='range']::-ms-fill-lower {
+  border-radius: 0.25em;
+  background: linear-gradient(#ffb127, #ff7d05);
+}
+input[type='range']::-webkit-slider-runnable-track {
+  background-size: 0% 100%;
+}
+input[type='range']::-moz-range-track {
+  background-size: 0% 100%;
+}
+input[type='range']::-webkit-slider-thumb {
+  margin-top: -0.125em;
+  border: none;
+  width: 0.75em;
+  height: 0.75em;
+  border-radius: 3px;
+  box-shadow: 0 0 0.125em #333;
+  background: #fff;
+}
+input[type='range']::-moz-range-thumb {
+  border: none;
+  width: 13px;
+  height: 13px;
+  border-radius: 3px;
+  box-shadow: 0 0 0.125em #333;
+  background: #fff;
+}
+input[type='range']::-ms-thumb {
+  border: none;
+  width: 13px;
+  height: 13px;
+  border-radius: 3px;
+  box-shadow: 0 0 0.125em #333;
+  background: #fff;
+}
+input[type='range']::-ms-tooltip {
+  display: none;
+}
+input[type='range']:focus {
+  outline: none;
+}
+output[for='range']:first-child {
+    font-size: 13px;
+    color: #ff9f00;
+    display: inline-block;
+    position: relative;
+    top: 25px;
+    left: 8px;
+    width: 25px;
+    text-align: right;
+}
+output[for='range'] {
+    font-size: 13px;
+    color: #ff9f00;
+    display: inline-block;
+    position: relative;
+    top: 25px;
+    left: 63px;
+    width: 25px;
+    text-align: right;
+}
+/* range-slider end */
+
+/* 六合彩 投注額度 */
+.betlimit {
+    /*display: none;*/
+}
+.betlimit p {
+    font-size: 13px !important;
+    margin-left: 20px !important;
+    padding-top: 17px !important;
+}
+.betlimit p input {
+    width: 50px;
+    font-size: 15px;
+    color: black;
+    text-align: center;
+    margin-right: 7px;
+    margin-left: 7px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+.container-lottery .right-side div.left .bet-area .bottom-area ul li select {
+    border: none;
+    background-color: #eee;
+    background: linear-gradient(#ffffff, #cecece);
+    color: black;
+    margin-top: 18px;
+    height: 24px;
+    width: 46px;
+    margin-left: 13px;
+    box-shadow: 0 0 2px rgba(0,0,0,0.3);
+    border-radius: 5px; /* for IE */
+    padding-left: 5px; /* for IE */
+}
+.container-lottery .right-side div.left .bet-area .bottom-area ul li .multiple {
+    font-size: 13px;
+    color: white;
+    margin-top: 19px;
+    margin-left: 13px;
+    position: relative;
+}
+.container-lottery .right-side.light div.left .bet-area .bottom-area ul li .multiple {
+    color: black;
+}
+.select-fix-award {
+    display: inline-block;
+    width: 46px;
+    height: 24px;
+    border-radius: 5px;
+    position: relative;
+    top: 5px;
+    left: -12px;
+}
+.select-fix-award select {
+    width: 46px;
+    height: 24px;
+    position: absolute;
+    top: -5px;
+    left: 5px;
+}
+
+/* Internet Explorer 10+, Microsoft Edge Browser */
+_:-ms-lang(x), .container-lottery .right-side div.left .bet-area .bottom-area ul li .select-fix-award,
+.container-lottery .right-side.light div.left .bet-area .bottom-area ul li .select-fix-award { 
+    display: inline-block;
+    width: 46px;
+    height: 24px;
+    background: linear-gradient(#ffffff, #cecece);
+    border-radius: 5px;
+    position: absolute;
+    top: 0px;
+    left: 10px;
+}
+_:-ms-lang(x), .container-lottery .right-side div.left .bet-area .bottom-area ul li .select-fix-award select,
+.container-lottery .right-side.light div.left .bet-area .bottom-area ul li .select-fix-award select {
+    background: url(../img/bg_arrow_02.svg) 85% center no-repeat !important;
+    border-radius: 0 !important;
+    box-shadow: none;
+    position: absolute;
+    top: -18px;
+    left: -13px;
+}
+_:-ms-lang(x), .container-lottery .right-side div.left .bet-area .bottom-area ul li .select-fix-award select::-ms-expand,
+.container-lottery .right-side.light div.left .bet-area .bottom-area ul li .select-fix-award select::-ms-expand { 
+    display: none;
+}
+
+/*.container-lottery .right-side div.left .bet-area .bottom-area ul li .multiple button {
+    width: 17px;
+    height: 17px;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(#ffffff, #cecece);
+    font-family: Arial;
+    font-size: 5px;
+    color: #787878;
+    margin-right: 6px;
+    margin-left: 6px;
+    padding-left: 2px;
+    box-shadow: 0 0px 1px rgba(0,0,0,0.5);
+    padding-top: -7px;
+    padding-top: 0;
+}*/
+.multiple span.multiple-drop-menu {
+    display: inline-block;
+    background-color: #f8f8f8;
+    border: 1px solid rgba(0, 0, 0, 0);
+    cursor: pointer;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+/*    margin-left: 9px;*/
+    position: relative;
+    z-index: 2;
+}
+.container-lottery .right-side.light div.left .bet-area .bottom-area ul li .multiple span.multiple-drop-menu {
+    /* box-shadow: 0 0 2px rgba(0,0,0,0.3); */
+}
+.container-lottery .right-side div.left .bet-area .bottom-area ul li .multiple span.multiple-drop-menu:hover {
+    border: 1px solid rgba(0, 0, 0, 0.3);
+}
+.container-lottery .right-side div.left .bet-area .bottom-area ul li .multiple span.multiple-drop-menu input {
+    width: 54px;
+    background: none;
+    border: none;
+    font-family: Arial;
+    font-size: 14px;
+    color: #555;
+    text-align: center;
+    margin-right: 0;
+    padding: 0;
+    height: 20px;
+}
+.container-lottery .right-side div.left .bet-area .bottom-area ul li .multiple span.multiple-drop-menu i {
+    display: inline-block;
+    width: 12px;
+    height: 18px;
+    background-color: none;
+    background-image: url(../img/bg_arrow_01.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: text-top;
+}
+ul.multiple-drop-content {
+    display: none;
+    list-style: none;
+    width: 64px;
+    background-color: white;
+/*    border: 1px solid rgba(0, 0, 0, 0.2);*/
+    position: absolute;
+    top: 19px;
+    left: 36px;
+    z-index: 1;
+}
+
+/* Internet Explorer 10+, Microsoft Edge Browser */
+_:-ms-lang(x), ul.multiple-drop-content { left: 33px; } 
+
+ul.multiple-drop-content li {
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    font-size: 12px;
+    color: black;
+    text-align: center;
+    padding-top: 4px;
+    padding-bottom: 2px;
+}
+ul.multiple-drop-content li:hover {
+    background-color: #e8e8e8;
+}
+ul.multiple-drop-content li:last-child {
+    border-bottom: none;
+}
+.container-lottery .right-side div.left .bet-area .bottom-area ul li p.total {
+    font-size: 13px;
+    margin-left: 26px;
+    position: absolute;
+    right: 168px;
+}
+.container-lottery .right-side div.left .bet-area .bottom-area ul li p.total span {
+    font-family: Arial;
+    font-size: 16px;
+    color: #ff9f00;
+    margin-right: 3px;
+    margin-left: 3px;
+}
+.container-lottery .right-side div.left .bet-area .bottom-area p.bet {
+    position: absolute;
+    bottom: -4px;
+    right: 7px;
+}
+.container-lottery .right-side div.left .bet-area .bottom-area p.bet button {
+    width: 68px;
+    height: 25px;
+    border: none;
+    border-radius: 5px;
+    background: linear-gradient(#ffb127, #ff7d05);
+    font-size: 13px;
+    font-weight: 300;
+    color: white;
+    margin-right: 7px;
+}
+.container-lottery .right-side div.left .bet-area .bottom-area p.bet button:hover {
+    background: linear-gradient(#ff7d05, #ffb127);
+}
+.container-lottery .right-side div.left .bet-area .bottom-area ul li p.bet button:last-child {
+    margin-right: 0;
+}
+
+/* 主內容 右區塊 下方 */
+.container-lottery .right-side div.left .list-area {
+    width: 101%;
+    background-color: rgba(191, 191, 191, 0.21);
+    border: 1px solid #8b8b8b;
+    border-radius: 10px;
+    box-shadow: 0px 0px 9px rgba(0,0,0,0.25);
+    margin: 11px auto 22px;
+    min-height: 200px;
+    position: relative;
+}
+.container-lottery .right-side div.left .sixlottery-list-area {
+    display: block;
+    width: 134%;
+    margin-bottom: 13px;
+    min-height: 0;
+}
+.container-lottery .right-side div.left .sixlottery-list-area div.top {
+    min-height: 120px;
+}
+.container-lottery .right-side div.left .list-area .top {
+    position: relative;
+    width: 100%;
+    min-height: 200px;
+}
+.container-lottery .right-side div.left .list-area table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.container-lottery .right-side div.left .list-area table th {
+    width: 100%;
+    height: 30px;
+    font-size: 13px;
+    font-weight: 300;
+    color: #e5d591;
+    vertical-align: middle;
+    background: #3a3a3a;
+    height: 34px;
+}
+.container-lottery .right-side div.left .list-area table th:first-child {
+    border-top-left-radius: 10px;
+}
+.container-lottery .right-side div.left .list-area table th:last-child {
+    border-top-right-radius: 10px;
+}
+.container-lottery .right-side.light div.left .list-area table th {
+    background: rgba(163, 163, 163, 0.8);
+    color: white;
+}
+.container-lottery .right-side div.left .list-area table tr:first-child {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.container-lottery .right-side div.left .list-area table td {
+    font-size: 13px;
+    color: white;
+    text-align: center;
+    padding: 6px;
+    font-weight: 200;
+}
+.container-lottery .right-side.light div.left .list-area table td {
+    color: #555;
+    font-weight: normal;
+}
+.container-lottery .right-side div.left .list-area table tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+.container-lottery .right-side div.left .list-area table td a {
+    color: white;
+}
+.container-lottery .right-side.light div.left .list-area table td a {
+    color: red;
+}
+.container-lottery .right-side div.left .list-area table td a:hover {
+    color: red;
+}
+.container-lottery .right-side div.left .list-area table th {
+    padding-left: 5px;
+}
+.container-lottery .right-side div.left .list-area table tr td:nth-child(1) {
+    width: 35%;
+}
+.container-lottery .right-side div.left .list-area table th:nth-child(1) {
+    width: 35%;
+}
+.container-lottery .right-side div.left .list-area table tr td:nth-child(2) {
+    width: 15%;
+}
+.container-lottery .right-side div.left .list-area table th:nth-child(2) {
+    width: 15%;
+}
+.container-lottery .right-side div.left .list-area table tr td:nth-child(3) {
+    width: 10%;
+}
+.container-lottery .right-side div.left .list-area table th:nth-child(3) {
+    width: 10%;
+}
+.container-lottery .right-side div.left .list-area table tr td:nth-child(4) {
+    width: 10%;
+}
+.container-lottery .right-side div.left .list-area table th:nth-child(4) {
+    width: 10%;
+}
+.container-lottery .right-side div.left .list-area table tr td:nth-child(5) {
+    width: 10%;
+}
+.container-lottery .right-side div.left .list-area table th:nth-child(5) {
+    width: 10%;
+}
+.container-lottery .right-side div.left .list-area table tr td:nth-child(6) {
+    width: 10%;
+}
+.container-lottery .right-side div.left .list-area table th:nth-child(6) {
+    width: 10%;
+}
+.container-lottery .right-side div.left .list-area table tr td:nth-child(7) {
+    width: 10%;
+}
+.container-lottery .right-side div.left .list-area .top table th:nth-child(7) {
+    width: 10%;
+}
+.container-lottery .right-side div.left .list-area .bottom {
+    height: 40px;
+    padding-left: 19px;
+}
+.container-lottery .right-side div.left .list-area .bottom p {
+    font-size: 12px;
+    color: white;
+    float: left;
+}
+.container-lottery .right-side div.left .list-area .bottom p span {
+    font-family: Arial;
+    font-size: 18px;
+    color: #ffc050;
+    padding-right: 4px;
+    padding-left: 4px;
+}
+.container-lottery .right-side div.left .list-area .bottom p span:last-child {
+    padding-left: 8px;
+}
+.container-lottery .right-side div.left .list-area .bottom div.btn-area {
+    float: right;
+    margin-top: 8px;
+    margin-right: 5px;
+}
+.container-lottery .right-side div.left .list-area .bottom div.btn-area button {
+    width: 68px;
+    height: 25px;
+    border: none;
+    border-radius: 5px;
+    background: linear-gradient(#ffb127, #ff7d05);
+    font-size: 13px;
+    font-weight: 300;
+    color: white;
+    margin-right: 7px;
+}
+.container-lottery .right-side div.left .list-area .bottom div.btn-area button:hover {
+    background: linear-gradient(#ff7d05, #ffb127);
+}
+.container-lottery .right-side div.left .list-area .bottom div.btn-area button:last-child {
+    margin-right: 10px;
+}
+
+/* ä¸»å…§å®¹ å³å€å¡Š */
+.container-lottery .right-side div.right {
+    width: 25%;
+    float: right;
+    position: relative;
+    right: 5px;
+}
+.container-lottery .right-side div.right h5 {
+    font-size: 13px;
+    font-weight: 300;
+    color: white;
+    text-align: center;
+    margin-top: 9px;
+    margin-bottom: 9px;
+}
+.container-lottery .right-side div.left .lottery-number {
+    -webkit-user-select: none; /* Safari 3.1+ */
+    -moz-user-select: none; /* Firefox 2+ */
+    -ms-user-select: none; /* IE 10+ */
+    user-select: none; /* Standard syntax */
+    text-align: center;
+    position: relative;
+    top: -4px;
+    left: 14px;
+}
+.container-lottery .right-side div.left .six-lottery-number {
+    width: 548px !important;
+    top: 20px !important;
+}
+.container-lottery .right-side div.left .lottery-number span {
+    display: inline-block;
+    width: 31px;
+    height: 31px;
+    background: linear-gradient(#ff7e00, #ff4500);
+    border: 1px solid #e9733c;
+    border-radius: 50%;
+    font-family: Arial;
+    font-size: 18px;
+    color: white;
+    line-height: 30px;
+    margin-right: 6px;
+}
+.container-lottery .right-side div.right div.multiple img:hover {
+    filter: brightness(70%);
+}
+.container-lottery .right-side div.right .lottery-number span:last-child {
+    margin-right: 0;
+}
+/*.container-lottery .right-side div.right div.btn-area {
+    position: absolute;
+    right: 50px;
+    top: 30px;
+}*/
+.container-lottery .right-side div.right div.btn-area button {
+    background-color: #eee;
+    background: linear-gradient(#ffffff, #cecece);
+    border: none;
+    border-radius: 5px;
+    font-size: 12px;
+    margin-left: 6px;
+    box-shadow: 0 0 2px rgba(0,0,0,0.3);
+    height: 25px;
+}
+.container-lottery .right-side div.right div.btn-area button:hover {
+    background: linear-gradient(#cecece,#ffffff);
+}
+
+.sixlotterybtn-area {
+    display: block;
+    position: absolute;
+    right: 25px;
+    top: 4px;
+}
+.sixlotterybtn-area button {
+    background-color: #eee;
+    background: linear-gradient(#ffffff, #cecece);
+    border: none;
+    border-radius: 5px;
+    font-size: 12px;
+    margin-left: 6px;
+    box-shadow: 0 0 2px rgba(0,0,0,0.3);
+    height: 25px;
+}
+.sixlotterybtn-area button:hover {
+    background: linear-gradient(#cecece, #ffffff);
+}
+
+.container-lottery .right-side div.color {
+    width: 202px;
+    height: 35px;
+    position: absolute;
+    top: 45px;
+    right: 54px;
+    z-index: 1;
+}
+.container-lottery .right-side div.color p {
+    font-size: 11px;
+    color: white;
+    text-align: center;
+    margin: 0;
+    position: relative;
+    top: -23px;
+}
+.container-lottery .right-side.light div.color p {
+    color: #555;
+}
+.container-lottery .right-side  div.color button {
+    width: 26px;
+    height: 9px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    bottom: 0;
+    transition: width height 0.2s;
+}
+.container-lottery .right-side div.color button:hover {
+    width: 28px;
+    height: 11px;
+}
+.container-lottery .right-side div.color button.gray {
+    background-color: #6c6767;
+    box-shadow: 0px 0 4px rgba(0,0,0,0.2);
+    position: absolute;
+    left: 0px;
+    top: 0px;
+
+}
+.container-lottery .right-side div.color button.yellow {
+    background-color: #fff8ac;
+    box-shadow: 0px 0 4px rgba(0,0,0,0.3);
+    position: absolute;
+    top: 0;
+    left: 35px;
+}
+.container-lottery .right-side div.color button.lightgray {
+    background-color: #d7d7d7;
+    box-shadow: 0px 0 2px rgba(0,0,0,0.3);
+    position: absolute;
+    top: 0;
+    left: 70px;
+}
+.container-lottery .right-side div.color button.blue {
+    background-color: #366eff;
+    box-shadow: 0px 0 4px rgba(0,0,0,0.3);
+    position: absolute;
+    top: 0;
+    left: 175px;
+}
+.container-lottery .right-side div.color button.red {
+    background-color: #db2424;
+    box-shadow: 0px 0 4px rgba(0,0,0,0.3);
+    position: absolute;
+    top: 0;
+    left: 105px;
+}
+.container-lottery .right-side select.color {
+    position: absolute;
+    width: 74px;
+    height: 24px;
+    top: 31px;
+    right: 186px;
+}
+.container-lottery .right-side div.color button.green {
+    background-color: #00c600;
+    box-shadow: 0px 0 4px rgba(0,0,0,0.3);
+    position: absolute;
+    top: 0;
+    left: 140px;
+}
+.container-lottery .right-side div.right div.win-number {
+    width: 92%;
+    border: 1px solid #848484;
+    margin: 0 auto;
+    margin-top: 76px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background-color: rgba(191, 191, 191, 0.21);
+}
+.container-lottery .right-side div.right div.win-number table {
+    width: 100%;
+    border-collapse: collapse;
+    /*margin-bottom: 10px;*/
+}
+.container-lottery .right-side div.right div.win-number table tr:first-child {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.container-lottery .right-side div.right div.win-number table tr:last-child {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+.container-lottery .right-side div.right div.win-number table tr th {
+    height: 34px;
+    background-color: #3a3a3a;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    font-size: 14px;
+    font-weight: 300;
+    color: #e5d591;
+    text-align: center;
+}
+.container-lottery .right-side div.right div.win-number table tr td {
+    font-size: 12px;
+    color: white;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background: none;
+}
+.container-lottery .right-side div.right div.win-number table tr:first-child td {
+    padding-top: 10px;
+}
+.container-lottery .right-side.light div.right div.win-number table tr:first-child td {
+    padding-top: 10px;
+}
+.container-lottery .right-side div.right div.win-number table tr:nth-child(3) td {
+    padding-top: 10px;
+}
+.container-lottery .right-side.light div.right div.win-number table tr:nth-child(3) td {
+    padding-top: 10px;
+}
+.container-lottery .right-side div.right div.win-number table tr:nth-child(2) {
+    box-shadow: 0 0 0px rgba(0,0,0,0.15);
+}
+.container-lottery .right-side div.right div.win-number table tr:nth-child(2) td {
+    background-color: rgba(255,255,255,0.1);
+}
+.container-lottery .right-side.light div.right div.win-number table tr:nth-child(2) td {
+    background-color: rgba(255,255,255,0.2);
+}
+.container-lottery .right-side div.right div.win-number table tr:nth-last-child(2) td {
+    padding-bottom: 10px;
+}
+.container-lottery .right-side.light div.right div.win-number table tr:nth-last-child(2) td {
+    padding-bottom: 10px;
+}
+.container-lottery .right-side.light div.right div.win-number table tr:last-child td {
+    padding-bottom: 10px;
+    background-color: rgba(255,255,255,0.3);
+    color: #555;
+    padding-top: 10px;
+}
+.container-lottery .right-side div.right div.win-number table tr:last-child td {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    box-shadow: 0 0 6px rgba(0,0,0,0.15);
+}
+.container-lottery .right-side div.right div.win-number table tr:last-child a {
+    font-size: 13px;
+    color: #ffeaa1;
+}
+.container-lottery .right-side div.right div.win-number table tr:last-child a:hover {
+    color: #ff8300;
+}
+.container-lottery .right-side.light div.right div.win-number table tr:last-child a {
+    font-size: 13px;
+    color: #555;
+}
+.container-lottery .right-side.light div.right div.win-number table tr:last-child a:hover {
+    font-size: 13px;
+    color: #f8911d;
+/*    text-shadow: 1px 0px 3px rgba(99, 95, 95, 0.85);*/
+}
+.container-lottery .right-side div.right div.win-number table tr td span {
+    display: inline-block;
+    min-width: 18px;
+    height: 18px;
+    background-color: #bfbfbf;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 300;
+    font-style: normal;
+    color: white;
+    text-align: center;
+    line-height: 18px;
+    text-shadow: 1px 0px 3px rgba(99, 95, 95, 0.85);
+}
+.container-lottery .right-side div.right div.win-number table tr td span.active {
+    background-color: #f8911d;
+    text-shadow: 1px 0px 3px rgba(173, 91, 0, 0.85);
+}
+.container-lottery .right-side div.right div.win-number table tr td span.active.dragon-color {
+    background-color: #dc4c4c;
+    text-shadow: 1px 0px 3px rgba(99, 95, 95, 0.85);
+}
+.container-lottery .right-side div.right div.win-number table tr td span.active.tiger-color {
+    background-color: #5bbd37;
+    text-shadow: 1px 1px 0px rgba(99, 95, 95, 0.85);
+}
+.container-lottery .right-side div.right div.win-number table tr td span.active.total-color {
+    background-color: #0a99de;
+    text-shadow: 1px 0px 3px rgba(99, 95, 95, 0.85);
+}
+.container-lottery .right-side div.right div.win-number table tr td span.active.color-num01 {
+    background-color: #dc4a1d;
+    text-shadow: 1px 0px 3px rgba(99, 95, 95, 0.85);
+}
+.container-lottery .right-side div.right div.win-number table tr td span.active.color-num02 {
+    background-color: #3ac507;
+    text-shadow: 1px 0px 3px rgba(99, 95, 95, 0.85);
+}
+.container-lottery .right-side div.right div.win-number table tr td span.active.color-num03 {
+    background-color: #00acff;
+    text-shadow: 1px 0px 3px rgba(99, 95, 95, 0.85);
+}
+.container-lottery .right-side div.right div.win-number table tr td span.active.color-num04 {
+    background-color: #e2c248;
+    text-shadow: 1px 0px 3px rgba(99, 95, 95, 0.85);
+}
+.container-lottery .right-side div.right div.win-number table tr td span.active.color-num05 {
+    background-color: #ff9800;
+    text-shadow: 1px 0px 3px rgba(99, 95, 95, 0.85);
+}
+.container-lottery .right-side div.right div.win-number table tr td span.active.color-num06 {
+    background-color: #4e2afe;
+    text-shadow: 1px 0px 3px rgba(99, 95, 95, 0.85);
+}
+.container-lottery .right-side div.right div.win-number table tr td span.active.color-num07 {
+    background-color: #908585;
+    text-shadow: 1px 0px 3px rgba(99, 95, 95, 0.85);
+}
+.container-lottery .right-side div.right div.win-number table tr td span.active.color-num08 {
+    background-color: #61a0e2;
+    text-shadow: 1px 0px 3px rgba(99, 95, 95, 0.85);
+}
+.container-lottery .right-side div.right div.win-number table tr td span.active.color-num09 {
+    background-color: #29c3c2;
+    text-shadow: 1px 0px 3px rgba(99, 95, 95, 0.85);
+}
+.container-lottery .right-side div.right div.win-number table tr td span.active.color-num10 {
+    background-color: #f436b9;
+    text-shadow: 1px 0px 3px rgba(99, 95, 95, 0.85);
+}
+
+/* 右側列 亮色系 */
+.container-lottery.light {
+    background: url(../img/bg_lottery_light.jpg);
+    background-position: 0;
+}
+.container-lottery .right-side.light {
+    font-weight: normal;
+    background: none;
+}
+.container-lottery.light .left-side .account ul li p {
+    color: #555;
+    font-weight: normal;
+}
+.container-lottery.light .left-side .account ul li p span {
+    font-size: 14px;
+    color: #ff5e00;
+}
+.container-lottery.light .left-side a {
+    color: #555;
+}
+.container-lottery.light .left-side a.dropdownlink {
+    background: linear-gradient(#fdfdf3, #f5eede);
+    border-right: 6px solid #b5b4af;
+    border-left: 6px solid #b5b4af;
+    box-shadow: 0px -1px 21px 0 rgba(50,50,50, 0.1), 0px 0 2px 0 rgba(50,50,50, 0.1);
+    color: #555;
+}
+.container-lottery.light .left-side a.dropdownlink:hover {
+    border-right: 6px solid #fdb919;
+    border-left: 6px solid #fdb919;
+}
+.container-lottery.light .left-side .submenuItems a {
+    background-color: #fcfcf0;
+}
+.container-lottery.light .left-side .submenuItems a:hover {
+    background-color: #fff;
+}
+.container-lottery.light .left-side .submenuItems a.submenu-active {
+    background: #fdb919;
+    color: white;
+    pointer-events: none;
+}
+.container-lottery.light .left-side .accordion-menu li.open .dropdownlink {
+    background: linear-gradient(#ffffff, #fcf7ea);
+    border-right: 6px solid #fdb919;
+    border-left: 6px solid #fdb919;
+}
+
+/* 彩種 */
+.container-lottery .right-side div.left > .top-area {
+    width: 100%;
+    height: 72px;
+    position: relative;
+    top: 0;
+    margin-top: 4px;
+}
+.container-lottery .right-side div.left .top-area p {
+    font-size: 12px;
+    color: white;
+    margin-top: 0;
+    margin-bottom: 0;
+    display: inline-block;
+    position: relative;
+    top: -4px;
+}
+.container-lottery .right-side.light div.left .top-area p {
+    color: #555;
+
+}
+.container-lottery .right-side div.left .top-area div.icon-lottery {
+    display: inline-block;
+    width: 136px;
+    height: 60px;
+    position: absolute;
+    top: 5px;
+    left: -12px;
+}
+.container-lottery .right-side div.left .top-area div.icon-lottery img {
+    width: 100%;
+}
+.container-lottery .right-side div.left .top-area p.bet-time span.icon-speaker {
+    display: inline-block;
+    width: 14px;
+    height: 11px;
+    background-image: url(../img/icon_speaker_dark.png);
+    margin-left: 5px;
+}
+.container-lottery .right-side.light div.left .top-area p.bet-time span.icon-speaker {
+    background-image: url(../img/icon_speaker_light.png);
+}
+.container-lottery .right-side div.left .top-area div.area {
+    position: absolute;
+    width: 132px;
+    top: 39px;
+    left: 133px;
+}
+.container-lottery .right-side div.left .top-area p.record {
+    position: absolute;
+    top: -26px;
+    width: 100%;
+    text-align: center;
+}
+.container-lottery .right-side div.left .top-area p.record span {
+    color: #ffa721;
+    margin-right: 4px;
+    margin-left: 4px;
+}
+.container-lottery .right-side div.left .top-area p.bet-time {
+    position: absolute;
+    top: 0;
+    left: -2px;
+}
+.container-lottery .right-side div.left .top-area p.time-num {
+    display: inline-block;
+    width: 84px;
+    height: 25px;
+    background: orange;
+    background: linear-gradient(#808080, #242424);
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(56, 56, 56, 0.5);
+    font-family: Arial;
+    font-size: 15.25px;
+    color: white;
+    text-align: center;
+    line-height: 24px;
+    position: absolute;
+    left: 52px;
+}
+.container-lottery .right-side div.left .top-area p.time-num span {
+    margin-right: 3px;
+    margin-left: 3px;
+}
+.container-lottery .right-side div.left .top-area > p span.time i {
+    font-style: normal;
+    margin-right: 6px;
+    margin-left: 6px;
+ }
+.container-lottery .right-side div.left .top-area > i {
+    font-style: normal;
+    margin-right: 8px;
+    margin-left: 8px;
+    color: white;
+    font-size: 14px;
+    position: relative;
+    top: -3px;
+}
+.container-lottery .right-side.light div.left .top-area > i {
+    color: #555;
+}
+
+/* 開獎號碼 開始 */
+.container-lottery .right-side div.left .top-area .lottery-number {
+    display: inline-block;
+    width: 504px;
+    text-align: center;
+    position: absolute;
+    top: 24px;
+    left: 35%;
+}
+.container-lottery .right-side div.left .top-area .lottery-number p.winner {
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    top: -22px;
+    left: 0;
+}
+.container-lottery .right-side div.left .top-area .lottery-number p.winner i {
+    font-size: 12px;
+    font-style: normal;
+    color: #ffa721;
+    margin-right: 3px;
+    margin-left: 3px;
+}
+/*.container-lottery .right-side div.left .top-area .lottery-number > div {
+    width: 100%;
+    text-align: center;
+}*/
+.container-lottery .right-side div.left .top-area .lottery-number span {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(#ff7e00, #ff4500);
+    background-size: 108%;
+    background-position-x: -1px;
+    background-position-y: -1px;
+    border: 1px solid #e9733c;
+    border-radius: 50%;
+    font-family: Arial;
+    font-size: 23px;
+    color: white;
+    text-align: center;
+    line-height: 38px;
+    margin-right: 4px;
+}
+
+/* Internet Explorer 10+, Microsoft Edge Browser */
+_:-ms-lang(x), .container-lottery .right-side div.left .top-area .lottery-number span { border: none;} 
+
+.container-lottery .right-side div.left .top-area .lottery-number .three-dices span {
+    background: none;
+    border: none;
+    border-radius: 0;
+    margin-right: 15px;
+}
+.container-lottery .right-side div.left .top-area .lottery-number .three-dices span:last-child {
+    margin-right: 0;
+}
+.container-lottery .right-side div.left .top-area .lottery-number .three-dices .rolldice span {
+    background-image: url(../img/rolldice.gif) !important;
+    background-repeat: no-repeat;
+}
+.container-lottery .right-side div.left .top-area .lottery-number .three-dices {
+    position: relative;
+    top: -3px;
+}
+.container-lottery .right-side div.left .top-area .lottery-number .three-dices span i.dice {
+    display: block;
+    width: 42px;
+    height: 42px;
+    background-image: url(../img/bg_dice.png);
+    background-repeat: no-repeat;
+}
+/*.container-lottery .right-side div.left .top-area .lottery-number .three-dices span i.rolldice {
+    background-image: url(../img/rolldice.gif) !important;
+}*/
+.container-lottery .right-side div.left .top-area .lottery-number .three-dices span i.dice.dice01 {
+    background-position: 0 0;
+    background-size: 509px;
+    margin-top: 4px;
+}
+.container-lottery .right-side div.left .top-area .lottery-number .three-dices span i.dice.dice02 {
+    background-position: -52px 0;
+    background-size: 509px;
+    margin-top: 4px;
+}
+.container-lottery .right-side div.left .top-area .lottery-number .three-dices span i.dice.dice03 {
+    background-position: -104px 0;
+    background-size: 509px;
+    margin-top: 4px;
+}
+.container-lottery .right-side div.left .top-area .lottery-number .three-dices span i.dice.dice04 {
+    background-position: -156px 0;
+    background-size: 509px;
+    margin-top: 4px;
+}
+.container-lottery .right-side div.left .top-area .lottery-number .three-dices span i.dice.dice05 {
+    background-position: -208px 0;
+    background-size: 509px;
+    margin-top: 4px;
+}
+.container-lottery .right-side div.left .top-area .lottery-number .three-dices span i.dice.dice06 {
+    background-position: -260px 0;
+    background-size: 509px;
+    margin-top: 4px;
+}
+.container-lottery .right-side div.left .top-area .lottery-number div.seven-balls {
+    position: relative;
+    left: 105px;
+    top: 2px;
+}
+.container-lottery .right-side div.left .top-area .lottery-number .seven-balls ul {
+    list-style: none;
+    position: absolute;
+    top: -5px;
+    left: 11px;
+}
+.container-lottery .right-side div.left .top-area .lottery-number .seven-balls ul li {
+    width: 40px;
+    float: left;
+}
+.container-lottery .right-side div.left .top-area .lottery-number .seven-balls span {
+    width: 32px;
+    height: 32px;
+    font-size: 19px;
+    color: #3c3f40;
+    background-size: 108% !important;
+    background-position-x: -1px !important;
+    background-position-y: -1px !important;
+    /* font-family: helvetica; */
+    /* font-weight: 600; */
+    font-weight: bold;
+    line-height: 33px;
+}
+.container-lottery .right-side div.left .top-area .lottery-number .seven-balls span.red {
+    background: linear-gradient(#ffd9e1, #fd90a7);
+    border: none;
+}
+.container-lottery .right-side div.left .top-area .lottery-number .seven-balls span.blue {
+    background: radial-gradient(#bbeffd, #55d3f9);
+    border: none;
+}
+.container-lottery .right-side div.left .top-area .lottery-number .seven-balls span.green {
+    background: linear-gradient(#e0f7b2,#b9f14a);
+    border: none;
+}
+.container-lottery .right-side div.left .top-area .lottery-number .seven-balls p{
+    margin-right: 5px;
+    padding-top: 2px;
+    margin-top: 5px;
+    width: 20px;
+    height: 20px;
+}
+
+.container-lottery .right-side div.left .top-area .lottery-number .seven-balls i.plus {
+    color: white;
+    margin-right: 5px;
+}
+.container-lottery .right-side.light div.left .top-area .lottery-number .seven-balls i.plus {
+    color: #555;
+}
+
+/* 開獎號碼 結束 */
+.container-lottery .right-side div.left .top-area > p > i {
+    font-style: normal;
+    margin-right: 8px;
+    margin-left: 8px;
+}
+
+/* 投注區 */
+.container-lottery .right-side.light div.left .bet-area {
+    background-color: rgba(255, 255, 255, 0.3);
+    border: none;
+    box-shadow: 0px 0px 6px rgba(38, 37, 33, 0.23);
+}
+.container-lottery .right-side.light div.left .bet-area p.rule {
+}
+.container-lottery .right-side.light div.left .bet-area div.note > span {
+    color: #3a3a3a;
+}
+.container-lottery .right-side.light div.left .bet-area div.note > a {
+    color: #3a3a3a;
+}
+
+/* 投注區上側 */
+/* 分類 */
+.container-lottery .right-side.light div.left .bet-area .top-area .kind {
+    background-color: rgba(163, 163, 163, 0.8);
+}
+.container-lottery .right-side.light div.left .bet-area .top-area .kind  ul li:hover,
+.container-lottery .right-side.light div.left .bet-area .top-area .kind  ul li.kind-act {
+    background-color: rgb(254, 252, 239);
+}
+.container-lottery .right-side.light div.left .bet-area .top-area .kind  ul li:hover a,
+.container-lottery .right-side.light div.left .bet-area .top-area .kind  ul li.kind-act a {
+    color: black;
+    font-weight: normal;
+}
+.container-lottery .right-side.light div.left .bet-area .top-area .kind  ul li a {
+    color: white;
+    font-weight: 200;
+}
+
+/* 選組區 */
+.container-lottery .right-side.light div.left .bet-area .top-area .pick-area ul li span {
+     color: #444;
+}
+.container-lottery .right-side.light div.left .bet-area .top-area .pick-area ul li a {
+    display: inline-block;
+    font-size: 12px;
+    color: #444;
+}
+.container-lottery .right-side.light div.left .bet-area .top-area .pick-area ul li a:hover,
+.container-lottery .right-side.light div.left .bet-area .top-area .pick-area ul li a.pick-act {
+    color: white;
+}
+.container-lottery .right-side.light div.left .bet-area .top-area .pick-area p.note i {
+    background-color: #696969;
+}
+.container-lottery .right-side.light div.left .bet-area .top-area .pick-area p.note > span {
+    color: #444;
+}
+.container-lottery .right-side.light div.left .bet-area .top-area .pick-area p.note > a {
+    color: #f6534f;
+}
+.container-lottery .right-side.light .tooltip .tooltiptext {
+    background-color: white;
+    color: black;
+    box-shadow: 0 0 3px rgba(0,0,0,0.3);
+}
+.container-lottery .right-side.light .tooltip .tooltiptext::after {
+    border-color: white transparent transparent transparent;
+}
+
+/* 直選複式 */
+.container-lottery .right-side.light div.left .bet-area .number-area ul li span {
+    color: #5c5c5b;
+}
+.container-lottery .right-side.light div.left .bet-area .number-area ul li > button {
+    border: 1px solid #dbdbdb;
+    background: linear-gradient(#ffffff, #e1dfdf);
+    color: #555;
+}
+.container-lottery .right-side.light div.left .bet-area .number-area ul li > button {
+    border: 1px solid #c3c3c3;
+}
+.container-lottery .right-side.light div.left .bet-area .number-area ul li > button.act {
+    border: 1px solid #ffa500;
+    background: linear-gradient(#ffb127, #ff7d05);
+    color: #ffffff;
+}
+.container-lottery .right-side div.left .bet-area .number-area ul li .btn-area button {
+    background: linear-gradient(#ffffff, #e1dfdf);
+    box-shadow: 0 0px 1px rgba(0,0,0,0.5);
+    color: #555;
+}
+.container-lottery .right-side.light div.left .bet-area .bottom-area ul li div.btn-slide,
+.container-lottery .right-side.light div.left .bet-area .bottom-area p.bet button
+.container-lottery .right-side.light div.left .list-area .bottom div.btn-area button {
+    background: linear-gradient(#ffb127, #ff7d05); 
+}
+.container-lottery .right-side.light div.left .bet-area .number-area ul li ul li .ball-checkbox-area {
+    color: black;
+}
+
+/* 立即投注區 */
+.container-lottery .right-side.light div.left .bet-area .bottom-area {
+    border-top: none;
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0px -1px 9px rgba(38, 37, 33, 0.23);
+}
+.container-lottery .right-side.light div.left .bet-area .bottom-area ul li p {
+    color: #5c5c5b;
+}
+.container-lottery .right-side.light div.left .bet-area .import-area .btn-area {
+}
+.container-lottery .right-side.light div.left .bet-area .import-area textarea {
+    color: #555;
+    font-weight: normal;
+    background: rgba(255,255,255,0.3);
+    border: 1px solid #dedede;
+}
+.container-lottery .right-side.light div.left .bet-area .import-area textarea::-webkit-input-placeholder { /* WebKit browsers */
+    color: #555;
+}
+.container-lottery .right-side.light div.left .bet-area .import-area textarea:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #555;
+}
+.container-lottery .right-side.light div.left .bet-area .import-area textarea::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #555;
+}
+.container-lottery .right-side.light div.left .bet-area .import-area textarea:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: #555;
+}
+.container-lottery .right-side.light div.left .bet-area .import-area .import-checkbox-area {
+    color: black;
+}
+
+/* 投注列表 */
+.container-lottery .right-side.light div.left .list-area {
+    background-color: rgba(255, 255, 255, 0.3);
+    border: none;
+    box-shadow: 0px 0px 6px rgba(38, 37, 33, 0.23);
+}
+.container-lottery .right-side.light div.left .list-area .top table th {
+    color: white;
+}
+.container-lottery .right-side.light div.left .list-area .body table td {
+    color: #555;
+}
+.container-lottery .right-side.light div.left .list-area .body table td a {
+    color: #555;
+}
+.container-lottery .right-side.light div.left .list-area .bottom p {
+    color: #555;
+}
+.container-lottery .right-side.light div.left .list-area .bottom p span {
+    color: #f55653;
+}
+.container-lottery .right-side.light div.left .list-area .body table tr:nth-child(even) {
+    background: none;
+}
+
+/* 主內容 右區塊 */
+.container-lottery .right-side.light div.right h5 {
+    color: black;
+    font-weight: normal;
+}
+.container-lottery .right-side.light div.right div.win-number {
+    background-color: rgba(255,255,255, 0.2);
+    border: none;
+    box-shadow: 0px 0px 6px rgba(38, 37, 33, 0.23);  
+}
+.container-lottery .right-side.light div.right div.win-number table tr th {
+    background-color: rgba(163, 163, 163, 0.8);
+    color: white;
+}
+.container-lottery .right-side.light div.right div.win-number table tr td:first-child {
+    border-right: none;
+    color: #555;
+}
+.container-lottery .right-side.light div.right div.win-number table tr td {
+    border-bottom: none;
+    padding: 5px 0;
+    color: #555;
+}
+/* 放大 */
+.container-lottery .right-side.big {
+    width: 100%;
+    margin: 0 auto;
+    display: block;
+    position: relative;
+}
+
+/***************** 配色版 白灰 *******************/
+.container-lottery.lightgray {
+    background: url(../img/bg_lottery_lightgray.jpg);
+/*    background: linear-gradient(#ffffff, #dcdcdc);*/
+/*    background: linear-gradient(37deg,#ffffff, #dcdcdc),linear-gradient(90deg,#ffffff, #dcdcdc);*/
+}
+.modal-wrapper .modal-content.lightgray {
+/*    background: url(../img/bg_lottery_lightgray.jpg);*/
+    background: linear-gradient(#ffffff, #dcdcdc);
+    background-position: 0;
+}
+.lightgray .mybet,
+.lightgray .myadd {
+    color: #444;
+    font-weight: normal;
+}
+.lightgray .mybet table tr th,
+.lightgray .myadd table tr th {
+    color: #fff;
+    background: rgba(194, 194, 194,0.5);
+    font-weight: 200;
+    border: none;
+}
+.lightgray .mybet table tr:nth-child(even),
+.lightgray .myadd table tr:nth-child(even) {
+    background: rgba(255,255,255,0.2);
+}
+.lightgray .accordion-menu {
+    box-shadow: 0px 0px 5px rgba(130, 130, 130, 0.23);
+}
+.lightgray .bet-now .content {
+	border-top: 1px solid #eaeaeb;
+    border-bottom: 1px solid #eaeaeb;
+}
+.lightgray .myadd-detail .list-area table tr th {
+	border-bottom: 1px solid #eaeaeb;
+}
+.lightgray .bet-add .advanced-area div.list-area table th,
+.lightgray .bet-add .normal-area div.list-area table th {
+	border-bottom: 1px solid #eaeaeb;
+}
+.lightgray .bet-add .advanced-area div.list-area table td.canttype input[type="text"],
+.lightgray .bet-add .normal-area div.list-area table td.canttype input[type="text"] {
+	border: 1px solid #ddd;
+}
+.lightgray .bet-confirm .content {
+	border-top: 1px solid #eaeaeb;
+    border-bottom: 1px solid #eaeaeb;
+}
+.lightgray .bet-confirm .content p.way span {
+	border: 1px solid #d4d5d8;
+}
+.lightgray .bet-add .advanced-area div.list-area table td.canttype,
+.lightgray .bet-add .normal-area div.list-area table td.canttype {
+	color: #ddd;
+}
+.lightgray .bet-add .advanced-area > div.list-area,
+.lightgray .bet-add .normal-area div.list-area,
+.lightgray .bet-add div.limit {
+    background-color: rgba(255,255,255, 0.5);
+}
+.lightgray .bet-add .normal-area > div:first-child,
+.lightgray .bet-add .tab-area button.active {
+    background-color: rgba(255,255,255, 0.8);
+}
+.lightgray .bet-add .advanced-area > div > div:nth-child(4) .tab-area-2 button.active,
+.lightgray .bet-add .advanced-area > div > div:nth-child(4) .tab-content,
+.lightgray .bet-add .advanced-area > div > div:nth-child(3),
+.lightgray .bet-add .advanced-area > div > div:nth-child(2),
+.lightgray .bet-add .advanced-area > div > div:nth-child(1) {
+    background: #f7f8f7;
+    font-weight: normal;
+}
+.lightgray .bet-add .advanced-area > div > div:nth-child(1),
+.lightgray .bet-add .advanced-area > div > div:nth-child(3) {
+    border-right: 1px solid #e8e8e8;
+    border-left: 1px solid #e8e8e8;
+}
+.lightgray .bet-add .advanced-area > div > div:nth-child(4) .tab-area-2 button,
+.lightgray .bet-add .advanced-area > div > div:nth-child(4) .tab-area-2 {
+    background: rgb(210, 210, 211);
+    font-weight: 200;
+    color: white;
+}
+.container-lottery.lightgray .left-side a.dropdownlink {
+    background: linear-gradient(#ffffff, #dcdcdc);
+}
+.container-lottery.lightgray .left-side .accordion-menu li.open .dropdownlink {
+    background: linear-gradient(#ffffff, #eee);
+}
+.container-lottery.light .left-side .submenuItems a {
+    background: #fefefe;
+}
+.container-lottery.light .left-side .submenuItems a:hover {
+    background: #eee;
+}
+.container-lottery .right-side.lightgray div.left .bet-area .top-area .kind  ul li:hover,
+.container-lottery .right-side.lightgray div.left .bet-area .top-area .kind ul li.kind-act {
+    background: rgb(252, 252, 252);
+}
+.container-lottery .right-side.lightgray div.left .top-area .lottery-number p.winner i,
+.container-lottery .right-side.lightgray div.left .top-area p.record span {
+    color: #fa4e4c;
+}
+.container-lottery .right-side.lightgray div.right div.win-number table tr,
+.container-lottery .right-side.lightgray div.left .list-area,
+.container-lottery .right-side.lightgray div.left .bet-area {
+    background: rgba(255, 255, 255, 0.6);
+}
+.container-lottery .right-side.light div.left .bet-area .number-area ul li > button {
+    border: 1px solid #c3c3c3;
+}
+
+
+/***************** 配色版 紅色 *******************/
+.container-lottery.red {
+    background: url(../img/bg_lottery_red.jpg);
+/*    background: linear-gradient(#b71704, #a01504);*/
+/*    background: linear-gradient(37deg,#ffffff, #dcdcdc),linear-gradient(90deg,#ffffff, #dcdcdc);*/
+}
+.modal-wrapper .modal-content.red {
+    background: linear-gradient(#a01800, #670001);
+    border: 1px solid #b70202
+/*    background: linear-gradient(#ffffff, #dcdcdc);*/
+/*    background-position: 0;*/
+}
+.dark.red .bet-now .content,
+.dark.red .myadd table tr th,
+.dark.red .mybet table tr th {
+    border-top: 1px solid #b70202;
+    border-bottom: 1px solid #b70202;
+}
+.dark.red .myadd table tr:nth-child(even),
+.dark.red .mybet table tr:nth-child(even) {
+    background: rgba(191, 191, 191, 0.2);
+}
+.dark.red .mybet-detail table.bet-info tr th {
+    background: none;
+}
+.dark.red .bet-add .normal-area div.list-area,
+.dark.red .bet-add div.limit {
+    background-color: #fff;
+}
+.dark.red .bet-add .normal-area > div:first-child,
+.dark.red .bet-add .tab-area button.active {
+    background-color: #fcfcfc;
+    color: black;
+    font-weight: normal;
+}
+.dark.red .bet-add .normal-area > div:first-child {
+    border-bottom: 1px solid #ececec;
+}
+.dark.red .bet-add .advanced-area > div > div,
+.dark.red .bet-add .normal-area div p span input,
+.dark.red .bet-add div.limit table tr td span,
+.dark.red .bet-add div.limit table tr td {
+    color: black;
+    font-weight: normal;
+}
+.dark.red .bet-add .advanced-area div.list-area table th,
+.dark.red .bet-add .normal-area div.list-area table th {
+    border-bottom: 1px solid #e8e8e8;
+}
+.dark.red .bet-add .normal-area div p span input[type="text"] {
+    border: 1px solid #ececec;
+}
+.dark.red .bet-add .normal-area div.list-area table input[type="text"] {
+     border: 1px solid #555;
+}
+.dark.red .bet-add .advanced-area div.list-area table td.canttype input[type="text"],
+.dark.red .bet-add .normal-area div.list-area table td.canttype input[type="text"] {
+    border: 1px solid #eceaea;
+}
+.dark.red .bet-add .tab-area button {
+    background: #ddd;
+}
+.dark.red .bet-add div.limit table tr td {
+    border-right: 1px solid #555;
+}
+.dark.red .bet-add div.limit table tr td:last-child {
+    border-right: none;
+}
+.dark.red.red .bet-add .advanced-area > div > div:nth-child(4) .tab-area-2 button,
+.dark.red.red .bet-add .advanced-area > div > div:nth-child(4) .tab-area-2 {
+    background: rgb(220, 219, 220);
+    font-weight: 200;
+    color: black;
+}
+.dark.red .bet-add .advanced-area > div.list-area {
+    background: #fff;
+}
+.dark.red .bet-add .advanced-area > div > div:nth-child(4) .tab-area-2 button.active,
+.dark.red .bet-add .advanced-area > div > div:nth-child(4) .tab-content,
+.dark.red .bet-add .advanced-area > div > div:nth-child(3),
+.dark.red .bet-add .advanced-area > div > div:nth-child(2),
+.dark.red .bet-add .advanced-area > div > div:nth-child(1) {
+    background: #fcfcfc;
+    font-weight: normal;
+    border-bottom: 1px solid #ddd;
+}
+.dark.red .bet-add .advanced-area > div > div:nth-child(3),
+.dark.red .bet-add .advanced-area > div > div:nth-child(1) {
+    border-right: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+}
+.dark.red .bet-add .advanced-area div.list-area table,
+.dark.red .bet-add .normal-area div.list-area table {
+    color: #000;
+    font-weight: normal;
+}
+.dark.red .content,
+.dark.red .content {
+    border-top: 1px solid #b70202 !important;
+    border-bottom: 1px solid #b70202 !important;
+}
+.dark.red .bet-add .normal-area div p span input,
+.dark.red .bet-add .advanced-area > div input {
+    border: 1px solid #555;
+}
+.container-lottery.red .right-side div.left .bet-area .import-area textarea {
+    font-weight: normal;
+    background: #fff;
+    border: 1px solid #d8d8d8;
+    color: #000;
+}
+.container-lottery.red .right-side div.left .bet-area .import-area textarea::-webkit-input-placeholder { /* WebKit browsers */
+    color: #888;
+}
+.container-lottery.red .right-side div.left .bet-area .import-area textarea:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #888;
+}
+.container-lottery.red .right-side div.left .bet-area .import-area textarea::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #888;
+}
+.container-lottery.red .right-side div.left .bet-area .import-area textarea:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: #888;
+}
+.container-lottery.red .left-side .account a:hover {
+    background: linear-gradient(rgba(253, 191, 195, 1), rgba(181, 98, 104, 0.8));
+}
+.container-lottery.red .left-side .accordion-menu {
+    box-shadow: 0px 0px 14px rgba(119, 0, 0, 0.5);
+}
+.container-lottery.red .left-side a.dropdownlink {
+    background: linear-gradient(#a01800, #670001);
+    border-right: 6px solid #c11618;
+    border-left: 6px solid #c11618;
+    /*box-shadow: 0px -1px 21px 0 rgb(131, 1, 7), 0px 0 2px 0 rgb(84, 1, 10);*/
+}
+.container-lottery.red .left-side a.dropdownlink:hover {
+    background: linear-gradient(#c71f06, #690301);
+    border-right: 6px solid #ffffff;
+    border-left: 6px solid #ffffff;
+}
+.container-lottery.red .left-side .accordion-menu li.open .dropdownlink {
+    background: linear-gradient(#fff, #ddd);
+/*    box-shadow: 0px -1px 2px 0 rgb(169, 169, 169), 0px 0 2px 0 rgb(189, 189, 189);*/
+}
+.container-lottery.red .left-side .accordion-menu li.open .dropdownlink:hover {
+    border-right: 6px solid #fdb919;
+    border-left: 6px solid #fdb919;
+}
+.container-lottery.red .left-side .submenuItems a:hover {
+    background: #ddd;
+}
+.container-lottery.red .left-side .submenuItems a {
+    background: #efefef;
+    color: black;
+}
+.container-lottery.red .left-side a.submenu-active {
+    background: #fdb919 !important;
+}
+.container-lottery .right-side.red div.right div.win-number table tr th,
+.container-lottery .right-side.red div.left .list-area table th,
+.container-lottery .right-side.red div.left .bet-area .top-area .kind {
+    background-color: #c11717;
+}
+.container-lottery .right-side.red div.left .bet-area .top-area .kind  ul li:hover a {
+    color: #233a69;
+    font-weight: normal;
+}
+.container-lottery .right-side.red div.left .bet-area .top-area .kind  ul li:hover,
+.container-lottery .right-side.red div.left .bet-area .top-area .kind ul li.kind-act {
+    background: #efefef;
+    color: #333333;
+}
+.container-lottery .right-side.red div.right div.win-number table tr th,
+.container-lottery .right-side.red div.left .list-area table th,
+.container-lottery .right-side.red div.left .bet-area .top-area .kind ul li a {
+    color: #ffffff;
+
+}
+.container-lottery .right-side.red div.left .list-area .bottom {
+    border-bottom-right-radius: 10px;
+}
+.container-lottery .right-side.red div.left .list-area table {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.container-lottery .right-side.red div.right div.win-number,
+.container-lottery .right-side.red div.left .list-area,
+.container-lottery .right-side.red div.left .bet-area {
+    /* background: rgb(112, 120, 134); */
+    /* background: linear-gradient(#263f6e, #041942); */
+    background: #efefef;
+    /* background: none; */
+    border: none;
+    box-shadow: 0px 0px 14px rgba(90, 0, 0, 0.5);
+}
+.container-lottery .right-side.red div.left .list-area table td a {
+    color: red;
+}
+.container-lottery .right-side.red div.left .bet-area .top-area .kind ul li.kind-act a,
+.container-lottery .right-side.red div.right div.win-number table tr:last-child a,
+.container-lottery .right-side.red div.left .list-area .bottom p,
+.container-lottery .right-side.red div.left .bet-area div.note > a,
+.container-lottery .right-side.red div.left .bet-area div.note > a,
+.container-lottery .right-side.red div.left .bet-area div.note > span,
+.container-lottery .right-side.red div.left .bet-area .number-area ul li.ball-unit span,
+.container-lottery .right-side.red div.right div.win-number table tr td,
+.container-lottery .right-side.red div.right div.win-number table tr td,
+.container-lottery .right-side.red div.left .list-area table td,
+.container-lottery .right-side.red div.left .bet-area .bottom-area ul li p,
+.container-lottery .right-side.red div.left .bet-area .bottom-area ul li .multiple,
+.container-lottery .right-side.red div.left .bet-area .bottom-area ul li p,
+.container-lottery .right-side.red div.left .bet-area p.rule,
+.container-lottery .right-side.red div.left .bet-area .top-area .pick-area ul li ul li a,
+.container-lottery .right-side.red div.left .bet-area .number-area ul li.ball-number ul li.marksixball p {
+    color: #555;
+    font-weight: normal;
+}
+.container-lottery .right-side.red div.left .bet-area .top-area .pick-area ul li a:hover,
+.container-lottery .right-side.red div.left .bet-area .top-area .pick-area ul li a.pick-act {
+    color: white;
+    font-weight: 200;
+}
+.container-lottery .right-side.red div.left .bet-area .number-area ul li .btn-area button {
+/*    background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.0));*/
+    color: #4a4a4a;
+    border: 1px solid #c5c5c5;
+    padding-left: 3px;
+    padding-bottom: 1px;
+    box-shadow: none;
+}
+.container-lottery .right-side.red div.left .bet-area .number-area ul li ul li button {
+/*    background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.0));*/
+    color: #4a4a4a;
+    border: 1px solid #c5c5c5;
+    box-shadow: none;
+}
+.container-lottery .right-side.red div.left .bet-area .number-area ul li ul li button:hover,
+.container-lottery .right-side.red div.left .bet-area .number-area ul li .btn-area button :hover {
+    color: #c11618;
+    border:1px solid #c11618;
+}
+.container-lottery .right-side.red div.left .bet-area .number-area ul li ul li button.ball-act,
+.container-lottery .right-side.red div.left .bet-area .number-area ul li .btn-area button.ball-act {
+    background: linear-gradient(#ffb127, #ff7d05);
+    border: 1px solid #ff970c;
+    color: white !important;
+    text-shadow: 1px 0px 1px rgba(140, 140, 140, 0.85);
+}
+.container-lottery .right-side.red div.left .top-area p.time-num {
+    background: linear-gradient(#f7f7f7, #d4d4d4);
+    color: #061e48;
+}
+.container-lottery .right-side.red div.left .bet-area .top-area .pick-area ul li ul li span {
+    color: #ff8a0f;
+    font-weight: normal;
+}
+
+/***************** 配色版 綠色 *******************/
+.container-lottery.green {
+    background: url(../img/bg_lottery_green.jpg);
+/*    background: linear-gradient(#0b441d,#165a2c);*/
+/*    background: linear-gradient(#165213, #337b23);*/
+/*    background: linear-gradient(37deg,#ffffff, #dcdcdc),linear-gradient(90deg,#ffffff, #dcdcdc);*/
+}
+.modal-wrapper .modal-content.green {
+    background: linear-gradient(#165a2c, #0b441d);
+    border: 1px solid #116d33;
+
+}
+.dark.green .bet-add .advanced-area > div > div:nth-child(4) .tab-area-2 button.active {
+    background-color: rgb(74, 120, 89);
+}
+.dark.green .bet-add .advanced-area > div > div:nth-child(4) .tab-area-2 button {
+    background-color: rgb(67, 108, 80);
+}
+.dark.green .content,
+.dark.green .content {
+    border-top: 1px solid #126d33 !important;
+    border-bottom: 1px solid #126d33 !important;
+}
+.dark.green .myadd table tr th,
+.dark.green .mybet table tr th {
+    border-top: 1px solid #126d33 !important;
+    border-bottom: 1px solid #126d33 !important;
+}
+.dark.green .bet-add .advanced-area div.list-area table th,
+.dark.green .bet-add .normal-area div.list-area table th {
+    border-bottom: 1px solid #4c7b5d;
+}
+.dark.green .bet-add .advanced-area > div > div:nth-child(1),
+.dark.green .bet-add .advanced-area > div > div:nth-child(3) {
+    border-right: 1px solid #628e71;
+    border-left: 1px solid #628e71;
+}
+.container-lottery.green .right-side div.left .bet-area .import-area textarea {
+    font-weight: normal;
+    background: #fbfbfb;
+    border: 1px solid #d8d8d8;
+    color: #000;
+}
+.container-lottery.green .right-side div.left .bet-area .import-area textarea::-webkit-input-placeholder { /* WebKit browsers */
+    color: #888;
+}
+.container-lottery.green .right-side div.left .bet-area .import-area textarea:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: #888;
+}
+.container-lottery.green .right-side div.left .bet-area .import-area textarea::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: #888;
+}
+.container-lottery.green .right-side div.left .bet-area .import-area textarea:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color: #888;
+}
+.container-lottery.green .left-side .accordion-menu {
+    box-shadow: 0px 0px 14px rgba(119, 0, 0, 0.5);
+}
+.container-lottery.green .left-side a.dropdownlink {
+    background: linear-gradient(#ffffff, #e5e3e3);
+    border-right: 6px solid #a5ddae;
+    border-left: 6px solid #a6deaf;
+    box-shadow: 0px -1px 0px 0 rgb(216, 216, 216), 0px 0 2px 0 rgb(214, 214, 214);
+}
+.container-lottery.green .left-side a.dropdownlink:hover {
+    background: linear-gradient(#f0fff2, #effff1);
+    border-right: 6px solid #6da977;
+    border-left: 6px solid #6ea978;
+}
+.container-lottery.green .left-side .accordion-menu li.open .dropdownlink {
+    background: linear-gradient(#f0fff2, #effff1);
+/*    box-shadow: 0px -1px 2px 0 rgb(169, 169, 169), 0px 0 2px 0 rgb(189, 189, 189);*/
+}
+.container-lottery.green .right-side div.left .list-area .body table td a {
+    color: #f90000;
+}
+.container-lottery.green .left-side .submenuItems a {
+    background: #effff1;
+    color: black;
+}
+.container-lottery.green .left-side a.submenu-active {
+    background: #fdb919 !important;
+}
+.container-lottery.green .left-side .accordion-menu li.open .dropdownlink:hover {
+    border-right: 6px solid #fdb919;
+    border-left: 6px solid #fdb919;
+}
+.container-lottery.green .left-side .submenuItems a:hover {
+    background: #cef1d2;
+}
+.container-lottery .right-side.green div.right div.win-number table tr th,
+.container-lottery .right-side.green div.left .list-area table th,
+.container-lottery .right-side.green div.left .bet-area .top-area .kind {
+    background-color: #deffe4;
+}
+.container-lottery .right-side.green div.left .bet-area .top-area .kind ul li.kind-act a,
+.container-lottery .right-side.green div.left .bet-area .top-area .kind  ul li:hover a {
+    color: #555;
+    font-weight: normal;
+}
+.container-lottery .right-side.green div.left .bet-area .top-area .kind  ul li:hover,
+.container-lottery .right-side.green div.left .bet-area .top-area .kind ul li.kind-act {
+    background: #f2fff5;
+    color: #333333;
+}
+.container-lottery .right-side.green div.right div.win-number table tr th,
+.container-lottery .right-side.green div.left .list-area table th,
+.container-lottery .right-side.green div.left .bet-area .top-area .kind ul li a {
+    color: #155313;
+    font-weight: normal;
+}
+.container-lottery .right-side.green div.left .list-area .bottom {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    background: #f4fff6;
+    box-shadow: 0px 0 4px rgba(0,0,0,0.15);
+}
+.container-lottery .right-side.green div.left .list-area table {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.container-lottery .right-side.green div.right div.win-number,
+.container-lottery .right-side.green div.left .list-area,
+.container-lottery .right-side.green div.left .bet-area {
+    /* background: rgb(112, 120, 134); */
+    /* background: linear-gradient(#263f6e, #041942); */
+   /* background: #efefef;*/
+    background: #fefffe;
+    border: none;
+    box-shadow: 0px 0px 14px rgba(90, 0, 0, 0.5);
+}
+.container-lottery .right-side.green div.left .bet-area .top-area .pick-area ul ul,
+.container-lottery .right-side.green div.right div.win-number table tr:last-child td,
+.container-lottery .right-side.green div.right div.win-number table tr:nth-child(2),
+.container-lottery .right-side.green div.left .bet-area .bottom-area,
+.container-lottery .right-side.green div.left .bet-area .top-area .kind ul li:hover,
+.container-lottery .right-side.green div.left .bet-area .top-area .kind ul li.kind-act,
+.container-lottery .right-side.green div.left .bet-area .bottom-area {
+    background-color: rgb(244, 255, 246);
+}
+.container-lottery .right-side.green div.left .list-area table td a {
+    color: red;
+}
+.container-lottery .right-side.green div.left .bet-area .top-area .kind ul li.kind-act a,
+.container-lottery .right-side.green div.right div.win-number table tr:last-child a,
+.container-lottery .right-side.green div.left .list-area .bottom p,
+.container-lottery .right-side.green div.left .bet-area div.note > a,
+.container-lottery .right-side.green div.left .bet-area div.note > a,
+.container-lottery .right-side.green div.left .bet-area div.note > span,
+.container-lottery .right-side.green div.left .bet-area .number-area ul li.ball-unit span,
+.container-lottery .right-side.green div.right div.win-number table tr td,
+.container-lottery .right-side.green div.right div.win-number table tr td,
+.container-lottery .right-side.green div.left .list-area table td,
+.container-lottery .right-side.green div.left .bet-area .bottom-area ul li p,
+.container-lottery .right-side.green div.left .bet-area .bottom-area ul li .multiple,
+.container-lottery .right-side.green div.left .bet-area .bottom-area ul li p,
+.container-lottery .right-side.green div.left .bet-area p.rule,
+.container-lottery .right-side.green div.left .bet-area .top-area .pick-area ul li ul li a,
+.container-lottery .right-side.green div.left .bet-area .number-area ul li.ball-number ul li.marksixball p {
+    color: #03480b;
+    font-weight: normal;
+}
+.container-lottery .right-side.green div.left .bet-area .top-area .pick-area ul li a:hover,
+.container-lottery .right-side.green div.left .bet-area .top-area .pick-area ul li a.pick-act {
+    color: white;
+    font-weight: 200;
+}
+.container-lottery .right-side.green div.left .bet-area .number-area ul li .btn-area button {
+/*    background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.0));*/
+    color: #4a4a4a;
+    border: 1px solid #c5c5c5;
+    padding-left: 3px;
+    padding-bottom: 1px;
+    box-shadow: none;
+}
+.container-lottery .right-side.green div.left .bet-area .number-area ul li ul li button {
+/*    background: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.0));*/
+    color: #4a4a4a;
+    border: 1px solid #c5c5c5;
+    box-shadow: none;
+}
+.container-lottery .right-side.green div.left .bet-area .number-area ul li ul li button:hover,
+.container-lottery .right-side.green div.left .bet-area .number-area ul li .btn-area button :hover {
+    color: #519a5d;
+    border:1px solid #519a5d;
+}
+.container-lottery .right-side.green div.left .bet-area .number-area ul li ul li button.ball-act,
+.container-lottery .right-side.green div.left .bet-area .number-area ul li .btn-area button.ball-act {
+    background: linear-gradient(#ffb127, #ff7d05);
+    border: 1px solid #ff970c;
+    color: white;
+    text-shadow: 1px 0px 1px rgba(140, 140, 140, 0.85);
+}
+.container-lottery .right-side.green div.left .top-area p.time-num {
+    background: linear-gradient(#f7f7f7, #d4d4d4);
+    color: #061e48;
+}
+.container-lottery .right-side.green div.left .bet-area .top-area .pick-area ul li ul li span {
+    color: #ff8a0f;
+    font-weight: normal;
+}
+
+/***************** 配色版 藍色 *******************/
+.container-lottery.blue {
+    /*background: url(../img/bg_lottery_blue.jpg);*/
+    background: linear-gradient(#263f6e, #041942);
+/*    background: linear-gradient(37deg,#ffffff, #dcdcdc),linear-gradient(90deg,#ffffff, #dcdcdc);*/
+}
+.modal-wrapper .modal-content.blue {
+    background: linear-gradient(#263f6e, #041942);
+    border: 1px solid #2753ad;
+/*    background: linear-gradient(#ffffff, #dcdcdc);*/
+/*    background-position: 0;*/
+}
+.container-lottery.blue .left-side a.dropdownlink {
+    background: linear-gradient(#16418e, #17305f);
+    border-right: 6px solid #5d7baf;
+    border-left: 6px solid #5d7baf;
+    box-shadow: 0px -1px 4px 0 rgb(46, 68, 111), 0px 0 2px 0 rgb(2, 10, 25);
+}
+.container-lottery.blue .left-side a.dropdownlink:hover {
+    background: linear-gradient(#467ad8, #16305f);
+    border-right: 6px solid #adc0e0;
+    border-left: 6px solid #adc0e1;
+}
+.container-lottery.blue .left-side .accordion-menu li.open .dropdownlink {
+    background: linear-gradient(#467ad8, #16305f);
+}
+.container-lottery.blue .left-side a.submenu-active {
+    background: #fdb919 !important;
+}
+.container-lottery.blue .left-side .submenuItems a {
+    background: #5774A8;
+}
+.container-lottery.blue .left-side .accordion-menu li.open .dropdownlink:hover {
+    border-right: 6px solid #fdb919;
+    border-left: 6px solid #fdb919;
+}
+.container-lottery.blue .left-side .submenuItems a:hover {
+    background: #8ea7d6;
+}
+.container-lottery .right-side.blue div.right div.win-number table tr th,
+.container-lottery .right-side.blue div.left .list-area table th,
+.container-lottery .right-side.blue div.left .bet-area .top-area .kind {
+    background-color: #1d3969;
+}
+.container-lottery .right-side.blue div.left .bet-area .top-area .kind  ul li:hover ,
+.container-lottery .right-side.blue div.left .bet-area .top-area .kind ul li.kind-act {
+    background: #3a4e76;
+    color: #e1e9f6;
+}
+.container-lottery .right-side.lightgray div.left .top-area .lottery-number p.winner i,
+.container-lottery .right-side.lightgray div.left .top-area p.record span {
+    color: #fa4e4c;
+}
+.container-lottery .right-side.blue div.left .bet-area .top-area .kind ul li a {
+    color: #e5d184;
+}
+
+.container-lottery .right-side.blue div.left .list-area .bottom {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+.container-lottery .right-side.blue div.left .list-area table {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+.container-lottery .right-side.blue div.right div.win-number,
+.container-lottery .right-side.blue div.left .list-area,
+.container-lottery .right-side.blue div.left .bet-area {
+/*    background: rgb(112, 120, 134);*/
+/*    background: linear-gradient(#263f6e, #041942);*/
+/*    background: #e1e9f6;*/
+    background: none;
+    border: 1px solid #2753ad;
+    box-shadow: 0px 0px 9px rgba(0,0,0,0.25);
+}
+.container-lottery .right-side.blue div.left .list-area .body table td a {
+    color: #fb4d4d;
+}
+/*.container-lottery .right-side.blue div.left .bet-area .top-area .kind ul li:hover,
+.container-lottery .right-side.blue div.left .bet-area .top-area .kind ul li.kind-act a,
+.container-lottery .right-side.blue div.right div.win-number table tr:last-child a,
+.container-lottery .right-side.blue div.left .list-area .bottom p,
+.container-lottery .right-side.blue div.left .bet-area div.note > a,
+.container-lottery .right-side.blue div.left .bet-area div.note > a,
+.container-lottery .right-side.blue div.left .bet-area div.note > span,
+.container-lottery .right-side.blue div.left .bet-area .number-area ul li.ball-unit span,
+.container-lottery .right-side.blue div.right div.win-number table tr td,
+.container-lottery .right-side.blue div.right div.win-number table tr td,
+.container-lottery .right-side.blue div.left .list-area .body table td,
+.container-lottery .right-side.blue div.left .bet-area .bottom-area ul li p,
+.container-lottery .right-side.blue div.left .bet-area .bottom-area ul li .multiple,
+.container-lottery .right-side.blue div.left .bet-area .bottom-area ul li p,
+.container-lottery .right-side.blue div.left .bet-area p.rule,
+.container-lottery .right-side.blue div.left .bet-area .top-area .pick-area ul li ul li a {
+    color: #233a69;
+    font-weight: normal;
+}*/
+.container-lottery .right-side.blue div.left .bet-area .number-area ul li .btn-area button {
+    background: linear-gradient(to bottom, rgba(255,255,255,0.04), rgba(219,214,214,0.13));
+    color: #fff;
+    border: 1px solid rgb(50, 95, 177);
+    text-align: center;
+    padding-left: 3px;
+    padding-bottom: 7px;
+    font-weight: 200;
+}
+.container-lottery .right-side.blue div.left .bet-area .number-area ul li ul li button {
+    border: 1px solid rgb(50, 95, 177);
+    color: #fff;
+    text-shadow: 1px 0px 1px rgba(20,20,20,0.85);
+    box-shadow: inset 0px -1px 0px rgba(255,255,255,0.18);
+    background: linear-gradient(to bottom, rgba(255,255,255,0.04), rgba(219,214,214,0.13));
+}
+/* Internet Explorer 10+, Microsoft Edge Browser */
+_:-ms-lang(x), .container-lottery .right-side.blue div.left .bet-area .number-area ul li ul li button {
+    background: none;
+} 
+
+.container-lottery .right-side.blue div.left .bet-area .number-area ul li .btn-area button:hover,
+.container-lottery .right-side.blue div.left .bet-area .number-area ul li ul li button:hover {
+    text-decoration: none;
+    border-color:  #ff970c;
+    color:  #ff970c;
+}
+.container-lottery .right-side.blue div.left .bet-area .number-area ul li .btn-area button.ball-act,
+.container-lottery .right-side.blue div.left .bet-area .number-area ul li ul li button.ball-act {
+    background: linear-gradient(#ffb127, #ff7d05);
+    border: 1px solid #ff970c;
+    color: white;
+}
+
+.container-lottery .right-side.blue div.left .top-area p.time-num {
+    background: linear-gradient(#fafafa, #d2d2d2);
+    color: #061e48;
+}
+.container-lottery .right-side.blue div.left .bet-area .top-area .pick-area ul li ul li span {
+    color: #ff8a0f;
+    font-weight: normal;
+}
+.container-lottery.blue .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball button {
+    border: 1px solid #b5c4e2;
+    color: #b5c4e2;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.04), rgba(219,214,214,0.13));
+    text-shadow: none;
+}
+.container-lottery.blue .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.red {
+    border: 1px solid #ffd9e1;
+    color: #ffd1dc;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.04), rgba(219,214,214,0.13));
+    text-shadow: none;
+}
+.container-lottery.blue .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.blue {
+    border: 1px solid #99e6fc;
+    color: #99e6fc;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.04), rgba(219,214,214,0.13));
+    text-shadow: none;
+}
+.container-lottery.blue .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.green {
+    border: 1px solid #dafb9b;
+    color: #dafb9b;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.04), rgba(219,214,214,0.13));
+    text-shadow: none;
+}
+.container-lottery.blue .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball > span i {
+    text-shadow: none;
+}
+.container-lottery.blue .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball button:hover {
+    color: #ff9f00;
+    border: 1px solid #ff9f00;
+}
+.container-lottery.blue .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball button:hover + i {
+    color: #ff9f00;
+    text-shadow: none;
+}
+.container-lottery.blue .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.ball-act + i {
+    color: white;
+    text-shadow: none;
+}
+.container-lottery.blue .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball.large-btn2 button {
+    border: 1px solid #fcd3d3;
+    color: #fcd3d3;
+}
+.container-lottery.blue .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.gold {
+    border: 1px solid #ffefa7;
+    color: #ffefa7;
+}
+.container-lottery.blue .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.lightred {
+    border: 1px solid #ffe9ee;
+    color: #ffe9ee;
+}
+.container-lottery.blue .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.mediumred {
+    border: 1px solid #ffa3b6;
+    color: #ffa3b6;
+}
+.container-lottery.blue .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.heavyred {
+    border: 1px solid #ff7e7e;
+    color: #ff7e7e;
+}
+.container-lottery.blue .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.lightblue {
+    border: 1px solid #e2f9ff;
+    color: #e2f9ff;
+}
+.container-lottery.blue .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.mediumblue {
+    border: 1px solid #7ae3e6;
+    color: #7ae3e6;
+}
+.container-lottery.blue .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.heavyblue {
+    border: 1px solid #43a4f3;
+    color: #43a4f3;
+}
+.container-lottery.blue .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.lightgreen {
+    border: 1px solid #f3fedc;
+    color: #f3fedc;
+}
+.container-lottery.blue .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.mediumgreen {
+    border: 1px solid #99e49f;
+    color: #99e49f;
+}
+.container-lottery.blue .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball button.heavygreen {
+    border: 1px solid #87c30f;
+    color: #87c30f;
+}
+.container-lottery.blue .right-side div.left .bet-area .number-area ul li.ball-number ul li.marksixball.large-btn3 button {
+    border: 1px solid #fcd3d3;
+    color: #fcd3d3;
+}
+.dark.blue .bet-add .advanced-area > div > div:nth-child(4) .tab-area-2 button.active {
+    background-color: rgb(80, 97, 131);
+}
+.dark.blue .bet-add .advanced-area > div > div:nth-child(4) .tab-area-2 button {
+    background-color: rgb(74, 89, 119);
+}
+.dark.blue .content,
+.dark.blue .content,
+.dark.blue .myadd table tr th,
+.dark.blue .mybet table tr th {
+    border-top: 1px solid #2753ad !important;
+    border-bottom: 1px solid #2753ad !important;
+}
+.dark.blue .bet-add .advanced-area div.list-area table th,
+.dark.blue .bet-add .normal-area div.list-area table th {
+    border-bottom: 1px solid #516284;
+}
+.dark.blue .bet-add .advanced-area > div > div:nth-child(1),
+.dark.blue .bet-add .advanced-area > div > div:nth-child(3) {
+    border-right: 1px solid #65728e;
+    border-left: 1px solid #65728e;
+}
+
+/* IE/Edge CSS hack sample */
+
+/* Internet Explorer 10+, Microsoft Edge Browser */
+_:-ms-lang(x), .selector { property:value; } 
+
+/* Microsoft Edge Browser 12+ (All) - @supports method */
+@supports (-ms-ime-align:auto) {
+  .selector { property:value; } 
+}

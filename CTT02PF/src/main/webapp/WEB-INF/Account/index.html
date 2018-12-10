@@ -1,0 +1,297 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>後台管理系統</title>
+<link rel="stylesheet" href="css/manage.css">
+<script>
+	function checkUsername() {
+
+	}
+	function loadScript(url, callback) {
+		// adding the script tag to the head as suggested before
+		var head = document.getElementsByTagName('head')[0];
+		var script = document.createElement('script');
+		script.type = 'text/javascript';
+		script.charset = 'utf-8';
+		script.src = url;
+		if (!callback)
+			callback = function() {
+			}; // ★★★★★★★★★ JUST ADD THIS LINE!
+
+		// bind the event to the callback function 
+		if (script.addEventListener) {
+			script.addEventListener("load", callback, false); // IE9+, Chrome, Firefox
+		} else if (script.readyState) {
+			script.onreadystatechange = callback; // IE8
+		}
+		// fire the loading
+		head.appendChild(script);
+	}
+
+	function initOnLoad() {
+		loadToolsJs();
+	}
+
+	function loadToolsJs() {
+		enableLoadingPage();
+		loadScript("js/tools.js?id=" + new Date().getTime(), function() {
+
+			disableLoadingPage();
+			loadLotteryToolsJs();
+
+		});
+	}
+	
+	function loadLotteryToolsJs() {
+		enableLoadingPage();
+		loadScript("js/lottery_tools.js?id=" + new Date().getTime(), function() {
+
+			disableLoadingPage();
+			loadAccountMamageJs();
+		});
+	}
+
+	function loadAccountMamageJs() {
+		enableLoadingPage();
+		loadScript("js/AccountManage/AccountManage.js?id=" + new Date().getTime(), function() {
+			disableLoadingPage();
+			loadPageMamageJs();
+			getAccNameCookie();
+		});
+	}
+
+	function loadPageMamageJs() {
+		enableLoadingPage();
+		loadScript("js/manage.js?id=" + new Date().getTime(), function() {
+			loadPageManagerConstantJs();
+			disableLoadingPage();
+		});
+	}
+
+	function loadPageManagerConstantJs() {
+		enableLoadingPage();
+		loadScript("js/ManagerConstant.js?id=" + new Date().getTime(), function() {
+			disableLoadingPage();
+		});
+	}
+
+	function enableLoadingPage() {
+		document.getElementById("loadingPage").style.display = "block";
+	}
+	function disableLoadingPage() {
+		document.getElementById("loadingPage").style.display = "none";
+	}
+</script>
+</head>
+<body onload="initOnLoad();">
+<div id="defaultHidden">
+	<input type="hidden" name="tokenId" value="">
+	<input type="hidden" name="loginInfo" value="">
+</div>
+<div id="extraHidden">
+
+</div>
+	
+	<input type="hidden" name="currentMemberListInfo" value="">
+	<input type="hidden" name="selectedFirstMenu" value="">
+	<input type="hidden" name="NumberOfFirstMenu" value="0">
+	<input type="hidden" name="selectedSecMenu" value="">
+	<input type="hidden" name="NumberOfSecMenu" value="0">
+	<input type="hidden" name="sort">
+	<input type="hidden" name="asc">
+	<input type="hidden" name="upAddAccountJson" value="">
+	<input type="hidden" name="upAccBalance" value="0">
+	<input type="hidden" name="accBalance" value="0">
+	<input type="hidden" name="depositMoney" value="0">
+	<input type="hidden" name="withdrawalMoney" value="0">
+
+	
+	<input type="hidden" name="seetingAccountJson" value="">
+	<input type="hidden" name="rationMaxG1" value="0">
+	<input type="hidden" name="rationMaxG2" value="0">
+	<input type="hidden" name="rationMaxG3" value="0">
+	<input type="hidden" name="rationMaxG4" value="0">
+	<input type="hidden" name="rationMaxG5" value="0">
+	
+	<!--  
+	<input type="hidden" name="orderAuthJson" value="0">
+	<input type="hidden" name="orderJson" value="">
+	<input type="hidden" name="auditOrder" value="">
+	<input type="hidden" name="carryoutOrder" value="">
+	<input type="hidden" name="ReviewPassOrder" value="">
+	<input type="hidden" name="orderAes" value="0">
+	<input type="hidden" name="orderSort" value="0">
+	<input type="hidden" name="orderMaxPage" value="1">
+	<input type="hidden" name="orderPage" value="1">
+	<input type="hidden" name="orderNextPage" value="1">
+	<input type="hidden" name="orderSelectCount" value="25">
+	-->
+	
+	<input type="hidden" name="selectCount" value="25">
+	<input type="hidden" name="page" value="1">
+	<input type="hidden" name="maxPage" value="1">
+	<input type="hidden" name="searchStatus" value="0">
+	<input type="hidden" name="searchOrderInfo" value="">
+	<input type="hidden" name="research" value="">
+	<input type="hidden" name="searchOrderAction" value="">
+	<input type="hidden" name="handleName" value="">
+	<input type="hidden" name="getLogInfo" value="">
+	<input type="hidden" name="nowActionUpperId" value="4">
+	<input type="hidden" name="logCount" value="5">
+	<input type="hidden" name="logPage" value="1">
+	<input type="hidden" name="logMaxPage" value="1">
+	<input type="hidden" name="accDetails" value="">
+	<input type="hidden" name="checkBankDataJson" value="">
+	<input type="hidden" name="detailsAccId" value="0">
+	
+	<input type="hidden" name="searchAccId" value="0">
+	<input type="hidden" name="searchPostJson" value="">
+	<input type="hidden" name="searchActionUrl" value="">
+	<input type="hidden" name="searchHandlFunction" value="">
+	
+	
+	<!-- 
+	<input type="hidden" name="gameRecordsAuthJson" value="">
+	
+	<input type="hidden" name="adAuthJson" value="">
+	<input type="hidden" name="adJsonData" value="">
+	
+	<input type="hidden" name="gameServerAddAuthJson" value="">
+	<input type="hidden" name="gameServerData" value="">
+	
+	<input type="hidden" name="searchAccId" value="0">
+	<input type="hidden" name="searchPostJson" value="">
+	<input type="hidden" name="searchActionUrl" value="">
+	<input type="hidden" name="searchHandlFunction" value="">
+	
+	<input type="hidden" name="gameRecordsData" value="">
+	<input type="hidden" name="gameRecordsCount" value="25">
+	<input type="hidden" name="gameRecordsPage" value="1">
+	<input type="hidden" name="gameRecordsLastPage" value="1">
+	<input type="hidden" name="gameRecordsSearchInfo" value="">
+	
+	<input type="hidden" name="setGameParamAuthJson" value="">
+	<input type="hidden" name="setGameParamData" value="">
+	
+	<input type="hidden" name="calendarDate" value="">
+	
+	
+	-->
+	
+	<!-- 載入中動畫 開始 -->
+	<div id="loadingPage" class="bg-loading">
+		<div class="loading"></div>
+	</div>
+	<!-- 載入中動畫 結束 -->
+	<!-- 登入頁 開始 -->
+	<div class="bgcolor-page-login" id="loginDiv">
+		<div class="bg-page-login">
+			<div class="page-login-wrapper">
+				<div class="page-login-area">
+					<div class="page-login-logo">
+						<img src="img/logo_login.png" id="pageLoginLogo">
+					</div>
+					<div class="page-login-title"></div>
+					<i class="login-user"><img src="img/icon_login_user.png"></i>
+					<input type="text" id="account-login" maxlength="20" placeholder="帳號" class="account-login text-left" onkeyup="checkUsername();"
+						onchange="checkUsername();" value="" onkeydown="clickEnterLogin();"
+					>
+					<i class="login-password"><img src="img/icon_login_lock.png"></i>
+					<input type="password" id="password-login" maxlength="20" placeholder="密碼" class="password-login" onkeyup="checkPassWord(); "
+						onchange="checkPassWord();" value="" onkeydown="clickEnterLogin();"
+					>
+					<button onclick="login();">登入</button>
+					<div class="remember-id">
+						<input type="checkbox" id="saveAccName">
+						記住帳號
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 登入頁 結束 -->
+	<!-- 公司商標 開始 -->
+	<div class="icon-logo">
+		<img src="img/icon_logo_v2.png" class="animated animation-duration-10s infinite flipInY">
+	</div>
+	<!-- 公司商標 結束 -->
+	<!-- 上側區 開始 -->
+	<section id="topAreaSection" class="top-area">
+		<!-- 主選單 開始 -->
+		<nav>
+			<ul id="firstMenu">
+			</ul>
+		</nav>
+		<!-- 主選單 結束 -->
+		<!-- 麵包屑 開始 -->
+		<ul id="breadCrumb" class="breadcrumb">
+			<li id="firstBreadcrumbLi">
+				<a id="firstBreadcrumb" href="javascript:void(0);"></a>
+			</li>
+			<li id="secondBreadcrumb" style="display: none;"></li>
+		</ul>
+		<!-- 麵包屑 結束 -->
+		<!-- 會員專區 開始 -->
+		<div class="account-area">
+			<span class="user" id="userNameInAccArea">
+				<i></i>
+			</span>
+			<a href="javascript:showPWDChangePage()" class="password-change">
+				<i></i>
+				更改密碼
+			</a>
+			<a href="javascript:logout()" class="logout">
+				<i></i>
+				登出
+			</a>
+		</div>
+		<!-- 會員專區 結束 -->
+		<!-- 搜尋區塊 開始 -->
+		<div id="searchArea" class="search-area"></div>
+		<!-- 搜尋區塊 結束 -->
+	</section>
+	<!-- 上側區 結束 -->
+	<!-- 左側區 開始 -->
+	<section id="leftNav" class="left-side">
+		<!-- 裝飾_直線 開始 -->
+		<div class="hline"></div>
+		<!-- 裝飾_直線 結束 -->
+		<nav>
+			<!-- 左側選單收合按鈕 開始 -->
+			<i id="leftNavBtn">
+				<a href="javascript:void(0);" onclick="leftNavClose()" id="navBtn" class="left-nav-btn"></a>
+			</i>
+			<!-- 左側選單收合按鈕 結束 -->
+			<!-- 帳號管理 開始-->
+			<ul id="allTypes">
+			</ul>
+			<p id="accountOnline" class="account-online">
+				在線會員數：
+				<span id="memTotal">0</span>
+				<br>
+				在線經銷商：
+				<span id="magTotal">0</span>
+			</p>
+			<!-- 帳號管理 結束-->
+		</nav>
+	</section>
+	<!-- 左側區 結束 -->
+	<!-- 主內容 開始 -->
+	<section id="containerSection" class="container">
+		<!-- 主內容共用框架 開始 -->
+		<div id="mainContain"></div>
+		<!-- 主內容共用框架 結束 -->
+	</section>
+	<!-- 主內容 結束 -->
+	<!-- 彈跳視窗共用框架 開始 -->
+	<div id="myModal" class="modal"></div>
+	<div id="myModalV2" class="modal"></div>
+	<!-- 彈跳視窗共用框架 結束 -->
+	<!-- 日歷 -->
+	<div id="wrapperCalendar" onclick="closeCalendar();" style="display: none; z-index: 998;"></div>
+	<div id="calendar" style="top: 0px; left: 22px; display: none; z-index: 999;"></div>
+	<div id="extraJS"></div>
+</body>
+</html>
+<!-- 20171207 Ason -->

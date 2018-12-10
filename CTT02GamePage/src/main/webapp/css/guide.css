@@ -1,0 +1,101 @@
+﻿* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-family: 微軟正黑體;
+}
+body, nav, ul, li, span, h1, h2, h3, h4, h6, div, header, img, a, div {
+	margin: 0;
+	padding: 0;
+}
+body {
+	background: #33271c;
+}
+.wrapper {
+	position: relative;
+	width: 1000px;
+	height: 3194px;
+	background-image: url(../img/bgpage.jpg);	
+	margin: 0 auto;
+}
+.container {
+	position: relative;
+	width: 1000px;
+	margin: 0 auto;
+	text-align: left;
+	padding-top: 55px;
+	padding-left: 60px;
+/*	border: 1px solid white; */
+}
+.container > img {
+	margin-top: 65px;
+	margin-left: 353px;
+}
+.container section h2 {
+	margin: 17px 0 10px 80px;
+}
+.container section h4 {
+    margin-left: 100px;
+    color: #9b0400;
+}
+.container section h2 img {
+	margin-right: 10px;
+}
+.container section p {
+	margin-left: 104px;s
+	line-height: 25px;
+	font-size: 13px;
+}
+.container section span {
+    margin-left: 100px;
+    font-size: 13px;
+    margin-bottom: 2px
+}
+.container section ol {
+    margin-left: 74px; 
+    margin-bottom: 10px;
+    list-style: none;
+    padding-left: 30px;
+    margin-bottom: 20px;
+    margin-top: 5px;
+}
+.container section ol li {
+	position: relative;
+	margin: 2px 0;
+	font-size: 13px;
+}
+.container section ol li span {
+	margin: 3.5px 0;
+	font-size: 16px;
+}
+.container section ol li img {
+	width: 18px;
+	margin-right: 8px;
+    position: relative;
+    left: 0;
+    top: 6px;
+}
+.container section > img {
+    margin-left: 101px;
+    margin-top: 5px;
+}
+.gotop {
+    display: none;
+    width: 36px;
+    height: 36px;
+    position: absolute;
+    bottom: 0px;
+    right: 20px;
+    border: none;
+    text-decoration: none;
+    background-image: url(../img/gotop.png);
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+.gotop:hover {
+	background-image: url(../img/gotophover.png);
+}
+.f1 {
+	position: absolute;
+	top: -30px;
+}

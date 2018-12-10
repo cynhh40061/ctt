@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+<!-- 優先等級: FATAL > ERROR > WARN >INFO > DEBUG -->
+<Configuration xmlns="http://logging.apache.org/log4j/2.0/config">
+	<properties>
+		<property name="LOG_HOME">/tmp/log/ctt02</property>
+		<property name="FILE_NAME">ctt</property>
+	</properties>
+	<Appenders>
+		<Console name="STDOUT" target="SYSTEM_OUT">
+			<PatternLayout pattern="%d %-5p [%t] %C{2} (%F:%L) - %m%n" />
+		</Console>
+		<File name="FILE" fileName="${LOG_HOME}/logfile_fileMode.log"
+			append="true">
+			<PatternLayout pattern="%d %-5p [%t] %C{2} (%F:%L) - %m%n" />
+		</File>
+		<RollingRandomAccessFile name="CTT_PROJECT"
+			fileName="${LOG_HOME}/${FILE_NAME}.log"
+			filePattern="${LOG_HOME}/$${date:yyyy-MM}/${FILE_NAME}-%d{yyyy-MM-dd}-%i.log.gz">
+			<PatternLayout pattern="%d %-5p [%t] %C{2} (%F:%L) - %m%n" />
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="10 MB" />
+			</Policies>
+			<DefaultRolloverStrategy max="20" />
+		</RollingRandomAccessFile>
+	</Appenders>
+	<Loggers>
+		<root level="info;debug">
+			<appender-ref ref="STDOUT" />
+		</root>
+		<root level="debug">
+			<appender-ref ref="STDOUT" />
+		</root>
+	</Loggers>
+</Configuration>

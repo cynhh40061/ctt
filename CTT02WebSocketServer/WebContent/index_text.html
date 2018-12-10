@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Echo Chamber</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<script type="text/javascript">
+function loadScript(url, callback) {
+	// adding the script tag to the head as suggested before
+	var head = document.getElementsByTagName('head')[0];
+	var script = document.createElement('script');
+	script.type = 'text/javascript';
+	script.charset = 'utf-8';
+	script.src = url;
+	if (!callback)
+		callback = function() {
+		}; // ★★★★★★★★★ JUST ADD THIS LINE!
+
+	// bind the event to the callback function 
+	if (script.addEventListener) {
+		script.addEventListener("load", callback, false); // IE9+, Chrome, Firefox
+	} else if (script.readyState) {
+		script.onreadystatechange = callback; // IE8
+	}
+	// fire the loading
+	head.appendChild(script);
+}
+
+function initOnLoad() {
+	loadSWFObjJs();
+}
+
+function loadSWFObjJs() {
+	loadScript("swfobject.js?id=" + new Date().getTime(), function() {
+		loadWebSocketJs();
+	});
+}
+
+function loadWebSocketJs() {
+	loadScript("web_socket.js?id=" + new Date().getTime(), function() {
+		loadToolsJs();
+	});
+}
+
+function loadToolsJs() {
+	loadScript("tools.js?id=" + new Date().getTime(), function() {
+		loadPuncheGameJs();
+	});
+}
+
+function loadPuncheGameJs() {
+	loadScript("puncheGame.js?id=" + new Date().getTime(), function() {
+	});
+}
+</script>
+</head>
+<body onload="initOnLoad();">
+
+<input type="hidden" name="SAVE_101" value=""/>
+<input type="hidden" name="SAVE_102" value=""/>
+	
+<input type="hidden" name="SAVE_103" value=""/>
+<input type="hidden" name="SAVE_104" value=""/>
+	
+<input type="hidden" name="SAVE_105" value=""/>
+<input type="hidden" name="SAVE_106" value=""/>
+	
+<input type="hidden" name="SAVE_107" value=""/>
+<input type="hidden" name="SAVE_108" value=""/>
+<input type="hidden" name="SAVE_110" value=""/>
+<input type="hidden" name="SAVE_112" value=""/>
+<input type="hidden" name="SAVE_114" value=""/>
+	
+<input type="hidden" name="SAVE_115" value=""/>
+<input type="hidden" name="SAVE_116" value=""/>
+<input type="hidden" name="SAVE_118" value=""/>
+	
+<input type="hidden" name="SAVE_119" value=""/>
+<input type="hidden" name="SAVE_120" value=""/>
+	
+<input type="hidden" name="SAVE_121" value=""/>
+<input type="hidden" name="SAVE_122" value=""/>
+<input type="hidden" name="SAVE_123" value=""/>
+<input type="hidden" name="SAVE_125" value=""/>
+<input type="hidden" name="SAVE_127" value=""/>
+	
+<input type="hidden" name="SAVE_128" value=""/>
+	
+<input type="hidden" name="SAVE_129" value=""/>
+<input type="hidden" name="SAVE_130" value=""/>
+	
+<input type="hidden" name="SAVE_132" value=""/>
+<input type="hidden" name="SAVE_134" value=""/>
+<input type="hidden" name="SAVE_136" value=""/>	
+<input type="hidden" name="SAVE_138" value=""/>
+<input type="hidden" name="SAVE_140" value=""/>
+	
+<input type="hidden" name="SAVE_142" value=""/>
+<input type="hidden" name="SAVE_144" value=""/>
+<input type="hidden" name="SAVE_146" value=""/>
+<input type="hidden" name="SAVE_148" value=""/>
+<input type="hidden" name="SAVE_150" value=""/>
+<input type="hidden" name="SAVE_152" value=""/>
+<input type="hidden" name="SAVE_154" value=""/>
+	
+<input type="hidden" name="SAVE_156" value=""/>
+<input type="hidden" name="SAVE_158" value=""/>
+<input type="hidden" name="SAVE_160" value=""/>
+<input type="hidden" name="SAVE_162" value=""/>
+	
+<input type="hidden" name="SAVE_163" value=""/>
+
+<input type="hidden" name="SAVE_164" value=""/>
+<input type="hidden" name="SAVE_166" value=""/>
+<input type="hidden" name="SAVE_168" value=""/>
+
+<input type="hidden" name="SAVE_169" value=""/>
+<input type="hidden" name="SAVE_170" value=""/>
+
+<input type="hidden" name="SAVE_171" value=""/>
+<input type="hidden" name="SAVE_172" value=""/>
+<input type="hidden" name="SAVE_173" value=""/>
+<input type="hidden" name="SAVE_174" value=""/>
+
+<input type="hidden" name="SAVE_176" value=""/>
+<input type="hidden" name="SAVE_178" value=""/>
+<input type="hidden" name="SAVE_180" value=""/>
+
+<input type="hidden" name="SAVE_182" value=""/>
+<input type="hidden" name="SAVE_184" value=""/>
+<input type="hidden" name="SAVE_186" value=""/>
+
+	<form id="FORM1">
+		<div>
+			IP<input type="text" id="gameServerIP" value="192.168.0.125" />
+		</div>
+		<div>
+			accId<input type="text" id="accIdInput" />
+		</div>
+
+		<br>
+
+		<div>
+			<input id="openGameSocketId"  value="openGameSocket" type="button" onclick="openGameSocket();">
+			<input id="closeGameSocketId"  value="closeGameSocket" type="button" onclick="closeGameSocket();">
+
+			<br> <br>
+
+			<input id="setAccIdId"  value="setAccId" type="button" onclick="setAccId();">
+			<input id="getGameServerListId"  value="getGameServerList" type="button" onclick="getGameServerList();">
+			<input id="getLastServerId"  value="getLastServer" type="button" onclick="getLastServer();">
+			
+			<br> <br> <select id="serverSelect"></select> <br> <br>
+
+			<input id="joinGameId" type="button" onclick="joinGame();" value="joinGame">
+			
+			<br> <br> 
+			<select id="roleSelect">
+				<option value="11">劉備</option>
+				<option value="12">張飛</option>
+				<option value="13">關羽</option>
+				<option value="14">XX</option>
+				<option value="15">XX</option>
+				<option value="21">曹操</option>
+				<option value="22">司馬懿</option>
+				<option value="23">典偉</option>
+				<option value="24">XX</option>
+				<option value="25">XX</option>
+				<option value="31">孫權</option>
+				<option value="32">大喬</option>
+				<option value="33">周瑜</option>
+				<option value="34">XX</option>
+				<option value="35">XX</option>
+			</select> <br> <br>
+			<input id="setRoleId"  value="setRole" type="button" onclick="setRole();">
+			 <br> <br>
+			<input id="matchRoomId"  value="matchRoom" type="button" onclick="matchRoom();">
+			<input id="leaveRoomId"  value="leaveRoom" type="button" onclick="leaveRoom();">
+			<input id="leaveGameId"  value="leaveGame" type="button" onclick="leaveGame();">
+
+			<br> <br>
+			<input id="startRobotId"  value="startRobot" type="button" onclick="startRobot();">
+			<input id="stopRobotId"  value="stopRobot" type="button" onclick="stopRobot();">
+
+			<br> <br>
+			<input id="sendPaperId"  value="sendPaper" type="button" onclick="sendPaper();">
+			<input id="sendScissorId"  value="sendScissor" type="button" onclick="sendScissor();">
+			<input id="sendRockId"  value="sendRock" type="button" onclick="sendRock();">
+			
+			<br> <br>
+			<input id="KeepPlayId"  value="KeepPlay" type="button" onclick="sendKeepPlay(1);">
+			<input id="NoKeepPlayId"  value="NoKeepPlay" type="button" onclick="sendKeepPlay(2);">
+
+		</div>
+		<div id="messages"
+			style="width: 600px; height: 400px; overflow: scroll;"></div>
+
+	</form>
+</body>
+</html>

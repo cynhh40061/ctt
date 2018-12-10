@@ -1,0 +1,1888 @@
+/* 20180327 Abbie */
+/* 通用設定 */
+html, body {
+	height: 100%;
+}
+body {
+	font-family: 微軟正黑體;
+	font-size: 14px;
+	color: #000;
+	margin: 0;
+	padding: 0;
+}
+section {
+	margin-bottom: 40px;
+}
+section.contentDiv {
+	display: none;
+}
+section:last-child {
+	margin-bottom: 0;
+}
+ul {
+	list-style: none;
+	padding-left: 0;
+}
+ul:after {
+    display: table;
+    content: "";
+    clear: both;
+}
+ul li {
+	float: left;
+}
+li.break-line {
+	display: block;
+    width: 100%;
+    margin-bottom: 5px;
+}
+ul li input {
+	margin-right: 0;
+}
+input {
+	width: 70px;
+	font-size: 14px;
+	color: #000;
+}
+select {
+	font-size: 13.5px;
+	color: #000;
+	margin-right: 0;
+}
+button {
+	background: none;
+	background-color: #36b1bf;
+	border: 1px solid #36b1bf;
+	border-radius: 4px;
+	font-size: 13px;
+	font-weight: 300;
+	color: #fff;
+	cursor: pointer;
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
+button:hover {
+	filter:brightness(110%);
+}
+button.btn-lg {
+	width: 70px;
+	height: 38px;
+	border: none;
+}
+button.btn-xl {
+	width: 80px;
+	height: 38px;
+	border: none;
+}
+button.btn-orange {
+	background: #ec5827; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#ffaf4a, #ec5827); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#ffaf4a, #ec5827); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#ffaf4a, #ec5827); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#ffaf4a, #ec5827); /* Standard syntax */
+}
+button.btn-gray {
+	background: #676363; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(#9e9e9e, #676363); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#9e9e9e, #676363); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#9e9e9e, #676363); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#9e9e9e, #676363); /* Standard syntax */
+}
+button.disable {
+	background-color: #aaa;
+	border: 1px solid #aaa;
+	color: #ccc;
+	pointer-events: none;
+}
+/*table button {
+	font-size: 13px;
+}*/
+table {
+	border-collapse: collapse;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.table-width-1 {
+	min-width: 1300px;
+}
+.table-width-2 {
+	min-width: 900px;
+}
+tr, th, td {
+	box-sizing: border-box;
+}
+th {
+	background-color: #eee;
+	border: 1px solid #ccc;
+	font-size: 12px;
+	font-weight: 400;
+	color: #000;
+	text-align: center;
+	padding: 3px 2px 2px;
+}
+td {
+	border: 1px solid #ccc;
+	font-size: 12px;
+	font-weight: 300;
+	text-align: center;
+	padding: 3px 2px 2px;
+}
+a {
+	font-size: 14px;
+	font-weight: 400;
+	color: #36bece;
+	text-decoration: none;
+}
+a:hover {
+	color: #000;
+	text-decoration: underline;
+}
+select.disable {
+	background-color: #aaa;
+	color: #fff;
+	pointer-events: none;
+}
+th a {
+	display: block;
+	font-size: 12px;
+	color: #000;
+}
+th a:hover {
+	color: #888;
+	text-decoration: none;
+}
+td button {
+	display: inline-block;
+	border-radius: 0;
+	font-size: 13px;
+	margin-right: 0;
+	padding: 0 2px;
+}
+td a {
+	font-size: 13px;
+}
+tr.text-left td {
+	text-align: left;
+}
+.hidden {
+	display: none !important;
+}
+.visible {
+	display: block !important;
+}
+.visible-inline {
+	display: inline-block !important;
+}
+div.table-wrapper {
+	display: inline-block;
+	text-align: center;
+}
+div.table-wrapper-fluid {
+	display: block;
+}
+div.table-wrapper button {
+	font-size: 15px;
+	color: #000;
+	margin-top: 10px;
+	margin-right: 15px;
+}
+div.table-wrapper button:last-child {
+	margin-right: 0;
+}
+.title-manager {
+	display: inline-block;
+	min-width: 80px;
+	font-size: 15px;
+}
+.width-fix-1 {
+	width: 14% !important;
+}
+.width-fix-2 {
+	width: 951px !important;
+}
+.width-fix-3 {
+	width: 1100px !important;
+}
+.width-fix-4 {
+	width: 200px !important;
+}
+.width-fix-5 {
+	width: 60px !important;
+}
+.width-fix-6 {
+	width: 134px !important;
+}
+.width-fix-7 {
+	width: 70px !important;
+}
+.width-percent-10 {
+	width: 10% !important;
+}
+.width-percent-20 {
+	width: 20% !important;
+}
+.width-percent-30 {
+	width: 30% !important;
+}
+.width-percent-40 {
+	width: 40% !important;
+}
+.width-percent-50 {
+	width: 50% !important;
+}
+.width-percent-60 {
+	width: 60% !important;
+}
+.width-percent-70 {
+	width: 70% !important;
+}
+.width-percent-80 {
+	width: 80% !important;
+}
+.width-percent-90 {
+	width: 90% !important;
+}
+.width-percent-100 {
+	width: 100% !important;
+}
+.width-percent-960 {
+	width: 960px !important;
+}
+.width-percent-910 {
+	min-width: 910px !important;
+}
+.width-percent-720 {
+	width: 720px !important;
+}
+.width-percent-580 {
+	width: 580px !important;
+}
+.width-percent-460 {
+	width: 460px !important;
+}
+.width-percent-420 {
+	width: 420px !important;
+}
+.width-percent-360 {
+	width: 360px !important;
+}
+.margin-fix-0 {
+	margin: 0;
+}
+.margin-fix-1 {
+	margin-right: 5px;
+}
+.margin-fix-2 {
+	margin-right: 10px;
+}
+.margin-fix-3 {
+	margin-right: 5px;
+	margin-left: 5px;
+}
+.margin-fix-4 {
+	margin-top: 5% !important;
+}
+.margin-fix-5 {
+	margin-top: 2% !important;
+}
+.margin-fix-6 {
+	margin-top: 1% !important;
+}
+.margin-fix-7 {
+	margin-top: 7px;
+}
+.margin-fix-8 {
+	margin-top: 7px;
+	margin-bottom: 5px;
+}
+.margin-fix-9 {
+	margin-top: 10% !important;
+}
+.margin-fix-10 {
+	margin-top: 20px !important;
+}
+.padding-fix-1 {
+	padding-left: 0 !important;
+}
+.padding-fix-2 {
+	padding-top: 20px !important;
+	padding-bottom: 20px !important;
+}
+.left-fix-1 {
+	left: 27px !important;
+}
+.left-fix-2 {
+	left: 46px !important;
+}
+tr.bg-1 {
+	background-color: #ffe0c1;
+}
+tr.bg-2 {
+	background-color: #ccc;
+}
+.text-left {
+	text-align: left !important;
+}
+.text-right {
+	text-align: right !important;
+}
+.text-center {
+	text-align: center !important;
+}
+.text-top {
+	vertical-align: text-top !important;
+}
+a.link-text-1 {
+	display: inline-block;
+	font-size: 16px;
+	color: #3399ff;
+	text-decoration: none;
+	margin-right: 10px;
+}
+a.link-text-1:hover {
+	color: #33ccff;
+	text-decoration: underline;
+}
+.txt-blue-1 td {
+	font-size: 16px;
+	font-weight: bold;
+	color: #ff6600;
+}
+.txt-red {
+	color: red;
+}
+span.pw-txt {
+	color: #ff6633;
+}
+.text-alert-1 {
+	font-style: normal;
+	font-weight: 400;
+	color: #ff0000;
+}
+.btn-area {
+	width: 100%;
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.btn-area button:last-child {
+	margin-right: 0;
+}
+a.btn-link {
+	display: inline-block;
+	width: 14px;
+	height: 14px;
+	background-image: url(../img/icon_link.svg);
+	background-size: 100%;
+	vertical-align: middle;
+}
+a.btn-link:hover {
+	background-image: url(../img/icon_link_hover.svg);
+}
+.btn-fix-1 button {
+	margin-left: 5px;
+}
+p.record-none {
+	width: 100%;
+	border-bottom: 1px solid #ccc;
+    font-size: 13px;
+    text-align: center;
+	margin-top: 50px;
+    padding-bottom: 8px;
+}
+i.icon-arrow-down {
+	display: inline-block;
+	width: 8px;
+	height: 8px;
+	background-image: url(../img/icon_arrow_down.svg);
+	background-repeat: no-repeat;
+	margin-left: 2px;
+}
+.icon-arrow-up {
+	transform: rotate(180deg);
+}
+th:hover i.icon-arrow-down {
+	background-image: url(../img/icon_arrow_down_hover.svg);
+}
+i.note-1 {
+	font-size: 14px;
+	font-style: normal;
+	color: red;
+	padding-right: 3px;
+	padding-left: 3px;
+}
+.icon-pass, .icon-fail {
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+}
+.icon-pass {
+	background: no-repeat url(../img/icon_pass.png);
+}
+.icon-fail {
+	background: no-repeat url(../img/icon_fail.png);
+}
+.float-right {
+	float: right;
+}
+.float-left {
+	float: left;
+}
+.first-th-fix-1 {
+	width: 100% !important;
+}
+.first-th-fix-1 tr th {
+	width: 120px;
+	text-align: right;
+	vertical-align: top;
+}
+.first-th-fix-1 tr td {
+	text-align: left;
+	vertical-align: top;
+}
+.first-th-fix-1 tr td input {
+	width: 200px;
+}
+.first-th-fix-1 tr td textarea {
+	width: 96%;
+	height: 100px;
+	font-size: 15px;
+}
+.border-fix-1 {
+	border-right: 1px solid #adaeae;
+}
+.table-zebra tr:nth-child(even) {
+	background-color: #fff;
+}
+.table-zebra tr:nth-child(odd) {
+	background-color: #f8f8f8;
+}
+.tr-hover tr:hover {
+	background-color: #eee;
+}
+.message-window {
+	width: 600px !important;
+	min-height: 500px !important;
+}
+.message-window .message-area {
+	min-height: 500px;
+    margin: 20px 30px 0 !important;
+	position: relative;
+}
+.message-window .message-area p {
+	font-size: 17px !important;
+    line-height: 30px;
+}
+.message-window .message-area .btn-area {
+	position: absolute;
+	bottom: 0;
+	margin: 0;
+}
+
+/* 搜尋區塊 */
+.search-area {
+	position: absolute;
+	top: 110px;
+	left: 164px;
+}
+.search-area ul li {
+	margin-right: 0;
+}
+.search-area ul li input {
+	width: 70px;
+}
+
+/* 快速跳頁 */
+.media-control {
+	margin-right: 10px !important;
+	margin-left: 10px;
+}
+.media-control a {
+	display: inline-block;
+	width: 12px;
+	height: 12px;
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+.media-control a.backward {
+	background-image: url(../img/icon-backward.svg);
+}
+.media-control a.backward-fast {
+	background-image: url(../img/icon-backward-fast.svg);
+}
+.media-control a.forward {
+	background-image: url(../img/icon-forward.svg);
+}
+.media-control a.forward-fast {
+	background-image: url(../img/icon-forward-fast.svg);
+}
+.media-control span {
+	font-size: 15px;
+	margin-left: 5px;
+}
+.media-control span:nth-child(2) {
+	font-size: 13px;
+	color: gray;
+	margin: 0;
+}
+.media-control span i {
+	color: #ff6633;
+	font-style: normal;
+	margin-right: 1px;
+	margin-left: 1px;
+}
+.media-control input {
+	width: 30px !important;
+	text-align: center;
+	margin-right: 5px;
+}
+
+/* 分頁 */
+.pagination {
+	text-align: center;
+}
+.pagination a {
+    color: #777;
+    padding: 2px 8px;
+    text-decoration: none;
+    transition: background-color .3s;
+}
+
+.pagination a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.pagination a:hover:not(.active) {
+	background-color: #ddd;
+}
+
+/* 商標 */
+.icon-logo {
+	width: 120px;
+	height: 74px;
+	background-color: #ff9933; /* For browsers that do not support gradients */
+    background: -webkit-radial-gradient(#ffcc00, #ff9933 60%, #ff6633 100%); /* Safari 5.1 to 6.0 */
+    background: -o-radial-gradient(#ffcc00, #ff9933 60%, #ff6633 100%); /* For Opera 11.6 to 12.0 */
+    background: -moz-radial-gradient(#ffcc00, #ff9933 60%, #ff6633 100%); /* For Firefox 3.6 to 15 */
+    background: radial-gradient(#ffcc00, #ff9933 60%, #ff6633 100%); /* Standard syntax */
+	text-align: center;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 4;
+}
+.icon-logo img {
+	width: 98px;
+	height: 74px;
+}
+
+/*logo漸入特效*/
+.animation-duration-2s {
+  animation-duration: 2s;
+}
+.animation-duration-4s {
+  animation-duration: 4s;
+}
+.animation-duration-10s {
+  animation-duration: 10s;
+}
+.animated.infinite {
+  animation-iteration-count: infinite;
+}
+@keyframes flipInY {
+  from {
+    transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+    animation-timing-function: ease-in;
+    opacity: 0;
+  }
+
+  10% {
+    transform: perspective(400px) rotate3d(0, 1, 0, -20deg);
+    animation-timing-function: ease-in;
+    opacity: 1;
+  }
+
+  20% {
+    transform: perspective(400px) rotate3d(0, 1, 0, 10deg);
+  }
+
+  60% {
+    transform: perspective(400px) rotate3d(0, 1, 0, -5deg);
+  }
+
+  80% {
+    transform: perspective(400px);
+  }
+
+  to {
+    transform: perspective(400px);
+    opacity: 1;
+  }
+}
+
+.flipInY {
+  -webkit-backface-visibility: visible !important;
+  backface-visibility: visible !important;
+  animation-name: flipInY;
+}
+
+/* 圖片360度旋轉特效 */
+
+/* WebKit and Opera browsers */
+/*@-webkit-keyframes spinner {
+	from { 
+		-webkit-transform: rotateY(0deg);
+	}
+	to   {
+		-webkit-transform: rotateY(-360deg);
+	}
+}*/
+
+/* all  browsers */
+@keyframes spinner {
+	from {
+	  -moz-transform: rotateY(0deg);
+	  -ms-transform: rotateY(0deg);
+	  transform: rotateY(0deg);
+	}
+	to {
+	  -moz-transform: rotateY(-360deg);
+	  -ms-transform: rotateY(-360deg);
+	  transform: rotateY(-360deg);
+	}
+}
+
+/* 彈出視窗效果 */
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 101; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+    width: 80%; /* Could be more or less, depending on screen size */
+    background-color: #fefefe;
+    border: 1px solid #888;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+}
+.modal-content h3 {
+	text-align: left;
+}
+.modal-content table {
+	width: auto;
+	margin: 22px auto;
+}
+.modal-content section {
+}
+.modal-content section table {
+	width: auto;
+	margin: auto;
+}
+.modal-content table th, .modal-content table td {
+	font-size: 14px;
+}
+.modal-content section table th, .modal-content section table td {
+	font-size: 14px;
+}
+.modal-content section input {
+	min-width: 200px;
+}
+.modal-content section select {
+	min-width: 60px;
+}
+.modal-content .btn-area {
+	margin-bottom: 25px;
+}
+
+/* The Close Button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* 超連結圖示區 */
+a.icon-function {
+	padding-left: 15px;
+	position: relative;
+}
+a.icon-function img {
+	width: 14px;
+	height: 14px;
+	position: absolute;
+	top: 3px;
+	left: 0;
+}
+@-moz-document url-prefix(){
+		a.icon-function img {
+		top: -1px;
+	}
+}
+
+/* checkbox 樣式美化 */
+
+/* The container */
+label.container {
+    display: block;
+    font-size: 22px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin-bottom: 12px;
+    padding-left: 35px;
+    position: relative;
+}
+
+/* Hide the browser's default checkbox */
+label.container input {
+    display: none;
+    opacity: 0;
+    position: absolute;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    width: 18px;
+    height: 18px;
+    background-color: #e0e0e0;
+    position: absolute;
+    top: -3px;
+    left: 9px;
+}
+
+/* On mouse-over, add a grey background color */
+label.container:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a orange background */
+label.container input:checked ~ .checkmark {
+    background-color: #ff9933;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    display: none;
+    content: "";
+    position: absolute;
+}
+
+/* Show the checkmark when checked */
+label.container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+label.container .checkmark:after {
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+    top: 2px;
+    left: 5px;
+}
+
+	/*background-color: #ff9933;*/ /* For browsers that do not support gradients */
+    /*background: -webkit-radial-gradient(#ffcc00, #ff9933 60%, #ff6633 100%);*/ /* Safari 5.1 to 6.0 */
+    /*background: -o-radial-gradient(#ffcc00, #ff9933 60%, #ff6633 100%);*/ /* For Opera 11.6 to 12.0 */
+    /*background: -moz-radial-gradient(#ffcc00, #ff9933 60%, #ff6633 100%);*/ /* For Firefox 3.6 to 15 */
+    /*background: radial-gradient(#ffcc00, #ff9933 60%, #ff6633 100%);*/ /* Standard syntax */
+
+/* 登入頁 */
+div.bgcolor-page-login {
+	display: block;
+	width: 100vw;
+	height: 100vh;
+	background-color: #888888;
+    background: -webkit-linear-gradient(#787879, #adaeae);
+    background: -o-linear-gradient(#787879, #adaeae);
+    background: -moz-linear-gradient(#787879, #adaeae);
+    background: linear-gradient(#787879, #adaeae);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+div.bg-page-login {
+    width: 100vw;
+	height: 100vh;
+    background: url(../img/bg_page_login_2.png) center no-repeat, url(../img/bg_page_login_line.png) left top repeat;
+}
+.page-login-wrapper {
+	width: 396px;
+    height: 528px;
+    margin-top: -264px;
+    margin-left: -198px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+.page-login-area {
+    width: 396px;
+    height: 528px;
+    display: table;
+}
+div.page-login-logo {
+	width: 260px;
+	height: 260px;
+	transform: perspective(260px);
+	position: absolute;
+	top: 0;
+	left: 71px;
+}
+#pageLoginLogo {
+	width: 260px;
+	height: 260px;
+	-webkit-animation-name: spinner;
+	-webkit-animation-timing-function: linear;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation-duration: 6s;
+	animation-name: spinner;
+	animation-timing-function: linear;
+	animation-iteration-count: infinite;
+	animation-duration: 6s;
+	-webkit-transform-style: preserve-3d;
+	-moz-transform-style: preserve-3d;
+	-ms-transform-style: preserve-3d;
+	transform-style: preserve-3d;
+}
+div.page-login-title {
+	width: 400px;
+	height: 53px;
+	background-image: url(../img/title_login.png);
+	position: absolute;
+	top: 279px;
+	left: -2px;
+}
+.page-login-area .login-user {
+	width: 24px;
+	height: 24px;
+	position: absolute;
+	left: 52px;
+	bottom: 142px;
+}
+.page-login-area .login-password {
+	width: 24px;
+	height: 24px;
+	position: absolute;
+	left: 52px;
+	bottom: 96px;
+}
+.page-login-area > input {
+	width: 234px;
+	height: 36px;
+	background-color: #fff;
+	border: 2px solid #999;
+	box-sizing: border-box;
+	font-size: 18px;
+	color: #999;
+	padding-top: 2px;
+	padding-left: 8px;
+	position: absolute;
+	left: 81px;
+}
+.page-login-area input.account-login {
+	bottom: 138px;
+}
+.page-login-area input.password-login {
+	bottom: 90px;
+}
+.page-login-area input[type="text"]::-webkit-input-placeholder, .page-login-area input[type="password"]::-webkit-input-placeholder {
+	color: #9e9e9e;
+}
+.page-login-area div.remember-id {
+	width: 100%;
+	font-size: 14px;
+	font-weight: 300;
+	color: #fff;
+	text-align: center;
+	position: absolute;
+	bottom: 58px;
+}
+.page-login-area button {
+	width: 236px;
+	height: 48px;
+	background-color: #9c9c9e;
+	background: -webkit-linear-gradient(#9c9c9e, #5e5a59); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#9c9c9e, #5e5a59); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#9c9c9e, #5e5a59); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#9c9c9e, #5e5a59); /* Standard syntax */
+	border: 1px solid #807e7f;
+	border-radius: 5px;
+	font-size: 21px;
+	letter-spacing: 4px;
+	position: absolute;
+	bottom: 0;
+	left: 81px;
+}
+p.login-error {
+	text-align: center;
+}
+
+/* 載入中動畫 */
+.bg-loading {
+	display: none;
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(0,0,0,0.5);
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 102;
+}
+.loading {
+	height: 50px;
+	width: 50px;
+	border: 3px solid #ff6633;
+	border-right: 3px solid #fff;
+	border-bottom: 3px solid #fff;
+	border-radius: 50%;
+	-webkit-animation: loading 1s infinite linear;
+	-moz-animation: loading 1s infinite linear;
+	-o-animation: loading 1s infinite linear;
+	animation: loading 1s infinite linear;
+	margin-top: -25px;
+	margin-left: -25px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+}
+@-webkit-keyframes loading {
+	from {
+		-webkit-transform: rotate(0deg);
+	}
+	to {
+		-webkit-transform: rotate(360deg);
+	}
+}
+@-moz-keyframes loading {
+	from {
+		-moz-transform: rotate(0deg);
+	}
+	to {
+		-moz-transform: rotate(360deg);
+	}
+}
+@-o-keyframes loading {
+	from {
+		-o-transform: rotate(0deg);
+	}
+	to {
+		-o-transform: rotate(360deg);
+	}
+}
+@keyframes loading {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+/* 月暦 */
+#wrapperCalendar {
+	display: none;
+	width: 100vw;
+	height: 100vh;
+	position:fixed;
+	top: 0;
+	left: 0;
+	z-index: 20;	
+}
+#calendar {
+	position: fixed;
+	z-index: 21;
+}
+#calendar table {
+	border: 2px solid #ccc;
+	font-size: 12px !important;
+}
+#calendar table tr th {
+	background-color: #ffd207;
+	border: 1px solid #bbb;
+    color: #000;
+}
+#calendar table tr:first-child th:first-child, #calendar table tr:first-child th:last-child {
+	color: #ec5827;
+	cursor: pointer;
+}
+#calendar table tr:first-child th:first-child:hover, #calendar table tr:first-child th:last-child:hover {
+	color: #ff9933;
+}
+#calendar table tr:first-child th:nth-child(2) span {
+	position: relative;
+	top: -3px;
+}
+#calendar table tr td {
+	background-color: white;
+	border: 1px solid #ddd;
+}
+#calendar table tr td:hover {
+	color: #ff9933;
+}
+#calendar button {
+    border-radius: 4px;
+    margin-top: 7px;
+    margin-bottom: 5px;
+    /* padding: 2px 5px; */
+    position: relative;
+    width: 36px;
+    font-size: 10px;
+    height: 20px;
+}
+#calendar input {
+	width: 20px;
+	margin-top: 5px;
+	margin-right: 2px;
+	margin-left: 2px;
+	text-align: center;
+}
+#calendar input::placeholder {
+	color: #ddd;
+	font-weight: 200;
+}
+#calendar tr.calendarLastTr span {
+	color: #000 !important;
+	pointer-events: none;
+}
+#calendarYearText {
+    width: 39px !important;
+    position: relative;
+    top: -3px;
+}
+#calendarMonthText {
+	width: 20px !important;
+    position: relative;
+    top: -3px;
+}
+
+/* 上側區 */
+section.top-area {
+	width: 100%;
+	height: 183px;
+	background-color: #fff;
+	margin-bottom: 0;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 2;
+}
+section.top-area.top-area-fix {
+	height: 100px;
+}
+
+/* 裝飾_直線 */
+div.hline {
+	width: 100%;
+	height: 0;
+	border-bottom: 1px solid #c7c7c7;
+	position: fixed;
+	top: 75px;
+	left: 0;
+}
+
+/* 主選單 */
+section.top-area nav {
+	display: inline-block;
+	width: 100%;
+	height: 74px;
+	background-color: #424242;
+	position: fixed;
+	top: 0;
+	left: 120px;
+}
+section.top-area nav ul {
+	min-width: 900px;
+	margin-top: 26px;
+}
+section.top-area nav ul li {
+	margin-right: 4px;
+}
+section.top-area nav ul li a {
+	display: inline-block;
+	box-sizing: border-box;
+	font-size: 16px;
+	font-weight: 300;
+	color: #fff;
+	text-align: center;
+	text-decoration: none;
+	margin-right: 24px;
+}
+section.top-area nav ul li:first-child a {
+	margin-left: 28px;
+}
+section.top-area nav ul li a:hover {
+	color: #ffff00;
+}
+section.top-area nav ul li a.active {
+	color: #ff9933;
+}
+section.top-area nav ul li a.active:hover {
+ 	color: #fff;
+}
+section.top-area nav ul li a span {
+	display: inline-block;
+	height: 25px;
+	vertical-align: text-bottom;
+	margin-right: 5px;
+}
+section.top-area nav ul li.manager-account a span {
+	width: 24px;
+	background-image: url(../img/icon_nav_01.png);
+}
+section.top-area nav ul li.manager-account a:hover span {
+	background-image: url(../img/icon_nav_01_hover.png);
+}
+section.top-area nav ul li.manager-account a.active span,
+section.top-area nav ul li.manager-account a.active:hover span {
+	background-image: url(../img/icon_nav_01_active.png);
+}
+
+
+section.top-area nav ul li.manager-admin a span {
+	width: 28px;
+	background-image: url(../img/icon_nav_02.png);
+}
+section.top-area nav ul li.manager-admin a:hover span {
+	background-image: url(../img/icon_nav_02_hover.png);
+}
+section.top-area nav ul li.manager-admin a.active span,
+section.top-area nav ul li.manager-admin a.active:hover span {
+	background-image: url(../img/icon_nav_02_active.png);
+}
+
+
+section.top-area nav ul li.manager-operation a span {
+	width: 24px;
+	background-image: url(../img/icon_nav_03.png);
+}
+section.top-area nav ul li.manager-operation a.active span,
+section.top-area nav ul li.manager-operation a.active:hover span {
+	background-image: url(../img/icon_nav_03_active.png);
+}
+section.top-area nav ul li.manager-operation a:hover span {
+	background-image: url(../img/icon_nav_03_hover.png);
+}
+section.top-area nav ul li.manager-user a span {
+	width: 40px;
+	background-image: url(../img/icon_nav_04.png);
+}
+section.top-area nav ul li.manager-user a.active span,
+section.top-area nav ul li.manager-user a.active:hover span {
+	background-image: url(../img/icon_nav_04_active.png);
+}
+section.top-area nav ul li.manager-user a:hover span {
+	background-image: url(../img/icon_nav_04_hover.png);
+}
+section.top-area nav ul li.game-report a span {
+	width: 24px;
+	background-image: url(../img/icon_nav_05.png);
+}
+section.top-area nav ul li.game-report a.active span,
+section.top-area nav ul li.game-report a.active:hover span {
+	background-image: url(../img/icon_nav_05_active.png);
+}
+section.top-area nav ul li.game-report a:hover span {
+	background-image: url(../img/icon_nav_05_hover.png);
+}
+section.top-area nav ul li.game-log a span {
+	width: 28px;
+	background-image: url(../img/icon_nav_06.png);
+}
+section.top-area nav ul li.game-log a.active span,
+section.top-area nav ul li.game-log a.active:hover span {
+	background-image: url(../img/icon_nav_06_active.png);
+}
+section.top-area nav ul li.game-log a:hover span {
+	background-image: url(../img/icon_nav_06_hover.png);
+}
+section.top-area nav ul li a.active {
+	pointer-events: none;
+}
+
+/* 麵包屑 */
+section.top-area ul.breadcrumb {
+	display: inline-block;
+	width: auto;
+	list-style: none;
+	margin: 0;
+	padding-left: 0;
+	position: absolute;
+	top: 82px;
+	left: 144px;
+}
+ul.breadcrumb li {
+    display: inline;
+    font-size: 14px !important;
+    color: #666;
+    margin-right: 0;
+}
+ul.breadcrumb li+li:before {
+    color: #666;
+    content: ">\00a0";
+    margin-left: 4px;
+}
+ul.breadcrumb li a {
+	font-size: 14px !important;
+    color: #ff6633;
+    text-decoration: none;
+}
+ul.breadcrumb li a:hover {
+    color: #000;
+    text-decoration: underline;
+}
+
+/*會員專區*/
+section.top-area .account-area {
+	display: inline-block;
+	width: auto;
+	position: absolute;
+	top: 82px;
+	right: 15px;
+}
+section.top-area .account-area span.user {
+	display: inline-block;
+	color: #ff6633;
+	margin-right: 20px;
+}
+section.top-area .account-area a {
+	color: #666;
+	margin-right: 20px;
+}
+section.top-area .account-area a:hover {
+	color: #000;
+	text-decoration: underline;
+}
+section.top-area .account-area a:last-child {
+	margin-right: 15px;
+}
+section.top-area .account-area i {
+	display: inline-block;
+	width: 16px;
+	height: 20px;
+	background-repeat: no-repeat;
+	vertical-align: text-bottom;
+}
+@-moz-document url-prefix(){
+	section.top-area .account-area i { 
+		height: 18px; 
+	}
+}
+section.top-area .account-area span.user i {
+	background-image: url(../img/icon_user.png);
+	margin-right: 2px;
+}
+section.top-area .account-area a.password-change i {
+	background-image: url(../img/icon_password.png);
+}
+section.top-area .account-area a.logout i {
+	background-image: url(../img/icon_logout.png);
+	margin-right: 2px;
+}
+
+/* 左側列 */
+section.left-side {
+	width: 120px;
+	height: 100%;
+	/*background-image: url(../img/bg_left_side_1.png);*/
+	background-repeat: repeat-y;
+	background-color: #f2f2f2;
+	box-sizing: border-box;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 3;
+}
+
+/* 左側選單 */
+section.left-side nav {
+	width: 120px;
+	height: 612px;
+	text-align: center;
+	/*overflow: auto;
+	overflow-x: hidden;*/
+	margin: 76px auto 0;
+	position: relative;
+}
+section.left-side nav a {
+	display: block;
+	font-size: 15px;
+	color: #000;
+	text-align: center;
+	text-decoration: none;
+	margin-bottom: 10px;
+}
+section.left-side nav a:hover {
+	color: #888;
+	text-decoration: underline;
+}
+.left-nav-close {
+	left: -121px !important;
+}
+/* 左側選單_收合按鈕 */
+#leftNavBtn {
+	width: 1px;
+	height: calc(100vh - 90px);
+	background-color: #999;
+	cursor: pointer;
+	position: absolute;
+	top: 0;
+	right: -1px;
+	z-index: 1;
+}
+#leftNavBtn:hover {
+	background-color: #c7c6c7;
+}
+#leftNavBtn .left-nav-btn {
+	display: block;
+	width: 16px;
+	height: 110px;
+	background-image: url(../img/icon_left_nav.png);
+	background-repeat: no-repeat;
+	position: absolute;
+	top: -1px;
+	right: -16px;
+}
+#leftNavBtn .left-nav-btn:hover {
+}
+/*#leftNavBtn img {
+	width: 3px;
+	height: 5px;
+	position: absolute;
+	top: 32px;
+	left: 1px;
+}*/
+/*.left-nav-rotate {
+	transform: rotate(180deg);
+}*/
+.left-nav-flip {
+	/*background-image: url(../img/icon_left_nav_flip.png) !important;*/
+	background-position: 0 -111px;
+}
+
+/* 主內容 */
+section.container {
+	/*width: 100%;*/
+	height: auto;
+	/*background-image: url(../img/bg_left_side_2.png);*/
+	background-repeat: repeat-y; 
+	background-color: #fff;
+	box-sizing: border-box;
+	margin-bottom: 0;
+	padding-left: 130px;
+	position: absolute;
+	top: 183px;
+	left: 0;
+	z-index: 1;
+}
+section.container.container-fix {
+	padding-top: 10px;
+	top: 100px;
+}
+section.container #mainContain {
+	width: 100%;
+	height: auto;
+	box-sizing: border-box;
+	padding-top: 0;
+	padding-left: 36px;
+}
+
+/* 內頁樣式 */
+section.account-manage ul {
+	margin: 0;
+	margin-top: 10px; 
+}
+section table input {
+	margin-right: 0px;
+}
+
+/* 帳號管理 */
+section.left-side nav ul {
+	margin: 0;
+}
+section.left-side nav ul li {
+	width: 100%;
+	border-bottom: 1px solid #ccc;
+	box-sizing: border-box;
+	margin-right: 0;
+	position: relative;
+}
+section.left-side nav ul a {
+	display: block;
+	width: 100%;
+	box-sizing: border-box;
+	text-align: center;
+	margin-bottom: 0;
+	margin-left: 0;
+	padding-top: 7px;
+	padding-bottom: 5px;
+	padding-left: 10px;
+	float: left;
+}
+section.left-side nav ul li a:hover {
+	background-color: #fff;
+	color: #000;
+	text-decoration: none;
+}
+section.left-side nav ul li a.active:hover, section.left-side nav ul li a.active {
+	background-color: #fff;
+	color: #000;
+	text-decoration: none;
+	pointer-events: none;
+}
+section.left-side nav ul a span {
+	color: #ff6633;
+	margin-right: 10px;
+	position: absolute;
+	top: 7px;
+	right: -2px;
+}
+section.left-side nav ul a i {
+	display: inline-block;
+    min-width: 10px;
+    background-color: #ff0000;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 700;
+    font-style: normal;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+	margin-right: 10px;
+    padding: 3px 7px;
+	position: absolute;
+	top: 8px;
+	right: -2px;
+}
+section.left-side nav p.account-online {
+	box-sizing: left;
+	font-size: 13px;
+	line-height: 19px;
+	text-align: left;
+	margin-top: 6px;
+	padding-left: 10px;
+	position: fixed;
+	left: 0;
+	bottom: 0;
+}
+section.left-side nav p.account-online span {
+	color: #ff6633;
+}
+
+/* 公司管理 */
+table.create-company {
+	/*min-width: 650px;*/
+}
+section.create-company-add {
+	width: 100%;
+	margin-top: 30px;
+}
+
+/* 角色列表 */
+div.role-create {
+	height: 30px;
+	text-align: right;
+	position: relative;
+	top: 13px;
+}
+div.role-create button {
+	margin-right: 5px;
+/*	position: absolute;*/
+}
+div.role-create button:first-child {
+	/*right: 81px;
+	bottom: -10px;*/
+}
+div.role-create button:last-child {
+	margin-right: 0;
+	/*right: 0;
+	bottom: -10px;*/
+}
+table.role-list {
+}
+div.role-name {
+	width: 800px;
+	height: 20px;
+	margin: 0;
+	position: relative;
+}
+div.role-name p {
+	display: inline-block;
+	margin: 0;
+	position: absolute;
+    bottom: -10px;
+    left: 0;
+}
+div.role-name span {
+	display: inline-block;
+	position: absolute;
+    bottom: -10px;
+    right: 0;
+}
+div.role-name button {
+	margin-right: 0;
+}
+div.role-name.bottom p {
+	width: 100%;
+	text-align: center;
+	bottom: -12px;
+}
+div.role-name.bottom span {
+	bottom: -15px;
+}
+table.role-edit {
+	min-width: 800px;
+}
+table.role-edit tr td input {
+	margin-right:5px;
+	margin-left:5px;
+}
+.role-level {
+	margin-top: 40px;
+	padding-left: 20px;
+}
+.role-level input {
+	width: 15px;
+}
+table.role-add-permission {
+	width: 90%;
+}
+table.role-add-permission tr td:first-child {
+	width: 82px;
+	font-weight: 400;
+	background-color: #eeeeee;
+	text-align: right;
+	vertical-align: top;
+}
+table.role-add-permission tr td:last-child {
+	text-align: left;
+}
+table.role-add-permission tr td input {
+	width: 50px;
+	text-align: center;
+}
+table.role-add-permission tr td textarea {
+	width: 99%;
+	height: 60px;
+	font-size: 16px;
+	border-color: #d2d2d2;
+}
+
+/* 角色列表_角色創建 */
+.role-name-area {
+	height: 20px;
+	margin-top: 50px;
+}
+.role-name-area span {
+	width: 49%;
+}
+.role-name-area button {
+	margin-left: 8px;
+}
+.role-create-header {
+	height: 22px;
+	background-color: #eee;
+	margin-top: 30px;
+	margin-bottom: 0;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	/*border-bottom: 1px solid #ccc;*/
+}
+.role-create-header span:first-child {
+	width: 40%;
+	padding-left: 39px;
+}
+.role-create-header span:last-child {
+	width: 50%;
+}
+.role-create-list {
+	/*margin-top: 5px;*/
+	border-bottom: 1px solid #ccc;
+}
+.role-create-list ul {
+	margin: 0 !important;
+}
+.role-create-list ul:first-child {
+	margin: 5px;
+}
+.role-create-list ul li {
+	width: 100%;
+	border-top: 1px solid #ccc;
+	margin: 0;
+	clear: both;
+}
+.role-create-list > ul:first-child > li:first-child {
+	border-top: none;
+}
+/*.role-create-list ul:last-child li:last-child {
+	border-bottom: 1px solid #ccc;
+}*/
+.role-create-list ul li p {
+	box-sizing: border-box;
+	font-weight: 300;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	padding-left: 36px;
+	position: relative;
+}
+.role-create-list ul li ul li p {
+	padding-left: 58px;
+}
+.role-create-list ul li ul li ul li p {
+	padding-left: 98px;
+}
+.role-create-list ul li input {
+	margin-right: 5px;
+}
+.role-create-list .note {
+	width: 49.8%;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+a.icon-arrow-open {
+	display: inline-block;
+	width: 13px;
+	height: 13px;
+	background: url(../img/icon-arrow-down.svg) no-repeat center;
+	background-size: 100%;
+	vertical-align: middle;
+}
+a.icon-arrow-close {
+	display: inline-block;
+	width: 13px;
+	height: 13px;
+	background: url(../img/icon-arrow-right.svg) no-repeat center;
+	background-size: 100%;
+	vertical-align: middle;
+}
+.table-share {
+	height: 320px;
+	overflow-y: auto;
+	margin-top: 5px;
+}
+.table-share table {
+	width: 90%;
+}
+.table-share .checkmark {
+	top: -3px;
+    left: 19px;
+}
+select.margin-fix {
+	margin-top: 30px;
+    margin-right: 0;
+    margin-bottom: 10px;
+    margin-left: 17px;
+}
+
+/* 平台維護列表 */
+table.maintain-list {
+	margin-bottom: 30px;
+}
+
+/* 即時額度統計 */
+table.immediate th {
+	min-width: 120px;
+}
+table.immediate th:first-child {
+	width: 150px;
+}
+
+/* 週及月統計報表 */
+table.week tr.bg-whtesmoke {
+	background-color: #f5f5f5;
+}
+
+/* 水單管理 */
+textarea.unusual {
+	width: 100%;
+	height: 200px;
+	font-size: 15px;
+}
+
+/* 三國猜拳王 */
+.Div2-7-searcharea li {
+	margin-left: 9px;
+}
+.Div2-7-searcharea li:first-child {
+	margin-left: 0;
+}
+.Div2-7-tablearea {
+	position: relative;
+	text-align: center;
+}
+.Div2-7-tablearea table {
+	position: relative;
+	width: 100%;
+}
+.Div2-7-tablearea p {
+	position: relative;
+}
+.Div2-7-tablearea select {
+	margin-right: 10px;
+}
+
+/* 三國猜拳王_查詢 */
+a.cttgamecheckbtn {
+	position: relative;
+	top: 111px;
+	left: 230px;
+}
+
+/* 用戶查詢 */
+table.user-query {
+	width: 836px;
+}
+table.user-query tr th {
+	font-size: 13px;
+	background-color: #d6d6d6;
+}
+table.user-query tr td {
+	font-size: 12px;
+}
+table.user-query tr:nth-child(2) td:nth-child(odd) {
+	width: 77px;
+ }
+table.user-query tr:nth-child(2) td:nth-child(even) {
+ 	width: 132px;
+ }
+table.user-query tr.bg-color td {
+	background-color: #eee;
+}
+table.user-query tr.bg-color-odd td:nth-child(odd) {
+	background-color: #eee;
+}
+table.user-query .note {
+	color: red;
+}
+table.user-query button {
+	border-radius: 4px;
+	padding: 2px 7px;
+}
+
+/* 用戶查詢_編輯 */
+table.bank-edit {
+	margin-top: 50px;
+}
+table.bank-edit tr td {
+	padding-right: 4px;
+	padding-left: 4px;
+}
+table.bank-edit input {
+	width: 300px;
+	height: 25px;
+}
+
+/* 帳號狀態記錄列表 */
+.tab-area {
+    text-align: right;
+}
+/*.tab-area a {
+	background: none;
+    background-color: #36b1bf;
+    border: 1px solid #36b1bf;
+    border-radius: 4px;
+    font-size: 13px;
+    font-weight: 300;
+    color: #fff;
+    cursor: pointer;
+    padding-top: 2px;
+    padding-bottom: 2px
+}*/
+.tab-area button.active {
+    background-color: #64d0dc;
+    border: 1px solid #64d0dc;
+}
+.tab-content {
+	margin-top: 10px;
+}
+.tab-content table {
+	width: 100%;
+}
+.recModify {
+	display: block;
+}
+.recWay {
+	display: none;
+}
+.recNormal {
+	display: none;
+}
+.recCash {
+	display: none;
+}
+
+/* AddGameServer */
+.addgameserver button {
+	position: relative;
+	margin-left: 20px;
+}
+.addgameserver-table  {
+	width: 100% !important;
+	margin: 0 0 22px 0 !important;
+}
+.addgameserver-table th {
+	text-align: right;
+}
+.addgameserver-table td {
+	text-align: left;
+}
+.addgameserver-table input {
+	width: 100px;
+} 
+
+/* GameServerSet */
+.gameserverset-table {
+	width: 100%;
+	border-collapse: collapse;
+}
+.gameserverset-table th {
+	width: 35%;
+	text-align: right;
+	border-collapse: collapse;
+}
+.gameserverset-table td {
+	text-align: right;
+	width: 40%;
+	border-collapse: collapse;
+}
+.gameserverset-table td:last-child {
+	text-align: left;
+	width: 25%;
+}
+.gameserverset-table input {
+	width: 100px;
+}
+.gameserverset-table td span {
+	display: block;
+	font-size: 13px;
+}
+.gameserverset-table .fix {
+	margin-bottom: 2px;
+}

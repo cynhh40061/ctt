@@ -1,0 +1,2044 @@
+/* 20180810 Ason */
+/* common */
+.light {
+	font-weight: normal;
+}
+.modal-wrapper {
+    display: none;
+    width: 1300px;
+    min-height: 768px;
+    background-color: rgba(0, 0, 0, 0.8);
+/*    border: 1px solid #808080;*/
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+.modal-wrapper .modal-content {
+	display: inline-block;
+	background-repeat: no-repeat;
+	border: 1px solid #808080;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+/*	width: 70%;*/
+}
+.modal-wrapper .modal-content.dark {
+	background-image: url(../img/bg_lottery_dark.jpg);
+	background-position: -200px;
+}
+.modal-wrapper .modal-content.light {
+	background-image: url(../img/bg_lottery_light.jpg);
+}
+button[disabled] {
+	opacity: 0.1;
+}
+
+/* close button */
+.btn-close {
+	display: inline-block;
+	background: none;
+	border: none;
+	font-size: 16px;
+	cursor: pointer;
+	padding: 0;
+	position: absolute;
+	top: 11px;
+	right: 13px;
+	z-index: 2;
+}
+#btn-close-back {
+	display: inline-block;
+	color: white;
+	background: none;
+	border: none;
+	font-size: 16px;
+	cursor: pointer;
+	padding: 0;
+	position: absolute;
+	top: 11px;
+	right: 13px;
+	z-index: 3;
+}
+.light #btn-close-back {
+	color: #222
+}
+.light #btn-close-back:hover {
+	color: #ff8300;
+}
+#btn-close-back:hover {
+	color: #dd8e21;
+}
+.dark .btn-close {
+	color: #e8e8e8;
+}
+.dark .btn-close:hover {
+	color: #dd8e21;
+}
+.light .btn-close {
+	color: #222;
+}
+.light .btn-close:hover {
+	color: #ff8300;
+}
+
+/* Custom Radio Button */
+
+/* The container-radio */
+.container-radio {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    font-size: 12px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.container-radio input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom radio button */
+.container-radio .checkmark {
+    position: absolute;
+    top: -4px;
+    left: 20px;
+    height: 10px;
+    width: 10px;
+    background-color: none;
+    border: 1px solid #d8d8d8;
+    border-radius: 50%;
+}
+.light .container-radio .checkmark {
+    border: 1px solid #555;
+}
+
+/* On mouse-over, add a grey background color */
+.container-radio:hover input ~ .checkmark {
+    background-color: #eee;
+}
+
+/* When the radio button is checked, add a blue background */
+.container-radio input:checked ~ .checkmark {
+    background-color: #2196F3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.container-radio .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container-radio input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container-radio .checkmark:after {
+ 	top: -1px;
+	left: -1px;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background: orange;
+}
+
+/* Custom Checkboxes */
+
+/* The container */
+.container-checkbox {
+    display: inline-block;
+    position: relative;
+    padding-left: 18px;
+    cursor: pointer;
+    font-size: 12px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    margin-left:20px;
+}
+
+/* Hide the browser's default checkbox */
+.container-checkbox input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom checkbox */
+.container-checkbox .checkmark {
+    position: absolute;
+    top: 2px;
+    left: 0;
+    height: 12px;
+    width: 12px;
+    background-color: #ffffff;
+    border-radius: 3px;
+}
+.light .container-checkbox .checkmark {
+	border: 1px solid #d6d6d6;
+}
+
+/* On mouse-over, add a grey background color */
+/*.container-checkbox:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+*/
+/* When the checkbox is checked, add a blue background */
+.container-checkbox input:checked ~ .checkmark {
+    background-color: #fb8206;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.container-checkbox .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.container-checkbox input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.container-checkbox .checkmark:after {
+    left: 3px;
+    top: 1px;
+    width: 3px;
+    height: 6px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.modal-content .dark {
+	font-weight: 300 !important;
+}
+/* (注單)我的投注 */
+.mybet {
+	display: none;
+	width: 900px;
+	padding-bottom: 28px;
+	position: relative;
+	min-height: 500px;
+	/*overflow: auto;*/
+	text-align: center;
+}
+/*.mybet > button {
+	position: absolute;
+    right: 42px;
+    top: 31px;
+    border-radius: 7px;
+    background: #fff;
+    border: 1px solid #ddd;
+}*/
+.mybet > .top-btn-area {
+	height: 24px !important;
+	position: absolute;
+    right: 42px;
+    top: 31px;
+}
+.mybet > .top-btn-area button {
+    border-radius: 7px;
+    background: #fff;
+    border: 1px solid #ddd;
+    margin-left: 5px;
+}
+.mybet div.btn-area{
+	width: 100%;
+    padding-top: 19px;
+    text-align: center;
+    position: relative;
+}
+.mybet div.btn-area button {
+	display: inline-block;
+	width: 80px;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    margin-right: 22px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+.mybet div.btn-area button.confirm {
+	background: linear-gradient(#ffb127, #ff7d05);
+    color: white;
+}
+.mybet div.btn-area button.cancel {
+	background: linear-gradient(#abaaaa, #646464);
+    color: white;
+}
+.mybet h4 {
+	font-size: 17px;
+	text-align: center;
+	padding-top: 20px;
+	padding-bottom: 18px;
+}
+.dark .mybet h4 {
+	color: white;
+}
+.light .mybet h4 {
+	color: #555;
+}
+.mybet.fixtd table tr th:first-child,
+.myadd.fixtd table tr th:first-child,
+.myadd-detail.fixtd table tr th:first-child {
+	width: 100px;
+}
+.mybet.fixtd table tr td:first-child,
+.myadd.fixtd table tr td:first-child,
+.myadd-detail.fixtd table tr td:first-child {
+	text-align: center;
+}
+/* abbie*/
+.mybet .pagination {
+	position: absolute;
+	bottom: 14px;
+	left: 380px;
+}
+.mybet .pagination a:nth-child(2),
+.mybet .pagination a:nth-child(4) {
+	font-size: 12px !important;
+    position: relative;
+    top: -1px;
+    margin: 5px;
+}
+.mybet .pagination a {
+	font-size: 16px;
+    position: relative;
+    top: 2px;
+    font-size: 16px;
+}
+.dark .mybet .pagination a {
+	color: white;
+}
+.light .mybet .pagination a {
+	color: #555;
+}
+.mybet .pagination a:hover {
+	color: #fdb919;
+}
+.dark .mybet .pagination span {
+	color: white;
+	font-size: 13px;
+}
+.light .mybet .pagination span {
+	color: #555;
+	font-size: 13px;
+}
+.mybet .pagination i {
+	color: #ff8200;
+	margin: 0 3px;
+}
+/* abbie*/
+.mybet > div:first-child {
+    height: 230px;
+    overflow-y: auto;
+}
+.mybet table {
+	width: 96%;
+	border-collapse: collapse;
+	border: none;
+	margin: 0 auto;
+}
+.mybet table tr th {
+	font-size: 14px;
+	padding-top: 8px;
+	padding-bottom: 8px;
+}
+.mybet table tr th:first-child {
+	width: 30px;
+}
+.dark .mybet table tr th {
+	border-top: 1px solid #686a6b;
+	border-bottom: 1px solid #777878;
+	color: white;
+}
+.light .mybet table tr th {
+    border-top: 1px solid #e5e5e5;
+    border-bottom: 1px solid rgba(216, 216, 216, 0.5);
+    color: #555;
+    font-weight: normal;
+    background: rgba(255, 255, 255, 0.5);
+}
+.mybet table tr td {
+	font-size: 12px;
+	text-align: center;
+	padding-top: 8px;
+	padding-bottom: 8px;
+}
+.mybet table tr td:first-child {
+	text-align: right;
+}
+.dark .mybet table tr td {
+	color: white;
+	font-weight: 300;
+}
+.light .mybet table tr td {
+	color: #555;
+}
+.dark .mybet table tr:nth-child(even) {
+	background-color: rgba(181, 181, 181, 0.23);
+}
+.light .mybet table tr:nth-child(even) {
+	background: rgba(219, 203, 156, 0.2);
+}
+.mybet table tr td input {
+	margin-right: 8px;
+}
+.mybet table tr td a {
+	display: inline-block;
+	font-size: 13px;
+	text-decoration: none;
+}
+.mybet table tr td a:last-child {
+	margin-left: 5px;
+}
+.dark .mybet table tr td a:first-child {
+	color: #f4bf07;
+}
+.light .mybet table tr td a:first-child {
+	color: #ff8300;
+	font-weight: normal;
+}
+.dark .mybet table tr td a:last-child {
+	color: #ff6464;
+}
+.light .mybet table tr td a:last-child {
+	color: #ff3000;
+	font-weight: normal;
+}
+
+/* (注單)我的投注-詳情 */
+.mybet-detail {
+	display: none;
+	width: 900px;
+	padding-top: 25px;
+	padding-right: 30px;
+	padding-left: 30px;
+}
+.mybet-detail h6 {
+	font-size: 14px;
+	padding-bottom: 10px;
+}
+.dark .mybet-detail h6 {
+	color: white;
+}
+.light .mybet-detail h6 {
+	color: black;
+}
+.mybet-detail .record-area {
+	width: 98%;
+    height: 432px;
+    overflow-y: auto;
+    padding-right: 8px;
+}
+.mybet-detail h6 span {
+	margin-right: 12px;
+}
+.mybet-detail h6 button {
+	width: 68px;
+	height: 21px;
+	border: none;
+	border-radius: 5px;
+	font-size: 12px;
+	margin-right: 6px;
+	vertical-align: text-top;
+}
+.dark .mybet-detail h6 button {
+	background: linear-gradient(#517979, #314d4d);
+	color: white;
+}
+.light .mybet-detail h6 button {
+	background: linear-gradient(#517979, #314d4d);
+	color: white;
+}
+.dark .mybet-detail h6 button:hover {
+	background: linear-gradient(rgba(81, 121, 121, 0.8), rgba(49, 77, 77, 0.8));
+}
+.light .mybet-detail h6 button:hover {
+	background: linear-gradient(rgba(81, 121, 121, 0.8), rgba(49, 77, 77, 0.8));
+}
+.mybet-detail table {
+	width: 100%;
+	border-collapse: collapse;
+}
+.mybet-detail table.kind {
+	margin-bottom: 20px;
+}
+.mybet-detail table.kind tr {
+	box-shadow: 0 0 0 0 rgba(50,50,50, 0.1), 0 2px 12px 0 rgba(0,0,0, 0.15);
+}
+.mybet-detail table.kind tr td {
+	font-size: 12px;
+	text-align: center;
+	padding-top: 11px;
+	padding-bottom: 12px;
+}
+.dark .mybet-detail table.kind tr td {
+	border-right: 1px solid #6f7172;
+	background-color: rgba(255,255,255,0.08);
+	color: white;
+	font-weight: 300;
+}
+
+.light .mybet-detail table.kind tr td {
+	border-right: 1px solid #e6e0c9;
+	background-color: rgba(255,255,255,0.3);
+	color: #555;
+}
+.mybet-detail table.kind tr td:last-child {
+	border-right: none;
+}
+.mybet-detail table.kind tr td span {
+	display: inline-block;
+	width: 26px;
+	height: 26px;
+	border-radius: 50px;
+	font-family: Arial;
+	font-size: 14px;
+	line-height: 26px;
+	margin-right: 8px;
+}
+.dark .mybet-detail table.kind tr td span {
+	background: linear-gradient(#faa207, #fc7e04);
+	color: white;
+}
+.light .mybet-detail table.kind tr td span {
+	background: linear-gradient(#faa207, #fc7e04);
+	color: white;
+}
+.mybet-detail table.bet-info {
+	font-size: 12px;
+	margin-bottom: 22px;
+	box-shadow: 0 0 0 0 rgba(50,50,50, 0.1), 0 2px 12px 0 rgba(0,0,0, 0.15);
+}
+.mybet-detail table.bet-info tr:first-child td {
+	padding-top: 10px;
+	padding-bottom: 6px;
+}
+.dark .mybet-detail table.bet-info tr:first-child td {
+	background: rgba(195, 195, 195, 0.2);
+}
+.light.mybet-detail table.bet-info tr:first-child td {
+	background: rgba(195, 195, 195, 0.2);
+	font-weight: 300;
+}
+.mybet-detail table.bet-info tr:first-child td span {
+	margin-left: 11px;
+}
+.mybet-detail table.bet-info tr:last-child td {
+	text-align: center;
+	padding-top: 12px;
+	padding-bottom: 12px;
+}
+.dark .mybet-detail table.bet-info tr:last-child td {
+	background: rgba(255,255,255,0.08);
+}
+.light .mybet-detail table.bet-info tr:last-child td {
+	background: rgba(255,255,255,0.3);
+}
+.dark .mybet-detail table.bet-info tr td {
+	color: white;
+}
+.light .mybet-detail table.bet-info tr td {
+	color: #555;
+	background: rgba(255,255,255,0.3);
+}
+.mybet-detail table.bet-info tr th {
+	text-align: center;
+}
+.mybet-detail table.bet-info tr th {
+	padding-top: 12px;
+	padding-bottom: 12px;
+}
+.dark .mybet-detail table.bet-info tr th {
+	background: rgba(40, 40, 40, 0.2);
+	color: white;
+}
+.light .mybet-detail table.bet-info tr th {
+	background: rgba(40, 40, 40, 0.2);
+	color: white;
+	font-weight: 200;
+}
+.light .mybet-detail table.bet-info tr th {
+	background: rgba(40, 40, 40, 0.2);
+	color: white;
+}
+.mybet-detail table.bet-info tr:last-child td {
+	padding-top: 13px;
+	padding-bottom: 14px;
+}
+.mybet-detail table.bill-info tr td {
+	font-size: 12px;
+	padding-top: 9px;
+	padding-left: 11px;
+	padding-bottom: 6px;
+}
+.dark .mybet-detail table.bill-info tr td {
+	background: rgba(255,255,255,0.08);
+	color: white;
+	box-shadow: 0 0 0 0 rgba(50,50,50, 0.1), 0 2px 6px 0 rgba(0,0,0, 0.1);
+}
+.light .mybet-detail table.bill-info tr td {
+	background: rgba(255,255,255,0.3);
+	color: #555;
+	box-shadow: 0 0 0 0 rgba(50,50,50, 0.1), 0 2px 12px 0 rgba(0,0,0, 0.15);
+}
+.mybet-detail .btn-area {
+	width: 100%;
+	text-align: center;
+	padding-top: 14px;
+	padding-bottom: 13px;
+}
+.mybet-detail .btn-area button {
+	border: none;
+	border-radius: 8px;
+	font-size: 13px;
+	padding: 8px 17px;
+}
+.dark .mybet-detail .btn-area button {
+	background: linear-gradient(rgba(250, 162, 7, 1), rgba(252, 126, 4, 1));
+	color: white;
+}
+.light .mybet-detail .btn-area button {
+	background: linear-gradient(#faa207, #fc7e04);
+	color: white;
+}
+.dark .mybet-detail .btn-area button:hover {
+	background: linear-gradient(rgba(250, 162, 7, 0.95), rgba(252, 126, 4, 0.95));
+}
+.light .mybet-detail .btn-area button:hover {
+	background: linear-gradient(#fc7e04, #faa207);
+}
+
+/* 追號投注 */
+.bet-add {
+	display: none;
+	width: 900px;
+	padding-top: 25px;
+	padding-right: 30px;
+	padding-left: 30px;
+}
+.bet-add h4 {
+	font-size: 16px;
+	font-weight: 400;
+	text-align: center;
+	padding-bottom: 10px;
+}
+.dark .bet-add h4 {
+	color: white;
+}
+.light .bet-add h4 {
+	color: black;
+}
+.bet-add .tab-area {
+	width: 100%;
+}
+.bet-add .tab-area button {
+	border: none;
+	font-size: 13px;
+	padding: 12px 20px
+}
+.dark .bet-add .tab-area button {
+	background: rgba(255, 255, 255, 0.1);
+	color: #bdbdbd;
+}
+.light .bet-add .tab-area button {
+	background: rgba(201, 201, 201, 0.5);
+	color: white;
+	font-weight: 200;
+}
+.dark .bet-add .tab-area button.active {
+	background: rgba(255, 255, 255, 0.2);
+	color: white;
+}
+.light .bet-add .tab-area button.active {
+	background: rgba(255, 255, 255, 0.5);
+	box-shadow: 0px -2px 2px 0 rgba(50,50,50, 0.1), 0 0 0 0 rgba(50,50,50, 0.1);
+	color: #555;
+	font-weight: normal;
+}
+.bet-add .checkbox-area {
+	display: inline-block;
+	font-size: 12px;
+	position: absolute;
+	top: 66px;
+	right: 30px;
+}
+.bet-add .checkbox-area label {
+	margin-left: 13px;
+}
+.bet-add .checkbox-area label input {
+	margin-right: 5px;
+}
+.dark .bet-add .checkbox-area {
+	color: white;
+}
+.light .bet-add .checkbox-area {
+	color: black;
+}
+
+/* 追號投注-普通追號 */
+.bet-add .normal-area {
+	display: block;
+	box-shadow: 0 0 0 0 rgba(50,50,50, 0.1), 0 2px 6px 0 rgba(0,0,0, 0.1);
+}
+.bet-add .normal-area > div:first-child {
+	width: 100%;
+    height: 80px;
+	font-size: 13px;
+	padding-top: 14px;
+	padding-bottom: 10px;
+	padding-left: 20px;
+    box-shadow: 0px 2px 2px 0 rgba(50,50,50, 0.1);
+}
+.dark .bet-add .normal-area > div:first-child {
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0px 2px 2px 0 rgba(50,50,50, 0.1);
+	color: white;
+}
+.light .bet-add .normal-area > div:first-child {
+    background-color: rgba(255, 255, 255, 0.5);
+    color: #555;
+    box-shadow: 0px 2px 2px 0 rgba(50,50,50, 0.1);
+}
+.bet-add .normal-area div p span.period button {
+	border: none;
+	font-size: 12px;
+	padding: 5px 10px;
+}
+.bet-add .normal-area div p span.period button:hover {
+	background-color: rgba(255, 255, 255, 0.1)
+}
+.bet-add .normal-area div p span.period button:first-child {
+	border-top-left-radius: 3px;
+	border-bottom-left-radius: 3px;
+}
+.bet-add .normal-area div p span.period button:last-child {
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+}
+.dark .bet-add .normal-area div p span.period {
+	display: inline-block;
+	border: 1px solid #a7a7a8;
+	border-radius: 3px;
+	color: white;
+	margin-left: 5px;
+}
+.light .bet-add .normal-area div p span.period {
+	display: inline-block;
+	border: 1px solid #e8e8e8;
+	border-radius: 3px;
+	color: white;
+	margin-left: 5px;
+}
+.dark .bet-add .normal-area div p span.period button {
+	background-color: rgba(238, 238, 238, 0.64);
+}
+.dark .bet-add .normal-area div p span.period button:hover {
+	background-color: rgba(238, 238, 238, 0.8);
+}
+.light .bet-add .normal-area div p span.period button {
+	background-color: rgba(238, 238, 238, 0.64);
+}
+.light .bet-add .normal-area div p span.period button:hover {
+	background-color: rgba(238, 238, 238, 0.8);
+}
+.dark .bet-add .normal-area div p span.period button.active {
+	background-color: rgba(255, 255, 255, 0.85);
+}
+.light .bet-add .normal-area div p span.period button.active {
+	background-color: rgba(255, 255, 255, 0.85);
+}
+.bet-add .normal-area div p span input.fixed {
+	width: 40px;
+	height: 25px;
+	background: none;
+	text-align: center;
+	margin-right: 7px;
+	margin-left: 13px;
+	font-size: 14px;
+	padding-left: 2px;
+}
+.dark .bet-add .normal-area div p span input {
+	color: white;
+	border: 1px solid #eee;
+	color: #faa912;
+}
+.light .bet-add .normal-area div p span input {
+	color: #ff8300;
+    border: 1px solid #a7a7a8;
+}
+.bet-add .normal-area div p span.multiple {
+	display: inline-block;
+	margin-left: 18px;
+	position: relative;
+}
+.bet-add .normal-area div p span.multiple span.multiple-drop-menu {
+    display: inline-block;
+    background-color: #f8f8f8;
+    border: 1px solid rgba(0, 0, 0, 0);
+    cursor: pointer;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+/*    margin-left: 9px;*/
+    position: relative;
+    z-index: 2;
+}
+.bet-add .normal-area div p span.multiple span.multiple-drop-menu {
+    /* box-shadow: 0 0 2px rgba(0,0,0,0.3); */
+}
+.bet-add .normal-area div p span.multiple span.multiple-drop-menu:hover {
+    border: 1px solid rgba(0, 0, 0, 0.3);
+}
+.bet-add .normal-area div p span.multiple span.multiple-drop-menu input {
+    width: 54px;
+    background: none;
+    border: none;
+    font-family: Arial;
+    font-size: 14px;
+    color: #555;
+    text-align: center;
+    margin-right: 0;
+    padding: 0;
+    height: 20px;
+}
+.bet-add .normal-area div p span.multiple span.multiple-drop-menu i {
+    display: inline-block;
+    width: 12px;
+    height: 18px;
+    background-color: none;
+    background-image: url(../img/bg_arrow_01.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    vertical-align: text-top;
+}
+ul.multiple-drop-content2 {
+    display: none;
+    list-style: none;
+    width: 64px;
+    background-color: white;
+/*    border: 1px solid rgba(0, 0, 0, 0.2);*/
+    position: absolute;
+	top: 148px;
+    left: 412px;
+    z-index: 1;
+}
+
+/* Internet Explorer 10+, Microsoft Edge Browser */
+_:-ms-lang(x), ul.multiple-drop-content2 { left: 33px; } 
+
+ul.multiple-drop-content2 li {
+    width: 100%;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    font-size: 12px;
+    color: black;
+    text-align: center;
+    padding-top: 4px;
+    padding-bottom: 2px;
+}
+ul.multiple-drop-content2 li:hover {
+    background-color: #e8e8e8;
+}
+ul.multiple-drop-content2 li:last-child {
+    border-bottom: none;
+}
+.bet-add .advanced-area div.list-area,
+.bet-add .normal-area div.list-area {
+	width: 100%;
+	height: 200px;
+	overflow-y: scroll;
+}
+.bet-add .advanced-area div.list-area table,
+.bet-add .normal-area div.list-area table {
+	width: 100%;
+	font-size: 12px;
+	text-align: center;
+	border-collapse: collapse;
+}
+.dark .bet-add .advanced-area div.list-area table,
+.dark .bet-add .normal-area div.list-area table {
+	color: white;
+}
+.light .bet-add .advanced-area div.list-area table,
+.light .bet-add .normal-area div.list-area table {
+	color: #555;
+}
+.bet-add .advanced-area div.list-area table th,
+.bet-add .normal-area div.list-area table th {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-bottom:  1px solid #767777;
+    border-top: none;
+}
+.light .bet-add .advanced-area div.list-area table th,
+.light .bet-add .normal-area div.list-area table th {
+    border-top: none;
+    border-bottom: 1px solid #e0d8c7;
+}
+.bet-add .advanced-area div.list-area table td,
+.bet-add .normal-area div.list-area table td {
+    padding-top: 9px;
+	position: relative;
+}
+.bet-add .advanced-area div.list-area table td span,
+.bet-add .normal-area div.list-area table td span {
+	position: absolute;
+    background: #ce0000;
+    border-radius: 2px;
+    width: 38px;
+    height: 19px;
+    color: white;
+    margin-left: 3px;
+}
+.dark .bet-add .advanced-area div.list-area table input[type="text"],
+.dark .bet-add .normal-area div.list-area table input[type="text"] {
+	border: 1px solid #ddd;
+}
+.light .bet-add .advanced-area div.list-area table input[type="text"],
+.light .bet-add .normal-area div.list-area table input[type="text"] {
+	border: 1px solid #555;
+}
+.bet-add .advanced-area div.list-area table input[type="text"],
+.bet-add .normal-area div.list-area table input[type="text"] {
+    width: 38px;
+    height: 23px;
+    background: none;
+    text-align: center;
+    font-size: 14px;
+    margin-right: 5px;
+    color: #faa912;
+}
+.light .bet-add .advanced-area div.list-area table td.canttype input[type="text"],
+.light .bet-add .normal-area div.list-area table td.canttype input[type="text"] {
+	pointer-events: none;
+	border: 1px solid #e0d8c2;
+} 
+.bet-add .advanced-area div.list-area table td.canttype input[type="text"],
+.bet-add .normal-area div.list-area table td.canttype input[type="text"] {
+	pointer-events: none;
+	border: 1px solid #7b7b7b;
+} 
+.bet-add .advanced-area div.list-area table td.canttype ,
+.bet-add .normal-area div.list-area table td.canttype {
+	color: #adadad;
+}
+.light .bet-add .advanced-area div.list-area table td.canttype ,
+.light .bet-add .normal-area div.list-area table td.canttype {
+	color: #e0d8c2;
+}
+.dark .bet-add .normal-area div.list-area {
+	background: rgba(195, 195, 195, 0.1);
+}
+.light .bet-add .normal-area div.list-area {
+	background: rgba(255,255,255,0.2);
+}
+.bet-add .btn-area {
+	width: 100%;
+	text-align: center;
+	padding-top: 14px;
+	padding-bottom: 13px;
+}
+.bet-add .btn-area button {
+	border: none;
+	border-radius: 8px;
+	font-size: 13px;
+	padding: 8px 17px;
+}
+.dark .bet-add .btn-area button {
+	background: linear-gradient(#ffb127, #ff7d05);
+	color: white;
+}
+.dark .bet-add .btn-area button:hover {
+	background: linear-gradient(#ff7d05, #ffb127);
+}
+.light .bet-add .btn-area button {
+	background: linear-gradient(#faa207, #fc7e04);
+	color: white;
+}
+.light .bet-add .btn-area button:hover {
+	background: linear-gradient(#fc7e04, #faa207);
+}
+.dark .bet-add .btn-area button:hover {
+	background: linear-gradient(rgba(250, 162, 7, 0.95), rgba(252, 126, 4, 0.95));
+}
+.light .bet-add .btn-area button:hover {
+	background: linear-gradient(#fc7e04, #faa207);
+}
+
+/* 追號投注-高級追號 */
+.bet-add .advanced-area {
+	display: none;
+	box-shadow: 0 0 0 0 rgba(50,50,50, 0.1), 0 2px 6px 0 rgba(0,0,0, 0.1);
+}
+.bet-add .advanced-area > div:first-child {
+	height: 100px;
+	position: relative;
+	box-shadow: 0px 2px 2px 0 rgba(0, 0, 0, 0.1);
+}
+.light .bet-add .advanced-area > div:first-child {
+	background: rgba(255, 255, 255, 0.5);
+	border-bottom: 1px solid #dfdfdf;
+	box-shadow: 0px 2px 2px 0 rgba(50,50,50, 0.1);
+}
+.bet-add .advanced-area > div.list-area {
+	position: relative;
+	background-color: rgba(255,255,255, 0.1);
+	overflow-y: auto; 
+}
+.bet-add .normal-area > div.list-area table {
+	display: none;
+}
+.bet-add .advanced-area > div.list-area table {
+	display: none;
+}
+.dark .bet-add .advanced-area > div.list-area {
+	background-color: rgba(255,255,255, 0.1);
+}
+.light .bet-add .advanced-area > div.list-area {
+	background-color: rgba(255,255,255, 0.1);
+}
+.bet-add .advanced-area > div > div {
+	height: 100px;
+	font-size: 12px;
+	padding-top: 8px;
+	position: absolute;
+}
+.dark .bet-add .advanced-area > div > div {
+	background-color: rgba(255,255,255, 0.2);
+	color: white;
+}
+.light.bet-add .advanced-area > div > div {
+	background-color: rgba(195, 195, 195, 0.1);
+	border-left: 1px solid ;
+	color: white;
+}
+.bet-add .advanced-area > div > div:nth-child(1) {
+	width: 31px;
+	height: 100px;
+	padding-top: 11px;
+	text-align: center;
+	top: 0;
+	left: 0;
+	padding-top: 16px;
+}
+.dark .bet-add .advanced-area > div > div:nth-child(1) {
+	border-right: 1px solid #8a8a8a;
+	border-left: 1px solid #8a8a8a;
+}
+.light .bet-add .advanced-area > div > div:nth-child(1) {
+	border-right: 1px solid #eae7d0;
+	border-left: 1px solid #eae7d0;
+}
+.bet-add .advanced-area > div > div:nth-child(2) {
+	width: 255px;
+	height: 100px;
+	left: 31px;
+	padding-top: 14px;
+}
+.bet-add .advanced-area > div > div:nth-child(3) {
+	width: 30px;
+	height: 100px;
+	text-align: center;
+	top: 0;
+	left: 286px;
+	padding-top: 16px;
+}
+.dark .bet-add .advanced-area > div > div:nth-child(3) {
+	border-right: 1px solid #8a8a8a;
+	border-left: 1px solid #8a8a8a;
+}
+.light .bet-add .advanced-area > div > div:nth-child(3) {
+	border-right: 1px solid #eae7d0;
+	border-left: 1px solid #eae7d0;
+}
+.bet-add .advanced-area > div > div:nth-child(4) {
+	width: 524px;
+	height: 100px;
+	top: 0;
+	left: 316px;
+	padding-left: 11px;
+}
+.bet-add .advanced-area > div button.btn-plan {
+	width: 67px;
+	height: 19px;
+	border: none;
+	border-radius: 3px;
+	position: absolute;
+	top: 4px;
+	right: 5px;
+}
+.dark .bet-add .advanced-area > div button.btn-plan {
+	background: linear-gradient(#517979, #314d4d);
+	color: white;
+}
+.light .bet-add .advanced-area > div button.btn-plan {
+	background: linear-gradient(#517979, #314d4d);
+	color: white;
+	width: 70px;
+}
+.dark .bet-add .advanced-area > div button.btn-plan:hover {
+	background: linear-gradient(rgba(81, 121, 121, 0.8), rgba(49, 77, 77, 0.8));
+}
+.light .bet-add .advanced-area > div button.btn-plan:hover {
+	background: linear-gradient(rgba(81, 121, 121, 0.8), rgba(49, 77, 77, 0.8));
+}
+.bet-add .advanced-area > div > div:nth-child(2) span {
+	margin-left: 9px;
+}
+.bet-add .advanced-area > div select {
+	background: linear-gradient(#ffffff, #cecece);
+	border: none;
+	border-radius: 3px;
+	font-size: 12px;
+	color: #555;
+	margin-bottom: 6px;
+	margin-left: 5px;
+}
+.light .bet-add .advanced-area > div select {
+	color: #555;
+    background: linear-gradient(#ffffff, #ececec);
+    box-shadow: 0 0 0 7px rgba(0,0,0,0.5));
+    border: 1px solid #ddd;
+}
+/*.bet-add .advanced-area > div select option {
+	color: #555;
+}*/
+.bet-add .advanced-area > div:first-child input[type="text"] {
+    width: 50px;
+    height: 21px;
+    background: none;
+    border-radius: 2px;
+    text-align: center;
+    margin-right: 5px;
+    margin-bottom: 6px;
+    margin-left: 5px;
+    font-size: 14px;
+    padding: 6px;
+}
+.bet-add .advanced-area > div:first-child input[type="text"].width-70 {
+	width: 70px;
+}
+.dark .bet-add .advanced-area > div input {
+	color: #faa912;
+	border: 1px solid #eee;
+}
+.light .bet-add .advanced-area > div input {
+	color: #ff3800;
+	border: 1px solid #555;
+}
+.bet-add .advanced-area > div > div:nth-child(4) .tab-area-2 {
+	width: 100%;
+	height: 27px;
+	background-color: rgba(20, 20, 20, 0.15);
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.light .bet-add .advanced-area > div > div:nth-child(4) .tab-area-2 {
+	background: rgb(224, 223, 217);
+}
+.bet-add .advanced-area > div > div:nth-child(4) .tab-area-2 button {
+	height: 27px;
+	border: none;
+	padding-right: 15px;
+	padding-left: 15px;
+}
+.dark .bet-add .advanced-area > div > div:nth-child(4) .tab-area-2 button {
+	background-color: rgb(107, 107, 109);
+	color: white;
+}
+.light .bet-add .advanced-area > div > div:nth-child(4) .tab-area-2 button {
+	background-color: rgb(224, 223, 217);
+	color: #ffffff;
+    font-weight: 200;
+}
+.dark .bet-add .advanced-area > div > div:nth-child(4) .tab-area-2 button.active {
+	background-color: rgb(120, 120, 122);
+}
+.light .bet-add .advanced-area > div > div:nth-child(4) .tab-area-2 button.active {
+	background-color: rgb(251, 247, 237);
+	color: #555;
+}
+.bet-add .advanced-area > div > div:nth-child(4) .tab-content {
+	width: 100%;
+	height: 73px;
+	padding-top: 10px;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	padding-left: 12px;
+}
+.bet-add .advanced-area > div > div:nth-child(4) .tab-content input[type=radio] {
+	width: 12px;
+	height: 12px;
+}
+.bet-add .advanced-area p {
+	margin: 0;
+}
+.bet-add .advanced-area p:last-child {
+	margin-bottom: 1px;
+}
+
+/* 追號投注-本期投注截止 */
+.bet-add div.limit {
+	width: 100%;
+	border-radius: 5px;
+	padding-top: 7px;
+	padding-bottom: 5px;
+	margin-top: 14px;
+}
+.dark .bet-add div.limit {
+	background-color: rgba(195, 195, 195, 0.2);
+}
+.light .bet-add div.limit {
+	background-color: rgba(255,255,255, 0.2);
+	box-shadow: 0 0 4px rgba(0,0,0,0.2);
+}
+.bet-add div.limit table {
+	width: 100%;
+	border-collapse: collapse;
+}
+.bet-add div.limit table tr td {
+	text-align: center;
+}
+.bet-add div.limit table tr td:first-child {
+	width: 100px;
+}
+.bet-add div.limit table tr td:nth-child(2) {
+	width: 100px;
+}
+.bet-add div.limit table tr td:nth-child(3) {
+	width: 200px;
+}
+.bet-add div.limit table tr td:nth-child(4) {
+	width: 250px;
+}
+.bet-add div.limit table tr td:last-child {
+	width: 193px;
+}
+.dark .bet-add div.limit table tr td {
+	border-right: 1px solid rgba(255, 255, 255, 0.5);
+	font-size: 12px;
+	color: white;
+}
+.light .bet-add div.limit table tr td {
+	border-right: 1px solid rgba(255, 255, 255, 1);
+	font-size: 12px;
+	color: #555;
+}
+.dark .bet-add div.limit table tr td:last-child {
+	border-right: none;
+}
+.light .bet-add div.limit table tr td:last-child {
+	border-right: none;
+}
+.dark .bet-add div.limit table tr td span {
+	font-size: 18px;
+	color: white;
+}
+.light .bet-add div.limit table tr td span {
+	font-size: 18px;
+	color: #555;
+}
+.dark .bet-add div.limit table tr td:last-child span {
+	color: #ffa600;
+}
+.light .bet-add div.limit table tr td:last-child span {
+	color: #ffa600;
+}
+
+/* 我的追號 */
+.myadd {
+	display: none;
+	width: 900px;
+	padding-bottom: 28px;
+	position: relative;
+	height: 500px;
+	overflow: auto;
+	text-align: center;
+}
+/*.myadd > button {
+	position: absolute;
+    right: 42px;
+    top: 31px;
+    border-radius: 7px;
+    background: #fff;
+    border: 1px solid #ddd;
+}*/
+.myadd > .top-btn-area {
+	height: 24px !important;
+	position: absolute;
+    right: 42px;
+    top: 31px;
+}
+.myadd > .top-btn-area button {
+    border-radius: 7px;
+    background: #fff;
+    border: 1px solid #ddd;
+    margin-left: 5px;
+}
+.myadd div.btn-area{
+	width: 100%;
+    padding-top: 19px;
+    text-align: center;
+    position: relative;
+}
+.myadd div.btn-area button {
+	display: inline-block;
+	width: 80px;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    margin-right: 22px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+.myadd div.btn-area button.confirm {
+	background: linear-gradient(#ffb127, #ff7d05);
+    color: white;
+}
+.myadd div.btn-area button.cancel {
+	background: linear-gradient(#abaaaa, #646464);
+    color: white;
+}
+.myadd h4 {
+	font-size: 17px;
+	text-align: center;
+	padding-top: 20px;
+	padding-bottom: 18px;
+}
+.myadd > div:first-child {
+	height: 230px;
+	overflow-y: auto;
+}
+.dark .myadd h4 {
+	color: white;
+}
+.light .myadd h4 {
+	color: #555;
+	font-weight: normal;
+}
+/*abbie*/
+.myadd .pagination {
+	position: absolute;
+	bottom: 14px;
+	left: 380px;
+}
+.myadd .pagination a:nth-child(2),
+.myadd .pagination a:nth-child(4) {
+	font-size: 12px !important;
+    position: relative;
+    top: -1px;
+    margin-left: 5px;
+}
+.myadd .pagination a {
+	font-size: 16px;
+    position: relative;
+    top: 2px;
+    font-size: 16px;
+}
+.dark .myadd .pagination a {
+	color: white;
+}
+.light .myadd .pagination a {
+	color: #555;
+}
+.myadd .pagination a:hover {
+	color: #fdb919;
+}
+.dark .myadd .pagination span {
+	color: white;
+	font-size: 13px;
+}
+.light .myadd .pagination span {
+	color: #555;
+	font-size: 13px;
+}
+.myadd .pagination i {
+	color: orange;
+	margin: 0 3px;
+}
+/*abbie*/
+.myadd table {
+	width: 96%;
+	border-collapse: collapse;
+	border: none;
+	margin: 0 auto;
+}
+.myadd table tr th {
+	font-size: 14px;
+	padding-top: 8px;
+	padding-bottom: 8px;
+}
+.myadd table tr th:first-child {
+	width: 30px;
+}
+.dark .myadd table tr th {
+	border-top: 1px solid #686a6b;
+	border-bottom: 1px solid #777878;
+	color: white;
+	font-weight: normal;
+}
+.light .myadd table tr th {
+    border-top: 1px solid #e5e5e5;
+    border-bottom: 1px solid rgba(216, 216, 216, 0.5);
+    /* background: rgba(255,255,255,0.2); */
+    color: #555;
+    font-weight: normal;
+    background: rgba(255, 255, 255, 0.5);
+}
+.myadd table tr td {
+	font-size: 12px;
+	text-align: center;
+	padding-top: 8px;
+	padding-bottom: 8px;
+}
+.myadd table tr td:first-child {
+	text-align: right;
+}
+.dark .myadd table tr td {
+	color: white;
+	font-weight: 300;
+}
+.light .myadd table tr td {
+	color: #555;
+}
+.dark .myadd table tr:nth-child(even) {
+	background-color: rgba(181, 181, 181, 0.23);
+}
+.light .myadd table tr:nth-child(even) {
+	background: rgba(219, 203, 156, 0.2);
+}
+.myadd table tr td input {
+	margin-right: 8px;
+}
+.myadd table tr td a {
+	font-size: 13px;
+	text-decoration: none;
+}
+.myadd table tr td a:last-child {
+	margin-left: 5px;
+}
+.dark .myadd table tr td a:first-child {
+	color: #f4bf07;
+}
+.light .myadd table tr td a:first-child {
+	color: #ff8300;
+    font-weight: normal;
+}
+.dark .myadd table tr td a:last-child {
+	color: #ff6464;
+}
+.light .myadd table tr td a:last-child {
+	color: #ff3000;
+	font-weight: normal;
+}
+
+/* 我的追號-詳情 */
+.myadd-detail {
+	display: none;
+	width: 900px;
+	padding-top: 25px;
+	padding-right: 30px;
+	padding-left: 30px;
+}
+.myadd-detail h4 {
+	font-size: 17px;
+	text-align: center;
+	padding-top: 20px;
+	padding-bottom: 18px;
+}
+.dark .myadd-detail h4 {
+	color: white;
+}
+.light .myadd-detail h4 {
+	color: #555;
+}
+.myadd-detail .record-area {
+	width: 98%;
+	height: 432px;
+	overflow-y: auto;
+}
+.myadd-detail .record-area .content {
+	width: 98%;
+	margin: auto;
+}
+.myadd-detail .record-area h6 {
+	font-size: 14px;
+	font-weight: 400;
+	margin-top: 15px;
+	margin-bottom: 8px;
+}
+.dark .myadd-detail .record-area h6 {
+	color: white;
+}
+.light .myadd-detail .record-area h6 {
+	color: #555;
+	font-weight: normal;
+}
+.myadd-detail .record-area p.kind {
+	width: 100%;
+	font-size: 13px;
+	box-shadow: 0 0 0 0 rgba(50,50,50, 0.1), 0 2px 12px 0 rgba(0,0,0, 0.15);
+}
+.dark .myadd-detail .record-area p.kind {
+	background-color: rgba(255, 255, 255, 0.2);
+	color: white;
+}
+.light .myadd-detail .record-area p.kind {
+	background-color: rgba(255, 255, 255, 0.2);
+	color: #555;
+}
+.myadd-detail .record-area p.kind span {
+	display: inline-block;
+	width: 49.5%;
+	padding-top: 13px;
+	padding-bottom: 11px;
+	padding-left: 15px;
+}
+.dark .myadd-detail .record-area p.kind span:last-child {
+	border-left: 1px solid rgba(255, 255, 255, 0.2);
+}
+.light .myadd-detail .record-area p.kind span:last-child {
+	border-left: 1px solid #e3e0c1;
+}
+.myadd-detail .record-area table.detail {
+	width: 100%;
+	border-collapse: collapse;
+	font-size: 12px;
+	box-shadow: 0 0 0 0 rgba(50,50,50, 0.1), 0 2px 12px 0 rgba(0,0,0, 0.15);
+}
+.myadd-detail .record-area table.detail tr td, .myadd-detail .record-area table.detail tr th  {
+	text-align: center;
+	padding: 10px 12px 6px;
+}
+.myadd-detail .record-area table.detail tr:first-child td {
+	text-align: left;
+}
+.dark .myadd-detail .record-area table.detail tr th {
+	background-color: rgba(255, 255, 255, 0.2);
+	color: white;
+}
+.light .myadd-detail .record-area table.detail tr th {
+	background-color: rgba(40, 40, 40, 0.2);
+	color: white;
+	font-weight: 200;
+}
+.dark .myadd-detail .record-area table.detail tr td {
+	background-color: rgba(195, 195, 195, 0.2);
+	color: white;
+}
+.light .myadd-detail .record-area table.detail tr td {
+	background-color: rgba(255, 255, 255, 0.2);
+	color: black;
+}
+.dark .myadd-detail .record-area table.detail tr td button {
+	background: red;
+    border: none;
+    border-radius: 5px;
+    margin-left: 6px;
+    color: white;
+}
+.light .myadd-detail .record-area table.detail tr td button {
+	background: red;
+    border: none;
+    border-radius: 5px;
+    margin-left: 6px;
+    color: white;
+}
+.myadd-detail .record-area .add-num {
+	width: 100%;
+	box-shadow: 0 0 0 0 rgba(50,50,50, 0.1), 0 2px 12px 0 rgba(0,0,0, 0.15);
+}
+.myadd-detail .record-area .add-num p {
+	font-size: 12px;
+	margin: 0;
+	padding: 5px 12px;
+}
+.myadd-detail .record-area .add-num p span {
+	margin-right: 5px;
+	box-shadow: 0 0 0 0 rgba(50,50,50, 0.1), 0 2px 12px 0 rgba(0,0,0, 0.15);
+}
+.dark .myadd-detail .record-area .add-num p {
+	background-color: rgba(255, 255, 255, 0.2);
+	color: white;
+}
+.light .myadd-detail .record-area .add-num p {
+	background-color: rgba(255, 255, 255, 0.2);
+	color: black;
+}
+.myadd-detail .list-area table {
+	width: 100%;
+	border-collapse: collapse;
+	box-shadow: 0 0 0 0 rgba(50,50,50, 0.1), 0 2px 12px 0 rgba(0,0,0, 0.15);
+}
+.myadd-detail .list-area table tr th {
+	font-size: 12px;
+	padding-top: 14px;
+	padding-bottom: 11px;
+}
+.dark .myadd-detail .list-area table tr th {
+	background-color: rgba(255, 255, 255, 0.2);
+	color: white;
+}
+.light .myadd-detail .list-area table tr th {
+	background-color: rgba(255, 255, 255, 0.5);
+	color: #555;
+	border-bottom: 1px solid #eae5c3;
+}
+.myadd-detail .list-area table tr td {
+	font-size: 12px;
+	text-align: center;
+	padding-top: 10px;
+}
+.myadd-detail .list-area table tr:last-child td {
+	padding-bottom: 10px;
+}
+.dark .myadd-detail .list-area table tr td {
+	background-color: rgba(195, 195, 195, 0.2);
+	color: white;
+	font-weight: 200;
+}
+.light .myadd-detail .list-area table tr td {
+	background-color: rgba(255,255,255, 0.2);
+	color: #555;
+}
+.myadd-detail .list-area a {
+	font-size: 12px;
+	text-decoration: underline;
+}
+.dark .myadd-detail .list-area a.detail {
+	color: #fdae14;
+}
+.light .myadd-detail .list-area a.detail {
+	color: #fb8006;
+}
+.dark .myadd-detail .list-area a.detail:hover {
+	text-decoration: none;
+}
+.light .myadd-detail .list-area a.detail:hover {
+	text-decoration: none;
+}
+.dark .myadd-detail .list-area a.cancel {
+	color: white;
+}
+.light .myadd-detail .list-area a.cancel {
+	color: #555;
+}
+.dark .myadd-detail .list-area a.cancel:hover {
+	text-decoration: none;
+}
+.light .myadd-detail .list-area a.cancel:hover {
+	text-decoration: none;
+}
+.myadd-detail .list-area .pagination {
+	width: 100%;
+	text-align: center;
+}
+.myadd-detail .list-area .pagination ul {
+	display: inline-block;
+	border-radius: 5px;
+	font-size: 12px;
+	list-style: none;
+	margin-top: 16px;
+	margin-bottom: 16px;
+}
+.dark .myadd-detail .list-area .pagination ul {
+	/*border: 1px solid white;*/
+}
+.light .myadd-detail .list-area .pagination ul {
+	/*border: 1px solid white;*/
+}
+.myadd-detail .list-area .pagination ul li {
+	display: inline-block;
+}
+.myadd-detail .list-area .pagination ul li button {
+	background: none;
+	border: none;
+	padding: 2px 8px;
+}
+.dark .myadd-detail .list-area .pagination ul li button {
+	color: white;
+}
+.light .myadd-detail .list-area .pagination ul li button {
+	color: #555;
+}
+.dark .myadd-detail .list-area .pagination ul li {
+	color: white;
+}
+.light .myadd-detail .list-area .pagination ul li {
+	color: #555;
+}
+.myadd-detail .list-area .pagination ul li span {
+	padding-right: 10px;
+	padding-left: 5px;
+}
+.myadd-detail div.btn-area{
+	width: 100%;
+    padding-top: 19px;
+    padding-bottom: 20px;
+    text-align: center;
+    position: relative;
+}
+.myadd-detail div.btn-area button {
+	display: inline-block;
+	width: 80px;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    margin-right: 22px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+.myadd-detail div.btn-area button.confirm {
+	background: linear-gradient(#ffb127, #ff7d05);
+    color: white;
+}
+.myadd-detail div.btn-area button.cancel {
+	background: linear-gradient(#abaaaa, #646464) !important;
+    color: white;
+}
+.dark .myadd-detail div.btn-area  button {
+	background: linear-gradient(rgba(250, 162, 7, 1), rgba(252, 126, 4, 1));
+	color: white;
+}
+.light .myadd-detail div.btn-area  button {
+	background: linear-gradient(#faa207, #fc7e04);
+	color: white;
+}
+.dark .myadd-detail div.btn-area  button:hover {
+	background: linear-gradient(rgba(250, 162, 7, 0.95), rgba(252, 126, 4, 0.95));
+}
+.light .myadd-detail div.btn-area  button:hover {
+	background: linear-gradient(#fc7e04, #faa207);
+}
+
+/* 確認投注 */
+.bet-confirm {
+	display: none;
+	width: 484px;
+}
+.bet-confirm h4 {
+	width: 100%;
+	text-align: center;
+	padding-top: 13px;
+	padding-bottom: 12px;
+}
+.dark .bet-confirm h4 {
+	color: white;
+}
+.light .bet-confirm h4 {
+	color: #555;
+}
+.bet-confirm .content {
+	width: 100%;
+	padding-top: 36px;
+	padding-bottom: 36px;
+}
+.dark .bet-confirm .content {
+	border-top: 1px solid #808080;
+	border-bottom: 1px solid #808080;
+}
+.light .bet-confirm .content {
+	border-top: 1px solid #ece6d0;
+	border-bottom: 1px solid #ece6d0;
+}
+.bet-confirm .content p {
+	font-size: 13px;
+	padding-right: 24px;
+	padding-left: 24px;
+}
+.bet-confirm .content p.way span {
+	display: block;
+    width: 100%;
+    border-radius: 10px;
+    margin-top: 12px;
+    margin-bottom: 14px;
+    padding: 10px 13px 14px;
+    max-height: 152px;
+    overflow-y: auto;
+    word-wrap: break-word;
+}
+.dark .bet-confirm .content p.way span {
+	background-color: rgba(255, 255, 255, 0.2);
+}
+.light .bet-confirm .content p.way span {
+	background-color: rgba(255, 255, 255, 0.3);
+	border: 1px solid #ece6d0;
+}
+.dark .bet-confirm .content p {
+	color: white;
+}
+.light .bet-confirm .content p {
+	color: #555;
+}
+.bet-confirm .content p.total span {
+	font-size: 15px;
+	font-weight: normal;
+	margin-right: 5px;
+}
+.dark .bet-confirm .content p.total span {
+	color: #fea01f;
+}
+.light .bet-confirm .content p.total span {
+	color: #fea01f;
+}
+.bet-confirm .btn-area {
+	width: 100%;
+	padding-top: 19px;
+	padding-bottom: 20px;
+	text-align: center;
+}
+.bet-confirm .btn-area button {
+	width: 80px;
+	border: none;
+	border-radius: 5px;
+	font-size: 15px;
+	margin-right: 22px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+}
+.bet-confirm .btn-area button:last-child {
+	margin-right: 0;
+}
+.dark .bet-confirm .btn-area button.confirm {
+	background: linear-gradient(#ffb127, #ff7d05);
+	color: white;
+}
+.dark .bet-confirm .btn-area button.confirm:hover {
+	background: linear-gradient(#ff7d05, #ffb127);
+}
+.light .bet-confirm .btn-area button.confirm {
+	background: linear-gradient(#ffb127, #ff7d05);
+	color: white;
+	box-shadow: 0 0 4px rgba(0,0,0,0.2);
+}
+.light .bet-confirm .btn-area button.confirm:hover {
+	background: linear-gradient(#ff7d05, #ffb127);
+}
+.dark .bet-confirm .btn-area button.cancel {
+	background: linear-gradient(#abaaaa, #646464);
+	color: white;
+}
+.dark .bet-confirm .btn-area button.cancel:hover {
+	background: linear-gradient(#646464, #abaaaa);
+}
+.light .bet-confirm .btn-area button.cancel {
+    background: linear-gradient(#ffffff, #cecece);
+    color: #555;
+    box-shadow: 0 0 4px rgba(0,0,0,0.2);
+}
+.light .bet-confirm .btn-area button.cancel:hover {
+    background: linear-gradient(#cecece, #ffffff);
+}
+
+/* 立即投注 */
+.bet-now {
+	display: none;
+	width: 484px;
+}
+.bet-now h4 {
+	width: 100%;
+	text-align: center;
+	padding-top: 13px;
+	padding-bottom: 12px;
+}
+.dark .bet-now h4 {
+	color: white;
+}
+.light .bet-now h4 {
+	color: #555;
+}
+.bet-now .content {
+	width: 100%;
+	border-top: 1px solid #808080;
+	border-bottom: 1px solid #808080;
+	padding-top: 30px;
+	padding-bottom: 36px;
+}
+.dark .bet-now .content {
+	border-top: 1px solid #808080;
+	border-bottom: 1px solid #808080;
+}
+.light .bet-now .content {
+	border-top: 1px solid #ece6d0;
+	border-bottom: 1px solid #ece6d0;
+}
+.bet-now .content a {
+	color: #f63e3e;
+    font-size: 15px;
+    margin: 0 4px;
+    display: inline-block;
+    position: relative;
+    top: 1px;
+}
+.bet-now .content i.icon-check {
+	display: block;
+	width: 66px;
+	height: 66px;
+	background-image: url(../img/icon_check_dark.png);
+	margin: 0 auto 15px;
+}
+.light .bet-now .content i.icon-check {
+	display: block;
+	width: 66px;
+	height: 66px;
+	background-image: url(../img/icon_check_light.png);
+	margin: 0 auto 15px;
+}
+.bet-now .content p {
+	font-size: 13px;
+	text-align: center;
+	padding-right: 24px;
+	padding-left: 24px;
+}
+.dark .bet-now .content p {
+	color: white;
+}
+.light .bet-now .content p {
+	color: #555;
+}
+.dark .bet-now .content p span {
+	color: #fea01f;
+}
+.light .bet-now .content p span {
+	color: #ff8300;
+}
+.bet-now .btn-area {
+	width: 100%;
+	padding-top: 19px;
+	padding-bottom: 20px;
+	text-align: center;
+}
+.bet-now .btn-area button {
+	width: 80px;
+	border: none;
+	border-radius: 5px;
+	font-size: 15px;
+	margin-right: 22px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+}
+.bet-now .btn-area button:last-child {
+	margin-right: 0;
+}
+.dark .bet-now .btn-area button {
+	background: linear-gradient(#abaaaa, #646464);
+	color: white;
+}
+.dark .bet-now .btn-area button:hover {
+	background: linear-gradient(#646464, #abaaaa);
+}
+.light .bet-now .btn-area button {
+    background: linear-gradient(#ffffff, #cecece);
+    color: #555;
+    box-shadow: 0 0 4px rgba(0,0,0,0.2);
+}
+.light .bet-now .btn-area button:hover {
+	background: linear-gradient(#cecece, #ffffff);
+}
+/* 溫馨提示 */
+.bet-remind {
+	display: none;
+	width: 484px;
+}
+.bet-remind h4 {
+	width: 100%;
+	text-align: center;
+	padding-top: 13px;
+	padding-bottom: 12px;
+}
+.dark .bet-remind h4 {
+	color: white;
+}
+.light .bet-remind h4 {
+	color: #555;
+}
+.bet-remind .content {
+	width: 100%;
+	border-top: 1px solid #808080;
+	border-bottom: 1px solid #808080;
+	padding-top: 30px;
+	padding-bottom: 36px;
+}
+.dark .bet-remind .content {
+	border-top: 1px solid #808080;
+	border-bottom: 1px solid #808080;
+}
+.light .bet-remind .content {
+	border-top: 1px solid #ece6d0;
+	border-bottom: 1px solid #ece6d0;
+}
+.bet-remind .content a {
+	color: #f63e3e;
+    font-size: 15px;
+    margin: 0 4px;
+    display: inline-block;
+    position: relative;
+    top: 1px;
+}
+.bet-remind .content i.icon-remind {
+	display: block;
+	width: 66px;
+	height: 66px;
+	background-image: url(../img/icon_remind_dark.png);
+	margin: 0 auto 15px;
+}
+.light .bet-remind .content i.icon-remind {
+	background-image: url(../img/icon_remind_light.png);
+}
+
+.bet-remind .content p {
+	font-size: 13px;
+	text-align: center;
+	padding-right: 24px;
+	padding-left: 24px;
+}
+.dark .bet-remind .content p {
+	color: white;
+}
+.light .bet-remind .content p {
+	color: #555;
+}
+.dark .bet-remind .content p span {
+	color: #fea01f;
+}
+.light .bet-remind .content p span {
+	color: #ff8300;
+}
+.bet-remind .btn-area {
+	width: 100%;
+	padding-top: 19px;
+	padding-bottom: 20px;
+	text-align: center;
+}
+.bet-remind .btn-area button {
+	width: 80px;
+	border: none;
+	border-radius: 5px;
+	font-size: 15px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+}
+.dark .bet-remind .btn-area button {
+	background: linear-gradient(#abaaaa, #646464);
+	color: white;
+}
+.light .bet-remind .btn-area button {
+    background: linear-gradient(#ffffff, #cecece);
+    color: #555;
+    box-shadow: 0 0 4px rgba(0,0,0,0.2);
+}

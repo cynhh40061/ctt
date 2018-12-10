@@ -1,0 +1,381 @@
+﻿<!-- 2018/02/06 Ason -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="css/cttgame.css">
+<title>測試讀取資料</title>
+<script>
+	function loadScript(url, callback) {
+		// adding the script tag to the head as suggested before
+		var head = document.getElementsByTagName('head')[0];
+		var script = document.createElement('script');
+		script.type = 'text/javascript';
+		script.charset = 'utf-8';
+		script.src = url;
+		if (!callback)
+			callback = function() {
+			}; // ★★★★★★★★★ JUST ADD THIS LINE!
+
+		// bind the event to the callback function 
+		if (script.addEventListener) {
+			script.addEventListener("load", callback, false); // IE9+, Chrome, Firefox
+		} else if (script.readyState) {
+			script.onreadystatechange = callback; // IE8
+		}
+		// fire the loading
+		head.appendChild(script);
+	}
+
+	function sleep(milliseconds) {
+		var start = new Date().getTime();
+		for (var i = 0; i < 1e7; i++) {
+			if ((new Date().getTime() - start) > milliseconds) {
+				break;
+			}
+		}
+	}
+
+	function initOnLoad() {
+		loadToolsJs();
+	}
+
+	function loadToolsJs() {
+		loadScript("js/tools.js?id=" + new Date().getTime(), function() {
+		});
+	}
+	
+	function testAjax(){
+		sendAjaxAllLottery(1);
+		//sendAjaxStruct(1);
+		//sendAjax("subOrderBets");
+	}
+	var XHR = null;
+	var tokenId = "12345";
+	var accId = "1";
+	function sendAjax(data) {
+		XHR = checkXHR(XHR);
+		if (typeof XHR != "undefined" && XHR != null) {
+			var tmpStr = "commend="+encodeURIComponent(data)+"&tokenId="+tokenId+ "&accId=1";
+			XHR.open("POST", "./BetInfo!queryAllInfo.php?date=" + new Date().getTime(),
+							true);
+			XHR.setRequestHeader("Content-type",
+					"application/x-www-form-urlencoded");
+			XHR.timeout = 10000;
+			XHR.ontimeout = function() {
+				XHR.abort();
+			}
+			XHR.onerror = function() {
+				XHR.abort();
+			}
+			XHR.onreadystatechange = handleAjaxReturn;
+			XHR.send(tmpStr);
+		}
+	}
+	
+	function handleAjaxReturn() {
+		if (XHR.readyState == 4) {
+			if (XHR.status == 200) {
+				try {
+					var json = isJSON(XHR.responseText);
+					if (json) {
+						console_Log(json);
+					}
+				} catch (error) {
+					console_Log("handleAjaxReturn error:"+error.message);
+				} finally {
+					XHR.abort();
+				}
+			}
+		}
+	}
+	
+	function sendAjaxStructupdateKj(data) {
+		XHR = checkXHR(XHR);
+		if (typeof XHR != "undefined" && XHR != null) {
+			var tmpStr = "data="+encodeURIComponent(data)+"&tokenId="+tokenId+ "&accId="+accId;
+			XHR.open("POST", "./KjInfo!updateKjInfo.php?date=" + new Date().getTime(),
+							true);
+			XHR.setRequestHeader("Content-type",
+					"application/x-www-form-urlencoded");
+			XHR.timeout = 10000;
+			XHR.ontimeout = function() {
+				XHR.abort();
+			}
+			XHR.onerror = function() {
+				XHR.abort();
+			}
+			XHR.onreadystatechange = handleAjaxStructReturn;
+			XHR.send(tmpStr);
+		}
+	}
+	
+	function sendAjaxStruct(data) {
+		XHR = checkXHR(XHR);
+		if (typeof XHR != "undefined" && XHR != null) {
+			var tmpStr = "data="+encodeURIComponent(data)+"&tokenId="+tokenId+ "&accId="+accId;
+			XHR.open("POST", "./BetInfo!queryStruct.php?date=" + new Date().getTime(),
+							true);
+			XHR.setRequestHeader("Content-type",
+					"application/x-www-form-urlencoded");
+			XHR.timeout = 10000;
+			XHR.ontimeout = function() {
+				XHR.abort();
+			}
+			XHR.onerror = function() {
+				XHR.abort();
+			}
+			XHR.onreadystatechange = handleAjaxStructReturn;
+			XHR.send(tmpStr);
+		}
+	}
+	
+	function handleAjaxStructReturn() {
+		if (XHR.readyState == 4) {
+			if (XHR.status == 200) {
+				try {
+					var json = isJSON(XHR.responseText);
+					if (json) {
+						console_Log(json);
+					}
+				} catch (error) {
+					console_Log("handleAjaxStructReturn error:"+error.message);
+				} finally {
+					XHR.abort();
+				}
+			}
+		}
+	}
+	
+	function sendAjaxAllLottery(data) {
+		XHR = checkXHR(XHR);
+		if (typeof XHR != "undefined" && XHR != null) {
+			var tmpStr = "data="+encodeURIComponent(data)+"&tokenId="+tokenId+ "&accId=8&LUT=0";
+			XHR.open("POST", "./BetInfo!queryAllLottery.php?date=" + new Date().getTime(),
+							true);
+			XHR.setRequestHeader("Content-type",
+					"application/x-www-form-urlencoded");
+			XHR.timeout = 10000;
+			XHR.ontimeout = function() {
+				XHR.abort();
+			}
+			XHR.onerror = function() {
+				XHR.abort();
+			}
+			XHR.onreadystatechange = handleAjaxAllLotteryReturn;
+			XHR.send(tmpStr);
+		}
+	}
+	
+	function handleAjaxAllLotteryReturn() {
+		if (XHR.readyState == 4) {
+			if (XHR.status == 200) {
+				try {
+					AAjson = isJSON(XHR.responseText);
+					if (AAjson) {
+						console_Log(AAjson);
+					}
+				} catch (error) {
+					console_Log("handleAjaxAllLotteryReturn error:"+error.message);
+				} finally {
+					XHR.abort();
+				}
+			}
+		}
+	}	
+
+	function sendKj() {
+		XHR = checkXHR(XHR);
+		if (typeof XHR != "undefined" && XHR != null) {
+			var tmpStr = "data=1&tokenId="+tokenId+ "&accId=8&LUT=0";
+			XHR.open("POST", "./KjInfo!queryKjTimeStatus.php?date=" + new Date().getTime(),
+							true);
+			XHR.setRequestHeader("Content-type",
+					"application/x-www-form-urlencoded");
+			XHR.timeout = 10000;
+			XHR.ontimeout = function() {
+				XHR.abort();
+			}
+			XHR.onerror = function() {
+				XHR.abort();
+			}
+			XHR.onreadystatechange = handleAjaxAllKjTimeStatusReturn;
+			XHR.send(tmpStr);
+		}
+	}
+	
+	function handleAjaxAllKjTimeStatusReturn() {
+		if (XHR.readyState == 4) {
+			if (XHR.status == 200) {
+				try {
+					//console_Log(XHR.responseText);
+					var json = isJSON(XHR.responseText);
+					if (json) {
+						console_Log(json);
+					}
+				} catch (error) {
+					console_Log("handleAjaxAllKjNumsReturn error:"+error.message);
+				} finally {
+					XHR.abort();
+				}
+			}
+		}
+	}
+	
+	
+	function sendAjaxQueryBetOrder() {
+		XHR = checkXHR(XHR);
+		if (typeof XHR != "undefined" && XHR != null) {
+			var tmpStr = "data=1&tokenId="+tokenId+ "&accId="+accId;
+			XHR.open("POST", "./OrderInfo!queryOrders.php?date=" + new Date().getTime(),
+							true);
+			XHR.setRequestHeader("Content-type",
+					"application/x-www-form-urlencoded");
+			XHR.timeout = 10000;
+			XHR.ontimeout = function() {
+				XHR.abort();
+			}
+			XHR.onerror = function() {
+				XHR.abort();
+			}
+			XHR.onreadystatechange = handleAjaxQueryBetOrderReturn;
+			XHR.send(tmpStr);
+		}
+	}
+	
+	function handleAjaxQueryBetOrderReturn() {
+		if (XHR.readyState == 4) {
+			if (XHR.status == 200) {
+				try {
+					var json = isJSON(XHR.responseText);
+					if (json) {
+						console_Log(json);
+					}
+				} catch (error) {
+					console_Log("handleAjaxQueryBetOrderReturn error:"+error.message);
+				} finally {
+					XHR.abort();
+				}
+			}
+		}
+	}
+	
+	
+	function sendAjaxRatio1() {
+		XHR = checkXHR(XHR);
+		if (typeof XHR != "undefined" && XHR != null) {
+			var tmpStr = "data=1&tokenId="+tokenId+ "&accId="+accId;
+			XHR.open("POST", "./BaselineInfo!updateBaseline.php?date=" + new Date().getTime(),			//updateBaseline		queryBaseline
+							true);
+			XHR.setRequestHeader("Content-type",
+					"application/x-www-form-urlencoded");
+			XHR.timeout = 10000;
+			XHR.ontimeout = function() {
+				XHR.abort();
+			}
+			XHR.onerror = function() {
+				XHR.abort();
+			}
+			XHR.onreadystatechange = handlesendAjaxRatioReturn1;
+			XHR.send(tmpStr);
+		}
+	}
+	
+	function handlesendAjaxRatioReturn1() {
+		if (XHR.readyState == 4) {
+			if (XHR.status == 200) {
+				try {
+					var json = isJSON(XHR.responseText);
+					if (json) {
+						console_Log(json);
+					}
+				} catch (error) {
+					console_Log("handlesendAjaxRatioReturn error:"+error.message);
+				} finally {
+					XHR.abort();
+				}
+			}
+		}
+	}
+	
+	function sendAjaxRatio2() {
+		XHR = checkXHR(XHR);
+		if (typeof XHR != "undefined" && XHR != null) {
+			var tmpStr = "data=1&tokenId="+tokenId+ "&accId=8&LUT=0";
+			XHR.open("POST", "./BaselineInfo!queryBaseline.php?date=" + new Date().getTime(),			//updateBaseline		queryBaseline
+							true);
+			XHR.setRequestHeader("Content-type",
+					"application/x-www-form-urlencoded");
+			XHR.timeout = 10000;
+			XHR.ontimeout = function() {
+				XHR.abort();
+			}
+			XHR.onerror = function() {
+				XHR.abort();
+			}
+			XHR.onreadystatechange = handlesendAjaxRatioReturn2;
+			XHR.send(tmpStr);
+		}
+	}
+	
+	function handlesendAjaxRatioReturn2() {
+		if (XHR.readyState == 4) {
+			if (XHR.status == 200) {
+				try {
+					var json = isJSON(XHR.responseText);
+					if (json) {
+						console_Log(json);
+					}
+				} catch (error) {
+					console_Log("handlesendAjaxRatioReturn2 error:"+error.message);
+				} finally {
+					XHR.abort();
+				}
+			}
+		}
+	}
+	
+	function sendAjaxHandicap() {
+		XHR = checkXHR(XHR);
+		if (typeof XHR != "undefined" && XHR != null) {
+			var tmpStr = "data=1&tokenId="+tokenId+ "&accId="+accId;
+			XHR.open("POST", "./BetInfo!queryHandicap.php?date=" + new Date().getTime(),			//updateBaseline		queryBaseline
+							true);
+			XHR.setRequestHeader("Content-type",
+					"application/x-www-form-urlencoded");
+			XHR.timeout = 10000;
+			XHR.ontimeout = function() {
+				XHR.abort();
+			}
+			XHR.onerror = function() {
+				XHR.abort();
+			}
+			XHR.onreadystatechange = handlesendAjaxHandicap;
+			XHR.send(tmpStr);
+		}
+	}
+	
+	function handlesendAjaxHandicap() {
+		if (XHR.readyState == 4) {
+			if (XHR.status == 200) {
+				try {
+					var json = isJSON(XHR.responseText);
+					if (json) {
+						console_Log(json);
+					}
+				} catch (error) {
+					console_Log("handlesendAjaxHandicap error:"+error.message);
+				} finally {
+					XHR.abort();
+				}
+			}
+		}
+	}
+	
+	
+</script>
+</head>
+<body onload="initOnLoad();">
+	
+</body>
+</html>

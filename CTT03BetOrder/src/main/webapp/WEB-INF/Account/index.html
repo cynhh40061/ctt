@@ -1,0 +1,400 @@
+﻿<!-- 2018/02/06 Ason -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="css/cttgame.css">
+<title>測試下注</title>
+<script>
+	function loadScript(url, callback) {
+		// adding the script tag to the head as suggested before
+		var head = document.getElementsByTagName('head')[0];
+		var script = document.createElement('script');
+		script.type = 'text/javascript';
+		script.charset = 'utf-8';
+		script.src = url;
+		if (!callback)
+			callback = function() {
+			}; // ★★★★★★★★★ JUST ADD THIS LINE!
+
+		// bind the event to the callback function 
+		if (script.addEventListener) {
+			script.addEventListener("load", callback, false); // IE9+, Chrome, Firefox
+		} else if (script.readyState) {
+			script.onreadystatechange = callback; // IE8
+		}
+		// fire the loading
+		head.appendChild(script);
+	}
+
+	function sleep(milliseconds) {
+		var start = new Date().getTime();
+		for (var i = 0; i < 1e7; i++) {
+			if ((new Date().getTime() - start) > milliseconds) {
+				break;
+			}
+		}
+	}
+
+	function initOnLoad() {
+		loadToolsJs();
+	}
+
+	function loadToolsJs() {
+		loadScript("js/tools.js?id=" + new Date().getTime(), function() {
+		});
+	}
+	function textOrder2(){
+		var allOrder = new Object();
+		allOrder.orders = new Array();
+		
+		var mainOrder = new Object();
+		mainOrder.startPeriodNum ="20180625082";		//開始期號
+		mainOrder.stopPeriodNum ="20180625084";			//停止期號
+		mainOrder.betData="1,2|2|3|4|5";				//母單的下注資訊
+		mainOrder.noOfPeriod = "3";						//共幾期
+		mainOrder.accId ="1";							//帳號
+		mainOrder.mainId = "1";							//時時彩
+		mainOrder.localId = "2";						//重慶時時彩
+		mainOrder.midId = "8";							//五星
+		mainOrder.minAuthId = "160";					//五星直選
+		mainOrder.actionTime = ""+new Date().getTime();	//下注時間
+		mainOrder.amount = "60000";						//下注總額(追號單)
+		mainOrder.moneyUnit = "2";					//金錢單位
+		mainOrder.orderType ="0";						//是否 中獎不追等等
+		mainOrder.handiCap ="1";						//盤口
+		mainOrder.bonusSetRatio ="1950";				//獎金組
+		
+		mainOrder.betRatio = "0.00002";					//投注比例
+		mainOrder.isDt = "1";						//是否單挑
+		mainOrder.midOrders = new Array();
+		
+		var midOrder = new Object();
+		midOrder.periodNum ="20180625083";						//期號
+		midOrder.amount = "10000";						//下注總額(母單)
+		midOrder.maxBonus = "10000";						//母單最多可贏多少
+		midOrder.fanDen = "0";						//這期對獎完畢時反點的金額
+		midOrder.noOfBet = "2";							//整個母單的注數
+		midOrder.noOfBetTimes = "2500";				//倍數
+		midOrder.betOrders = new Array();
+		
+		var betOrder = new Object();
+		betOrder.betData="1|2|3|4|5";							//下注內容
+		betOrder.playedId = "70";						//子單id
+		betOrder.amount = "5000";						//子單金額
+		betOrder.noOfBet = "1";							//子單注數
+		betOrder.bonus = "10000";						//子單中獎時給多少錢		//正常487500000  //單挑10000
+		betOrder.baseline = "100000.00";				//賠率
+		midOrder.betOrders.push(betOrder);
+		
+		betOrder = new Object();
+		betOrder.betData="2|2|3|4|5";							//下注內容
+		betOrder.playedId = "70";						//子單id
+		betOrder.amount = "5000";						//子單金額
+		betOrder.noOfBet = "1";							//子單注數
+		betOrder.bonus = "10000";						//子單中獎時給多少錢
+		betOrder.baseline = "100000.00";				//賠率
+		midOrder.betOrders.push(betOrder);
+		mainOrder.midOrders.push(midOrder);
+
+		midOrder = new Object();
+		midOrder.periodNum ="20180625084";						//期號
+		midOrder.amount = "20000";						//下注總額(母單)
+		midOrder.maxBonus = "10000";						//母單最多可贏多少
+		midOrder.fanDen = "0";						//這期對獎完畢時反點的金額
+		midOrder.noOfBet = "2";							//整個母單的注數
+		midOrder.noOfBetTimes = "5000";				//倍數
+		midOrder.betOrders = new Array();
+		
+		betOrder = new Object();
+		betOrder.betData="1|2|3|4|5";							//下注內容
+		betOrder.playedId = "70";						//子單id
+		betOrder.amount = "10000";						//子單金額
+		betOrder.noOfBet = "1";							//子單注數
+		betOrder.bonus = "10000";						//子單中獎時給多少錢
+		betOrder.baseline = "100000.00";				//賠率
+		midOrder.betOrders.push(betOrder);
+		
+		betOrder = new Object();
+		betOrder.betData="2|2|3|4|5";							//下注內容
+		betOrder.playedId = "70";						//子單id
+		betOrder.amount = "10000";						//子單金額
+		betOrder.noOfBet = "1";							//子單注數
+		betOrder.bonus = "10000";						//子單中獎時給多少錢
+		betOrder.baseline = "100000.00";				//賠率
+		midOrder.betOrders.push(betOrder);
+		mainOrder.midOrders.push(midOrder);
+		
+		midOrder = new Object();
+		midOrder.periodNum ="20180625082";						//期號
+		midOrder.amount = "30000";						//下注總額(母單)
+		midOrder.maxBonus = "10000";						//母單最多可贏多少
+		midOrder.fanDen = "0";						//這期對獎完畢時反點的金額
+		midOrder.noOfBet = "2";							//整個母單的注數
+		midOrder.noOfBetTimes = "7500";				//倍數
+		midOrder.betOrders = new Array();
+		
+		betOrder = new Object();
+		betOrder.betData="1|2|3|4|5";							//下注內容
+		betOrder.playedId = "70";						//子單id
+		betOrder.amount = "15000";						//子單金額
+		betOrder.noOfBet = "1";							//子單注數
+		betOrder.bonus = "10000";						//子單中獎時給多少錢
+		betOrder.baseline = "100000.00";				//賠率
+		midOrder.betOrders.push(betOrder);
+		
+		betOrder = new Object();
+		betOrder.betData="2|2|3|4|5";							//下注內容
+		betOrder.playedId = "70";						//子單id
+		betOrder.amount = "15000";						//子單金額
+		betOrder.noOfBet = "1";							//子單注數
+		betOrder.bonus = "10000";						//子單中獎時給多少錢
+		betOrder.baseline = "100000.00";				//賠率
+		midOrder.betOrders.push(betOrder);
+		mainOrder.midOrders.push(midOrder);
+		
+		allOrder.orders.push(mainOrder);			
+		sendBettingAjax(JSON.stringify(allOrder));
+	}
+	function textOrder1(){
+		var allOrder = new Object();
+		allOrder.orders = new Array();
+		
+		var mainOrder = new Object();
+		mainOrder.startPeriodNum ="20180625083";		//開始期號
+		mainOrder.stopPeriodNum ="20180625083";			//停止期號
+		mainOrder.betData="1,2|2|3|4|5";				//母單的下注資訊
+		mainOrder.noOfPeriod = "1";						//共幾期
+		mainOrder.accId ="1";							//帳號
+		mainOrder.mainId = "1";							//時時彩
+		mainOrder.localId = "2";						//重慶時時彩
+		mainOrder.midId = "8";							//五星
+		mainOrder.minAuthId = "160";					//五星直選
+		mainOrder.actionTime = ""+new Date().getTime();	//下注時間
+		mainOrder.amount = "10000";						//下注總額(追號單)
+		mainOrder.moneyUnit = "2";					//金錢單位
+		mainOrder.orderType ="0";						//是否 中獎不追等等
+		mainOrder.handiCap ="1";						//盤口
+		mainOrder.bonusSetRatio ="1950";				//獎金組		
+		mainOrder.betRatio = "0.00002";					//投注比例
+		mainOrder.isDt = "1";						//是否單挑
+		mainOrder.midOrders = new Array();
+		
+		var midOrder = new Object();
+		midOrder.periodNum ="20180625083";						//期號
+		midOrder.amount = "10000";						//下注總額(母單)
+		midOrder.maxBonus = "10000";						//母單最多可贏多少
+		midOrder.fanDen = "0";						//這期對獎完畢時反點的金額
+		midOrder.noOfBet = "2";							//整個母單的注數
+		midOrder.noOfBetTimes = "2500";				//倍數
+		midOrder.betOrders = new Array();
+		
+		var betOrder = new Object();
+		betOrder.betData="1|2|3|4|5";							//下注內容
+		betOrder.playedId = "70";						//子單id
+		betOrder.amount = "5000";						//子單金額
+		betOrder.noOfBet = "1";							//子單注數
+		betOrder.bonus = "10000";						//子單中獎時給多少錢		//正常487500000  //單挑10000
+		betOrder.baseline = "100000.00";				//賠率
+		midOrder.betOrders.push(betOrder);
+		
+		betOrder = new Object();
+		betOrder.betData="2|2|3|4|5";							//下注內容
+		betOrder.playedId = "70";						//子單id
+		betOrder.amount = "5000";						//子單金額
+		betOrder.noOfBet = "1";							//子單注數
+		betOrder.bonus = "10000";						//子單中獎時給多少錢
+		betOrder.baseline = "100000.00";				//賠率
+		midOrder.betOrders.push(betOrder);
+		mainOrder.midOrders.push(midOrder);
+		
+		allOrder.orders.push(mainOrder);				
+		sendBettingAjax(JSON.stringify(allOrder));
+	}
+	function cancleMainOrderAjax(){
+		var allOrder = new Object();
+		allOrder.orders = new Array();		
+		var mainOrder = new Object();
+		mainOrder.mainOrderId = "1";
+		mainOrder.localId = "2";						//重慶時時彩
+		mainOrder.periodNum ="20180625083";		//開始期號
+		mainOrder.accId ="1";					//帳號
+		allOrder.orders.push(mainOrder);
+		
+		sendCancleMainOrderAjax(JSON.stringify(allOrder));
+	}
+	
+	function cancleOrderAjax(){
+		var allOrder = new Object();
+		allOrder.orders = new Array();		
+		var mainOrder = new Object();
+		mainOrder.mainOrderId = "3";
+		mainOrder.localId = "2";						//重慶時時彩
+		mainOrder.periodNum ="20180625082";		//開始期號
+		mainOrder.accId ="1";					//帳號
+		allOrder.orders.push(mainOrder);		
+		sendCancleAjax(JSON.stringify(allOrder));
+	}
+	
+	var XHR = null;
+	var tokenId = "12345";
+	var accId = "1";
+	function sendBettingAjax(data) {
+		XHR = checkXHR(XHR);
+		if (typeof XHR != "undefined" && XHR != null) {
+			var tmpStr = "data="+encodeURIComponent(data)+"&tokenId="+tokenId+ "&accId="+accId;
+			XHR.open("POST", "./QuickBet!bettingOrder.php?date=" + new Date().getTime(),
+							true);
+			XHR.setRequestHeader("Content-type",
+					"application/x-www-form-urlencoded");
+			XHR.timeout = 10000;
+			XHR.ontimeout = function() {
+				XHR.abort();
+			}
+			XHR.onerror = function() {
+				XHR.abort();
+			}
+			XHR.onreadystatechange = handleSendBettingAjax;
+			XHR.send(tmpStr);
+		}
+	}
+	
+	function handleSendBettingAjax() {
+		if (XHR.readyState == 4) {
+			if (XHR.status == 200) {
+				try {
+					var json = isJSON(XHR.responseText);
+					if (json) {
+						console_Log(json);
+					}
+				} catch (error) {
+					console_Log("handlesendBettingAjax error:"+error.message);
+				} finally {
+					XHR.abort();
+				}
+			}
+		}
+	}
+	
+	function sendCanclePeriodAjax() {
+		XHR = checkXHR(XHR);
+		if (typeof XHR != "undefined" && XHR != null) {
+			var tmpStr = "tokenId="+tokenId+ "&accId="+accId+"&localId=2&periodNum=20180622084";
+			XHR.open("POST", "./MemberBet!cancleOrderByPeriod.php?date=" + new Date().getTime(),
+							true);
+			XHR.setRequestHeader("Content-type",
+					"application/x-www-form-urlencoded");
+			XHR.timeout = 10000;
+			XHR.ontimeout = function() {
+				XHR.abort();
+			}
+			XHR.onerror = function() {
+				XHR.abort();
+			}
+			XHR.onreadystatechange = handlesendCanclePeriodAjax;
+			XHR.send(tmpStr);
+		}
+	}
+	
+	function handlesendCanclePeriodAjax() {
+		if (XHR.readyState == 4) {
+			if (XHR.status == 200) {
+				try {
+					var json = isJSON(XHR.responseText);
+					if (json) {
+						console_Log(json);
+					}
+				} catch (error) {
+					console_Log("handlesendCanclePeriodAjax error:"+error.message);
+				} finally {
+					XHR.abort();
+				}
+			}
+		}
+	}
+	
+	function sendCancleAjax(data) {
+		XHR = checkXHR(XHR);
+		if (typeof XHR != "undefined" && XHR != null) {
+			var tmpStr = "data="+encodeURIComponent(data)+"&tokenId="+tokenId+ "&accId="+accId;
+			XHR.open("POST", "./MemberBet!cancleOrder.php?date=" + new Date().getTime(),
+							true);
+			XHR.setRequestHeader("Content-type",
+					"application/x-www-form-urlencoded");
+			XHR.timeout = 10000;
+			XHR.ontimeout = function() {
+				XHR.abort();
+			}
+			XHR.onerror = function() {
+				XHR.abort();
+			}
+			XHR.onreadystatechange = handlesendCancleAjax;
+			XHR.send(tmpStr);
+		}
+	}
+	
+	function handlesendCancleAjax() {
+		if (XHR.readyState == 4) {
+			if (XHR.status == 200) {
+				try {
+					var json = isJSON(XHR.responseText);
+					if (json) {
+						console_Log(json);
+					}
+				} catch (error) {
+					console_Log("handlesendCancleAjax error:"+error.message);
+				} finally {
+					XHR.abort();
+				}
+			}
+		}
+	}
+	
+	function sendCancleMainOrderAjax(data) {
+		XHR = checkXHR(XHR);
+		if (typeof XHR != "undefined" && XHR != null) {
+			var tmpStr = "data="+encodeURIComponent(data)+"&tokenId="+tokenId+ "&accId="+accId;
+			XHR.open("POST", "./MemberBet!cancleMainOrder.php?date=" + new Date().getTime(),
+							true);
+			XHR.setRequestHeader("Content-type",
+					"application/x-www-form-urlencoded");
+			XHR.timeout = 10000;
+			XHR.ontimeout = function() {
+				XHR.abort();
+			}
+			XHR.onerror = function() {
+				XHR.abort();
+			}
+			XHR.onreadystatechange = handlesendCancleMainOrderAjax;
+			XHR.send(tmpStr);
+		}
+	}
+	
+	function handlesendCancleMainOrderAjax() {
+		if (XHR.readyState == 4) {
+			if (XHR.status == 200) {
+				try {
+					var json = isJSON(XHR.responseText);
+					if (json) {
+						console_Log(json);
+					}
+				} catch (error) {
+					console_Log("handlesendCancleMainOrderAjax error:"+error.message);
+				} finally {
+					XHR.abort();
+				}
+			}
+		}
+	}
+	
+</script>
+</head>
+<body onload="initOnLoad();">
+	<form action="http://127.0.0.1:8080/CTT03BetOrder/UpdateInfo!updateKjTimeInfo.php?date=1234" method="POST" enctype="application/x-www-form-urlencoded">
+		<input type="hidden" name="accId" value="123">
+			<input type="hidden" name="tokenId" value="456">
+				<input type="hidden" name="data" value="678">
+					<input type="submit" value="11232132123">
+	</form>
+</body>
+</html>

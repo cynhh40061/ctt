@@ -1,0 +1,1024 @@
+/* 2018/05/3 Ason */
+/* 通用設定 */
+* {
+	font-family: 微軟正黑體;
+	font-weight: 400;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+img {
+	border: none;
+}
+ul {
+	list-style: none;
+	padding-left: 0;
+}
+button {
+	cursor: pointer;
+}
+.hidden {
+	display: none !important;
+}
+.visible {
+	display: block !important;
+}
+.text-left {
+	text-align: left;
+}
+.text-center {
+	text-align: center;
+}
+.full-screen {
+	width: 100vw;
+    height: 100vh;
+    background-color: black;
+}
+.container-fluid {
+	width: 1024px;
+	height: 576px;
+	position: absolute;
+    top: 50%;
+    left: 50%;
+	transform: translate(-50%, -50%);
+}
+section {
+	width: 1024px;
+	height: 576px;
+	border: 1px solid black;
+	background-repeat: no-repeat;
+	background-size: 100%;
+	position: relative;
+	cursor: pointer;
+}
+
+/* 載入頁 */
+.loading {
+	width: 100%;
+	height: 576px;
+	background-color: black;
+	position: absolute;
+	z-index: 10;
+}
+.loading p {
+	width: 100%;
+	font-size: 24px;
+	color: white;
+	text-align: center;
+	position: absolute;
+	top: calc(50% - 17px);
+}
+
+/* 全螢幕遮罩 */
+.mask {
+	display: block;
+	width: 1024px;
+	height: 576px;
+	background-color: rgba(0,0,0,0.3);
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 3;
+}
+
+/* 共用訊息視窗 */
+.modal-area {
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(0,0,0,0.5);
+	position: fixed;
+	z-index: 10;
+}
+.modal-area .modal-content {
+	display: block;
+	width: 360px;
+	height: 198px;
+	background-image: url(../img/bg_notice.png);
+	background-repeat: no-repeat;
+	text-align: center;
+	position: absolute;
+	top: calc(50% - 99px);
+	left: calc(50% - 180px);
+}
+.modal-area .modal-content p {
+	width: 80%;
+	font-size: 20px;
+	color: white;
+	line-height: 36px;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+	margin: 0;
+	position: absolute;
+    top: 50%;
+    left: 50%;
+}
+.modal-area .modal-content.btn button {
+	display: block;
+	width: 90px;
+	border-radius: 5px;
+	font-size: 14px;
+	cursor: pointer;
+	margin: 20px auto 0;
+	padding-top: 8px;
+	padding-bottom: 8px;
+}
+
+/* 功能選單 */
+.container-fluid nav {
+    display: inline-block;
+    position: absolute;
+    top: 13px;
+    right: 15px;
+    z-index: 10;
+}
+.container-fluid nav ul li {
+	display: inline-block;
+	position: relative;
+}
+.container-fluid nav ul > li > a {
+	display: inline-block;
+    width: 62px;
+    height: 60px;
+    border-radius: 50%;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    margin-left: -10px;
+    padding-top: 10px
+}
+.container-fluid nav ul > li > a:first-child {
+}
+.container-fluid nav ul li a.role {
+	background-image: url(../img/icon_role.png);
+}
+.container-fluid nav ul li a.setup {
+	background-image: url(../img/icon_gear.png);
+}
+.container-fluid nav ul li a.back {
+	background-image: url(../img/icon_back.png);
+}
+.container-fluid nav div.submenu {
+	display: none;
+	width: 58px;
+	text-align: center;
+	position: absolute;
+	top: 62px;
+	left: -8px;
+	z-index: 2;
+}
+.container-fluid nav div.submenu a {
+	display: inline-block;
+	width: 58px;
+	height: 56px;
+	border-radius: 50%;
+	color: white;
+	text-align: center;
+	text-decoration: none;
+}
+.container-fluid nav div.submenu a:last-child {
+	margin-bottom: 0;
+}
+.container-fluid nav div.submenu a.music {
+	background-image: url(../img/icon_music.png);
+	margin-top: -3px;
+}
+.container-fluid nav div.submenu a.sound {
+	background-image: url(../img/icon_sound.png);
+	margin-top: -4px;
+}
+.container-fluid nav div.submenu a.help {
+	background-image: url(../img/icon_help.png);
+	margin-top: -6px;
+}
+
+/* 帳戶資訊 */
+.container-fluid .info {
+	width: 295px;
+	height: 93px;
+	background-image: url(../img/bg_info_user.png);
+	position: absolute;
+	bottom: 1px;
+	z-index: 2;
+}
+.container-fluid .info .computer {
+    display: inline-block;
+    height: 25px;
+    border-radius: 5px;
+    font-size: 14px;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 1px 1px 2px black;
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-top: 2px;
+    position: absolute;
+    top: -35px;
+}
+.container-fluid .info .cash i {
+	opacity: 0;
+	display: inline-block;
+	width: auto;
+	height: 17px;
+	background-color: orange;
+	font-size: 12px;
+	font-style: normal;
+	color: white;
+	padding: 0 3px;
+	position: absolute;
+	top: 0;
+	animation-name: cash-popup;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+}
+@keyframes cash-popup {
+    0%   {opacity: 0;top: 0;}
+    25%  {opacity: 1;top: -15px;}
+    75%  {opacity: 1;top: -15px;}
+    100% {opacity: 0;top: -15px;}
+}
+
+/* 帳戶資訊_玩家 */
+.container-fluid .info.user {
+	left: 1px;
+}
+.container-fluid .info.user .role-sm {
+	width: 295px;
+	height: 86px;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	z-index: 2;
+}
+.container-fluid .info .nickname {
+    height: 25px;
+    background-color: rgba(0,0,0,0.3);
+    font-family: Arial;
+    font-size: 18px;
+    color: white;
+    text-shadow: 2px 2px 2px black;
+    line-height: 27px;
+    padding: 0 5px;
+    position: absolute;
+    top: 20px;
+    z-index: 3;
+}
+.container-fluid .info.user .nickname {
+    right: 22px;
+}
+.container-fluid .info .cash {
+	min-width: 100px;
+	height: 26px;
+	border-radius: 50px;
+	border-right: 5px solid white;
+	background-image: url(../img/icon_cash.png);
+	background-repeat: no-repeat;
+	background-color: white;
+	position: absolute;
+	bottom: 15px;
+	z-index: 3;
+}
+.container-fluid .info.user .cash {
+	background-position: center right;
+	right: 24px;
+}
+.container-fluid .info .cash span {
+	font-family: Arial;
+	font-size: 14px;
+    color: black;
+    line-height: 27px;
+}
+.container-fluid .info.user .cash span {
+	margin-right: 26px;
+    margin-left: 9px;
+}
+.container-fluid .info.user .cash i {
+	right: 0;
+}
+.container-fluid .info.user .computer {
+    background-color: #f3ba57;
+    right: 22px;
+    border: 1px solid #797171;
+}
+.container-fluid .info.user .computer:hover {
+	background-color: #ffc765;
+}
+
+/* 帳戶資訊_對手 */
+.container-fluid .info.guest {
+	background-image: url(../img/bg_info_guest.png);
+	right: 1px;
+}
+.container-fluid .info.guest .role-sm {
+	width: 295px;
+	height: 86px;
+	transform: scaleX(-1);
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	z-index: 2;
+}
+.container-fluid .info.guest .nickname {
+    left: 22px;
+}
+.container-fluid .info.guest .cash {
+	border-left: 5px solid white;
+	background-position: center left;
+	left: 24px;
+}
+.container-fluid .info.guest .cash span {
+    margin-left: 26px;
+}
+.container-fluid .info.guest .computer {
+	border: none;
+	left: 22px;
+}
+
+/* 首頁 */
+section.index {
+	display: block;
+	background-image: url(../img/bg_index.jpg);
+}
+
+/* 提示：首次進入遊戲 */
+.bg-notice {
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0,0,0,0.5);
+	position: relative;
+	z-index: 10;
+}
+.notice {
+	display: block;
+	width: 360px;
+	height: 198px;
+	background-image: url(../img/bg_notice.png);
+	background-repeat: no-repeat;
+	text-align: center;
+	position: absolute;
+	top: calc(50% - 99px);
+	left: calc(50% - 180px);
+}
+.notice p {
+	font-size: 20px;
+	color: #ffc765;
+	padding-top: 60px;
+}
+.notice button {
+	width: 90px;
+	border-radius: 5px;
+	font-size: 14px;
+	cursor: pointer;
+	margin: 40px 10px 0;
+	padding-top: 8px;
+	padding-bottom: 8px;
+}
+
+/* 主標 */
+.index h1 {
+	width: 100%;
+	color: white;
+	text-align: center;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+/* 對戰組合 */
+.index .bg-notice {
+	display: block;
+}
+.index .hall {
+	width: 100%;
+	height: 327px;
+	text-align: center;
+	position: absolute;
+	top: 151px;
+}
+.index .hall a {
+	display: inline-block;
+	width: 167px;
+	height: 327px;
+	background-repeat: no-repeat;
+	color: white;
+	text-decoration: none;
+	margin-right: 26px;
+	padding-top: 10px;
+}
+.index .hall .hall-1 {
+	background-image: url(../img/index_hall_3.png);
+}
+.index .hall .hall-2 {
+	background-image: url(../img/index_hall_1.png);
+}
+.index .hall .hall-3 {
+	background-image: url(../img/index_hall_2.png);
+}
+.index .hall a:last-child {
+	margin-right: 0;
+}
+
+
+/* 角色選取 */
+section.character {
+	display: none;
+	background-image: url(../img/bg_role.jpg);
+}
+
+.character .slide {
+	width: 500px;
+	height: 293px;
+	background-image: url(../img/bg_role_wei.png);
+	background-size: 100%;
+	position: absolute;
+	top: 129px;
+	left: calc(50% - 250px);
+}
+.character .slide .role-xl {
+	width: 334px;
+	height: 348px;
+	background-image: url(../img/bg_role_glow.png);
+	background-repeat: no-repeat;
+	background-position: center 120px;
+	position: absolute;
+	bottom: 36px;
+	left: -9px;
+}
+.character .slide .role-xl img {
+	width: 100%;
+}
+.character .slide .title {
+	width: 303px;
+    position: absolute;
+    top: 48px;
+    left: 207px;
+}
+.character .slide .title h2 {
+    font-size: 48px;
+    font-weight: 400;
+    color: white;
+    text-shadow: 2px 2px 4px black;
+    text-align: center;
+}
+.character .slide .text {
+    width: 182px;
+    height: 70px;
+    border-radius: 10px;
+    background-color: white;
+    text-align: center;
+    position: absolute;
+    top: 130px;
+    left: 266px;
+}
+.character .slide .text p {
+    font-size: 18px;
+    color: #333;
+    text-align: center;
+    margin-top: 13px;
+}
+.character .slide .text p span {
+	display: block;
+}
+/*.character .slide .text p span:last-child {
+	padding-left: 28px;
+}*/
+.character .slide .arrow {
+	width: 140px;
+	height: 132px;
+	background-repeat: no-repeat;
+	position: absolute;
+	top: 80px;
+}
+.character .slide .arrow.left {
+	background-image: url(../img/role_arrow_left.png);
+	left: -126px;
+}
+.character .slide .arrow.right {
+	background-image: url(../img/role_arrow_right.png);
+	right: -126px;
+}
+.character .btn-confirm {
+	width: 171px;
+	height: 84px;
+	background-image: url(../img/btn_confirm.png);
+	font-size: 36px;
+	color: white;
+	text-shadow: 2px 2px 4px black;
+	text-align: center;
+	text-decoration: none;
+	line-height: 81px;
+	position: absolute;
+	right: 102px;
+	bottom: 29px;
+}
+.character .country {
+	width: 400px;
+	height: 88px;
+	text-align: center;
+	position: absolute;
+	left: calc(50% - 200px);
+	bottom: 32px;
+}
+.character .country a {
+	display: inline-block;
+	width: 106px;
+	height: 88px;
+	background-repeat: no-repeat;
+	font-family: 微軟正黑體;
+	font-size: 36px;
+	color: white;
+	text-shadow: 2px 2px 4px black;
+	text-decoration: none;
+	line-height: 92px;
+	margin-right: 5px;
+}
+.character .country a:first-child {
+	background-image: url(../img/btn_wei.png);
+}
+.character .country a:nth-child(2) {
+	background-image: url(../img/btn_su.png);
+}
+.character .country a:last-child {
+	background-image: url(../img/btn_wu.png);
+	margin-right: 0;
+}
+
+/* 對戰場景 */
+section.game {
+	display: none;
+	background-image: url(../img/bg_scence_1.jpg);
+}
+.game .bg-notice {
+	display: block;
+}
+.game .hall-name {
+	display: block;
+	width: inline-block;
+	font-size: 24px;
+	color: white;
+	text-shadow: 2px 2px 4px black;
+	position: absolute;
+	top: 15px;
+	left: 15px;
+	z-index: 2;
+}
+.game .hall-name p {
+	display: none;
+}
+.game .hall-name .active {
+	display: block;
+}
+
+/* 選取注額 */
+.game .bet-area {
+	width: 557px;
+	height: 332px;
+	background-image: url(../img/bg_betarea.png);
+	color: white;
+	position: absolute;
+	top: calc(50% - 166px);
+	left: calc(50% - 278.5px);
+}
+.game .bet-area h3 {
+	width: 100%;
+	font-size: 36px;
+	text-align: center;
+	text-shadow: 2px 2px 4px black;
+	position: absolute;
+	top: 43px;
+	
+}
+.game .bet-area div a {
+	width: 112px;
+	height: 160px;
+	background-image: url(../img/bg_bet.png);
+	background-repeat: no-repeat;
+	position: absolute;
+	bottom: 76px;
+}
+.game .bet-area div a.bet01 {
+	left: 70px;
+}
+.game .bet-area div a.bet02 {
+	left: calc(50% - 56px);
+}
+.game .bet-area div a.bet03 {
+	right: 70px;
+}
+.game .bet-area div a img {
+	position: absolute;
+}
+.game .bet-area div a.bet01 img {
+	width: 119px;
+	height: 95px;
+	top: 12px;
+	left: calc(50% - 59.5px);
+}
+.game .bet-area div a.bet02 img {
+	width: 133px;
+	height: 101px;
+	top: 13px;
+	left: calc(50% - 66.5px);
+}
+.game .bet-area div a.bet03 img {
+	width: 153px;
+	height: 120px;
+	top: -5px;
+	left: calc(50% - 76.5px);
+}
+.game .bet-area div a p {
+	width: 100%;
+	font-family: Arial;
+	font-size: 28px;
+	color: white;
+	text-shadow: 2px 2px 4px black;
+	text-align: center;
+	position: absolute;
+	bottom: 14px;
+	left: 0;
+}
+
+/* 角色 */
+.game .role.player, .game .role.guest {
+	display: block;
+	width: 262px;
+	height: 273px;
+	position: absolute;
+	bottom: 171px;
+	z-index: 2;
+}
+.game .role.player i, .game .role.guest i {
+	display: block;
+	width: 93px;
+	height: 13px;
+	background-image: url(../img/role_shadow.png);
+	position: absolute;
+	left: calc(50% - 46.5px);
+	bottom: 0;
+	z-index: 1;
+}
+.game .role.player {
+	left: 135px;
+}
+.game .role.guest {
+	right: 135px;
+}
+.game .role.player img, .game .role.guest img {
+	width: 100%;
+}
+.game .role.player img {
+	transform: scaleX(-1);
+}
+
+/* 配對中 */
+.game .match {
+	display: block;
+	width: 280px;
+	height: 83px;
+	position: absolute;
+	left: calc(50% - 140px);
+	top: calc(50% - 42px);
+}
+.game .match p {
+	font-size: 24px;
+	color: white;
+	text-align: center;
+	text-shadow: 2px 2px 4px black;
+	margin-top: 24px;
+}
+
+/* 等待對手 */
+.game .wait {
+	width: 280px;
+	height: 83px;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+}
+.game .wait p {
+	font-size: 24px;
+	color: white;
+	text-align: center;
+	margin-top: 24px;
+}
+
+/* 比賽/局數 */
+.game .start {
+	display: block;
+	width: 300px;
+	position: absolute;
+	top: 200px;
+	left: calc(50% - 150px);
+}
+.game .start p {
+	font-size: 48px;
+	color: white;
+	text-shadow: 2px 2px 4px black;
+	text-align: center;
+}
+
+/* 勝局/血量 */
+.game .round-area {
+	width: 292px;
+	height: 20px;
+	position: absolute;
+	top: 96px;
+}
+.game .round-area.player {
+	left: 114px;
+}
+.game .round-area.guest {
+	right: 114px;
+}
+.game .round-area.guest .win {
+	text-align: right;
+}
+.game .round-area i {
+	display: inline-block;
+	width: 25px;
+	height: 25px;
+	background-color: white;
+	border-radius: 50%;
+}
+.game .round-area i.active {
+	background-color: red;
+}
+.game .round-area .blood {
+	width: 100%;
+	height: 20px;
+	background-image: url(../img/bg_blood.png);
+	background-repeat: no-repeat;
+	background-position: top right;
+	position: absolute;
+	top: 0;
+	z-index: 2;
+}
+.game .round-area .blood.width-33 {
+	width: 33.3%;
+}
+.game .round-area .blood.width-50 {
+	width: 50%;
+}
+.game .round-area .blood.width-66 {
+	width: 66.6%;
+}
+.game .round-area .blood.width-100 {
+	width: 100%;
+}
+.game .round-area .blood.player {
+	right: 0;
+}
+.game .round-area .blood.guest {
+	transform: scaleX(-1);
+	left: 0;
+}
+.game .round-area .blood div {
+	display: inline-block;
+	height: 20px;
+}
+.game .round-area .blood-mask {
+	width: 351px;
+	height: 46px;
+	background-image: url(../img/blood_mask.png);
+	background-repeat: no-repeat;
+	position: absolute;
+	top: -16px;
+	z-index: 3;
+}
+.game .round-area.player .blood-mask {
+	right: -14px;
+}
+.game .round-area.guest .blood-mask {
+	transform: scaleX(-1);
+	right: -45px;
+}
+
+/* 比賽結果 */
+.game .relust {
+	display: block;
+	width: 100%;
+	height: 190px;
+	background-color: rgba(0,0,0,0.8);
+	text-align: center;
+	position: absolute;
+	top: calc(50% - 95px);
+	z-index: 4;
+}
+.game .relust p {
+	font-size: 48px;
+	color: white;
+	padding: 30px 0;
+}
+.game .relust p span {
+	letter-spacing: 20px;
+	margin: 0 20px 0 30px;
+}
+.game .relust button {
+	min-width: 100px;
+    border-radius: 5px;
+    font-size: 18px;
+    margin-right: 20px;
+    padding: 5px;
+}
+.game .relust button:last-child {
+	margin-right: 0;
+}
+
+/* 倒數計數 */
+.game .countdown {
+	width: 132px;
+	height: 118px;
+	background-image: url(../img/bg_coundown.png);
+	position: absolute;
+	top: 15px;
+	left: calc(50% - 66px);
+}
+.game .countdown p {
+	font-family: Arial;
+	font-size: 48px;
+	color: white;
+	text-shadow: 2px 2px 4px black;
+	text-align: center;
+	padding-top: 36px;
+}
+.game .countdown p:last-child {
+	font-size: 30px;
+}
+
+/* 選擇拳種 */
+.game .guess-area {
+	width: 445px;
+	height: 155px;
+	background-image: url(../img/bg_guess.png);
+	text-align: center;
+	position: absolute;
+	left: calc(50% - 222.5px);
+	bottom: 0;
+}
+.game .guess-area a {
+	display: inline-block;
+	width: 119px;
+	height: 119px;
+	margin-right: 7px;
+	position: relative;
+	top: 32px;
+	z-index: 2;
+}
+.game .guess-area a:last-child {
+	margin-right: 0;
+}
+.game .guess-area a i {
+	display: none;
+	width: 105px;
+	height: 105px;
+	background-image: url(../img/icon_guess_mask.png);
+	position: absolute;
+	top: 6px;
+	left: 6px;
+	z-index: 3;
+}
+.game .guess-area a i.active {
+	display: block;
+}
+
+/* 比拳 */
+.game .fight {
+	display: block;
+	width: 282px;
+	height: 120px;
+	position: absolute;
+	left: calc(50% - 141px);
+	bottom: 222px;
+}
+.game .fight i {
+	display: inline-block;
+	width: 110px;
+	height: 120px;
+	position: absolute;
+	top: 0;
+}
+.game .fight i.player {
+	left: 0;
+}
+.game .fight i.guest {
+	right: 0;
+}
+
+/* 電腦託管 */
+.game .computer-agency {
+	display: block;
+	width: 445px;
+	height: 155px;
+	background-image: url(../img/bg_computer_agency.png);
+	text-align: center;
+	position: absolute;
+	left: calc(50% - 222.5px);
+	bottom: 0;
+	z-index: 2;
+}
+.game .computer-agency p {
+	font-size: 28px;
+	color: #ffc765;
+    margin-top: 55px;
+    margin-bottom: 5px;
+}
+.game .computer-agency button {
+	width: 80px;
+	border-radius: 4px;
+	margin-top: 5px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+/* 動畫 */
+/* 用Canvas取代CSS動畫 */
+.game .animation {
+	display: block;
+	opacity: 1;
+	width: 550px;
+	height: 170px;
+	color: white;
+	position: absolute;
+	top: 162px;
+	z-index: 3;
+}
+.game .animation .ani-border {
+	width: 568px;
+	height: 212px;
+	background-image: url(../img/animation_border.png);
+	position: absolute;
+	top: -3px;
+	z-index: 4;
+}
+.game .animation.player .ani-border {
+	left: 0;
+}
+.game .animation.guest .ani-border {
+	transform: scaleX(-1);
+	left: -18px;
+}
+
+/* 動畫_玩家 */
+.game .animation.player {
+	left: 0;
+}
+
+/* 動畫_對手 */
+.game .animation.guest {
+	right: 0;
+}
+.game .animation canvas {
+	width: 550px;
+	height: 170px;
+}
+
+/* IE8/9/10/11 CSS hack */
+@media screen\0 {
+	.character .slide .title h2,
+	.character .country a,
+	.character .slide .text p,
+	.game .bet-area h3,
+	.game .start p,
+	.container-fluid .info .nickname,
+	.game .match p,
+	.game .relust p,
+	.game .relust button,
+	.game .countdown p {
+		font-weight: bold;
+	}
+}
+
+/* Edge 12+(ALL) CSS hack */
+@supports (-ms-ime-align:auto) {
+	.character .slide .title h2,
+	.character .country a,
+	.character .slide .text p,
+	.game .bet-area h3,
+	.game .start p,
+	.container-fluid .info .nickname,
+	.game .match p,
+	.game .relust p,
+	.game .relust button
+	,.game .countdown p {
+		font-weight: bold;
+	}
+}
+
+/* 角色命名
+roleTitle["11"] = "曹操";
+roleTitle["12"] = "典韋";
+roleTitle["13"] = "夏侯惇";
+roleTitle["14"] = "張遼";
+roleTitle["15"] = "司馬懿";
+roleTitle["21"] = "劉備";
+roleTitle["22"] = "張飛";
+roleTitle["23"] = "關羽";
+roleTitle["24"] = "諸葛亮";
+roleTitle["25"] = "趙雲";
+roleTitle["31"] = "孫權";
+roleTitle["32"] = "周瑜";
+roleTitle["33"] = "甘寧";
+roleTitle["34"] = "小喬";
+roleTitle["35"] = "太史慈";
+*/

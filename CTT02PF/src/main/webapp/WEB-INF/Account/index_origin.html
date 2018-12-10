@@ -1,0 +1,4665 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>後台管理系統</title>
+<script src="js/manage.js"></script>
+<!-- <link rel="stylesheet" href="css/animate.css"> -->
+<link rel="stylesheet" href="css/manage.css">
+</head>
+<body onload="initOnLoad();">
+
+	<!-- 載入中動畫 開始 -->
+	<div class="bg-loading">
+		<div class="loading"></div>
+	</div>
+	<!-- 載入中動畫 結束 -->
+
+	<!-- 登入頁 開始 -->
+	<div class="bgcolor-page-login">
+		<div class="bg-page-login">
+			<div class="page-login-wrapper">
+				<div class="page-login-area">
+					<div class="page-login-logo"><img src="img/logo_login.png" id="pageLoginLogo"></div>
+					<div class="page-login-title"></div>
+					<input type="text" placeholder="帳號" class="account-login">
+					<input type="password" placeholder="密碼" class="password-login">
+					<div class="remember-id"><input type="checkbox">記住帳號</div>
+					<!-- <button onclick="javascript:onClickOpenModal('StatusList');">登入</button> -->
+					<button onclick="javascript:onClickOpenModal('loginError');">登入錯誤測試</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 登入頁 結束 -->
+
+	<!-- 公司商標 開始 -->
+	<div class="icon-logo">
+		<img src="img/icon_logo_v2.png" class="animated animation-duration-10s infinite flipInY">
+	</div>
+	<!-- 公司商標 結束 -->
+
+	<!-- 上側區 開始 -->
+	<section class="top-area">
+
+		<!-- 主選單 開始 -->
+		<nav>
+			<ul>
+				<li class="manager-account"><a href="javascript:void(0)"><span></span>帳號管理</a></li>
+				<li class="manager-admin"><a href="javascript:void(0)" class="active"><span></span>後台管理</a></li>
+				<li class="manager-operation"><a href="javascript:void(0)"><span></span>營運管理</a></li>
+				<li class="manager-user"><a href="javascript:void(0)"><span></span>用戶管理</a></li>
+				<li class="game-report"><a href="javascript:void(0)"><span></span>遊戲報表</a></li>
+				<li class="game-log"><a href="javascript:void(0)"><span></span>遊戲日誌</a></li>
+			</ul>
+		</nav>
+		<!-- 主選單 結束 -->
+
+		<!-- 麵包屑 開始 -->
+		<ul class="breadcrumb">
+			<li><a href="#">帳號管理</a></li>
+			<li>帳號管理</li>
+		</ul>
+		<!-- 麵包屑 結束 -->
+
+		<!-- 會員專區 開始 -->
+		<div class="account-area">
+			<span class="user"><i></i>公司：cttdennis</span>
+			<a href="javascript:void(0)" class="password-change"><i></i>更改密碼</a>
+			<a href="javascript:void(0)" class="logout"><i></i>登出</a>
+		</div>
+		<!-- 會員專區 結束 -->
+
+		<!-- 搜尋區塊 開始 -->
+		<div class="search-area">
+			<ul>
+				<li>
+					<span>公司管理</span>
+					<input type="text" class="margin-fix-1">
+					<button>查詢</button>
+					<select>
+						<option>啟用</option>
+					</select>
+				</li>
+
+				<!-- 快速跳頁 開始 -->
+				<li class="media-control">
+					<a href="#" class="backward"></a>
+					<a href="#" class="backward-fast"></a>
+					<span>總頁數：<input type="text" value="1">1/頁</span>
+					<a href="#" class="forward"></a>
+					<a href="#" class="forward-fast"></a>
+				</li>
+				<!-- 快速跳頁 結束 -->
+
+				<li><button>新增</button><button>紀錄</button></li>
+			</ul>
+		</div>
+		<!-- 搜尋區塊 結束 -->
+
+	</section>
+	<!-- 上側區 結束 -->
+
+	<!-- 左側區 開始 -->
+	<section class="left-side">
+
+		<!-- 裝飾_直線 開始 -->
+		<div class="hline"></div>
+		<!-- 裝飾_直線 結束 -->
+
+		<nav>
+			<!-- 帳號管理 開始-->
+			<ul>
+				<li><a href="javascript:loadPageByDiv('contentDiv1-1')" class="text-left">公司<span>9</span></a></li>
+				<li><a href="javascript:loadPageByDiv('contentDiv1-2')" class="text-left">總監<span>15</span></a></li>
+				<li><a href="javascript:loadPageByDiv('contentDiv1-3')" class="text-left">大股東<span>12</span></a></li>
+				<li><a href="javascript:loadPageByDiv('contentDiv1-4')" class="text-left">股東<span>13</span></a></li>
+				<li><a href="javascript:loadPageByDiv('contentDiv1-5')" class="text-left">總代理<span>12</span></a></li>
+				<li><a href="javascript:loadPageByDiv('contentDiv1-6')" class="text-left">代理商<span>12</span></a></li>
+				<li><a href="javascript:loadPageByDiv('contentDiv1-7')" class="text-left">會員<span>31</span></a></li>
+				<li><a href="javascript:loadPageByDiv('contentDiv1-8')" class="text-left">子帳號<span>21</span></a></li>
+			</ul>
+			<p class="account-online">在線會員數：<span>1</span><br>在線經銷商：<span>10</span></p>
+			<!-- 帳號管理 結束-->
+
+			<!-- 後台管理 開始 -->
+			<!--<ul>
+				<li><a href="javascript:loadPageByDiv('contentDiv2-1')">後台帳號管理</a></li>
+				<li><a href="javascript:loadPageByDiv('contentDiv2-2')">角色列表</a></li>
+				<li><a href="javascript:loadPageByDiv('contentDiv2-3')">平台維護列表</a></li>
+				<li><a href="javascript:loadPageByDiv('contentDiv2-4')">遊戲開關列表</a></li>
+				<li><a href="javascript:loadPageByDiv('contentDiv2-5')">後台操作紀錄</a></li>
+			</ul> -->
+			<!-- 後台管理 結束 -->
+
+			<!-- 營運管理 開始-->
+			<!-- <ul>
+				<li><a href="javascript:loadPageByDiv('contentDiv3-1')">當前在線用戶</a></li>
+				<li><a href="javascript:loadPageByDiv('contentDiv3-2')">歷史在線用戶</a></li>
+				<li><a href="javascript:loadPageByDiv('contentDiv3-3')">平臺商管理</a></li>
+				<li><a href="javascript:loadPageByDiv('contentDiv3-4')">站點管理</a></li>
+			</ul> -->
+			<!-- 營運管理 結束-->
+
+			<!-- 用戶管理 開始 -->
+			<!-- <ul>
+				<li><a href="javascript:loadPageByDiv('contentDiv4-1')">用戶列表</a></li>
+				<li><a href="javascript:loadPageByDiv('contentDiv4-2')">玩家詳細資訊</a></li>
+				<li><a href="javascript:loadPageByDiv('contentDiv4-3')">玩家登入日誌</a></li>
+				<li><a href="javascript:loadPageByDiv('contentDiv4-4')">轉帳訂單列表</a></li>
+			</ul> -->
+			<!-- 用戶管理 結束 -->
+
+			<!-- 遊戲報表 開始-->
+			<!-- <ul>
+				<li><a href="javascript:loadPageByDiv('contentDiv5-1')">用戶流水查詢</a></li>
+				<li><a href="javascript:loadPageByDiv('contentDiv5-2')">即時額度統計</a></li>
+				<li><a href="javascript:loadPageByDiv('contentDiv5-3')">週統計報表</a></li>
+				<li><a href="javascript:loadPageByDiv('contentDiv5-4')">月統計報表</a></li>
+			</ul> -->
+			<!-- 遊戲報表 結束-->
+
+			<!-- 遊戲日誌 開始-->
+			<!-- <ul>
+				<li><a href="javascript:loadPageByDiv('contentDiv6-1')">梭哈牛牛</a></li>
+			</ul> -->
+			<!-- 遊戲日誌 結束-->
+
+		</nav>
+	</section>
+	<!-- 左側區 結束 -->
+
+	<!-- 主內容 開始 -->
+	<section class="container">
+
+		<!-- 主內容共用框架 開始 -->
+		<div id="mainContain">主內容</div>
+		<!-- 主內容共用框架 結束 -->
+
+	</section>
+	<!-- 主內容 結束 -->
+
+	<!-- 內頁 開始 -->
+	<section class="contentDiv">
+
+		<!-- 公司創建 開始 -->
+		<div id="contentDiv1-1">
+
+			<!-- 公司管理 開始 -->
+			<section>
+				<ul>
+					<li>
+						<span>公司管理</span>
+						<select>
+							<option>test01</option>
+							<option>test02</option>
+							<option>test03</option>
+							<option>test04</option>
+							<option>test05</option>
+							<option>test06</option>
+							<option>test07</option>
+							<option>test08</option>
+							<option>test09</option>
+							<option>test10</option>
+						</select>
+						<input type="text" class="margin-fix-1">
+						<button>查詢</button>
+						<select>
+							<option>啟用</option>
+						</select>
+					</li>
+
+					<!-- 快速跳頁 開始 -->
+					<li class="media-control">
+						<a href="#" class="backward"></a>
+						<a href="#" class="backward-fast"></a>
+						<span>總頁數：<input type="text" value="1">1/頁</span>
+						<a href="#" class="forward"></a>
+						<a href="#" class="forward-fast"></a>
+					</li>
+					<!-- 快速跳頁 結束 -->
+
+					<li><button onclick="javascript:onClickOpenModal('creatCompanyAdd');">新增</button><button onclick="javascript:onClickOpenModal('StatusList');">紀錄</button></li>
+				</ul>
+				<table class="create-company">
+					<tr>
+						<th>帳號<a href="javascript:void(0)" class="icon-arrow-down"></a></th>
+						<th>名稱</th>
+						<th>新增日期<a href="javascript:void(0)" class="icon-arrow-down"></a></th>
+						<th>帳號狀況</th>
+						<th>權限</th>
+						<th>IP</th>
+						<th>功能</th>
+					</tr>
+					<tr>
+						<td>boi1</td>
+						<td>boi1</td>
+						<td>2017-08-09 19:53:53</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td>財務主管</td>
+						<td>203.78.83.113</td>
+						<td>
+							<a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+							<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a>
+						</td>
+					</tr>
+					<tr>
+						<td>boi1</td>
+						<td>boi1</td>
+						<td>2017-08-09 19:53:53</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td>財務主管</td>
+						<td>203.78.83.113</td>
+						<td>
+							<a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+							<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a>
+						</td>
+					</tr>
+					<tr>
+						<td>boi1</td>
+						<td>boi1</td>
+						<td>2017-08-09 19:53:53</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td>財務主管</td>
+						<td>203.78.83.113</td>
+						<td>
+							<a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+							<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a>
+						</td>
+					</tr>
+					<tr>
+						<td>boi1</td>
+						<td>boi1</td>
+						<td>2017-08-09 19:53:53</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td>財務主管</td>
+						<td>203.78.83.113</td>
+						<td>
+							<a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+							<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a>
+						</td>
+					</tr>
+					<tr>
+						<td>boi1</td>
+						<td>boi1</td>
+						<td>2017-08-09 19:53:53</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td>財務主管</td>
+						<td>203.78.83.113</td>
+						<td>
+							<a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+							<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a>
+						</td>
+					</tr>
+					<tr>
+						<td>boi1</td>
+						<td>boi1</td>
+						<td>2017-08-09 19:53:53</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td>財務主管</td>
+						<td>203.78.83.113</td>
+						<td>
+							<a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+							<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a>
+						</td>
+					</tr>
+					<tr>
+						<td>boi1</td>
+						<td>boi1</td>
+						<td>2017-08-09 19:53:53</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td>財務主管</td>
+						<td>203.78.83.113</td>
+						<td>
+							<a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+							<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a>
+						</td>
+					</tr>
+					<tr>
+						<td>boi1</td>
+						<td>boi1</td>
+						<td>2017-08-09 19:53:53</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td>財務主管</td>
+						<td>203.78.83.113</td>
+						<td>
+							<a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+							<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a>
+						</td>
+					</tr>
+					<tr>
+						<td>boi1</td>
+						<td>boi1</td>
+						<td>2017-08-09 19:53:53</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td>財務主管</td>
+						<td>203.78.83.113</td>
+						<td>
+							<a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+							<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a>
+						</td>
+					</tr>
+				</table>
+			</section>
+			<!-- 公司管理 結束 -->
+
+		</div>
+		<!-- 公司創建 結束 -->
+
+		<!-- 總監創建 開始 -->
+		<div id="contentDiv1-2">
+			<!-- 總監管理 開始 -->
+			<section>
+				<ul>
+					<li>
+						<span>總監管理</span>
+						<select>
+							<option>test01</option>
+							<option>test02</option>
+							<option>test03</option>
+							<option>test04</option>
+							<option>test05</option>
+							<option>test06</option>
+							<option>test07</option>
+							<option>test08</option>
+							<option>test09</option>
+							<option>test10</option>
+						</select>
+						<input type="text" class="margin-fix-1">
+						<button>查詢</button>
+						<select>
+							<option>啟用</option>
+						</select>
+					</li>
+
+					<!-- 快速跳頁 開始 -->
+					<li class="media-control">
+						<a href="#" class="backward"></a>
+						<a href="#" class="backward-fast"></a>
+						<span>總頁數：<input type="text" value="1">1/頁</span>
+						<a href="#" class="forward"></a>
+						<a href="#" class="forward-fast"></a>
+					</li>
+					<!-- 快速跳頁 結束 -->
+
+					<li><button onclick="javascript:onClickOpenModal('directorManageAdd');">新增</button><button onclick="javascript:onClickOpenModal('StatusList');">紀錄</button>
+					</li>
+				</ul>
+				<table class="table-width-1">
+					<tr>
+						<th>在線</th>
+						<th>總監名稱</th>
+						<th>總監帳號<a href="javascript:void(0)" class="icon-arrow-down"></a></th>
+						<th>大股東</th>
+						<th>股東</th>
+						<th>總代</th>
+						<th>代理</th>
+						<th>會員</th>
+						<th>新增日期<a href="javascript:void(0)" class="icon-arrow-down"></a></th>
+						<th>帳號狀況</th>
+						<th>功能</th>
+						<th>IP</th>
+						<th>最後登入時間</th>
+						<th>成數</th>
+					</tr>
+					<tr>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+							<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+				</table>
+			</section>
+			<!-- 總監管理 結束 -->
+
+		</div>
+		<!-- 總監創建_修改 結束 -->
+
+		<!-- 大股東創建 -->
+		<div id="contentDiv1-3">
+
+			<!-- 大股東管理 開始-->
+			<section>
+				<ul>
+					<li>
+						<span>大股東管理</span>
+						<select>
+							<option>總監</option>
+						</select>
+						<select>
+							<option>test01</option>
+							<option>test02</option>
+							<option>test03</option>
+							<option>test04</option>
+							<option>test05</option>
+							<option>test06</option>
+							<option>test07</option>
+							<option>test08</option>
+							<option>test09</option>
+							<option>test10</option>
+						</select>
+						<input type="text" class="margin-fix-1">
+						<button>查詢</button>
+						<select>
+							<option>啟用</option>
+						</select>
+					</li>
+
+					<!-- 快速跳頁 開始 -->
+					<li class="media-control">
+						<a href="#" class="backward"></a>
+						<a href="#" class="backward-fast"></a>
+						<span>總頁數：<input type="text" value="1">1/頁</span>
+						<a href="#" class="forward"></a>
+						<a href="#" class="forward-fast"></a>
+					</li>
+					<!-- 快速跳頁 結束 -->
+
+					<li><button onclick="javascript:onClickOpenModal('bigHolderManageAdd');">新增</button><button onclick="javascript:onClickOpenModal('StatusList');">紀錄</button>
+					</li>
+				</ul>
+				<table class="table-width-1">
+					<tr>
+						<th>上線結構</th>
+						<th>在線</th>
+						<th>大股東名稱</th>
+						<th>大股東帳號<a href="javascript:void(0)" class="icon-arrow-down"></a></th>
+						<th>大股東</th>
+						<th>股東</th>
+						<th>總代</th>
+						<th>代理</th>
+						<th>會員</th>
+						<th>新增日期<a href="javascript:void(0)" class="icon-arrow-down"></a></th>
+						<th>帳號狀況</th>
+						<th>功能</th>
+						<th>IP</th>
+						<th>最後登入時間</th>
+						<th>成數</th>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" onclick="javascript:onClickOpenModal('upLine');" class="btn-link"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link" onclick="javascript:onClickOpenModal('upLine');"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link" onclick="javascript:onClickOpenModal('upLine');"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link" onclick="javascript:onClickOpenModal('upLine');"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link" onclick="javascript:onClickOpenModal('upLine');"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link" onclick="javascript:onClickOpenModal('upLine');"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link" onclick="javascript:onClickOpenModal('upLine');"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link" onclick="javascript:onClickOpenModal('upLine');"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link" onclick="javascript:onClickOpenModal('upLine');"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link" onclick="javascript:onClickOpenModal('upLine');"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link" onclick="javascript:onClickOpenModal('upLine');"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link" onclick="javascript:onClickOpenModal('upLine');"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link" onclick="javascript:onClickOpenModal('upLine');"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link" onclick="javascript:onClickOpenModal('upLine');"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+				</table>
+			</section>
+			<!-- 大股東管理 結束 -->
+
+		</div>
+
+		<!-- 股東創建 開始-->
+		<div id="contentDiv1-4">
+
+			<!-- 股東管理 開始-->
+			<section>
+				<ul>
+					<li>
+						<span>股東管理</span>
+						<select>
+							<option>大股東</option>
+						</select>
+						<select>
+							<option>test01</option>
+							<option>test02</option>
+							<option>test03</option>
+							<option>test04</option>
+							<option>test05</option>
+							<option>test06</option>
+							<option>test07</option>
+							<option>test08</option>
+							<option>test09</option>
+							<option>test10</option>
+						</select>
+						<input type="text" class="margin-fix-1">
+						<button>查詢</button>
+						<select>
+							<option>啟用</option>
+						</select>
+					</li>
+
+					<!-- 快速跳頁 開始 -->
+					<li class="media-control">
+						<a href="#" class="backward"></a>
+						<a href="#" class="backward-fast"></a>
+						<span>總頁數：<input type="text" value="1">1/頁</span>
+						<a href="#" class="forward"></a>
+						<a href="#" class="forward-fast"></a>
+					</li>
+					<!-- 快速跳頁 結束 -->
+
+					<li><button onclick="javascript:onClickOpenModal('holderManageAdd');">新增</button><button onclick="javascript:onClickOpenModal('StatusList');">紀錄</button>
+					</li>
+				</ul>
+				<table class="table-width-1">
+					<tr>
+						<th>上線結構</th>
+						<th>在線</th>
+						<th>股東名稱</th>
+						<th>股東帳號<a href="javascript:void(0)" class="icon-arrow-down"></a></th>
+						<th>總代</th>
+						<th>代理</th>
+						<th>會員</th>
+						<th>新增日期<a href="javascript:void(0)" class="icon-arrow-down"></a></th>
+						<th>帳號狀況</th>
+						<th>功能</th>
+						<th>IP</th>
+						<th>最後登入時間</th>
+						<th>成數</th>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" onclick="javascript:onClickOpenModal('upLine');" class="btn-link"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link" onclick="javascript:onClickOpenModal('upLine');"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link" onclick="javascript:onClickOpenModal('upLine');"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link" onclick="javascript:onClickOpenModal('upLine');"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link" onclick="javascript:onClickOpenModal('upLine');"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link" onclick="javascript:onClickOpenModal('upLine');"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link" onclick="javascript:onClickOpenModal('upLine');"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link" onclick="javascript:onClickOpenModal('upLine');"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link" onclick="javascript:onClickOpenModal('upLine');"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link" onclick="javascript:onClickOpenModal('upLine');"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link" onclick="javascript:onClickOpenModal('upLine');"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link" onclick="javascript:onClickOpenModal('upLine');"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link" onclick="javascript:onClickOpenModal('upLine');"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link" onclick="javascript:onClickOpenModal('upLine');"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+				</table>
+			</section>
+			<!-- 股東管理 結束-->
+
+		</div>
+		<!-- 股東創建 結束 -->
+
+		<!-- 總代理創建 開始 -->
+		<div id="contentDiv1-5">
+
+		<!-- 總代理管理 開始 -->
+		<section>
+				<ul>
+					<li>
+						<span>總代理管理</span>
+						<select>
+							<option>股東</option>
+						</select>
+						<select>
+							<option>test01</option>
+							<option>test02</option>
+							<option>test03</option>
+							<option>test04</option>
+							<option>test05</option>
+							<option>test06</option>
+							<option>test07</option>
+							<option>test08</option>
+							<option>test09</option>
+							<option>test10</option>
+						</select>
+						<input type="text" class="margin-fix-1">
+						<button>查詢</button>
+						<select>
+							<option>啟用</option>
+						</select>
+					</li>
+
+					<!-- 快速跳頁 開始 -->
+					<li class="media-control">
+						<a href="#" class="backward"></a>
+						<a href="#" class="backward-fast"></a>
+						<span>總頁數：<input type="text" value="1">1/頁</span>
+						<a href="#" class="forward"></a>
+						<a href="#" class="forward-fast"></a>
+					</li>
+					<!-- 快速跳頁 結束 -->
+
+					<li><button onclick="javascript:onClickOpenModal('generalAgentManageAdd');">新增</button><button onclick="javascript:onClickOpenModal('StatusList');">紀錄</button>
+					</li>
+				</ul>
+				<table class="table-width-1">
+					<tr>
+						<th>上線結構</th>
+						<th>在線</th>
+						<th>總代理名稱</th>
+						<th>總代理帳號<a href="javascript:void(0)" class="icon-arrow-down"></a></th>
+						<th>代理</th>
+						<th>會員</th>
+						<th>新增日期<a href="javascript:void(0)" class="icon-arrow-down"></a></th>
+						<th>帳號狀況</th>
+						<th>功能</th>
+						<th>IP</th>
+						<th>最後登入時間</th>
+						<th>成數</th>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" onclick="javascript:onClickOpenModal('upLine');" class="btn-link"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link" onclick="javascript:onClickOpenModal('upLine');"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link" onclick="javascript:onClickOpenModal('upLine');"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link" onclick="javascript:onClickOpenModal('upLine');"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link" onclick="javascript:onClickOpenModal('upLine');"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link" onclick="javascript:onClickOpenModal('upLine');"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link" onclick="javascript:onClickOpenModal('upLine');"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link" onclick="javascript:onClickOpenModal('upLine');"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link" onclick="javascript:onClickOpenModal('upLine');"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link" onclick="javascript:onClickOpenModal('upLine');"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link" onclick="javascript:onClickOpenModal('upLine');"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link" onclick="javascript:onClickOpenModal('upLine');"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link" onclick="javascript:onClickOpenModal('upLine');"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link" onclick="javascript:onClickOpenModal('upLine');"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+				</table>
+			</section>
+			<!-- 總代理管理 結束 -->
+
+		</div>
+		<!-- 總代理創建 結束 -->
+
+		<!-- 代理商創建 開始 -->
+		<div id="contentDiv1-6">
+
+			<!-- 代理商管理 開始 -->
+			<section>
+				<ul>
+					<li>
+						<span>代理商管理</span>
+						<select>
+							<option>總代理</option>
+						</select>
+						<select>
+							<option>test01</option>
+							<option>test02</option>
+							<option>test03</option>
+							<option>test04</option>
+							<option>test05</option>
+							<option>test06</option>
+							<option>test07</option>
+							<option>test08</option>
+							<option>test09</option>
+							<option>test10</option>
+						</select>
+						<input type="text" class="margin-fix-1">
+						<button>查詢</button>
+						<select>
+							<option>啟用</option>
+						</select>
+					</li>
+
+					<!-- 快速跳頁 開始 -->
+					<li class="media-control">
+						<a href="#" class="backward"></a>
+						<a href="#" class="backward-fast"></a>
+						<span>總頁數：<input type="text" value="1">1/頁</span>
+						<a href="#" class="forward"></a>
+						<a href="#" class="forward-fast"></a>
+					</li>
+					<!-- 快速跳頁 結束 -->
+
+					<li><button onclick="javascript:onClickOpenModal('agentManageAdd');">新增</button><button onclick="javascript:onClickOpenModal('StatusList');">紀錄</button>
+					</li>
+				</ul>
+				<table class="table-width-1">
+					<tr>
+						<th>上線結構</th>
+						<th>在線</th>
+						<th>代理商名稱</th>
+						<th>代理商帳號<a href="javascript:void(0)" class="icon-arrow-down"></a></th>
+						<th>代理</th>
+						<th>會員</th>
+						<th>新增日期<a href="javascript:void(0)" class="icon-arrow-down"></a></th>
+						<th>帳號狀況</th>
+						<th>功能</th>
+						<th>IP</th>
+						<th>最後登入時間</th>
+						<th>成數</th>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" onclick="javascript:onClickOpenModal('upLine');" class="btn-link"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link" onclick="javascript:onClickOpenModal('upLine');"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link" onclick="javascript:onClickOpenModal('upLine');"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link" onclick="javascript:onClickOpenModal('upLine');"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link" onclick="javascript:onClickOpenModal('upLine');"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link" onclick="javascript:onClickOpenModal('upLine');"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link" onclick="javascript:onClickOpenModal('upLine');"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link" onclick="javascript:onClickOpenModal('upLine');"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link" onclick="javascript:onClickOpenModal('upLine');"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link" onclick="javascript:onClickOpenModal('upLine');"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link" onclick="javascript:onClickOpenModal('upLine');"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link" onclick="javascript:onClickOpenModal('upLine');"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link" onclick="javascript:onClickOpenModal('upLine');"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" class="btn-link" onclick="javascript:onClickOpenModal('upLine');"></td>
+						<td></td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>1</td>
+						<td>3</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+				</table>
+			</section>
+			<!-- 代理商管理 結束 -->
+
+		</div>
+		<!-- 代理商創建 結束 -->
+
+		<!-- 會員創建 開始 -->
+		<div id="contentDiv1-7">
+
+			<!-- 會員管理 開始 -->
+			<section>
+				<ul>
+					<li>
+						<span>會員管理</span>
+						<select>
+							<option>代理商</option>
+						</select>
+						<select>
+							<option>test01</option>
+							<option>test02</option>
+							<option>test03</option>
+							<option>test04</option>
+							<option>test05</option>
+							<option>test06</option>
+							<option>test07</option>
+							<option>test08</option>
+							<option>test09</option>
+							<option>test10</option>
+						</select>
+						<input type="text" class="margin-fix-1">
+						<button>查詢</button>
+						<select>
+							<option>啟用</option>
+						</select>
+					</li>
+
+					<!-- 快速跳頁 開始 -->
+					<li class="media-control">
+						<a href="#" class="backward"></a>
+						<a href="#" class="backward-fast"></a>
+						<span>總頁數：<input type="text" value="1">1/頁</span>
+						<a href="#" class="forward"></a>
+						<a href="#" class="forward-fast"></a>
+					</li>
+					<!-- 快速跳頁 結束 -->
+
+					<li><button onclick="javascript:onClickOpenModal('memberMaganeAdd');">新增</button><button onclick="javascript:onClickOpenModal('StatusList');">紀錄</button>
+					</li>
+				</ul>
+				<table class="table-width-1">
+					<tr>
+						<th>上線結構</th>
+						<th>在線</th>
+						<th>會員狀態</th>
+						<th>會員名稱</th>
+						<th>會員帳號<a href="javascript:void(0)" class="icon-arrow-down"></a></th>
+						<th>新增日期<a href="javascript:void(0)" class="icon-arrow-down"></a></th>
+						<th>帳號狀況</th>
+						<th>功能</th>
+						<th>IP</th>
+						<th>最後登入時間</th>
+						<th>成數</th>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" onclick="javascript:onClickOpenModal('upLine');" class="btn-link"></td>
+						<td></td>
+						<td>會員</td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" onclick="javascript:onClickOpenModal('upLine');" class="btn-link"></td>
+						<td></td>
+						<td>會員</td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" onclick="javascript:onClickOpenModal('upLine');" class="btn-link"></td>
+						<td></td>
+						<td>會員</td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" onclick="javascript:onClickOpenModal('upLine');" class="btn-link"></td>
+						<td></td>
+						<td>會員</td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" onclick="javascript:onClickOpenModal('upLine');" class="btn-link"></td>
+						<td></td>
+						<td>會員</td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" onclick="javascript:onClickOpenModal('upLine');" class="btn-link"></td>
+						<td></td>
+						<td>會員</td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" onclick="javascript:onClickOpenModal('upLine');" class="btn-link"></td>
+						<td></td>
+						<td>會員</td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" onclick="javascript:onClickOpenModal('upLine');" class="btn-link"></td>
+						<td></td>
+						<td>會員</td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" onclick="javascript:onClickOpenModal('upLine');" class="btn-link"></td>
+						<td></td>
+						<td>會員</td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" onclick="javascript:onClickOpenModal('upLine');" class="btn-link"></td>
+						<td></td>
+						<td>會員</td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" onclick="javascript:onClickOpenModal('upLine');" class="btn-link"></td>
+						<td></td>
+						<td>會員</td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" onclick="javascript:onClickOpenModal('upLine');" class="btn-link"></td>
+						<td></td>
+						<td>會員</td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" onclick="javascript:onClickOpenModal('upLine');" class="btn-link"></td>
+						<td></td>
+						<td>會員</td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" onclick="javascript:onClickOpenModal('upLine');" class="btn-link"></td>
+						<td></td>
+						<td>會員</td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+					<tr>
+						<td><img src="img/icon_link.svg" onclick="javascript:onClickOpenModal('upLine');" class="btn-link"></td>
+						<td></td>
+						<td>會員</td>
+						<td>abby</td>
+						<td>xabby</td>
+						<td>2017-09-01 04:30:44</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td><a href="javascript:void(0)" class="icon-setting"><img src="img/icon_setting.svg">設定</a>
+<a href="javascript:void(0)" class="icon-delete"><img src="img/icon_delete.svg">刪除</a></td>
+						<td>203.73.83.113</td>
+						<td>0000-00-00 00:00:00</td>
+						<td><button onclick="javascript:onClickOpenModal('AccountList');">成數查詢</button></td>
+					</tr>
+				</table>
+			</section>
+			<!-- 會員管理 結束 -->
+
+		</div>
+		<!-- 會員創建 結束 -->
+
+		<!-- 子帳號 開始 -->
+		<div id="contentDiv1-8">
+			<section>缺文案</section>
+		</div>
+		<!-- 子帳號 結束 -->
+
+		<!--內容尚未確認 開始-->
+		<!-- 後台帳號管理 -->
+		<div id="contentDiv2-1">
+			<section class="account-manage">
+				<ul>
+					<li>帳號：<input type="text"></li>
+					<li>使用者名稱：<input type="text"></li>
+					<li>角色：
+						<select>
+							<option value="超級管理員">超級管理員</option>
+							<option value="一般管理員">一般管理員</option>
+							<option value="財務">財務</option>
+							<option value="平台商">平台商</option>
+							<option value="客服">客服</option>
+						</select>
+					</li>
+					<li>帳號狀況：
+						<select>
+							<option value="啟用">啟用</option>
+							<option value="停用">停用</option>
+						</select>
+					</li>
+					<li><button>搜索</button><button>重罝</button><button>創建</button></li>
+				</ul>
+				<table>
+					<tr>
+						<th>ID</th>
+						<th>帳號</th>
+						<th>使用者名稱</th>
+						<th>帳號類型</th>
+						<th>角色</th>
+						<th>帳號狀況</th>
+						<th>創建日期</th>
+						<th>功能</th>
+					</tr>
+					<tr>
+						<td>37486571</td>
+						<td>Dennis001</td>
+						<td>Dennis</td>
+						<td>大股東</td>
+						<td>超級管理員</td>
+						<td><a href="javascript:onClickOpenModal('StatusChange');">啟用</a></td>
+						<td>2017/8/31  4:19:22 PM</td>
+						<td>
+							<a href="javascript:onClickOpenModal('setUp');">設定</a>
+							<a href="javascript:onClickOpenModal('stopStart');">停用</a>
+							<a href="javascript:onClickOpenModal('resetPassword');">重置密碼</a>
+						</td>
+					</tr>
+				</table>
+				<div class="table-wrapper">
+					<table>
+						<tr>
+							<th colspan="2">帳號創建</th>
+						</tr>
+						<tr>
+							<td>帳號類型</td>
+							<td class="text-left">
+								<select>
+									<option>選擇所屬上級</option>
+									<option>公司</option>
+									<option>總監</option>
+									<option>大股東</option>
+									<option>股東</option>
+									<option>總代</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td>帳號</td>
+							<td><input type="text"></td>
+						</tr>
+						<tr>
+							<td>使用者名稱</td>
+							<td><input type="text"></td>
+						</tr>
+						<tr>
+							<td>角色</td>
+							<td><input type="text"></td>
+						</tr>
+				</table>
+				<button>確定</button>
+				<button>取消</button>
+			</div>
+			</section>
+		</div>
+
+		<!-- 角色列表 -->
+		<div id="contentDiv2-2">
+			<section>
+				<div class="role-create">
+					<button>角色創建</button>
+				</div>
+				<table class="role-list">
+					<tr>
+						<th>編號</th>
+						<th>角色</th>
+						<th>建立時間</th>
+						<th>修改時間</th>
+						<th>功能</th>
+					</tr>
+					<tr>
+						<td>1</td>
+						<td>後台管理員</td>
+						<td>2017/1/1 12:00:00 AM</td>
+						<td>2017/1/1 12:00:00 AM</td>
+						<td><button>編輯</button></td>
+					</tr>
+				</table>
+			</section>
+			<section>
+				<div class="role-name">
+					<p>角色名稱：後台管理員</p>
+					<span>
+						<button>保存</button>
+						<button>取消</button>
+					<span>
+				</div>
+				<table class="role-edit">
+					<tr>
+						<th>勾選</th>
+						<th>代號</th>
+						<th>功能名稱</th>
+						<th>功能備註</th>
+					</tr>
+					<tr class="bg-1">
+						<td><input type="checkbox">此類別全選</td>
+						<td colspan="3">遊戲報表相關權限</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox"></td>
+						<td>100893</td>
+						<td>AAAA</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox"></td>
+						<td>100893</td>
+						<td>AAAA</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox"></td>
+						<td>100893</td>
+						<td>AAAA</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox"></td>
+						<td>100893</td>
+						<td>AAAA</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox"></td>
+						<td>100893</td>
+						<td>AAAA</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox"></td>
+						<td>100893</td>
+						<td>AAAA</td>
+						<td></td>
+					</tr>
+					<tr class="bg-1">
+						<td><input type="checkbox">此類別全選</td>
+						<td colspan="3">後臺操作相關權限</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox"></td>
+						<td>100899</td>
+						<td>GGGG</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox"></td>
+						<td>100899</td>
+						<td>GGGG</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox"></td>
+						<td>100899</td>
+						<td>GGGG</td>
+						<td></td>
+					</tr>
+				</table>
+				<div class="role-name bottom">
+					<p class="pagination">
+							<a href="#">&laquo;</a>
+							<a href="#">1</a>
+							<a class="active" href="#">2</a>
+							<a href="#">3</a>
+							<a href="#">4</a>
+							<a href="#">5</a>
+							<a href="#">6</a>
+							<a href="#">&raquo;</a>
+					</p>
+					<span>
+						<button>保存</button>
+						<button>取消</button>
+					<span>
+				</div>
+			</section>
+			<section>
+				<div class="role-name">
+					<p>角色名稱：<input type="text" placeholder="請輸入角色名稱"></p>
+					<span>
+						<button>保存</button>
+						<button>取消</button>
+					<span>
+				</div>
+				<table class="role-edit">
+					<tr>
+						<th>勾選</th>
+						<th>代號</th>
+						<th>功能名稱</th>
+						<th>功能備註</th>
+					</tr>
+					<tr class="bg-1">
+						<td><input type="checkbox">此類別全選</td>
+						<td colspan="3">遊戲報表相關權限</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox"></td>
+						<td>100893</td>
+						<td>AAAA</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox"></td>
+						<td>100893</td>
+						<td>AAAA</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox"></td>
+						<td>100893</td>
+						<td>AAAA</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox"></td>
+						<td>100893</td>
+						<td>AAAA</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox"></td>
+						<td>100893</td>
+						<td>AAAA</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox"></td>
+						<td>100893</td>
+						<td>AAAA</td>
+						<td></td>
+					</tr>
+					<tr class="bg-1">
+						<td><input type="checkbox">此類別全選</td>
+						<td colspan="3">後臺操作相關權限</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox"></td>
+						<td>100899</td>
+						<td>GGGG</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox"></td>
+						<td>100899</td>
+						<td>GGGG</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><input type="checkbox"></td>
+						<td>100899</td>
+						<td>GGGG</td>
+						<td></td>
+					</tr>
+				</table>
+				<div class="role-name bottom">
+					<p class="pagination">
+							<a href="#">&laquo;</a>
+							<a href="#">1</a>
+							<a class="active" href="#">2</a>
+							<a href="#">3</a>
+							<a href="#">4</a>
+							<a href="#">5</a>
+							<a href="#">6</a>
+							<a href="#">&raquo;</a>
+					</p>
+					<span>
+						<button>保存</button>
+						<button>取消</button>
+					<span>
+				</div>
+			</section>
+		</div>
+
+		<!-- 平台維護列表 -->
+		<div id="contentDiv2-3">
+			<table class="maintain-list">
+				<tr>
+					<th>平台商</th>
+					<th>平台商ID</th>
+					<th>跨天維護(開始)</th>
+					<th>跨天維護(結束)</th>
+					<th>API維護(開始)</th>
+					<th>API維護(結束)</th>
+					<th>功能</th>
+				</tr>
+				<tr>
+					<td>AAA</td>
+					<td>12345678</td>
+					<td>2017/10/10  11:55:00 PM</td>
+					<td>2017/10/11  12:00:00 AM</td>
+					<td>2017/10/10  11:55:00 PM</td>
+					<td>2017/10/11  12:00:00 AM</td>
+					<td><a href="javascript:void(0)">設定</a></td>
+				</tr>
+				<tr>
+					<td>AAA</td>
+					<td>12345678</td>
+					<td>2017/10/10  11:55:00 PM</td>
+					<td>2017/10/11  12:00:00 AM</td>
+					<td>2017/10/10  11:55:00 PM</td>
+					<td>2017/10/11  12:00:00 AM</td>
+					<td><a href="javascript:void(0)">設定</a></td>
+				</tr>
+				<tr>
+					<td>AAA</td>
+					<td>12345678</td>
+					<td>2017/10/10  11:55:00 PM</td>
+					<td>2017/10/11  12:00:00 AM</td>
+					<td>2017/10/10  11:55:00 PM</td>
+					<td>2017/10/11  12:00:00 AM</td>
+					<td><a href="javascript:void(0)">設定</a></td>
+				</tr>
+			</table>
+			<div class="table-wrapper">
+				<table>
+					<tr>
+						<th colspan="5">平台商_AAA</th>
+					</tr>
+					<tr>
+						<td>項目</td>
+						<td>跨天維護(開始)</td>
+						<td>跨天維護(結束)</td>
+						<td>API維護(開始)</td>
+						<td>API維護(結束)</td>
+					</tr>
+					<tr>
+						<td>當前時間</td>
+						<td>2017/10/10  11:55:00 PM</td>
+						<td>2017/10/11  12:00:00 AM</td>
+						<td>2017/10/10  11:55:00 PM</td>
+						<td>2017/10/11  12:00:00 AM</td>
+					</tr>
+					<tr>
+						<td>修改時間</td>
+						<td><input type="text"></td>
+						<td><input type="text"></td>
+						<td><input type="text"></td>
+						<td><input type="text"></td>
+					</tr>
+				</table>
+				<button>確定</button>
+				<button>取消</button>	
+			</div>
+		</div>
+
+		<!-- 遊戲開關列表 -->
+		<div id="contentDiv2-4">
+				<ul>
+					<li>平台商：
+						<select>
+							<option>平台商AAA</option>
+							<option>平台商BBB</option>
+							<option>平台商BBB</option>
+						</select>
+					</li>
+					<li>站點：
+						<select>
+							<option>站點AAA</option>
+							<option>站點BBB</option>
+							<option>站點BBB</option>
+						</select>
+					</li>
+					<li>開放狀態：
+						<select>
+							<option>部分關閉</option>
+							<option>全部關閉</option>
+							<option>全部開放</option>
+						</select>
+					</li>
+					<li><button>搜尋</button><button>重罝</button></li>
+				</ul>
+				<table>
+					<tr>
+						<th>站點名稱</th>
+						<th>站點ID</th>
+						<th>所屬平台商</th>
+						<th>開放狀態</th>
+						<th>備註</th>
+						<th>功能</th>
+					</tr>
+					<tr>
+						<td colspan="3">平台商AAA</td>
+						<td>部分關閉</td>
+						<td></td>
+						<td><a href="javascript:void(0)">設定</a></td>
+					</tr>
+					<tr>
+						<td>站點AAA</td>
+						<td>10001001</td>
+						<td>AAA</td>
+						<td>全部開放</td>
+						<td></td>
+						<td><a href="javascript:void(0)">設定</a></td>
+					</tr>
+					<tr>
+						<td>站點BBB</td>
+						<td>10001002</td>
+						<td>AAA</td>
+						<td>全部關閉</td>
+						<td></td>
+						<td><a href="javascript:void(0)">設定</a></td>
+					</tr>
+					<tr>
+						<td>站點CCC</td>
+						<td>10001003</td>
+						<td>AAA</td>
+						<td>部分關閉</td>
+						<td>梭哈牛牛、德州撲克</td>
+						<td><a href="javascript:void(0)">設定</a></td>
+					</tr>
+					<tr>
+						<td colspan="3"></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
+		</div>
+
+		<!-- 後台操作紀錄 -->
+		<div id="contentDiv2-5">1-5</div>
+
+		<!-- 當前在線用戶 -->
+		<div id="contentDiv3-1">2-1</div>
+
+		<!-- 歷史在線用戶 -->
+		<div id="contentDiv3-2">2-2</div>
+
+		<!-- 平臺商管理 -->
+		<div id="contentDiv3-3">2-3</div>
+
+		<!-- 站點管理 -->
+		<div id="contentDiv3-4">2-4</div>
+
+		<!-- 用戶列表 -->
+		<div id="contentDiv4-1">3-1</div>
+
+		<!-- 玩家詳細資訊 -->
+		<div id="contentDiv4-2">3-2</div>
+
+		<!-- 玩家登入日誌 -->
+		<div id="contentDiv4-3">3-3</div>
+
+		<!-- 轉帳訂單列表 -->
+		<div id="contentDiv4-4">3-4</div>
+
+		<!-- 用戶流水查詢 開始 -->
+		<!--<div id="contentDiv5-1">
+			<section>
+				<ul>
+					<li>用戶名：<input type="text"></li>
+					<li>遊戲單號：<input type="text"></li>
+					<li>遊戲：
+						<select>
+							<option>梭哈牛牛</option>
+						</select>
+					</li>
+					<li>貨幣類型：
+						<select>
+							<option>CNY</option>
+						</select>
+					</li>
+					<li>時區：
+						<select>
+							<option>UTC -4(美东时间)</option>
+						</select>
+					</li>
+					<li>遊戲類型：
+					<select>
+							<option>正常游戏</option>
+						</select>
+					</li>
+				</ul>
+				<p>記錄時間：<input type="text" placeholder="輸入時間區間">
+					<span>
+						<a href="#">今天</a>
+						<a href="#">昨天</a>
+						<a href="#">前天</a>
+					</span>
+				</p>
+				<ul>
+					<li>總輸贏：123456</li>
+					<li>總押注：123456</li>
+					<li>總贏分：123456</li>
+					<li>轉入轉出淨值：123456</li>
+					<li>當前時區：UTC -4(美東時間)</li>
+					<li>
+						<button>導出</button><button>重置</button><button>搜索</button>
+					</li>
+				</ul>
+				<table>
+					<tr>
+						<th>代理商</th>
+						<th>遊戲單號</th>
+						<th>開始額度</th>
+						<th>結束額度</th>
+						<th>遊戲</th>
+						<th>遊戲類型</th>
+						<th>押注</th>
+						<th>贏分</th>
+						<th>輸贏結果</th>
+						<th>記錄日期</th>
+						<th>貨幣類型</th>
+					</tr>
+					<tr>
+						<td>K1Z61</td>
+						<td>550110009t8ar</td>
+						<td>507.9</td>
+						<td>507.8</td>
+						<td>梭哈牛牛</td>
+						<td>正常遊戲</td>
+						<td>0.1</td>
+						<td>0</td>
+						<td>-0.1</td>
+						<td>2017/10/2 1:40:17 PM</td>
+						<td>CNY</td>
+					</tr>
+				</table>
+			</section>
+		</div> -->
+		<!-- 用戶流水查詢 結束 -->
+
+		<!-- 即時額度統計 開始-->
+<!-- 		<div id="contentDiv5-2">
+			<section>
+				<ul>
+					<li>平台：
+						<select>
+							<option>平台商AAA</option>
+						</select>
+					</li>
+					<li>站點：
+						<select>
+							<option>站點AAA</option>
+						</select></li>
+					<li>用戶名：<input type="text"></li>
+					<li>遊戲類型：
+						<select>
+							<option>正常游戏</option>
+						</select></li>
+					<li>時區：
+						<select>
+							<option>UTC -4(美東時間)</option>
+						</select>
+					</li>
+				</ul>
+				<ul>
+					<li>日期：<input type="text" placeholder="輸入時間區間"></li>
+					<li>
+						<a href="#">今天</a>
+						<a href="#">昨天</a>
+						<a href="#">本週</a>
+						<a href="#">上周</a>
+						<a href="#">本月</a>
+					</li>
+					<li><button>重置</button><button>搜索</button></li>
+				</ul>
+				<table class="immediate">
+					<tr>
+						<th>平台</th>
+						<th>遊戲局數</th>
+						<th>壓注</th>
+						<th>贏分</th>
+						<th>機率</th>
+						<th>輸贏結果</th>
+					</tr>
+					<tr class="txt-blue-1">
+						<td>總和</td>
+						<td>7769129</td>
+						<td>11688125.9</td>
+						<td>11029838.1</td>
+						<td>94.37%</td>
+						<td>-658287.8</td>
+					</tr>
+					<tr>
+						<td>AAA</td>
+						<td>89038</td>
+						<td>74493.8</td>
+						<td>65165.9</td>
+						<td>87.48%</td>
+						<td>-9327.9</td>
+					</tr>
+					<tr>
+						<td>BBB</td>
+						<td>89038</td>
+						<td>74493.8</td>
+						<td>65165.9</td>
+						<td>87.48%</td>
+						<td>-9327.9</td>
+					</tr>
+					<tr>
+						<td>CCC</td>
+						<td>89038</td>
+						<td>74493.8</td>
+						<td>65165.9</td>
+						<td>87.48%</td>
+						<td>-9327.9</td>
+					</tr>
+					<tr>
+						<td>DDD</td>
+						<td>89038</td>
+						<td>74493.8</td>
+						<td>65165.9</td>
+						<td>87.48%</td>
+						<td>-9327.9</td>
+					</tr>
+					<tr>
+						<td>EEE</td>
+						<td>89038</td>
+						<td>74493.8</td>
+						<td>65165.9</td>
+						<td>87.48%</td>
+						<td>-9327.9</td>
+					</tr>
+				</table>
+				<table class="immediate">
+					<tr>
+						<th>平台</th>
+						<th>遊戲局數</th>
+						<th>壓注</th>
+						<th>贏分</th>
+						<th>機率</th>
+						<th>輸贏結果</th>
+					</tr>
+					<tr class="txt-blue-1">
+						<td>總和</td>
+						<td>7769129</td>
+						<td>11688125.9</td>
+						<td>11029838.1</td>
+						<td>94.37%</td>
+						<td>-658287.8</td>
+					</tr>
+					<tr>
+						<td>遊戲A</td>
+						<td>89038</td>
+						<td>74493.8</td>
+						<td>65165.9</td>
+						<td>87.48%</td>
+						<td>-9327.9</td>
+					</tr>
+					<tr>
+						<td>遊戲B</td>
+						<td>89038</td>
+						<td>74493.8</td>
+						<td>65165.9</td>
+						<td>87.48%</td>
+						<td>-9327.9</td>
+					</tr>
+					<tr>
+						<td>遊戲C</td>
+						<td>89038</td>
+						<td>74493.8</td>
+						<td>65165.9</td>
+						<td>87.48%</td>
+						<td>-9327.9</td>
+					</tr>
+					<tr>
+						<td>遊戲D</td>
+						<td>89038</td>
+						<td>74493.8</td>
+						<td>65165.9</td>
+						<td>87.48%</td>
+						<td>-9327.9</td>
+					</tr>
+					<tr>
+						<td>遊戲E</td>
+						<td>89038</td>
+						<td>74493.8</td>
+						<td>65165.9</td>
+						<td>87.48%</td>
+						<td>-9327.9</td>
+					</tr>
+				</table>
+			</section>
+		</div> -->
+		<!-- 即時額度統計 結束-->
+
+		<!-- 週統計報表 開始 -->
+<!-- 		<div id="contentDiv5-3">
+			<section>
+				<ul>
+					<li>平台：
+						<select>
+							<option>平台商AAA</option>
+						</select>
+					</li>
+					<li>站點：
+						<select>
+							<option>站點AAA</option>
+						</select></li>
+					<li>遊戲類型：
+						<select>
+							<option>正常遊戲</option>
+						</select></li>
+					<li>時區：
+						<select>
+							<option>UTC -4(美東時間)</option>
+						</select>
+					</li>
+				</ul>
+				<ul>
+					<li>日期：<input type="text" placeholder="輸入時間區間"></li>
+					<li>
+						<a href="#">今天</a>
+						<a href="#">昨天</a>
+						<a href="#">本週</a>
+						<a href="#">上周</a>
+						<a href="#">本月</a>
+					</li>
+					<li><button>重置</button><button>搜索</button></li>
+				</ul>
+				<table class="week">
+					<tr>
+						<th>時間</th>
+						<th>2017/10/2－2017/10/8</th>
+						<th>2017/9/25－2017/10/1</th>
+					</tr>
+					<tr>
+						<td>遊戲A玩分</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>遊戲A贏分</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>遊戲A機率</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>遊戲A淨分</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr class="bg-whtesmoke">
+						<td>遊戲B玩分</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr class="bg-whtesmoke">
+						<td>遊戲B贏分</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr class="bg-whtesmoke">
+						<td>遊戲B機率</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr class="bg-whtesmoke">
+						<td>遊戲B淨分</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>遊戲C玩分</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>遊戲C贏分</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>遊戲C機率</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>遊戲C淨分</td>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
+			</section>
+		</div> -->
+		<!-- 週統計報表 結束 -->
+
+		<!-- 月統計報表 開始-->
+<!-- 		<div id="contentDiv5-4">
+			<section>
+				<ul>
+					<li>平台：
+						<select>
+							<option>平台商AAA</option>
+						</select>
+					</li>
+					<li>站點：
+						<select>
+							<option>站點AAA</option>
+						</select></li>
+					<li>遊戲類型：
+						<select>
+							<option>正常遊戲</option>
+						</select></li>
+					<li>時區：
+						<select>
+							<option>UTC -4(美東時間)</option>
+						</select>
+					</li>
+				</ul>
+				<ul>
+					<li>日期：<input type="text" placeholder="輸入時間區間"></li>
+					<li>
+						<a href="#">今天</a>
+						<a href="#">昨天</a>
+						<a href="#">本週</a>
+						<a href="#">上周</a>
+						<a href="#">本月</a>
+					</li>
+					<li><button>重置</button><button>搜索</button></li>
+				</ul>
+				<table class="week">
+					<tr>
+						<th>時間</th>
+						<th>2017-7月</th>
+						<th>2017-8月</th>
+					</tr>
+					<tr>
+						<td>遊戲A玩分</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>遊戲A贏分</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>遊戲A機率</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>遊戲A淨分</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr class="bg-whtesmoke">
+						<td>遊戲B玩分</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr class="bg-whtesmoke">
+						<td>遊戲B贏分</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr class="bg-whtesmoke">
+						<td>遊戲B機率</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr class="bg-whtesmoke">
+						<td>遊戲B淨分</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>遊戲C玩分</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>遊戲C贏分</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>遊戲C機率</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>遊戲C淨分</td>
+						<td></td>
+						<td></td>
+					</tr>
+				</table>
+			</section>
+		</div> -->
+			<!-- 月統計報表 結束-->
+			<!--內容尚未確認 結束-->
+
+		<!-- 梭哈牛牛 開始-->
+		<div id="contentDiv6-1">5-1</div>
+		<!-- 梭哈牛牛 結束-->
+		<!-- 內頁 結束 -->
+
+
+		<!-- 彈跳視窗內容 開始 -->
+		<!--內容尚未確認 開始-->
+		<!-- 後台帳號管理_後台帳號設定 開始 -->
+		<!-- <div id="setUp">
+			<div class="modal-content width-fix-1">
+			    <div class="table-wrapper">
+					<table>
+						<tr>
+							<th colspan="2">帳號創建</th>
+						</tr>
+						<tr>
+							<td>帳號類型</td>
+							<td class="text-left">
+								<select>
+									<option>選擇所屬上級</option>
+									<option>公司</option>
+									<option>總監</option>
+									<option>大股東</option>
+									<option>股東</option>
+									<option>總代</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td>帳號</td>
+							<td><input type="text"></td>
+						</tr>
+						<tr>
+							<td>使用者名稱</td>
+							<td><input type="text"></td>
+						</tr>
+						<tr>
+							<td>角色</td>
+							<td><input type="text"></td>
+						</tr>
+					</table>
+					<button>確定</button>
+					<button onclick="onClickCloseModal();">取消</button>
+				</div>
+			</div>
+		</div> -->
+		<!-- 後台帳號管理_後台帳號設定 結束 -->
+
+		<!-- 後台帳號管理_(停用/啟用)該帳號 開始 -->
+		<!-- <div id="stopStart">
+			<div class="modal-content width-fix-1">
+			    <div class="table-wrapper table-wrapper-fluid">
+				    <p>確認是否(停用/啟用)該帳號？</p>
+				    <button>確定</button>
+					<button onclick="onClickCloseModal();">取消</button>
+				</div>
+			</div>
+		</div> -->
+		<!-- 後台帳號管理_(停用/啟用)該帳號 結束 -->
+
+		<!-- 重置密碼 開始 -->
+<!-- 		<div id="resetPassword">
+			<div class="modal-content width-fix-1">
+			    <div  class="table-wrapper table-wrapper-fluid">
+				    <p>確認是否重置該帳號的密碼？</p>
+				    <button>確定</button>
+					<button onclick="onClickCloseModal();">取消</button>
+				</div>
+				<div class="table-wrapper table-wrapper-fluid">
+				    <h2>密碼重置成功</h2>
+				    <p>帳號 DENNIS001 新密碼為:<br><span class="pw-txt">GKHGJG125H</span><br>請妥善保管</p>
+				    <button>複製</button>
+					<button>確認</button>
+				</div>
+			</div>
+		</div> -->
+		<!-- 重置密碼 結束 -->
+		<!--內容尚未確認 結束-->
+
+
+		<!-- 存入現金 開始 -->
+		<div id="SaveCash">
+			<div class="modal-content width-percent-20">
+			    <span class="close" onclick="onClickCloseModalV2();">&times;</span>
+			    <h3>存入現金</h3>
+			    <table>
+			    	<tr>
+			    		<th>總監</th>
+			    		<td>X</td>
+			    	</tr>
+			    	<tr>
+			    		<th>可用現金</th>
+			    		<td>0</td>
+			    	</tr>
+			    	<tr>
+			    		<th>存入現金</th>
+			    		<td><input type="text" placeholder="0"></td>
+			    	</tr>
+			    </table>
+			    <div class="btn-area">
+			    	<button class="btn-lg btn-orange" onclick="onClickCloseModalV2();">確定</button>
+			    	<button class="btn-lg btn-gray" onclick="onClickCloseModalV2();">取消</button>
+			    </div>
+			</div>
+		</div>
+		<!-- 存入現金 結束 -->
+
+		<!-- 更改帳號狀態 開始 -->
+		<div id="StatusChange">
+			<div class="modal-content width-percent-20">
+			    <span class="close" onclick="onClickCloseModal();">&times;</span>
+			    <h3 class="text-center">更改XXCTT帳號狀態</h3>
+			    <p class="text-center">帳號狀態
+			    	<select>
+			    		<option>啟用</option>
+			    		<option>停用</option>
+			    	</select>
+			    </p>
+			    <div class="btn-area">
+			    	<button class="btn-lg btn-orange">確定</button>
+			    	<button class="btn-lg btn-gray" onclick="onClickCloseModal();">取消</button>
+			    </div>
+			</div>
+		</div>
+		<!-- 更改帳號狀態 結束 -->
+
+		<!-- 佔成列表 開始 -->
+		<div id="AccountList">
+			<div class="modal-content">
+			    <span class="close" onclick="onClickCloseModal();">&times;</span>
+			    <h3 class="text-center">xctt佔成列表</h3>
+			    <table>
+			    	<tr>
+			    		<th>管理層</th>
+			    		<th>彩票</th>
+			    		<th>真人視訊</th>
+			    		<th>運動球類</th>
+			    		<th>電動</th>
+			    		<th>遊戲</th>
+			    	</tr>
+			    	<tr>
+				    	<td>總監</td>
+				    	<td>80</td>
+				    	<td>80</td>
+				    	<td>80</td>
+				    	<td>80</td>
+				    	<td>80</td>
+			    	</tr>
+			    </table>
+			</div>
+		</div>
+		<!-- 佔成列表 結束 -->
+
+		<!-- 帳號狀態記錄列表 開始 -->
+		<div id="StatusList">
+			<div class="modal-content margin-fix-4">
+			    <span class="close" onclick="onClickCloseModal();">&times;</span>
+				<h3>帳號狀態記錄列表</h3>
+
+				<!-- 快速跳頁 開始 -->
+			    <p class="media-control text-center">
+					<a href="#" class="backward"></a>
+					<a href="#" class="backward-fast"></a>
+					<span>總頁數：<input type="text" value="1">1/頁</span>
+					<a href="#" class="forward"></a>
+					<a href="#" class="forward-fast"></a>
+				</p>
+				<!-- 快速跳頁 結束 -->
+
+			    <table>
+			    	<tr>
+			    		<th>編號</th>
+			    		<th>帳號</th>
+			    		<th>日期</th>
+			    		<th>IP</th>
+			    		<th>內容</th>
+			    	</tr>
+			    	<tr>
+			    		<td>1</td>
+			    		<td>ctttest</td>
+			    		<td>20171026 10:34:50</td>
+			    		<td>211.21.65.18</td>
+			    		<td>新增總監帳號:xdennis</td>
+			    	</tr>
+			    	<tr>
+			    		<td>2</td>
+			    		<td>ctttest</td>
+			    		<td>20171026 10:34:50</td>
+			    		<td>211.21.65.18</td>
+			    		<td>新增總監帳號:xdennis</td>
+			    	</tr>
+			    	<tr>
+			    		<td>3</td>
+			    		<td>ctttest</td>
+			    		<td>20171026 10:34:50</td>
+			    		<td>211.21.65.18</td>
+			    		<td>新增總監帳號:xdennis</td>
+			    	</tr>
+			    	<tr>
+			    		<td>4</td>
+			    		<td>ctttest</td>
+			    		<td>20171026 10:34:50</td>
+			    		<td>211.21.65.18</td>
+			    		<td>新增總監帳號:xdennis</td>
+			    	</tr>
+			    	<tr>
+			    		<td>5</td>
+			    		<td>ctttest</td>
+			    		<td>20171026 10:34:50</td>
+			    		<td>211.21.65.18</td>
+			    		<td>新增總監帳號:xdennis</td>
+			    	</tr>
+			    	<tr>
+			    		<td>6</td>
+			    		<td>ctttest</td>
+			    		<td>20171026 10:34:50</td>
+			    		<td>211.21.65.18</td>
+			    		<td>新增總監帳號:xdennis</td>
+			    	</tr>
+			    	<tr>
+			    		<td>7</td>
+			    		<td>ctttest</td>
+			    		<td>20171026 10:34:50</td>
+			    		<td>211.21.65.18</td>
+			    		<td>新增總監帳號:xdennis</td>
+			    	</tr>
+			    	<tr>
+			    		<td>8</td>
+			    		<td>ctttest</td>
+			    		<td>20171026 10:34:50</td>
+			    		<td>211.21.65.18</td>
+			    		<td>新增總監帳號:xdennis</td>
+			    	</tr>
+			    </table>
+			</div>
+		</div>
+		<!-- 帳號狀態記錄列表 結束 -->
+
+		<!-- 成數修改記錄列表 開始 -->
+		<div id="RecordModify">
+			<div class="modal-content">
+			    <span class="close" onclick="onClickCloseModal();">&times;</span>
+			    <!-- <h3>紀錄</h3> -->
+				<h3>成數修改記錄列表<span style="float: right;"><button>占成修改記錄</button><button>占成方式選擇記錄</button><button>一般記錄</button><button>現金恢復記錄</button>
+				</span></h3>
+				
+			    <p class="media-control text-center">
+					<a href="#" class="backward"></a>
+					<a href="#" class="backward-fast"></a>
+					<span>總頁數：<input type="text" value="1">1/頁</span>
+					<a href="#" class="forward"></a>
+					<a href="#" class="forward-fast"></a>
+				</p>
+				<p class="record-none">目前無任何記錄</p>
+			    <table class="hidden">
+			    	<tr>
+			    		<th>編號</th>
+			    		<th>帳號</th>
+			    		<th>日期</th>
+			    		<th>IP</th>
+			    		<th>內容</th>
+			    	</tr>
+			    	<tr>
+			    		<td>1</td>
+			    		<td>ctttest</td>
+			    		<td>20171026 10:34:50</td>
+			    		<td>211.21.65.18</td>
+			    		<td>新增總監帳號:xdennis</td>
+			    	</tr>
+			    </table>
+			</div>
+		</div>
+		<!-- 成數修改記錄列表 開始 -->
+
+		<!-- 上線結構 開始 -->
+		<div id="upLine">
+			<div class="modal-content width-percent-20">
+			    <span class="close" onclick="onClickCloseModal();">&times;</span>
+			    <h3 class="text-center">上線結構</h3>
+			    <table>
+			    	<tr>
+			    		<th>總監</th>
+			    		<td>xctt</td>
+			    	</tr>
+			    	<tr>
+			    		<th>大股東</th>
+			    		<td>sctt</td>
+			    	</tr>
+			    	<tr>
+			    		<th>股東</th>
+			    		<td>actt</td>
+			    	</tr>
+			    	<tr>
+			    		<th>總代理</th>
+			    		<td>bctt</td>
+			    	</tr>
+			    	<tr>
+			    		<th>代理商</th>
+			    		<td>cctt</td>
+			    	</tr>
+			    </table>
+			</div>
+		</div>
+		<!-- 上線結構 結束 -->
+
+		<!-- 公司管理_新增 開始 -->
+		<div id="creatCompanyAdd">
+			<div class="modal-content width-percent-50">
+				<section class="create-company-add">
+					<table>
+				    	<tr>
+				    		<th colspan="2">基本資料設定</th>
+				    	</tr>
+				    	<tr>
+				    		<td class="text-right">帳號</td>
+				    		<td class="text-left"><input type="text" class="margin-fix-2"><button class="margin-fix-2">確認帳號</button><span>至少4個字元長，帳號請填寫<i class="note-1">[英文或數字(0~9,a~z,A~Z)]</i>的組合作為您的帳號</span></td>
+				    	</tr>
+				    	<tr>
+				    		<td class="text-right">密碼</td>
+				    		<td class="text-left"><input type="text" class="margin-fix-2"><span>密碼至少4~20個字元長，並只能<i class="note-1">[英文跟數字]</i>組合</span></td>
+				    	</tr>
+				    	<tr>
+				    		<td class="text-right">確認密碼</td>
+				    		<td class="text-left"><input type="text"></td>
+				    	</tr>
+				    	<tr>
+				    		<td class="text-right">名稱</td>
+				    		<td class="text-left"><input type="text"></td>
+				    	</tr>
+				    	<tr>
+				    		<td class="text-right">權限</td>
+				    		<td class="text-left">
+				    			<select>
+				    				<option></option>
+				    			</select>
+				    		</td>
+				    	</tr>
+				    </table>
+				    <div class="btn-area">
+				    	<button class="btn-lg btn-orange" onclick="onClickCloseModal();">確定</button>
+				    	<button class="btn-lg btn-gray" onclick="onClickCloseModal();">取消</button>
+				    </div>
+				</section>
+			</div>
+		</div>
+		<!-- 公司管理_新增 結束 -->
+
+		<!-- 總監管理_新增 開始-->
+		<div id="directorManageAdd">
+			<div class="modal-content width-percent-50 margin-fix-4">
+				<span class="close" onclick="onClickCloseModal();">&times;</span>
+				<section>
+					<table>
+						<tr>
+							<th colspan="4">基本資料設定</th>
+						</tr>
+						<tr>
+							<td class="text-right">帳號</td>
+							<td colspan="3" class="text-left"><select>
+				    				<option>x</option>
+				    			</select>
+				    			<input type="text" class="margin-fix-2">
+				    			<button class="margin-fix-2">確認帳號</button>
+				    			<span>至少4個字元長，帳號請填寫<i class="text-alert-1">[英文或數字(0~9,a~z,A~Z)]</i>的組合作為您的帳號</span></td>
+						</tr>
+						<tr>
+							<td class="text-right">密碼</td>
+							<td colspan="3" class="text-left"><input type="text" class="margin-fix-2"><span class="text-alert-1">密碼至少4~20個字元長，並只能英文跟數字組合</span></td>
+						</tr>
+						<tr>
+							<td class="text-right">確認密碼</td>
+							<td colspan="3" class="text-left"><input type="text"></td>
+						</tr>
+						<tr>
+							<td class="text-right">總監名稱</td>
+							<td colspan="3" class="text-left"><input type="text"></td>
+						</tr>
+						<tr>
+							<th colspan="4">下注資料設定</th>
+						</tr>
+						<tr>
+							<td>總點數</td>
+							<td colspan="3" class="text-left"><input type="text" class="margin-fix-3"><button onclick="javascript:onClickOpenModalV2('SaveCash')" class="margin-fix-1">存入</button>下線現金可用點數加總：0</td>
+						</tr>
+						<tr>
+							<td>占成方式選擇</td>
+							<td colspan="3" class="text-left">
+								<select>
+				    				<option>不佔滿</option>
+				    			</select>
+				    			占滿（下線未占滿成數，總監層占滿），不占（下線未占成數往上層給）</td>
+						</tr>
+						<tr class="bg-2">
+							<td></td>
+							<td></td>
+							<td>上限</td>
+							<td>總監可占成數</td>
+						</tr>
+				    	<tr>
+				    		<td>彩票</td>
+				    		<td><button>以我同步</button></td>
+				    		<td>80%</td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    	</tr>
+				    	<tr>
+				    		<td>真人視訊</td>
+				    		<td><button>以我同步</button></td>
+				    		<td>80%</td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    	</tr>
+				    	<tr>
+				    		<td>運動球類</td>
+				    		<td><button>以我同步</button></td>
+				    		<td>80%</td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    	</tr>
+				    	<tr>
+				    		<td>電動</td>
+				    		<td><button>以我同步</button></td>
+				    		<td>80%</td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    	</tr>
+				    	<tr>
+				    		<td>遊戲</td>
+				    		<td><button>以我同步</button></td>
+				    		<td>80%</td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    	</tr>
+					</table>
+				</section>
+			</div>
+		</div>
+		<!-- 總監管理_新增 結束-->
+
+
+		<!-- 總監管理_修改 開始 -->
+		<div id="directorManageEdit">
+			<div class="modal-content width-percent-50 margin-fix-4">
+				<span class="close" onclick="onClickCloseModal();">&times;</span>
+				<section>
+					<table>
+						<tr>
+							<th colspan="4">基本資料設定</th>
+						</tr>
+						<tr>
+							<td class="text-right">帳號</td>
+							<td colspan="3" class="text-left"><select>
+				    				<option>x</option>
+				    			</select>
+				    			<input type="text" class="margin-fix-2">
+				    			<button class="margin-fix-2">確認帳號</button>
+				    			<span>至少4個字元長，帳號請填寫<i class="text-alert-1">[英文或數字(0~9,a~z,A~Z)]</i>的組合作為您的帳號</span></td>
+						</tr>
+						<tr>
+							<td class="text-right">密碼</td>
+							<td colspan="3" class="text-left"><input type="text" class="margin-fix-2"><span class="text-alert-1">密碼至少4~20個字元長，並只能英文跟數字組合</span></td>
+						</tr>
+						<tr>
+							<td class="text-right">確認密碼</td>
+							<td colspan="3" class="text-left"><input type="text"></td>
+						</tr>
+						<tr>
+							<td class="text-right">總監名稱</td>
+							<td colspan="3" class="text-left"><input type="text"></td>
+						</tr>
+						<tr>
+							<th colspan="4">下注資料設定</th>
+						</tr>
+						<tr>
+							<td>總點數</td>
+							<td colspan="3" class="text-left"><input type="text" class="margin-fix-3"><button onclick="javascript:onClickOpenModalV2('SaveCash')" class="margin-fix-1">存入</button>下線現金可用點數加總：0</td>
+						</tr>
+						<tr>
+							<td>占成方式選擇</td>
+							<td colspan="3" class="text-left">
+								<select>
+				    				<option>不佔滿</option>
+				    			</select>
+				    			占滿（下線未占滿成數，總監層占滿），不占（下線未占成數往上層給）</td>
+						</tr>
+						<tr class="bg-2">
+							<td></td>
+							<td></td>
+							<td>上限</td>
+							<td>總監可占成數</td>
+						</tr>
+				    	<tr>
+				    		<td>彩票</td>
+				    		<td><button>以我同步</button></td>
+				    		<td>80%</td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    	</tr>
+				    	<tr>
+				    		<td>真人視訊</td>
+				    		<td><button>以我同步</button></td>
+				    		<td>80%</td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    	</tr>
+				    	<tr>
+				    		<td>運動球類</td>
+				    		<td><button>以我同步</button></td>
+				    		<td>80%</td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    	</tr>
+				    	<tr>
+				    		<td>電動</td>
+				    		<td><button>以我同步</button></td>
+				    		<td>80%</td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    	</tr>
+				    	<tr>
+				    		<td>遊戲</td>
+				    		<td><button>以我同步</button></td>
+				    		<td>80%</td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    	</tr>
+					</table>
+				</section>
+			</div>
+		</div>
+		<!-- 總監管理_修改 結束 -->
+
+
+		<!-- 大股東管理_新增 開始 -->
+		<div id="bigHolderManageAdd">
+			<div class="modal-content width-percent-50 margin-fix-5">
+				<span class="close" onclick="onClickCloseModal();">&times;</span>
+				<section>
+					<table>
+						<tr>
+							<th colspan="6">基本資料設定</th>
+						</tr>
+						<tr>
+							<td class="text-right">總監</td>
+							<td colspan="5" class="text-left">
+								<select>
+									<option>xctt</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td class="text-right">帳號</td>
+							<td colspan="5" class="text-left"><select>
+				    				<option>x</option>
+				    			</select>
+				    			<input type="text" class="margin-fix-2">
+				    			<button class="margin-fix-2">確認帳號</button>
+				    			<span>至少4個字元長，帳號請填寫<i class="text-alert-1">[英文或數字(0~9,a~z,A~Z)]</i>的組合作為您的帳號</span></td>
+						</tr>
+						<tr>
+							<td class="text-right">密碼</td>
+							<td colspan="5" class="text-left"><input type="text" class="margin-fix-2"><span class="text-alert-1">密碼至少4~20個字元長，並只能英文跟數字組合</span></td>
+						</tr>
+						<tr>
+							<td class="text-right">確認密碼</td>
+							<td colspan="5" class="text-left"><input type="text"></td>
+						</tr>
+						<tr>
+							<td class="text-right">大股東名稱</td>
+							<td colspan="5" class="text-left"><input type="text"></td>
+						</tr>
+						<tr>
+							<th colspan="6">下注資料設定</th>
+						</tr>
+						<tr>
+							<td>上層總點數</td>
+							<td colspan="5" class="text-left">現金點數碼999000</td>
+						</tr>
+						<tr>
+							<td>總點數</td>
+							<td colspan="5" class="text-left">現金點數<input type="text" value="0" class="margin-fix-3"><button onclick="javascript:onClickOpenModalV2('SaveCash')" class="margin-fix-1">存入</button>下線現金可用點數加總：0</td>
+						</tr>
+						<tr>
+							<td>占成方式選擇</td>
+							<td colspan="5" class="text-left">
+								<select>
+				    				<option>不佔滿</option>
+				    			</select>
+				    			占滿（下線未占滿成數，總監層占滿），不占（下線未占成數往上層給）</td>
+						</tr>
+						<tr class="bg-2">
+							<td></td>
+							<td></td>
+							<td>總監最少占</td>
+							<td>總監最大占</td>
+							<td>上限</td>
+							<td>總監可占成數</td>
+						</tr>
+				    	<tr>
+				    		<td>彩票</td>
+				    		<td><button>以我同步</button></td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    		<td>80%</td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    	</tr>
+				    	<tr>
+				    		<td>真人視訊</td>
+				    		<td><button>以我同步</button></td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    		<td>80%</td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    	</tr>
+				    	<tr>
+				    		<td>運動球類</td>
+				    		<td><button>以我同步</button></td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    		<td>80%</td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    	</tr>
+				    	<tr>
+				    		<td>電動</td>
+				    		<td><button>以我同步</button></td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    		<td>80%</td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    	</tr>
+				    	<tr>
+				    		<td>遊戲</td>
+				    		<td><button>以我同步</button></td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    		<td>80%</td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    	</tr>
+				    	<tr>
+				    		<td>注意!!!</td>
+				    		<td colspan="5" class="text-left">
+				    			<ol>
+				    				<li>總監最少占成 + 大股東可占成數 不可比<span class="text-alert-1">上限</span>多</li>
+				    				<li class="text-alert-1">總監最大占成不可以比最少占成少</li>
+				    			</ol>
+				    		</td>
+				    	</tr>
+					</table>
+				    <div class="btn-area">
+				    	<button class="btn-lg btn-orange" onclick="onClickCloseModal();">確定</button>
+				    	<button class="btn-lg btn-gray" onclick="onClickCloseModal();">取消</button>
+				    </div>
+				</section>
+			</div>
+		</div>
+		<!-- 大股東管理_新增 結束 -->
+
+		<!-- 股東管理_新增 開始 -->
+		<div id="holderManageAdd">
+			<div class="modal-content width-percent-50 margin-fix-6">
+				<span class="close" onclick="onClickCloseModal();">&times;</span>
+				<section>
+					<table>
+						<tr>
+							<th colspan="6">基本資料設定</th>
+						</tr>
+						<tr>
+							<td class="text-right">大股東</td>
+							<td colspan="5" class="text-left">
+								<select>
+									<option>請選擇</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td class="text-right">帳號</td>
+							<td colspan="5" class="text-left"><select>
+				    				<option>a</option>
+				    			</select>
+				    			<input type="text" class="margin-fix-2">
+				    			<button class="margin-fix-2">確認帳號</button>
+				    			<span>至少4個字元長，帳號請填寫<i class="text-alert-1">[英文或數字(0~9,a~z,A~Z)]</i>的組合作為您的帳號</span></td>
+						</tr>
+						<tr>
+							<td class="text-right">密碼</td>
+							<td colspan="5" class="text-left"><input type="text" class="margin-fix-2"><span  class="text-alert-1">密碼至少4~20個字元長，並只能英文跟數字組合</span></td>
+						</tr>
+						<tr>
+							<td class="text-right">確認密碼</td>
+							<td colspan="5" class="text-left"><input type="text"></td>
+						</tr>
+						<tr>
+							<td class="text-right">股東名稱</td>
+							<td colspan="5" class="text-left"><input type="text"></td>
+						</tr>
+						<tr>
+							<th colspan="6">下注資料設定</th>
+						</tr>
+						<tr>
+							<td>上層剩餘總點數</td>
+							<td colspan="5" class="text-left">現金點數碼999000</td>
+						</tr>
+						<tr>
+							<td>總點數</td>
+							<td colspan="5" class="text-left">現金點數<input type="text" value="0" class="margin-fix-3"><button onclick="javascript:onClickOpenModalV2('SaveCash')" class="margin-fix-1">存入</button>下線現金可用點數加總：0</td>
+						</tr>
+						<tr>
+							<td>占成方式選擇</td>
+							<td colspan="5" class="text-left">
+								<select>
+				    				<option>不佔滿</option>
+				    			</select>
+				    			占滿（下線未占滿成數，總監層占滿），不占（下線未占成數往上層給）</td>
+						</tr>
+						<tr class="bg-2">
+							<td></td>
+							<td></td>
+							<td>大股東最少占</td>
+							<td>大股東最大占</td>
+							<td>上限</td>
+							<td>總監可占成數</td>
+						</tr>
+				    	<tr>
+				    		<td>彩票</td>
+				    		<td><button>以我同步</button></td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    		<td>80%</td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    	</tr>
+				    	<tr>
+				    		<td>真人視訊</td>
+				    		<td><button>以我同步</button></td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    		<td>80%</td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    	</tr>
+				    	<tr>
+				    		<td>運動球類</td>
+				    		<td><button>以我同步</button></td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    		<td>80%</td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    	</tr>
+				    	<tr>
+				    		<td>電動</td>
+				    		<td><button>以我同步</button></td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    		<td>80%</td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    	</tr>
+				    	<tr>
+				    		<td>遊戲</td>
+				    		<td><button>以我同步</button></td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    		<td>80%</td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    	</tr>
+				    	<tr>
+				    		<td>注意!!!</td>
+				    		<td colspan="5" class="text-left">
+				    			<ol>
+				    				<li>大股東最少占成 + 大股東可占成數 不可比<span class="text-alert-1">上限</span>多</li>
+				    				<li class="text-alert-1">大股東最大占成不可以比最少占成少</li>
+				    			</ol>
+				    		</td>
+				    	</tr>
+					</table>
+					<div class="btn-area">
+				    	<button class="btn-lg btn-orange" onclick="onClickCloseModal();">確定</button>
+				    	<button class="btn-lg btn-gray" onclick="onClickCloseModal();">取消</button>
+				    </div>
+				</section>
+			</div>
+		</div>
+		<!-- 股東管理_新增 結束 -->
+
+
+		<!-- 總代理管理_新增 開始 -->
+		<div id="generalAgentManageAdd">
+			<div class="modal-content width-percent-50 margin-fix-6">
+				<span class="close" onclick="onClickCloseModal();">&times;</span>
+				<section>
+					<table>
+						<tr>
+							<th colspan="6">基本資料設定</th>
+						</tr>
+						<tr>
+							<td class="text-right">股東</td>
+							<td colspan="5" class="text-left">
+								<select>
+									<option>請選擇</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td class="text-right">帳號</td>
+							<td colspan="5" class="text-left"><select>
+				    				<option>b</option>
+				    			</select>
+				    			<input type="text" class="margin-fix-2">
+				    			<button class="margin-fix-2">確認帳號</button>
+				    			<span>至少4個字元長，帳號請填寫<i class="text-alert-1">[英文或數字(0~9,a~z,A~Z)]</i>的組合作為您的帳號</span></td>
+						</tr>
+						<tr>
+							<td class="text-right">密碼</td>
+							<td colspan="5" class="text-left"><input type="text" class="margin-fix-2"><span  class="text-alert-1">密碼至少4~20個字元長，並只能英文跟數字組合</span></td>
+						</tr>
+						<tr>
+							<td class="text-right">確認密碼</td>
+							<td colspan="5" class="text-left"><input type="text"></td>
+						</tr>
+						<tr>
+							<td class="text-right">總代理名稱</td>
+							<td colspan="5" class="text-left"><input type="text"></td>
+						</tr>
+						<tr>
+							<th colspan="6">下注資料設定</th>
+						</tr>
+						<tr>
+							<td>上層剩餘總點數</td>
+							<td colspan="5" class="text-left">現金點數0</td>
+						</tr>
+						<tr>
+							<td>總點數</td>
+							<td colspan="5" class="text-left">現金點數<input type="text" value="0" class="margin-fix-3"><button onclick="javascript:onClickOpenModalV2('SaveCash')" class="margin-fix-1">存入</button>下線現金可用點數加總：0</td>
+						</tr>
+						<tr>
+							<td>占成方式選擇</td>
+							<td colspan="5" class="text-left">
+								<select>
+				    				<option>不佔滿</option>
+				    			</select>
+				    			占滿（下線未占滿成數，總監層占滿），不占（下線未占成數往上層給）</td>
+						</tr>
+						<tr class="bg-2">
+							<td></td>
+							<td></td>
+							<td>股東最少占</td>
+							<td>股東最大占</td>
+							<td>上限</td>
+							<td>總監可占成數</td>
+						</tr>
+				    	<tr>
+				    		<td>彩票</td>
+				    		<td><button>以我同步</button></td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    		<td>80%</td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    	</tr>
+				    	<tr>
+				    		<td>真人視訊</td>
+				    		<td><button>以我同步</button></td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    		<td>80%</td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    	</tr>
+				    	<tr>
+				    		<td>運動球類</td>
+				    		<td><button>以我同步</button></td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    		<td>80%</td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    	</tr>
+				    	<tr>
+				    		<td>電動</td>
+				    		<td><button>以我同步</button></td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    		<td>80%</td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    	</tr>
+				    	<tr>
+				    		<td>遊戲</td>
+				    		<td><button>以我同步</button></td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    		<td>80%</td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    	</tr>
+				    	<tr>
+				    		<td>注意!!!</td>
+				    		<td colspan="5" class="text-left">
+				    			<ol>
+				    				<li>大股東最少占成 + 大股東可占成數 不可比<span class="text-alert-1">上限</span>多</li>
+				    				<li class="text-alert-1">大股東最大占成不可以比最少占成少</li>
+				    			</ol>
+				    		</td>
+				    	</tr>
+					</table>
+					<div class="btn-area">
+				    	<button class="btn-lg btn-orange" onclick="onClickCloseModal();">確定</button>
+				    	<button class="btn-lg btn-gray" onclick="onClickCloseModal();">取消</button>
+				    </div>
+				</section>
+			</div>
+		</div>
+		<!-- 總代理管理_新增 結束 -->
+
+
+		<!-- 代理商管理_新增 開始 -->
+		<div id="agentManageAdd">
+			<div class="modal-content width-percent-50 margin-fix-6">
+				<span class="close" onclick="onClickCloseModal();">&times;</span>
+				<section>
+					<table>
+						<tr>
+							<th colspan="6">基本資料設定</th>
+						</tr>
+						<tr>
+							<td class="text-right">股東</td>
+							<td colspan="5" class="text-left">
+								<select>
+									<option>請選擇</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td class="text-right">帳號</td>
+							<td colspan="5" class="text-left"><select>
+				    				<option>b</option>
+				    			</select>
+				    			<input type="text" class="margin-fix-2">
+				    			<button class="margin-fix-2">確認帳號</button>
+				    			<span>至少4個字元長，帳號請填寫<i class="text-alert-1">[英文或數字(0~9,a~z,A~Z)]</i>的組合作為您的帳號</span></td>
+						</tr>
+						<tr>
+							<td class="text-right">密碼</td>
+							<td colspan="5" class="text-left"><input type="text" class="margin-fix-2"><span  class="text-alert-1">密碼至少4~20個字元長，並只能英文跟數字組合</span></td>
+						</tr>
+						<tr>
+							<td class="text-right">確認密碼</td>
+							<td colspan="5" class="text-left"><input type="text"></td>
+						</tr>
+						<tr>
+							<td class="text-right">總代理名稱</td>
+							<td colspan="5" class="text-left"><input type="text"></td>
+						</tr>
+						<tr>
+							<th colspan="6">下注資料設定</th>
+						</tr>
+						<tr>
+							<td>上層剩餘總點數</td>
+							<td colspan="5" class="text-left">現金點數0</td>
+						</tr>
+						<tr>
+							<td>總點數</td>
+							<td colspan="5" class="text-left">現金點數<input type="text" value="0" class="margin-fix-3"><button onclick="javascript:onClickOpenModalV2('SaveCash')" class="margin-fix-1">存入</button>下線現金可用點數加總：0</td>
+						</tr>
+						<tr>
+							<td>占成方式選擇</td>
+							<td colspan="5" class="text-left">
+								<select>
+				    				<option>不佔滿</option>
+				    			</select>
+				    			占滿（下線未占滿成數，總監層占滿），不占（下線未占成數往上層給）</td>
+						</tr>
+						<tr class="bg-2">
+							<td></td>
+							<td></td>
+							<td>總代理最少占</td>
+							<td>總代理最大占</td>
+							<td>上限</td>
+							<td>總監可占成數</td>
+						</tr>
+				    	<tr>
+				    		<td>彩票</td>
+				    		<td><button>以我同步</button></td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    		<td>80%</td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    	</tr>
+				    	<tr>
+				    		<td>真人視訊</td>
+				    		<td><button>以我同步</button></td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    		<td>80%</td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    	</tr>
+				    	<tr>
+				    		<td>運動球類</td>
+				    		<td><button>以我同步</button></td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    		<td>80%</td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    	</tr>
+				    	<tr>
+				    		<td>電動</td>
+				    		<td><button>以我同步</button></td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    		<td>80%</td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    	</tr>
+				    	<tr>
+				    		<td>遊戲</td>
+				    		<td><button>以我同步</button></td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    		<td>80%</td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    	</tr>
+				    	<tr>
+				    		<td>注意!!!</td>
+				    		<td colspan="5" class="text-left">
+				    			<ol>
+				    				<li>大股東最少占成 + 大股東可占成數 不可比<span class="text-alert-1">上限</span>多</li>
+				    				<li class="text-alert-1">大股東最大占成不可以比最少占成少</li>
+				    			</ol>
+				    		</td>
+				    	</tr>
+					</table>
+					<div class="btn-area">
+				    	<button class="btn-lg btn-orange" onclick="onClickCloseModal();">確定</button>
+				    	<button class="btn-lg btn-gray" onclick="onClickCloseModal();">取消</button>
+				    </div>
+				</section>
+			</div>
+		</div>
+		<!-- 代理商管理_新增 結束 -->
+
+
+		<!-- 會員管理_新增 開始 -->
+		<div id="memberMaganeAdd">
+			<div class="modal-content width-percent-50 margin-fix-6">
+				<span class="close" onclick="onClickCloseModal();">&times;</span>
+				<section>
+					<table>
+						<tr>
+							<th colspan="4">基本資料設定</th>
+						</tr>
+						<tr>
+							<td class="text-right">選擇</td>
+							<td colspan="3" class="text-left">
+								<select>
+									<option>一般會員</option>
+									<option>總監直屬會員</option>
+									<option>大股東直屬會員</option>
+									<option>股東直屬會員</option>
+									<option>總代理直屬會員</option>
+								</select>
+								<select>
+									<option>請選擇</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td class="text-right">帳號</td>
+							<td colspan="3" class="text-left"><select>
+				    				<option>b</option>
+				    			</select>
+				    			<input type="text" class="margin-fix-2">
+				    			<button class="margin-fix-2">確認帳號</button>
+				    			<span>至少4個字元長，帳號請填寫<i class="text-alert-1">[英文或數字(0~9,a~z,A~Z)]</i>的組合作為您的帳號</span></td>
+						</tr>
+						<tr>
+							<td class="text-right">密碼</td>
+							<td colspan="3" class="text-left"><input type="text" class="margin-fix-2"><span  class="text-alert-1">密碼至少4~20個字元長，並只能英文跟數字組合</span></td>
+						</tr>
+						<tr>
+							<td class="text-right">確認密碼</td>
+							<td colspan="3" class="text-left"><input type="text"></td>
+						</tr>
+						<tr>
+							<td class="text-right">總代理名稱</td>
+							<td colspan="3" class="text-left"><input type="text"></td>
+						</tr>
+						<tr>
+							<th colspan="4">下注資料設定</th>
+						</tr>
+						<tr>
+							<td>上層剩餘總點數</td>
+							<td colspan="3" class="text-left">現金點數0</td>
+						</tr>
+						<tr>
+							<td>總點數</td>
+							<td colspan="3" class="text-left">現金點數<input type="text" value="0" class="margin-fix-3"><button onclick="javascript:onClickOpenModalV2('SaveCash')" class="margin-fix-1">存入</button>下線現金可用點數加總：0</td>
+						</tr>
+						<tr>
+							<td>占成方式選擇</td>
+							<td colspan="3" class="text-left">
+								<select>
+				    				<option>不佔滿</option>
+				    			</select>
+				    			占滿（下線未占滿成數，總監層占滿），不占（下線未占成數往上層給）</td>
+						</tr>
+						<tr class="bg-2">
+							<td></td>
+							<td></td>
+							<td>代理商最少占</td>
+							<td>上限</td>
+						</tr>
+				    	<tr>
+				    		<td>彩票</td>
+				    		<td><button>以我同步</button></td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    		<td>80%</td>
+				    	</tr>
+				    	<tr>
+				    		<td>真人視訊</td>
+				    		<td><button>以我同步</button></td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    		<td>80%</td>
+				    	</tr>
+				    	<tr>
+				    		<td>運動球類</td>
+				    		<td><button>以我同步</button></td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    		<td>80%</td>
+				    	</tr>
+				    	<tr>
+				    		<td>電動</td>
+				    		<td><button>以我同步</button></td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    		<td>80%</td>
+				    	</tr>
+				    	<tr>
+				    		<td>遊戲</td>
+				    		<td><button>以我同步</button></td>
+				    		<td>
+				    			<select>
+				    				<option>0%</option>
+				    				<option>100%</option>
+				    			</select>
+				    		</td>
+				    		<td>80%</td>
+				    	</tr>
+				    	<tr>
+				    		<td>注意!!!</td>
+				    		<td colspan="3" class="text-left">
+				    			<ol>
+				    				<li>大股東最少占成 + 大股東可占成數 不可比<span class="text-alert-1">上限</span>多</li>
+				    				<li class="text-alert-1">大股東最大占成不可以比最少占成少</li>
+				    			</ol>
+				    		</td>
+				    	</tr>
+					</table>
+					<div class="btn-area">
+					    	<button class="btn-lg btn-orange" onclick="onClickCloseModal();">確定</button>
+					    	<button class="btn-lg btn-gray" onclick="onClickCloseModal();">取消</button>
+					    </div>
+				</section>
+			</div>
+		</div>
+		<!-- 會員管理_新增 結束 -->
+
+
+		<!-- 帳號密碼錯誤訊息 開始 -->
+		<div id="loginError">
+			<div class="modal-content width-percent-20">
+				<span class="close" onclick="onClickCloseModal();">&times;</span>
+				<p class="login-error">帳號或密碼輸入錯誤，請再試一次。</p>
+			</div>
+		</div>
+		<!-- 帳號密碼錯誤訊息 結束 -->
+
+
+		<!-- 區塊 開始 -->
+		<div id="">
+			<div class="modal-content width-percent-50">
+			</div>
+		</div>
+		<!-- 區塊 結束 -->
+
+
+		<!-- 區塊 開始 -->
+		<div id="">
+			<div class="modal-content width-percent-50">
+			</div>
+		</div>
+		<!-- 區塊 結束 -->
+
+		<!-- 彈跳視窗內容 結束 -->
+
+	</section>
+
+	<!-- 彈跳視窗共用框架 開始 -->
+	<div id="myModal" class="modal"></div>
+	<div id="myModalV2" class="modal"></div>
+	<!-- 彈跳視窗共用框架 結束 -->
+
+</body>
+</html>
+<!-- 20171214 Ason -->

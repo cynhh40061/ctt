@@ -1,0 +1,1635 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="css/cttgame.css">
+<title>前台DEMO</title>
+<script>
+	function loadScript(url, callback) {
+		// adding the script tag to the head as suggested before
+		var head = document.getElementsByTagName('head')[0];
+		var script = document.createElement('script');
+		script.type = 'text/javascript';
+		script.charset = 'utf-8';
+		script.src = url;
+		if (!callback)
+			callback = function() {
+			}; // ★★★★★★★★★ JUST ADD THIS LINE!
+
+		// bind the event to the callback function 
+		if (script.addEventListener) {
+			script.addEventListener("load", callback, false); // IE9+, Chrome, Firefox
+		} else if (script.readyState) {
+			script.onreadystatechange = callback; // IE8
+		}
+		// fire the loading
+		head.appendChild(script);
+	}
+
+	function loadCSS(cname) {
+		var headID = document.getElementsByTagName("head")[0];
+		var newCss = document.createElement('link');
+		newCss.type = 'text/css';
+		newCss.rel = "stylesheet";
+		newCss.href = cname;
+		headID.appendChild(newCss);
+	}
+
+	function sleep(milliseconds) {
+		var start = new Date().getTime();
+		for (var i = 0; i < 1e7; i++) {
+			if ((new Date().getTime() - start) > milliseconds) {
+				break;
+			}
+		}
+	}
+
+	function initOnLoad() {
+		loadToolsJs();
+	}
+
+	function loadToolsJs() {
+		loadScript("js/tools.js?id=" + new Date().getTime(), function() {
+			loadCssJs();
+		});
+	}
+	
+	
+
+	function loadCssJs() {
+		loadScript("js/slide.js?id=" + new Date().getTime(), function() {
+			showSlidesAuto();
+			loadAccountMemeberJs();
+		});
+	}
+
+	function loadAccountMemeberJs() {
+		loadScript("js/Member/AccountMember.js?id=" + new Date().getTime(), function() {
+			showVerificationCode();
+			getPlatformAd();
+			setMetaTag();
+			setCookie();
+			loadLotteryJs();
+		});
+		
+	}
+	
+	function loadLotteryJs() {
+		loadScript("js/lottery.js?id=" + new Date().getTime(), function() {
+			
+		});
+	}
+	
+</script>
+</head>
+<body onload="initOnLoad();">
+	<input type="hidden" name="platformId" value="1">
+	<input type="hidden" name="platformCashBC" value="">
+	<input type="hidden" name="tokenId" value="">
+	<input type="hidden" name="accId" value="0">
+	<input type="hidden" name="accDataJson" value="">
+	<input type="hidden" name="balanceRefreshTime" value="60">
+	<input type="hidden" name="bankCardInfo" value="">
+	<input type="hidden" name="maxAmount" value="200000">
+	<input type="hidden" name="minAmount" value="100">
+	<input type="hidden" name="getCashierInfo" value="">
+	<input type="hidden" name="hiddenRealName" value="">
+	<input type="hidden" name="gameRecordsData" value="">
+	<input type="hidden" name="gameRecordsCount" value="25">
+	<input type="hidden" name="gameRecordsPage" value="1">
+	<input type="hidden" name="gameRecordsLastPage" value="1">
+	<input type="hidden" name="gameRecordsSearchInfo" value="">
+	<input type="hidden" name="calendarDate" value="">
+	<!-- test -->
+	<input type="hidden" name="testInfo" value="">
+	<!-- test -->
+	<!-- 日歷 -->
+	<div id="wrapperCalendar" onclick="closeCalendar();" style="display: none; z-index: 99999999998;"></div>
+	<div id="calendar" style="top: 0px; left: 22px; display: none; z-index: 99999999999;"></div>
+	<div class="wrapper">
+		<!-- 全站實際寬度 -->
+		<div class="container-fluid" id="indexDiv">
+			<!-- 頁首 開始 -->
+			<header id="headerDiv">
+				<div class="header-top">
+					<!-- 簡繁中／英文／切換 開始 -->
+					<div class="lang-area">
+						<a class="lan01" href="javascript:void(0);"></a>
+						<a class="lan02" href="javascript:void(0);"></a>
+						<a class="lan03" href="javascript:void(0);"></a>
+					</div>
+					<!-- 簡繁中／英文／切換 結束 -->
+					<!-- 回到首頁 開始 -->
+					<a href="javascript:openHomePageDiv()" class="home">首頁</a>
+					<!-- 回到首頁 結束 -->
+					<span>|</span>
+					<!-- 平台公告 開始 -->
+					<a href="javascript:openNewsDiv()" class="news">平台公告</a>
+					<!-- 平台公告 結束 -->
+					<!-- 會員專區 已登出 開始 -->
+					<div class="account-area-logout">
+						<div class="account-top">
+							<img src="img/icon-account.png">
+							<span>
+								會員帳號：
+								<input type="text" id="accName" value="" onkeyup="this.value = checkAccount(this.value);" maxlength="21" onkeydown="clickEnterLogin();">
+							</span>
+							<img src="img/icon-keyword.png">
+							<span>
+								會員密碼：
+								<input type="password" id="pwd" onkeyup="chkInputLoginPwd();" value="" maxlength="20" onkeydown="clickEnterLogin();">
+							</span>
+							<img src="img/icon-check.png">
+							<span class="check-input">
+								驗證碼輸入：
+								<input type="text" id="verificationCode" onkeyup="chkInputVerificationCode();" maxlength="5" onkeydown="clickEnterLogin();">
+							</span>
+							<span class="check-num" id="verificationCodeText"></span>
+							<a href="javascript:login()" class="btn-login">登入</a>
+						</div>
+						<div class="account-bottom">
+							<a href="javascript:openRegisterDiv()">免費註冊</a>
+							<span>|</span>
+							<a href="javascript:openForgotDiv()">忘記密碼</a>
+						</div>
+					</div>
+					<!-- 會員專區 已登出 結束 -->
+					<!-- 會員專區 已登入 開始 -->
+					<div class="account-area-login">
+						<div class="account-top">
+							<img src="img/icon-account.png">
+							<span class="account" id="accNameText">帳號：</span>
+							<img src="img/icon-money.png">
+							<span class="money">帳戶餘額：</span>
+							<span class="moneynumber" id="balanceText"></span>
+							<a href="javascript:void(0);" onclick="balanceRefreshButton();">
+								<div class="refresh">
+									<p id="refreshTime">60</p>
+								</div>
+							</a>
+							<a href="javascript:logout()" class="logout">登出</a>
+						</div>
+						<div class="account-bottom">
+							<a href="javascript:openGameRecordDiv(0)">遊戲紀錄</a>
+							<a href="javascript:openMemberDiv()">會員中心</a>
+							<a href="javascript:void(0);">額度轉換</a>
+							<a href="javascript:openOnlineRechargeDiv()">在線存款</a>
+							<a href="javascript:openTakeOnlineDiv()">在線提款</a>
+						</div>
+					</div>
+					<!-- 會員專區 已登入 結束 -->
+				</div>
+				<div class="header-bottom">
+					<!-- 跑馬燈 開始 -->
+					<!-- 跑馬燈 結束 -->
+				</div>
+				<!-- 彈出視窗_修改密碼 開始 -->
+				<div id="updatePwdDiv" class="bg-first-login hidden">
+					<div class="first-login">
+						<a href="javascript:closeUpdatePwdDiv();" class="close">✕</a>
+						<div class="password-login">
+							<h1>登入密碼</h1>
+							<h3>
+								<i></i>
+							</h3>
+							<table>
+								<tbody>
+									<tr>
+										<td>舊密碼</td>
+										<td>
+											<input type="password" id="oldPwd" onkeyup="checkPwd(this.id);" maxlength="20">
+										</td>
+										<td>
+											<span id="oldPwdWarning"></span>
+										</td>
+									</tr>
+									<tr>
+										<td>新密碼</td>
+										<td>
+											<input type="password" id="newPwd" onkeyup="checkPwd(this.id);" maxlength="20">
+											<p>
+												密碼至少6~20個字元長，並只能英文跟數字組合
+												<br>
+												(請注意大小差別)
+											</p>
+										</td>
+										<td>
+											<span id="newPwdWarning"></span>
+										</td>
+									</tr>
+									<tr>
+										<td>確認新密碼</td>
+										<td>
+											<input type="password" id="checkPwd" onkeyup="checkPwd(this.id);" maxlength="20">
+											<p>再次輸入新密碼，須跟新密碼一致！</p>
+										</td>
+										<td>
+											<span id="checkPwdWarning"></span>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<button onclick="conformUpdatePwd();">確認</button>
+					</div>
+				</div>
+				<!-- 彈出視窗_修改密碼 結束 -->
+				<!-- 彈出視窗_修改密碼 開始 -->
+				<div id="updateWithdrawPwdDiv" class="bg-first-login hidden">
+					<div class="first-login">
+						<a href="javascript:closeUpdateWithdrawPwdDiv();" class="close">✕</a>
+						<div class="password-login">
+							<h1>取款密碼</h1>
+							<h3>
+								<i></i>
+							</h3>
+							<table>
+								<tbody>
+									<tr>
+										<td>新密碼</td>
+										<td>
+											<input type="password" id="withdrawPwd" onkeyup="checkInputWithdrawPwd(this.id,this.value);" maxlength="6">
+											<p>至少6個字元長，提款認證需使用，請務必記住！</p>
+										</td>
+										<td>
+											<span id="withdrawPwdWarning"></span>
+										</td>
+									</tr>
+									<tr>
+										<td>確認新密碼</td>
+										<td>
+											<input type="password" id="checkWithdrawPwd" onkeyup="checkInputWithdrawPwd(this.id,this.value);" maxlength="6">
+											<p>再次輸入新密碼，須跟新密碼一致！</p>
+										</td>
+										<td>
+											<span id="checkWithdrawPwdWarning"></span>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<button onclick="conformUpdateWithdrawPwd();">確認</button>
+					</div>
+				</div>
+				<!-- 彈出視窗_修改密碼 結束 -->
+				<div id="forgotDiv" class="bg-forgot" style="display: none;">
+					<div class="forgot">
+						<a href="javascript:closeForgotBtn()" class="close">✕</a>
+						<img src="img/icon-forgot.png">
+						<h1>
+							<img src="img/title-06.png">
+						</h1>
+						<h3>
+							<span>請聯繫在線客服人員</span>
+							<i></i>
+						</h3>
+						<button>點擊諮詢</button>
+					</div>
+				</div>
+				<!-- 建議瀏覽器 開始 -->
+				<div id="browserArea" class="bg-browser-area">
+					<div class="browser-area">
+						<a href="javascript:closeBrowserArea()" class="close">✕</a>
+						<h1>偵測到您瀏覽器過舊</h1>
+						<p>建議您使用以下瀏覽器</p>
+						<button href="https://www.google.cn/intl/zh-CN/chrome/" target="_new">
+							<img src="img/icon_chrome.png">
+						</button>
+						<button href="https://www.mozilla.org/zh-CN/firefox/new/" target="_new">
+							<img src="img/icon_firefox.png">
+						</button>
+						<button href="javascript:void(0);">
+							<img src="img/icon_ie.png">
+						</button>
+						<span>- 推薦 -</span>
+					</div>
+				</div>
+				<!-- 建議瀏覽器 結束 -->
+				<!--  彈跳視窗 -->
+				<div id="modelDiv" class="bg-model">
+					<div class="model">
+						<a id="closeModelWindow" class="close">✕</a>
+						<h1 id="modelTitle">XXXXX</h1>
+						<h3>
+							<span id="modelMessage">請聯繫在線客服人員</span>
+							<i></i>
+						</h3>
+						<button id="modelBnt">點擊諮詢</button>
+					</div>
+				</div>
+				<!--  彈跳視窗 -->
+			</header>
+			<!-- 頁首 結束 -->
+			<!-- 主內容 開始 -->
+			<div class="container-index" id="containerDiv">
+				<!-- 館別分類 開始 -->
+				<section id="navDiv" class="index-hall">
+					<div class="hall">
+						<a href="javascript:openHomePageDiv()" class="logo">
+							<img src="img/logo.png">
+						</a>
+						<!-- 主選單 開始 -->
+						<nav>
+							<ul>
+								<li>
+									<img src="img/hot.gif">
+									<a class="menu1" id="firstMenu0"></a>
+									<ul id="firstMenu0Ul">
+										<li>
+											<a href="javascript:openGameDiv(0)">CTT</a>
+										</li>
+										<li>
+											<a href="javascript:openGameDiv(1)">廠商2</a>
+										</li>
+										<li>
+											<a href="javascript:openGameDiv(2)">廠商3</a>
+										</li>
+										<li>
+											<a href="javascript:openGameDiv(3)">廠商4</a>
+										</li>
+										<li>
+											<a href="javascript:openGameDiv(4)">廠商5</a>
+										</li>
+										<li>
+											<a href="javascript:openGameDiv(5)">廠商6</a>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<img src="img/hot.gif">
+									<a class="menu2" id="firstMenu1"></a>
+									<ul id="firstMenu1Ul">
+										<li>
+											<a href="javascript:openLivevideoDiv(0)">CTT</a>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<img src="img/hot.gif">
+									<a class="menu3" id="firstMenu2"></a>
+									<ul id="firstMenu2Ul">
+										<li>
+											<a href="javascript:openGameDiv(2,0,0)">時時彩</a>
+										</li>
+										<li>
+											<a href="javascript:openGameDiv(2,1,0)">分分彩</a>
+										</li>
+										<li>
+											<a href="javascript:openGameDiv(2,2,0)">11選5</a>
+										</li>
+										<li>
+											<a href="javascript:openGameDiv(2,3,0)">快三</a>
+										</li>
+										<li>
+											<a href="javascript:openGameDiv(2,4,0)">北京PK拾</a>
+										</li>
+										<li>
+											<a href="javascript:openGameDiv(2,5,0)">福彩3D</a>
+										</li>
+										<li>
+											<a href="javascript:openGameDiv(2,6,0)">排列三/五</a>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<img src="img/hot.gif">
+									<a class="menu4" id="firstMenu3"></a>
+									<ul id="firstMenu3Ul">
+										<li>
+											<a href="javascript:openMovementDiv(0)">CTT</a>
+										</li>
+									</ul>
+								</li>
+								<li>
+									<a href="javascript:openRechargeDiv()" class="menu5" id="firstMenu4"></a>
+								</li>
+								<li>
+									<a href="javascript:void(0)" class="menu6" id="firstMenu5"></a>
+								</li>
+								<li>
+									<a href="javascript:void(0)" class="menu7" id="firstMenu6"></a>
+								</li>
+							</ul>
+						</nav>
+				</section>
+				<!-- 館別分類 結束 -->
+				<!-- 跑馬燈 開始 -->
+				<section id="marqueeDiv" class="index">
+					<div id="marqueeArea" class="marquee-area">
+						<img src="img/maricon.png" class="maricon">
+						<a href="javascript:openNewsPageDiv" onmouseover="marqueeScroll.stop()" onmouseout="marqueeScroll.start()">最新公告1最新公告1最新公告1</a>
+						<br>
+						<img src="img/maricon.png" class="maricon">
+						<a href="javascript:openNewsPageDiv" onmouseover="marqueeScroll.stop()" onmouseout="marqueeScroll.start()">最新公告2最新公告2最新公告2最新公告2</a>
+						<br>
+						<img src="img/maricon.png" class="maricon">
+						<a href="javascript:openNewsPageDiv" onmouseover="marqueeScroll.stop()" onmouseout="marqueeScroll.start()">最新公告3最新公告3最新公告3</a>
+						<br>
+						<img src="img/maricon.png" class="maricon">
+						<a href="javascript:openNewsPageDiv" onmouseover="marqueeScroll.stop()" onmouseout="marqueeScroll.start()">最新公告4最新公告4最新公告4最新公告4</a>
+						<br>
+						<img src="img/maricon.png" class="maricon">
+						<a href="javascript:openNewsPageDiv" onmouseover="marqueeScroll.stop()" onmouseout="marqueeScroll.start()">最新公告5最新公告5最新公告5最新公告5最新公告5</a>
+						<br>
+						<img src="img/maricon.png" class="maricon">
+						<br>
+					</div>
+				</section>
+				<!-- 跑馬燈 結束 -->
+				<div id="homePageDiv">
+					<!-- 輪播橫幅廣告(大) 開始 -->
+					<section>
+						<div class="slideshow-container" id="slideshowDiv">
+							<!-- 輪播圖片 開始 -->
+							<div class="mySlides fade">
+								<img src="img/bigpic.png">
+							</div>
+							<div class="mySlides fade">
+								<img src="img/bigpic1.png">
+							</div>
+							<div class="mySlides fade">
+								<img src="img/bigpic2.png">
+							</div>
+							<!-- 輪播圖片 結束 -->
+							<!-- 圖片切換按鈕_圓形 開始 -->
+							<div style="text-align: center" class="dot-area">
+								<span class="dot" onclick="currentSlide(1)"></span>
+								<span class="dot" onclick="currentSlide(2)"></span>
+								<span class="dot" onclick="currentSlide(3)"></span>
+							</div>
+							<!-- 圖片切換按鈕_圓形 結束 -->
+							<!-- 圖片切換按鈕_箭頭 開始 -->
+							<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+							<a class="next" onclick="plusSlides(1)">&#10095;</a>
+							<!-- 圖片切換按鈕_箭頭 結束 -->
+						</div>
+					</section>
+					<!-- 輪播橫幅廣告(大) 結束 -->
+					<!-- 主打區 開始 -->
+					<section>
+						<div class="push-area">
+							<div class="push-item01" onclick="openLivevideoDiv(0);">
+								<a href="javascript:void(0)"> </a>
+							</div>
+							<div class="push-item02" onclick="openGameDiv(0);">
+								<a href="javascript:void(0)"> </a>
+							</div>
+							<div class="push-item03" onclick="openMovementDiv(0);">
+								<a href="javascript:void(0)"> </a>
+							</div>
+							<div class="push-item04" onclick="openGameDiv(2,0,0);">
+								<a href="javascript:void(0)"> </a>
+							</div>
+						</div>
+					</section>
+					<!-- 主打區 結束 -->
+					<!-- 熱門遊戲 開始 -->
+					<section class="hotgamearea">
+						<img class="hotgamebg" src="img/hotgamebg.png">
+						<div class="hot-game">
+							<img src="img/icongame.png">
+							<h3>熱門遊戲</h3>
+							<h4>HOT GAMES</h4>
+							<div>
+								<a href="javascript:void(0)" class="hotgame01" onclick="openGameDiv(2,3,0)"></a>
+								<span>- 快3 -</span>
+							</div>
+							<div>
+								<a href="javascript:void(0)" class="hotgame02" onclick="openGameDiv(2,0,0)"></a>
+								<span>- 快樂十分 -</span>
+							</div>
+							<div>
+								<a href="javascript:void(0)" class="hotgame03" onclick="openGameDiv(2,0,0)"></a>
+								<span>- 六合彩 -</span>
+							</div>
+							<div>
+								<a href="javascript:void(0)" class="hotgame04" onclick="openGameDiv(2,0,0)"></a>
+								<span>- 新疆時時彩 -</span>
+							</div>
+							<div>
+								<a href="javascript:void(0)" class="hotgame05" onclick="openGameDiv(2,0,0)"></a>
+								<span>- 牛牛 -</span>
+							</div>
+						</div>
+					</section>
+					<!-- 熱門遊戲 結束 -->
+				</div>
+				<!-- 註冊頁 開始 -->
+				<div class="container-register hidden" id="registerDiv">
+					<h1>歡迎加入CTT！</h1>
+					<section class="account-data">
+						<h3>
+							<span>帳戶資料</span>
+							<i></i>
+						</h3>
+						<table>
+							<tbody>
+								<tr>
+									<td>*會員帳號</td>
+									<td>
+										<input type="text" placeholder="如：a12345" id="registeredAccName" onchange="checkRegisteredAccName();"
+											onkeyup="this.value = checkAccount(this.value)" maxlength="20"
+										>
+									</td>
+									<td>
+										<span id="registeredAccNameWarning"></span>
+									</td>
+									<td>帳號6~20個字元長，帳號請填寫【開頭第一字須為英文字母】</td>
+								</tr>
+								<tr>
+									<td>*密碼</td>
+									<td>
+										<input type="password" id="registeredPwd" onkeyup="this.value = checkInputPassWordVal(this.value)" onchange="checkPwd(this.id);"
+											maxlength="20"
+										>
+									</td>
+									<td>
+										<span id="registeredPwdWarning"></span>
+									</td>
+									<td>密碼6~20個字元長，可用英文(請注意大小寫)、數字或符號組成</td>
+								</tr>
+								<tr>
+									<td>*確認密碼</td>
+									<td>
+										<input type="password" id="registeredCheckPwd" onkeyup="this.value = checkInputPassWordVal(this.value)" onchange="checkPwd(this.id);"
+											maxlength="20"
+										>
+									</td>
+									<td>
+										<span id="registeredCheckPwdWarning"></span>
+									</td>
+									<td></td>
+								</tr>
+								<tr>
+									<td>*驗證碼</td>
+									<td>
+										<input type="text" id="registeredVerification" onkeyup="chkInputRegisteredVerification();" onchange="checkRegisteredVerification();"
+											maxlength="5"
+										>
+									</td>
+									<td id="registeredVerificationText"></td>
+									<td>
+										<span id="registeredVerificationWarning"></span>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</section>
+					<section>
+						<table>
+							<tbody>
+								<tr>
+									<td></td>
+									<td colspan="2">
+										<input type="checkbox" id="registeredCheckBox" onchange="onChangeRegisteredCheckBox();">
+										我已屆滿合法年齡﹐且同意並願意遵守用戶協議
+									</td>
+									<td id="registeredCheckBoxWarning">X</td>
+								</tr>
+								<tr>
+									<td></td>
+									<td colspan="2">
+										<button id="registeredConfom" onclick="confomAddAccountMem();">確認</button>
+										<button onclick="clearRegistered();">重置</button>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</section>
+				</div>
+				<!-- 註冊頁 結束 -->
+				<!-- 進入遊戲 LOGO&廣告 開始 -->
+				<section id="egameTop" class="egametop">
+					<img src="img/logo.png">
+					<div class="egametopad" id="slideshow">
+						<img src="img/banner00.png" class="Slides">
+						<img src="img/banner01.png" class="Slides">
+						<img src="img/banner02.png" class="Slides">
+						<img src="img/banner03.png" class="Slides">
+					</div>
+				</section>
+				<!-- 進入遊戲 LOGO&廣告 結束 -->
+				<div class="container-lottery hidden" id="iframeArea">
+					<div class="game-area iframe-fix" id="gameArea">
+						<button class="back" onclick="backGame()">
+							<img src="img/icon-return.png">回到大廳
+						</button>
+						<form target="gameIframe" method="POST" id="startGameForm" name="startGameForm" class="hidden">
+							<input type="text" name="accIdGame" id="accIdGame" />
+							<input type="text" name="tokenIdGame" id="tokenIdGame" />
+							<input type="text" name="accNameGame" id="accNameGame" />
+							<input type="text" name="lotteryPageLevel1" id="lotteryPageLevel1" />
+							<input type="text" name="lotteryPageLevel2" id="lotteryPageLevel2" />
+						</form>
+						<iframe name="gameIframe" id="gameIframe" class="iframe-fix"></iframe>
+					</div>
+				</div>
+				<!-- 遊戲大廳 開始 電子 開始-->
+				<div class="container-lottery hidden" id="gameDiv">
+					<div class="left-side" id="leftSide">
+						<a href="javascript:void(0)" id="gameG1" onclick="javascript:openGameDiv(0)">
+							<img src="img/logo.png" class="logo-small">
+						</a>
+						<a href="javascript:void(0)" id="gameG2" onclick="javascript:openGameDiv(1)">
+							<img src="img/company01.png">
+						</a>
+						<a href="javascript:void(0)" id="gameG3" onclick="javascript:openGameDiv(2)">
+							<img src="img/company02.png">
+						</a>
+						<a href="javascript:void(0)" id="gameG4" onclick="javascript:openGameDiv(3)">
+							<img src="img/company03.png">
+						</a>
+						<a href="javascript:void(0)" id="gameG5" onclick="javascript:openGameDiv(4)">
+							<img src="img/company04.png">
+						</a>
+						<a href="javascript:void(0)" id="gameG6" onclick="javascript:openGameDiv(5)">
+							<img src="img/company05.png">
+						</a>
+					</div>
+					<div class="right-side" id="rightSide1">
+						<a href="javascript:void(0)" onclick="javascript:openGameDiv(0,0,1)">
+							<img src="img/puncheGameIcon.png" style="width: 450px; height: 220px">
+						</a>
+					</div>
+					<div class="right-side" id="rightSide2">
+						<a href="javascript:void(0)" onclick="javascript:openGameDiv(1,0,1)">遊戲2</a>
+					</div>
+					<div class="right-side" id="rightSide3">
+						<a href="javascript:void(0)" onclick="javascript:openGameDiv(2,0,1)">遊戲3</a>
+					</div>
+					<div class="right-side" id="rightSide4">
+						<a href="javascript:void(0)" onclick="javascript:openGameDiv(3,0,1)">遊戲4</a>
+					</div>
+					<div class="right-side" id="rightSide5">
+						<a href="javascript:void(0)" onclick="javascript:openGameDiv(4,0,1)">遊戲5</a>
+					</div>
+					<div class="right-side" id="rightSide6">
+						<a href="javascript:void(0)" onclick="javascript:openGameDiv(5,0,1)">遊戲6</a>
+					</div>
+				</div>
+				<!-- 遊戲大廳 電子 結束  -->
+				<!-- 遊戲大廳 開始 真人 開始 -->
+				<div class="container-lottery hidden" id="livevideoDiv">
+					<div class="left-side" id="leftSide">
+						<ul class="accordion-menu">
+							<li>
+								<a href="javascript:void(0)" onclick="openLivevideoDiv(0)" class="dropdownlink" id="livevideoG1">
+									<img src="img/logo.png" class="logo-small">
+								</a>
+								<ul class="submenuItems hide">
+									<li>
+										<a href="javascript:void(0)" onclick="openLivevideoDiv(0,0)">百家</a>
+									</li>
+									<li>
+										<a href="javascript:void(0)" onclick="openLivevideoDiv(0,1)">骰保</a>
+									</li>
+									<li>
+										<a href="javascript:void(0)" onclick="openLivevideoDiv(0,2)">輪盤</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+					<div class="right-side" id="livevideoGame1">
+						<a href="javascript:void(0)" onclick="openLivevideoDiv(0,0,1)">百家</a>
+						<a href="javascript:void(0)" onclick="openLivevideoDiv(0,0,2)">骰保</a>
+						<a href="javascript:void(0)" onclick="openLivevideoDiv(0,0,3)">輪盤</a>
+					</div>
+				</div>
+				<!-- 遊戲大廳 真人 結束 -->
+				<!-- 遊戲大廳 彩票 開始 -->
+				<div class="container-lottery hidden" id="lotteryDiv">
+					<div class="left-side" id="leftSide">
+						<ul class="accordion-menu">
+							<li>
+								<a href="javascript:void(0)" onclick="openLotteryDiv(0)" class="dropdownlink" id="lotteryG1">
+									<img src="img/lotterylogo04.png">
+								</a>
+								<ul class="submenuItems hide">
+									<li>
+										<a href="javascript:void(0)" onclick="openLotteryDiv(0,0)">重慶時時彩</a>
+									</li>
+									<li>
+										<a href="javascript:void(0)" onclick="openLotteryDiv(0,1)">新疆時時彩</a>
+									</li>
+									<li>
+										<a href="javascript:void(0)" onclick="openLotteryDiv(0,2)">天津時時彩</a>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<a href="javascript:void(0)" onclick="openLotteryDiv(1)" class="dropdownlink" id="lotteryG2">
+									<img src="img/lotterylogo05.png">
+								</a>
+								<ul class="submenuItems hide">
+									<li>
+										<a href="javascript:void(0)" onclick="openLotteryDiv(1,0)">重慶分分彩</a>
+									</li>
+									<li>
+										<a href="javascript:void(0)" onclick="openLotteryDiv(1,1)">新疆分分彩</a>
+									</li>
+									<li>
+										<a href="javascript:void(0)" onclick="openLotteryDiv(1,2)">天津分分彩</a>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<a href="javascript:void(0)" onclick="openLotteryDiv(2)" class="dropdownlink" id="lotteryG3">
+									<img src="img/lotterylogo01.png">
+								</a>
+								<ul class="submenuItems hide">
+									<li>
+										<a href="javascript:void(0)" onclick="openLotteryDiv(2,0)">重慶11選5</a>
+									</li>
+									<li>
+										<a href="javascript:void(0)" onclick="openLotteryDiv(2,1)">新疆11選5</a>
+									</li>
+									<li>
+										<a href="javascript:void(0)" onclick="openLotteryDiv(2,2)">天津11選5</a>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<a href="javascript:void(0)" onclick="openLotteryDiv(3)" class="dropdownlink" id="lotteryG4">
+									<img src="img/lotterylogo03.png">
+								</a>
+								<ul class="submenuItems">
+									<li>
+										<a href="javascript:void(0)" onclick="openLotteryDiv(3,0)">重慶快三</a>
+									</li>
+									<li>
+										<a href="javascript:void(0)" onclick="openLotteryDiv(3,1)">新疆快三</a>
+									</li>
+									<li>
+										<a href="javascript:void(0)" onclick="openLotteryDiv(3,2)">天津快三</a>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<a href="javascript:void(0)" onclick="openLotteryDiv(4)" class="dropdownlink" id="lotteryG5">
+									<img src="img/lotterylogo02.png">
+								</a>
+								<ul class="submenuItems hide">
+									<li>
+										<a href="javascript:void(0)" onclick="openLotteryDiv(4,0)">PK拾</a>
+									</li>
+									<li>
+										<a href="javascript:void(0)" onclick="openLotteryDiv(4,1)">其他</a>
+									</li>
+									<li>
+										<a href="javascript:void(0)" onclick="openLotteryDiv(4,2)">其他</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+					<div class="right-side" id="lotteryGame1">
+						<a href="javascript:void(0)" onclick="openLotteryDiv(0,0,1)">彩票1</a>
+					</div>
+					<div class="right-side" id="lotteryGame2">
+						<a href="javascript:void(0)" onclick="openLotteryDiv(1,0,1)">彩票2</a>
+					</div>
+					<div class="right-side" id="lotteryGame3">
+						<a href="javascript:void(0)" onclick="openLotteryDiv(2,0,1)">彩票3</a>
+					</div>
+					<div class="right-side" id="lotteryGame4">
+						<a href="javascript:void(0)" onclick="openLotteryDiv(3,0,1)">彩票4</a>
+					</div>
+					<div class="right-side" id="lotteryGame5">
+						<a href="javascript:void(0)" onclick="openLotteryDiv(4,0,1)">彩票5</a>
+					</div>
+				</div>
+				<!-- 遊戲大廳 彩票 結束 -->
+				<!-- 遊戲大廳 體育 開始 -->
+				<div class="container-lottery hidden" id="movementDiv">
+					<div class="left-side" id="leftSide">
+						<ul class="accordion-menu">
+							<li>
+								<a href="javascript:void(0)" onclick="openMovementDiv(0)" class="dropdownlink" id="movementG1">
+									<img src="img/logo.png" class="logo-small">
+								</a>
+								<ul class="submenuItems hide">
+									<li>
+										<a href="javascript:void(0)" onclick="openMovementDiv(0,0)">棒球</a>
+									</li>
+									<li>
+										<a href="javascript:void(0)" onclick="openMovementDiv(0,1)">足球</a>
+									</li>
+									<li>
+										<a href="javascript:void(0)" onclick="openMovementDiv(0,2)">籃球</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+					<div class="right-side" id="movementGame1">
+						<a href="javascript:void(0)" onclick="openMovementDiv(0,0,1)">棒球</a>
+					</div>
+				</div>
+				<!-- 遊戲大廳 體育 結束 -->
+				<!-- 平台公告 開始 -->
+				<div class="container-news hidden" id="newsDiv">
+					<h1>平台訊息</h1>
+					<table>
+						<tbody>
+							<tr>
+								<th>標題</th>
+								<th>時間</th>
+							</tr>
+							<tr>
+								<td>
+									<a href="javascript:openNewsPageDiv()">【公告分類】公告標題公告標題公告標題公告標題公告標題</a>
+									<img src="img/new.gif">
+								</td>
+								<td>2018/1/22 00:00:00</td>
+							</tr>
+							<tr>
+								<td>
+									<a href="javascript:openNewsPageDiv()">【公告分類】公告標題公告標題公告標題公告標題公告標題</a>
+									<img src="img/new.gif">
+								</td>
+								<td>2018/1/22 00:00:00</td>
+							</tr>
+							<tr>
+								<td>
+									<a href="javascript:openNewsPageDiv()">【公告分類】公告標題公告標題公告標題公告標題公告標題</a>
+								</td>
+								<td>2018/1/22 00:00:00</td>
+							</tr>
+							<tr>
+								<td>
+									<a href="javascript:openNewsPageDiv()">【公告分類】公告標題公告標題公告標題公告標題公告標題</a>
+								</td>
+								<td>2018/1/22 00:00:00</td>
+							</tr>
+							<tr>
+								<td>
+									<a href="javascript:openNewsPageDiv()">【公告分類】公告標題公告標題公告標題公告標題公告標題</a>
+								</td>
+								<td>2018/1/22 00:00:00</td>
+							</tr>
+							<tr>
+								<td>
+									<a href="javascript:openNewsPageDiv()">【公告分類】公告標題公告標題公告標題公告標題公告標題</a>
+								</td>
+								<td>2018/1/22 00:00:00</td>
+							</tr>
+							<tr>
+								<td>
+									<a href="javascript:openNewsPageDiv()">【公告分類】公告標題公告標題公告標題公告標題公告標題</a>
+								</td>
+								<td>2018/1/22 00:00:00</td>
+							</tr>
+							<tr>
+								<td>
+									<a href="javascript:openNewsPageDiv()">【公告分類】公告標題公告標題公告標題公告標題公告標題</a>
+								</td>
+								<td>2018/1/22 00:00:00</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<!-- 平台公告 結束 -->
+				<!-- 平台公告 內頁 開始 -->
+				<div class="container-news container-news-page hidden" id="newsPageDiv">
+					<button onclick="openNewsDiv();">
+						<img src="img/icon-return.png">
+						返回
+					</button>
+					<div>
+						<h2>標題</h2>
+						<h3>時間</h3>
+						<p>公告內容</p>
+					</div>
+				</div>
+				<!-- 平台公告 內頁 結束 -->
+				<!-- 充值中心_在線支付 開始 -->
+				<div class="container-recharge hidden" id="rechargeDiv">
+					<img src="img/icon-recharge.png">
+					<h1>
+						<img src="img/title-02.png">
+					</h1>
+					<div class="left-side">
+						<a href="javascript:openOnlineRechargeDiv()" id="onlinePay">在線支付</a>
+						<a href="javascript:openBankRechargeDiv()" id="BankPay">銀行匯款</a>
+						<a href="javascript:openAlipayRechargeDiv()" id="AliPay">支付寶付款</a>
+						<a href="javascript:openWeChatRechargeDiv()" id="WeChatPay">微信付款</a>
+						<a href="javascript:openQqRechargeDiv()" id="QQPay">QQ錢包付款</a>
+					</div>
+					<div class="right-side hidden" id="bankRechargeDiv">
+						<p>
+							＊單筆存款金额在 100－200000 元之間。
+							<br>
+							＊轉帳完成後請保留單據作為核對證明。
+							<br>
+							＊如有任何問題請諮詢客服人員。
+						</p>
+						<hr>
+						<div id="saveDiv" class="save">
+							<p>
+								＊存款金額：
+								<input type="text" id="rechargeAmount" onkeyup="checkRechargeOrderAmount(this.value);" maxlength="10">
+							</p>
+							<button onclick="checkOpenRechargeInfoDiv()">提交</button>
+							<button>重置</button>
+						</div>
+						<div id="infoDiv" class="info">
+							<table>
+								<tbody>
+									<tr>
+										<th colspan="2">匯款資訊</th>
+									</tr>
+									<tr>
+										<td id="cashierName"></td>
+										<td>
+											<button onclick="copyCashierName();">複製</button>
+										</td>
+									</tr>
+									<tr>
+										<td id="cashierAcc"></td>
+										<td>
+											<button onclick="copyCashierAcc();">複製</button>
+										</td>
+									</tr>
+									<tr>
+										<td id="cashierBank"></td>
+										<td>
+											<button onclick="copyCashierbank();">複製</button>
+										</td>
+									</tr>
+									<tr>
+										<td id="cashierData"></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td id="cashierNote"></td>
+										<td>
+											<button onclick="copyCashierNote();">複製</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<hr>
+							<h3>入款後填寫以下資訊 （*必填)</h3>
+							<table class="saved">
+								<tbody>
+									<tr>
+										<td>*銀行單號：</td>
+										<td>
+											<input type="text" id="rechargeBankSid" onkeyup="chkInputRechargeBankSid();" maxlength="20">
+										</td>
+										<td>
+											<span id="rechargeBankSidIcon"></span>
+										</td>
+									</tr>
+									<tr>
+										<td>會員帳號：</td>
+										<td>
+											<input type="text" id="rechargeAccName" readonly>
+										</td>
+										<td>
+											<span id="rechargeAccNameIcon"></span>
+										</td>
+									</tr>
+									<tr>
+										<td>存款金額：</td>
+										<td>
+											<input type="text" id="rechargeAmountCheck" readonly>
+										</td>
+										<td>
+											<span id="rechargeAmountCheckIcon"></span>
+										</td>
+									</tr>
+									<tr>
+										<td>附言：</td>
+										<td>
+											<input type="text" id="cashierNoteCheck" readonly>
+										</td>
+										<td>
+											<span id="cashierNoteCheckIcon"></span>
+										</td>
+									</tr>
+									<tr>
+										<td>*存款人姓名：</td>
+										<td>
+											<input type="text" id="rechargeBankAccName" onkeyup="chkInputRechargeAccName();" maxlength="20">
+										</td>
+										<td>
+											<span id="rechargeBankAccNameIcon"></span>
+										</td>
+									</tr>
+									<tr>
+										<td>*存款帳號：</td>
+										<td>
+											<input type="text" id="rechargeBankAcc" onkeyup="chkInputRechargeBankAcc();" maxlength="20">
+										</td>
+										<td>
+											<span id="rechargeBankAccIcon"></span>
+										</td>
+									</tr>
+									<tr>
+										<td>*存款銀行：</td>
+										<td>
+											<input type="text" id="rechargeBank" onkeyup="chkInputRechargeBank();" maxlength="20">
+										</td>
+										<td>
+											<span id="rechargeBankIcon"></span>
+										</td>
+									</tr>
+									<tr>
+										<td>*到帳時間：</td>
+										<td>
+											<input type="text" id="rechargeBankDate" onclick="newCalendar(this, this.id, 1)" readonly>
+										<td>
+											<span id="rechargeBankDateIcon"></span>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<button onclick="conformRechargeInfo();">提交</button>
+							<button onclick="cleanRechargeInfo();">重置</button>
+						</div>
+					</div>
+					<div class="right-side hidden" id="onlineRechargeDiv">
+						<p>
+							＊單筆存款金额在 100 － 200000 元之間。
+							<br>
+							＊轉帳完成後請保留單據作為核對證明。
+							<br>
+							＊如有任何問題請諮詢客服人員。
+						</p>
+						<hr>
+						<table>
+							<tbody>
+								<tr>
+									<td>存款金額：</td>
+									<td>
+										<input type="text">
+									</td>
+								</tr>
+								<tr>
+									<td>支付方式：</td>
+									<td>
+										<a href="javascript:void(0);">銀行</a>
+										<a href="javascript:void(0);">銀行</a>
+										<a href="javascript:void(0);">銀行</a>
+										<a href="javascript:void(0);">銀行</a>
+										<a href="javascript:void(0);">銀行</a>
+										<br>
+										<a href="javascript:void(0);">銀行</a>
+										<a href="javascript:void(0);">銀行</a>
+										<a href="javascript:void(0);">銀行</a>
+										<a href="javascript:void(0);">銀行</a>
+										<a href="javascript:void(0);">銀行</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<button>提交</button>
+						<button>重置</button>
+					</div>
+					<div class="right-side hidden" id="alipayRechargeDiv"></div>
+					<div class="right-side hidden" id="weChatRechargeDiv"></div>
+					<div class="right-side hidden" id="qqRechargeDiv"></div>
+				</div>
+				<!-- 充值中心_在線支付 結束 -->
+				<!-- 在線取款 開始 -->
+				<div class="container-take-online hidden" id="takeOnlineDiv">
+					<img src="img/icon-takeonline.png">
+					<h1>
+						<img src="img/title-05.png">
+					</h1>
+					<h3>
+						<span>取款</span>
+						<i></i>
+					</h3>
+					<!-- 狀況1 未綁定銀行卡 開始 -->
+					<ul class="unbind" id="canNotWithdrawDiv">
+						<li>
+							<p>尚未綁定任何銀行卡，請至會員中心做設定！</p>
+						</li>
+						<li>
+							<button onclick="openMemberDiv();">前往會員中心</button>
+						</li>
+					</ul>
+					<!-- 狀況1 結束 -->
+					<!-- 狀況2 有綁定銀行卡 開始 -->
+					<ul class="bind" id="canWithdrawDiv">
+						<div>
+							<img src="img/icon-money.png">
+							<span id="lockAmount"></span>
+						</div>
+						<li>
+							<span>取款金額</span>
+							<input type="text" id="withdrawalAmount" onkeyup="checkWithdrawalOrderAmount(this.value);">
+							<span>單筆取款範圍100元至200000.00元。每天最高取款金額：20萬</span>
+						</li>
+						<li>
+							<span>銀行帳戶</span>
+							<select id="bankInfoList" onchange="changeBankCard(this.value);">
+							</select>
+						</li>
+						<li>
+							<span>取款密碼</span>
+							<input type="password" id="orderWithdrawPwd" onkeyup="chkInputOrderWithdrawPwd();" maxlength="6">
+						</li>
+						<li>
+							<button onclick="conformWithdrawalInfo();">確定</button>
+						</li>
+					</ul>
+					<!-- 狀況2 結束 -->
+				</div>
+				<!-- 在線取款 結束 -->
+				<!-- 遊戲紀錄開始 -->
+				<div class="container-record hidden" id="gameRecordDiv">
+					<img src="img/icon-gamerecord.png">
+					<h1>
+						<img src="img/title-07.png">
+					</h1>
+					<div class="left-side">
+						<a href="javascript:openGameRecordDiv(0)" id="vedioGameRecord">電子遊藝</a>
+						<a href="javascript:openGameRecordDiv(1)" id="lotteryGameRecord">彩票投注</a>
+						<a href="javascript:openGameRecordDiv(2)" id="realityGameRecord">真人娛樂</a>
+						<a href="javascript:openGameRecordDiv(3)" id="sportGameRecord">體育投注</a>
+					</div>
+					<button onclick="backToGameTotleRecordsDiv();" class="return" id="backToGameTotleRecords" style="display: none;">
+						<img src="img/icon-return.png">
+						回上頁
+					</button>
+					<div class="right-side cash" id="gameRecordSearch">
+						<h3>
+							<span id="gameRecordTitle">遊戲紀錄</span>
+							<i></i>
+						</h3>
+						<p>
+							<span>
+								日期：
+								<input type="text" id="gameRecordStartTime" onclick="newCalendar(this, this.id, 1)" readonly>
+								-
+								<input type="text" id="gameRecordEndTime" onclick="newCalendar(this, this.id, 2)" readonly>
+								<a href="javascript:void(0);" class="a-button" onclick="gameRecordChoseToday();">今日</a>
+								<a href="javascript:void(0);" class="a-button" onclick="gameRecordChoseThreeDay();">三日</a>
+								<a href="javascript:void(0);" class="a-button" onclick="gameRecordChoseThisWeek();">七日</a>
+							</span>
+							<button onclick="confromSearchGmaeRecords();">查詢</button>
+						</p>
+						<p class="remind">*遊戲記錄最多可查詢七日內</p>
+						<table id="gameTotleRecordstable"></table>
+						<div class="pagination">
+							<a href="javascript:void(0);">◀</a>
+							<span>1</span>
+							<a href="javascript:void(0);">▶</a>
+							<span>第1頁, 共1頁</span>
+						</div>
+					</div>
+					<div class="right-side cash" id="eachGameRecord" style="display: none;">
+						<table id="gameRecordstable" class="table-zebra tr-hover"></table>
+						<div class="pagination">
+							<p class="media-control text-center">
+								<span>
+									一頁
+									<select id="gameRecordCountList" onchange="confromSearchGmaeRecords();">
+										<option value="25">25筆</option>
+										<option value="50">50筆</option>
+										<option value="75">75筆</option>
+									</select>
+								</span>
+								<a href="javascript:void(0);" class="backward" onclick="firstGameRecordsPage();"></a>
+								<a href="javascript:void(0);" class="backward-fast" onclick="previousGameRecordsPage();"></a>
+								<span>
+									總頁數：
+									<i id="gameRecordsNowPage">1</i>
+									<span>/</span>
+									<i id="gameRecordsTotlePage">1</i>
+									頁
+								</span>
+								<a href="javascript:void(0);" class="forward" onclick="nextGameRecordsPage();"></a>
+								<a href="javascript:void(0);" class="forward-fast" onclick="lastGameRecordsPage();"></a>
+							</p>
+						</div>
+					</div>
+				</div>
+				<div id="recordDiv2" class="bg-record2" style="display: none;">
+					<div class="record2">
+						<a href="javascript:closeRecord2Btn()" class="close">╳</a>
+						<table id="recordDiv2Table"></table>
+					</div>
+				</div>
+				<!-- 遊戲紀錄結束 -->
+				<!-- 會員中心_帳戶資料 開始 -->
+				<div class="container-member hidden" id="memberDiv">
+					<img src="img/icon-member.png">
+					<h1>
+						<img src="img/title-03.png">
+					</h1>
+					<div class="left-side">
+						<a href="javascript:openAccDataDiv()" id="accData">帳戶資料</a>
+						<a href="javascript:openAddAccBankCardDiv()" id="addAccBankCard">取款銀行卡</a>
+						<a href="javascript:openUpdateAccPwdDiv()" id="updateAccPwd">修改密碼</a>
+						<a href="javascript:openAccCashDataDiv()" id="accCashData">存取款紀錄</a>
+					</div>
+					<div class="right-side" id="rightSideDiv">
+						<div id="accDataDiv" class="hidden">
+							<h3>
+								<span>帳戶資料</span>
+								<i></i>
+							</h3>
+							<table>
+								<tbody>
+									<tr>
+										<td>可用餘額：</td>
+										<td class="text">
+											<span id="accBalanceData"></span>
+										</td>
+									</tr>
+									<tr>
+										<td>會員帳號：</td>
+										<td class="text">
+											<span id="accNameData"></span>
+										</td>
+									</tr>
+									<tr>
+										<td>真實姓名：</td>
+										<td class="text">
+											<span id="memberRealNameData"></span>
+											<input type="text" id="memberRealName" maxlength="20" style="display: none;">
+										</td>
+										<td>
+											<span id="memberRealNameCaveat" class="smalltext text"></span>
+										</td>
+										<td id="memberRealTextWarning" class="smalltext text">此欄位會跟銀行卡用戶名資料一樣，請輸入正確的資料</td>
+									</tr>
+									<tr>
+										<td>暱稱：</td>
+										<td class="text">
+											<span id="nickNameData" style="display: inline-block;"></span>
+											<input type="text" id="nickName" maxlength="20">
+										</td>
+										<td>
+											<span id="nickNameCaveat" class="smalltext text"></span>
+										</td>
+										<td id="nickNameTextWarning" class="smalltext text">此欄位必填</td>
+									</tr>
+									<tr>
+										<td>手機號碼：</td>
+										<td class="text">
+											<span id="phoneNumberData" style="display: inline-block;"></span>
+											<input type="text" id="phoneNumber" onkeyup="checkPhoneNumber();" maxlength="20">
+										</td>
+										<td>
+											<span id="phoneNumberCaveat"></span>
+										</td>
+										<td id="phoneNumberTextWarning" class="smalltext text">此欄位必填</td>
+									</tr>
+									<tr>
+										<td>QQ：</td>
+										<td class="text">
+											<span id="qqAccountData" style="display: inline-block;"></span>
+											<input type="text" id="qqAccount" onkeyup="checkInputTextData(this.id,this.value);" maxlength="20">
+										</td>
+										<td>
+											<span id="qqAccountCaveat" class="smalltext text"></span>
+										</td>
+										<td id="qqTextWarning" class="smalltext text">QQ 或 微信 最少填寫一項</td>
+									</tr>
+									<tr>
+										<td>微信：</td>
+										<td class="text">
+											<span id="weChatAccountData" style="display: inline-block;"></span>
+											<input type="text" id="weChatAccount" onkeyup="checkInputTextData(this.id,this.value);" maxlength="20">
+										</td>
+										<td>
+											<span id="weChatAccountCaveat" class="smalltext text"></span>
+										</td>
+										<td id="weChatTextWarning" class="smalltext text">QQ 或 微信 最少填寫一項</td>
+									</tr>
+									<tr>
+										<td>
+											<button id="modifyBtn" onclick="onClickUpdateAccDetails()" style="display: inline-block;">修改</button>
+										</td>
+										<td>
+											<button class="buttonmove" id="saveBtn" onclick="confomSaveDetails()" style="display: none;">保存</button>
+											<button class="buttonmove" id="cancelBtn" onclick="closeUpdateAccDetails()" style="display: none;">取消</button>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div id="addAccBankCardDiv" class="hidden">
+							<h3>
+								<span>取款銀行卡</span>
+								<i></i>
+							</h3>
+							<button id="canAdd" onclick="openBankCard()" class="can hidden">
+								<img src="img/icon-add01.png">
+								新增
+							</button>
+							<button id="donotAdd" class="cannot hidden">
+								<img src="img/icon-add.png">
+								新增
+							</button>
+							<p id="addBankCardSlogan" class="smalltext"></p>
+							<!-- 新增銀行卡組合 開始 -->
+							<div class="card-set">
+								<div id="CardDiv1">
+									<p id="Card1"></p>
+									<p id="Bank1"></p>
+									<p id="BankAcc1"></p>
+									<p id="BankCard1"></p>
+									<p id="BankBranches1"></p>
+								</div>
+								<div id="CardDiv2">
+									<p id="Card2"></p>
+									<p id="Bank2"></p>
+									<p id="BankAcc2"></p>
+									<p id="BankCard2"></p>
+									<p id="BankBranches2"></p>
+								</div>
+							</div>
+							<!-- 新增銀行卡組合 結束 -->
+						</div>
+						<div id="updateAccPwdDiv" class="hidden">
+							<h3>
+								<span>修改密碼</span>
+								<i></i>
+							</h3>
+							<div class="tab-area">
+								<div class="btn-area">
+									<a href="javascript:openTabLogin()" id="changeLoginBtn" class="active">修改登入密碼</a>
+									<a href="javascript:openTake()" id="changeTakeBtn">修改取款密碼</a>
+								</div>
+								<div id="tabLogin">
+									<table>
+										<tbody>
+											<tr>
+												<td>舊密碼</td>
+												<td>
+													<input type="password" id="memOldPwd" onkeyup="checkPwd(this.id);" maxlength="20">
+												</td>
+												<td>
+													<span id="memOldPwdWarning"></span>
+												</td>
+											</tr>
+											<tr>
+												<td>新密碼</td>
+												<td>
+													<input type="password" id="memNewPwd" onkeyup="checkPwd(this.id);" maxlength="20">
+												</td>
+												<td>
+													<span id="memNewPwdWarning"></span>
+												</td>
+												<td>密碼至少4~20個字元長，並只能英文跟數字組合(請注意大小差別)</td>
+											</tr>
+											<tr>
+												<td>確認新密碼</td>
+												<td>
+													<input type="password" id="memCheckNewPwd" onkeyup="checkPwd(this.id);" maxlength="20">
+												</td>
+												<td>
+													<span id="memCheckNewPwdWarning"></span>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+									<button onclick="updateMemPwd();">確認</button>
+									<button onclick="clearUpdateMemPwd();">清除</button>
+								</div>
+								<div id="tabTake">
+									<p>請聯繫在線客服人員</p>
+									<button>點擊諮詢</button>
+								</div>
+							</div>
+						</div>
+						<div id="accCashDataDiv" class="hidden">
+							<h3>
+								<span>存取款紀錄</span>
+								<i></i>
+							</h3>
+							<p>
+								<span>
+									日期
+									<button>今日</button>
+									<button>昨日</button>
+									<button>7日內</button>
+									<button>30日內</button>
+								</span>
+								<span>
+									類別
+									<select>
+										<option>全部</option>
+										<option>存款</option>
+										<option>取款</option>
+									</select>
+								</span>
+							</p>
+							<table>
+								<tbody>
+									<tr>
+										<th>日期</th>
+										<th>單號</th>
+										<th>交易類別</th>
+										<th>狀態</th>
+										<th>申請金額</th>
+										<th>優惠金額</th>
+										<th>備註</th>
+									</tr>
+									<tr>
+										<td>2018/1/23</td>
+										<td>000003</td>
+										<td>線上取款</td>
+										<td>審查中</td>
+										<td>100.00</td>
+										<td>0.00</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td>2018/1/23</td>
+										<td>000002</td>
+										<td>線上取款</td>
+										<td>拒絕</td>
+										<td>20000.00</td>
+										<td>0.00</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td>2018/1/23</td>
+										<td>000001</td>
+										<td>線上取款</td>
+										<td>通過</td>
+										<td>1000.00</td>
+										<td>1.20</td>
+										<td></td>
+									</tr>
+								</tbody>
+							</table>
+							<div class="pagination">
+								<a href="javascript:void(0);">&lt;</a>
+								<a href="javascript:void(0);">1</a>
+								<a href="javascript:void(0);">&gt;</a>
+								<span>第1頁, 共5頁</span>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- 會員中心_帳戶資料 結束 -->
+				<!-- 彈出入帳訊息 開始 -->
+				<div id="messageSave" class="bg-message">
+					<div class="message-save">
+						<p>約Ｏ分後會入帳，請耐心稍候</p>
+					</div>
+				</div>
+				<!-- 彈出入帳訊息 開始 -->
+				<!-- 彈出視窗_新增取款銀行卡 開始 -->
+				<div id="bankCardDiv" class="bg-bankcard" style="display: none;">
+					<div class="add-bankcard">
+						<a href="javascript:closeBankCardDiv()" class="close">✕</a>
+						<table>
+							<tbody>
+								<tr>
+									<td>銀行名稱</td>
+									<td>
+										<input type="text" id="bank" placeholder="此欄位必填" onKeyUp="chkInputBank();" maxlength="20">
+									</td>
+									<td>
+										<span id="bankIcon"></span>
+									</td>
+									<td id="checkBankTextIcon"></td>
+								</tr>
+								<tr>
+									<td>帳戶名稱</td>
+									<td>
+										<input type="text" id="bankAccName" readonly>
+									</td>
+									<td>
+										<span id="bankAccNameIcon"></span>
+									</td>
+									<td id="checkBankAccNameTextIcon">銀行卡帳戶名稱需與會員真實姓名相同!</td>
+								</tr>
+								<tr>
+									<td>卡號</td>
+									<td>
+										<input type="text" id="bankAcc" placeholder="此欄位必填" onKeyUp="this.value=chkInputBankAcc(this.value);"
+											onMouseOut="this.value=onchgInputBankAcc(this.value);" onChange="this.value=onchgInputBankAcc(this.value);" maxlength="20"
+										>
+									</td>
+									<td>
+										<span id="bankAccIcon"></span>
+									</td>
+									<td id="checkBankAccTextIcon"></td>
+								</tr>
+								<tr>
+									<td>開戶行</td>
+									<td>
+										<input type="text" id="bankCardBranches" placeholder="此欄位必填" onKeyUp="chkInputBankBranches();" maxlength="20">
+									</td>
+									<td>
+										<span id="bankCardBranchesIcon"></span>
+									</td>
+									<td id="checkBankCardBranchesTextIcon">例如：上海市真北路支行</td>
+								</tr>
+								<tr>
+									<td>開戶所屬地區</td>
+									<td>
+										<input type="text" id="area" placeholder="此欄位必填" onKeyUp="chkInputBankArea();" maxlength="20">
+									</td>
+									<td>
+										<span id="areaIcon"></span>
+									</td>
+									<td id="checkAreaTextIcon">例如：上海</td>
+								</tr>
+							</tbody>
+						</table>
+						<button onclick="confromAddBankCard()">確認新增</button>
+						<button onclick="cleanAddBankCardText()">清除</button>
+					</div>
+				</div>
+				<!-- 彈出視窗_新增取款銀行卡 結束 -->
+			</div>
+			<!-- 主內容 結束 -->
+			<!-- 頁尾 開始 -->
+			<footer id="footerDiv">
+				<p class="service-area">
+					<img src="img/iconfooter01.png">
+					<span>24小時服務電話：1234567890</span>
+					<img src="img/iconfooter02.png">
+					<span>投訴電話：1234567890</span>
+					<img src="img/iconfooter03.png">
+					<span>
+						連絡信箱：
+						<a href="mailto:xxxxx@xxxx.xxx">xxxxx@xxxx.xxx</a>
+					</span>
+					<img src="img/iconfooter04.png">
+					<span>7x24小時在線客服</span>
+				</p>
+				<div class="partner-area">
+					<span>合作夥伴</span>
+					<div class="icon-company">
+						<a href="javascript:void(0);">
+							<img src="img/company01.png">
+						</a>
+						<a href="javascript:void(0);">
+							<img src="img/company02.png">
+						</a>
+						<a href="javascript:void(0);">
+							<img src="img/company03.png">
+						</a>
+						<a href="javascript:void(0);">
+							<img src="img/company04.png">
+						</a>
+						<a href="javascript:void(0);">
+							<img src="img/company05.png">
+						</a>
+					</div>
+				</div>
+				<p class="footer-nav">
+					<a href="javascript:void(0);">關於我們</a>
+					<a href="javascript:void(0);">聯繫我們</a>
+					<a href="javascript:void(0);">存款幫助</a>
+					<a href="javascript:void(0);">取款幫助</a>
+					<a href="javascript:void(0);">規則條款</a>
+					<a href="javascript:void(0);">常見問題</a>
+				</p>
+				<div class="browser-area">
+					<a href="https://www.google.cn/intl/zh-CN/chrome/" target="_new">
+						<img src="img/icon_chrome.png">
+					</a>
+					<a href="https://www.mozilla.org/zh-CN/firefox/new/" target="_new">
+						<img src="img/icon_firefox.png">
+					</a>
+					<a href="javascript:void(0);">
+						<img src="img/icon_ie.png">
+					</a>
+					<p>為了更好的操作體驗請選Google Chrome、Firefox、IE10瀏覽器，點擊即可下載</p>
+				</div>
+				<p class="copyright">Copyright © 2018 Creat Trust Information Corporation, All Rights Reserved</p>
+			</footer>
+			<!-- 頁尾 結束 -->
+			<!-- 浮動廣告區 開始 -->
+			<div id="adDiv">
+				<div id="adLeft" class="ad-left">
+					<i class="btn-close" onclick="closeAd(this)">✕</i>
+					<a href="javascript:void(0);"></a>
+				</div>
+				<!-- 左下方廣告 -->
+				<div id="adLeftBottom" class="ad-left-bottom">
+					<i class="btn-close" onclick="closeAd(this)">✕</i>
+					<a href="javascript:void(0);"></a>
+				</div>
+				<!-- 右側廣告 -->
+				<div id="adRight" class="ad-right">
+					<i class="btn-close" onclick="closeAd(this)">✕</i>
+					<a href="javascript:void(0);"></a>
+				</div>
+				<!-- 右下方廣告 -->
+				<div id="adRightBottom" class="ad-right-bottom">
+					<i class="btn-close" onclick="closeAd(this)">✕</i>
+					<a href="javascript:void(0);"></a>
+				</div>
+			</div>
+			<!-- 浮動廣告區 結束 -->
+		</div>
+	</div>
+	<!-- 浮動廣告區 結束 -->
+	<!-- 浮動廣告區 結束 -->
+</body>
+</html>

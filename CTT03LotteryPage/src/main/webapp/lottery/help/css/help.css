@@ -1,0 +1,244 @@
+﻿/* 20180627 Ason */
+/* common */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 微軟正黑體;
+	font-size: 14px;
+}
+h1,h1 span,h2 {
+	font-family: Heiti TC;
+	font-weight: bold;
+}
+main h1 {
+	padding-bottom: 2px;
+}
+
+.content-fluid {
+	width: 1300px;
+	margin: 0 auto;
+}
+.hidden {
+	display: none;
+}
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+.text-left {
+	text-align: left !important;
+}
+.width-fix-1 {
+	width: 11%;
+}
+
+/* 頁首 */
+header {
+	margin-top: 20px;
+	margin-bottom: 10px;
+}
+
+/* 左側列 */
+aside {
+	overflow: hidden;
+	float: left;
+	width: 15%;
+	margin-right: 15px;
+}
+aside .menu-title {
+	width: 100%;
+	background-color: #cc0066;
+	border-top-left-radius: 6px;
+	border-top-right-radius: 6px;
+}
+aside .menu-title p {
+	font-size: 18px;
+	color: white;
+	text-align: center;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+aside ul {
+	list-style: none;
+	width: 100%;
+	border: 1px solid #dcdcdc;
+	border-top: none;
+	border-bottom-left-radius: 6px;
+	border-bottom-right-radius: 6px;
+	padding-left: 0;
+}
+aside ul li {
+	border-bottom: 1px solid #dcdcdc;
+}
+aside ul li:first-child {
+	border-top: none;
+}
+aside ul li:last-child {
+	border-bottom: none;
+}
+aside ul li a {
+	display: block;
+	color: #444;
+	text-decoration: none;
+	padding: 15px 10px 15px 60px;
+}
+aside ul li a:hover, aside ul li a.active  {
+	background-color: orange;
+	color: white;
+}
+
+/* 主內容 */
+main {
+	float: left;
+	width: 83.8%;
+	border: 1px solid #dcdcdc;
+	border-radius: 6px;
+	padding: 40px;
+}
+main h1 {
+	font-size: 36px;
+	color: #cc0066;
+}
+main h1 i.icon-h1 {
+	display: inline-block;
+	width: 40px;
+	margin-right: 10px;
+}
+main h1 i.icon-h1 img {
+	width: 100%;
+	vertical-align: bottom;
+}
+main h1 span {
+	font-size: 36px;
+	color: #555;
+}
+main h2 {
+	font-size: 24px;
+	color: #cc0066;
+	margin-top: 5px;
+	margin-bottom: 20px;
+}
+main h2 span {
+/*	font-size: 24px;
+	margin-right: 5px;*/
+}
+main table {
+	width: 100%;
+	border-collapse: collapse;
+}
+main section.rule-play table {
+	margin-top: 25px;
+	margin-bottom: 50px;
+}
+main section.rule-play table:last-child {
+	margin-bottom: 0;
+}
+main section.rule-play table strong {
+	color: #d80202;
+}
+main table tr th {
+	background-color: #F3F3F3;
+	border: 1px solid #dcdcdc;
+	font-size: 15px;
+	color: black;
+	padding: 15px;
+}
+main table.time-area tr th {
+	background-color: DimGray;
+	color: white;
+}
+main p.note-01 {
+	margin-top: 5px;
+	margin-bottom: 30px;
+}
+main table tr td {
+	border: 1px solid #dcdcdc;
+	text-align: center;
+	padding: 15px;
+}
+main table.time-area tr td {
+	border: 1px solid #dcdcdc;
+}
+main section.rule-play table tr th:first-child {
+	width: 30%;
+}
+main section.rule-play table tr th:last-child {
+	width: 35%;
+}
+main section.rule-play table tr td:first-child {
+}
+main section.rule-play table tr td p {
+	line-height: 18px;
+	padding-top: 5px;
+    padding-bottom: 5px;
+}
+main section.rule-play table tr td p:first-child {
+	padding-top: 0;
+}
+main section.rule-play table tr td p:last-child {
+	padding-bottom: 0;
+}
+main ul.menu-play {
+	list-style: none;
+	padding-left: 0;
+	margin-bottom: 36px;
+}
+main ul.menu-play li {
+	width: 33.3333%;
+	border: 1px solid #dcdcdc;
+	border-right: none;
+	text-align: center;
+	float: left;
+}
+main ul.menu-play li:last-child {
+	border-right: 1px solid #dcdcdc;
+}
+main ul.menu-play li a {
+	display: block;
+	background-color: #F3F3F3;
+	color: black;
+	text-decoration: none;
+	padding: 13px;
+}
+main ul.menu-play li a:hover {
+	background-color: orange;
+	color: white;
+}
+main hr {
+	width: 100%;
+	height: 0;
+	border: none;
+    border-top: 1px solid #dcdcdc;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+main ol.intro-type {
+	padding-left: 24px;
+}
+main ol.intro-type li p {
+	line-height: 24px;
+    margin-bottom: 18px;
+}
+
+/* 頁尾 */
+footer {
+	width: 100%;
+	text-align: center;
+	clear: both;
+}
+footer .gotop {
+	display: inline-block;
+	margin: 50px auto 50px;
+}
+footer .gotop a {
+	color: black;
+	text-decoration: none;
+}
+footer .gotop a:hover {
+	color: #aaa;
+}
+footer .gotop a span {
+	display: block;
+}

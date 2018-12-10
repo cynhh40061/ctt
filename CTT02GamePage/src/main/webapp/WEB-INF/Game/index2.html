@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<link rel="stylesheet" href="css/guess.css">
+<link rel="stylesheet" href="css/guide.css">
+<title>三國猜拳_三頁合併</title>
+<script type="text/javascript">
+	function loadScript(url, callback) {
+		// adding the script tag to the head as suggested before
+		var head = document.getElementsByTagName('head')[0];
+		var script = document.createElement('script');
+		script.type = 'text/javascript';
+		script.charset = 'utf-8';
+		script.src = url;
+		if (!callback)
+			callback = function() {
+			}; // ★★★★★★★★★ JUST ADD THIS LINE!
+
+		// bind the event to the callback function 
+		if (script.addEventListener) {
+			script.addEventListener("load", callback, false); // IE9+, Chrome, Firefox
+		} else if (script.readyState) {
+			script.onreadystatechange = callback; // IE8
+		}
+		// fire the loading
+		head.appendChild(script);
+	}
+
+	function initOnLoad() {
+		loadWebSocketJs();
+	}
+
+	function loadSWFObjJs() {
+		loadScript("js/swfobject.js?id=" + new Date().getTime(), function() {
+			loadWebSocketJs();
+		});
+	}
+
+	function loadWebSocketJs() {
+		loadScript("js/web_socket.js?id=" + new Date().getTime(), function() {
+			loadToolsJs();
+		});
+	}
+
+	function loadToolsJs() {
+		loadScript("js/tools.js?id=" + new Date().getTime(), function() {
+			loadPuncheGameJs();
+		});
+	}
+
+	function loadPuncheGameJs() {
+		loadScript("js/puncheGame.js?id=" + new Date().getTime(), function() {
+			loadGuessJs();
+		});
+	}
+
+	function loadGuessJs() {
+		loadScript("js/guess.js?id=" + new Date().getTime(), function() {
+			connectWs();
+		});
+	}
+
+	function connectWs() {
+		getPlayerBasicInfo();
+		openGameSocket();
+	}
+</script>
+</head>
+<body onload="initOnLoad();">
+	<!-- 通用樣式 開始 -->
+	<div calss="full-screen">
+		<!-- 共用訊息視窗(不含按鈕) 開始 -->
+		<!-- text-center 置中  text-left 置左 -->
+		<div class="modal-area hidden" id="messageWindowsNotBnt">
+			<div class="modal-content">
+				<p class="text-center" id="messageWindowsNotBntText"></p>
+			</div>
+		</div>
+		<!-- 共用訊息視窗 結束 -->
+		<!-- 共用訊息視窗(含按鈕)  開始 -->
+		<div class="modal-area hidden" id="messageWindows">
+			<div class="modal-content btn">
+				<p class="text-left" id="messageWindowsText">
+					<button id="messageWindowsBnt">確定</button>
+				</p>
+			</div>
+		</div>
+		<!-- 共用訊息視窗 結束 -->
+		<div class="container-fluid">
+			<!-- 載入頁 開始 -->
+			<div class="loading hidden" id="loadingId">
+				<p>載入中....</p>
+			</div>
+			<!-- 載入頁 結束 -->
+			<!-- 全螢幕遮罩 開始 -->
+			<div class="mask hidden" id="maskId"></div>
+			<!-- 全螢幕遮罩 結束 -->
+			<!-- 功能選單 開始 -->
+			<nav>
+				<ul>
+					<li id="changeRoleBtn"><a href="javascript:openCharacter()" class="role" title="選擇角色"></a></li>
+					<li><a href="javascript:openSubmenu()" class="setup" title="設定"></a>
+						<div id="subMenu" class="submenu">
+							<a href="#" class="music" title="音樂"></a> <a href="#" class="sound" title="音效"></a> <a href="/CTT02GamePage/guide.html" target="_blank"
+								class="help" title="幫助"
+							></a>
+						</div></li>
+					<li id="goBackAllBtn"></li>
+				</ul>
+			</nav>
+			<!-- 功能選單 結束 -->
+			<!-- 玩家資訊 開始 -->
+			<div class="info user" id="playerInfoDiv" onclick="menuHidden();">
+				<div class="role-sm">
+					<img id="playerRoleDiv">
+				</div>
+				<p class="nickname" id="playerNameDiv"></p>
+				<p class="cash">
+					<span id="playerCashDiv"></span><i id="changeCash"></i>
+				</p>
+				<a href="javascript:startRobot()" id="btnComputer" class="computer hidden">電腦託管</a>
+			</div>
+			<!-- 玩家資訊 結束 -->
+			<!-- 帳戶資訊_對手 開始 -->
+			<div class="info guest hidden" id="opponentInfoDiv" onclick="menuHidden();">
+				<div class="role-sm">
+					<img id="opponentRoleDiv">
+				</div>
+				<p class="nickname" id="opponentNameDiv"></p>
+				<p class="cash">
+					<span id="opponentCashDiv"></span>
+				</p>
+				<!--	<p id="opponentBtnComputer" class="computer hidden">電腦託管</p>  -->
+				<p id="opponentBtnComputer" class="computer hidden">電腦託管中...</p>
+			</div>
+			<!-- 帳戶資訊_對手 結束 -->
+			<!-- 首頁 開始 -->
+			<section id="indexSection" class="index" onclick="menuHidden();">
+				<!-- 提示 開始 -->
+				<div id="noticeFirstDiv" class="bg-notice hidden">
+					<div class="notice">
+						<!-- 首次進入遊戲 開始 -->
+						<div class="first">
+							<p>第一次進入遊戲，須先選擇角色。</p>
+							<button onclick="openCharacter()">確認</button>
+						</div>
+						<!-- 首次進入遊戲 結束 -->
+					</div>
+				</div>
+				<div id="noticgoBackeDiv" class="bg-notice hidden">
+					<div class="notice">
+						<!-- 上局遊戲尚未結束 開始 -->
+						<div class="goback" id="goBackLastGameServer">
+							<p>上局遊戲尚未結束是否返回？</p>
+							<button onclick="goBackLastGame()">確認</button>
+							<button onclick="closeBackNotice()">取消</button>
+						</div>
+						<!-- 上局遊戲尚未結束 結束 -->
+					</div>
+				</div>
+				<!-- 提示 結束-->
+				<!-- 遊戲主標 開始 -->
+				<h1>
+					<img src="img/icon_logo_24.png">
+				</h1>
+				<!-- 遊戲主標 結束 -->
+				<!-- 對戰組合 開始 -->
+				<div class="hall" id="gameTypeDiv"></div>
+				<!-- 對戰組合 結束 -->
+			</section>
+			<!-- 首頁 結束 -->
+			<!-- 選角 開始 -->
+			<section id="characterSection" class="character" onclick="menuHidden();">
+				<!-- 角色選取 開始 -->
+				<div class="slide" id="countryBgColor">
+					<div class="role-xl">
+						<img id="selectRoleImgId">
+					</div>
+					<div class="title">
+						<h2 id="selectRoleTitleId"></h2>
+					</div>
+					<div class="text" id="selectRoleTextId"></div>
+					<a href="javascript:selectRoleTurnPrev();" class="arrow left"></a> <a href="javascript:selectRoleTurnNext();" class="arrow right"></a>
+				</div>
+				<a href="javascript:selectRoleConfirm();" class="btn-confirm">確定</a>
+				<!-- 角色選取 結束 -->
+				<!-- 國家 開始 -->
+				<div class="country">
+					<a href="javascript:selectRoleCountry(1);">魏</a> <a href="javascript:selectRoleCountry(2);">蜀</a> <a href="javascript:selectRoleCountry(3);">吳</a>
+				</div>
+				<!-- 國家 結束 -->
+			</section>
+			<!-- 選角 結束 -->
+			<!-- 對戰場景 開始 -->
+			<section id="gameSection" class="game" onclick="menuHidden();">
+				<!-- 連線中提示 開始 -->
+				<div class="bg-notice hidden" id="bgNotice">
+					<div class="notice">
+						<p>連線中請稍候・・・</p>
+						<button onclick="onclickRestartGameExit()">離開</button>
+					</div>
+				</div>
+				<!-- 連線中提示結束 -->
+				<!-- 對戰組合 開始 Tital -->
+				<div class="hall-name">
+					<p class="fast" id="fastTital">快速戰</p>
+					<p class="three" id="threeTital">三戰兩勝</p>
+					<p class="five" id="fiveTital">五戰三勝</p>
+				</div>
+				<!-- 對戰組合 結束 Tital -->
+				<!-- 選取注額 開始 -->
+				<div class="bet-area" id="selectBetDivOuter">
+					<h3>選取注額</h3>
+					<div id="selectBetDivInner"></div>
+				</div>
+				<!-- 選取注額 結束 -->
+				<!-- 角色_玩家 開始 -->
+				<div class="role player hidden" id="playerRoleInGame">
+					<img id="playerRoleImg"><i></i>
+				</div>
+				<!-- 角色_玩家 結束 -->
+				<!-- 角色_對手 開始 -->
+				<div class="role guest hidden" id="opponentRoleInGame">
+					<img id="opponentRoleImg"><i></i>
+				</div>
+				<!-- 角色_對手 結束 -->
+				<!-- 配對中 開始 -->
+				<div class="match hidden" id="matchMsgDiv">
+					<p>配對中</p>
+				</div>
+				<!-- 配對中 結束 -->
+				<!-- 等待對手 開始 -->
+				<div class="wait hidden" id="waitOpponentDiv">
+					<p>等待對手加入...</p>
+				</div>
+				<!-- 等待對手 結束 -->
+				<!-- 比賽/局數 開始 -->
+				<div class="start">
+					<p class="hidden" id="RoundNumber"></p>
+				</div>
+				<!-- 比賽/局數 結束 -->
+				<!-- 玩家_勝局/血量 開始 -->
+				<!--  <div class="round-area player hidden" id="playerRoundArea">
+				<div class="win" id="lifePointOfPlayer">
+					<i class="active"></i>
+					<i class="active"></i>
+					<i></i>
+				</div>
+				<div class="blood player">
+					<div id="percentOfPlayer"></div>
+				</div>
+			</div> -->
+				<div class="round-area player hidden" id="playerRoundArea">
+					<div class="blood-mask" id="lifePointOfPlayer"></div>
+					<div class="blood player width-100" id="percentOfPlayer"></div>
+				</div>
+				<!-- 玩家 勝局/血量 結束 -->
+				<!-- 對手_勝局/血量 開始 -->
+				<!-- <div class="round-area guest hidden"  id="opponentRoundArea">
+				<div class="win"  id="lifePointOfOpponent">
+					<i class="active"></i>
+					<i></i>
+					<i></i>
+				</div>
+				<div class="blood guest">
+					<div id="percentOfOpponent"></div>
+				</div>
+			</div>-->
+				<div class="round-area guest hidden" id="opponentRoundArea">
+					<div class="blood-mask" id="lifePointOfOpponent"></div>
+					<div class="blood guest width-100" id="percentOfOpponent"></div>
+				</div>
+				<!-- 對手 勝局/血量 結束 -->
+				<!-- 倒數計數 開始 -->
+				<div class="countdown hidden" id="countdownDiv">
+					<p id="countdownValue"></p>
+					<p id="countdownTitle"></p>
+				</div>
+				<!-- 倒數計數 結束 -->
+				<!-- 選擇拳種 開始 -->
+				<div class="guess-area hidden" id="selectPuncheDiv">
+					<!-- <p>選擇拳種</p>
+				<a href="javascript:sendPaper()"><img id="selectPaper"  src="/CTT02GamePage/img/paper.png"></a>
+				<a href="javascript:sendScissor()"><img id="selectSissor"  src="/CTT02GamePage/img/sissor.png"></a>
+				<a href="javascript:sendRock()"><img id="selectRock"  src="/CTT02GamePage/img/rock.png"></a> -->
+					<a href="javascript:sendPaper()"><img id="selectPaper" src="/CTT02GamePage/img/icon_paper.png"><i id="clickSelectPaper"></i></a> <a
+						href="javascript:sendScissor()"
+					><img id="selectSissor" src="/CTT02GamePage/img/icon_scissors.png"><i id="clickSelectSissor"></i></a> <a href="javascript:sendRock()"><img
+						id="selectRock" src="/CTT02GamePage/img/icon_rock.png"
+					><i id="clickSelectRock"></i></a>
+				</div>
+				<!-- 選擇拳種 結束 -->
+				<!-- 比拳 開始 -->
+				<div class="fight hidden" id="fightDiv">
+					<i class="player"><img id="playerFight"></i> <i class="guest"><img id="opponentFight"></i>
+				</div>
+				<!-- 比拳 結束 -->
+				<!-- 動畫_玩家 開始 -->
+				<div class="animation player hidden" id="playerAniDiv">
+					<div class="ani-border"></div>
+					<canvas id=aniPlayer></canvas>
+				</div>
+				<!-- 動畫_玩家 結束 -->
+				<!-- 動畫_對手 開始 -->
+				<div class="animation guest hidden" id="opponentAniDiv">
+					<div class="ani-border"></div>
+					<canvas id="aniGuest"></canvas>
+				</div>
+				<!-- 動畫_對手 結束 -->
+				<!-- 比賽結果 開始 -->
+				<div class="relust hidden" id="gameRelust">
+					<p id="showResultText"></p>
+					<button onclick="sendKeepPlay(1)">再來一局</button>
+					<button onclick="sendKeepPlay(2)">離開</button>
+					<button onclick="sendKeepPlay(3)">換人一局</button>
+				</div>
+				<!-- 比賽結果 結束 -->
+				<!-- 電腦託管 開始 -->
+				<div id="computerAgency" class="computer-agency hidden">
+					<p>電腦託管中</p>
+					<button onclick="stopRobot()">取消託管</button>
+				</div>
+				<!-- 電腦託管 結束 -->
+			</section>
+			<!-- 對戰場景 結束 -->
+		</div>
+	</div>
+	<!-- 通用樣式 結束 -->
+	<div style="display: none">
+		<input type="hidden" name="gameType" value="" />
+		<input type="hidden" name="gameBet" value="" />
+		<input type="hidden" name="gameServerIP" value="192.168.1.16"/>
+		<input type="hidden" name="accId" value="$1" />
+		<input type="hidden" name="tokenId" value="$2" />
+		<input type="hidden" name="lastGameServer"	value=""/>
+		<input type="hidden" name="severList" value="" />
+		<input type="hidden" name="lifePoint" value="0" />
+		<input type="hidden" name="lifePointPlayer" value="0"/>
+		<input type="hidden" name="lifePointOpponent" value="0" />
+		<input type="hidden" name="alreadyLoadingSelectRole" value="0"/>
+		<input type="hidden" name="alreadyLoadingPlayerRole" value="0" />
+		<input type="hidden" name="alreadyLoadingOpponentRole" value="0" /> 
+		<input type="hidden" name="selectRoleNumber" value="0"	/> 
+		<input type="hidden" name="realRoleNumber" value="0" />
+		<input type="hidden" name="inGameing" value="0" /> 
+		<input type="hidden" name="effectStartIndex" value="8"/>
+		<input type="hidden" name="playerPunche" value="" /> <input type="hidden" name="showLoadingPage" value="0" />
+		<input type="hidden" name="restartGameVal" value="0"/>
+		<input type="hidden" name="webSocketClose" value="0" />
+		<input type="hidden" name="roomSetStatus" value="0" />
+		
+		<input type="hidden" name="isTokenTimeOut" value="0" />
+		
+		
+		<img id="defaultPaper" src="/CTT02GamePage/img/icon_paper_2.png">
+		<img id="defaultRock" src="/CTT02GamePage/img/icon_rock_2.png">
+		<img id="defaultSissor" src="/CTT02GamePage/img/icon_scissors_2.png">
+		<img id="defaultPlayGameBg1" src="/CTT02GamePage/img/bg_scence_1.jpg">
+		<img id="defaultPlayGameBg2" src="/CTT02GamePage/img/bg_scence_2.jpg"> 
+		<img id="defaultPlayGameBg3" src="/CTT02GamePage/img/bg_scence_3.jpg">
+		<img id="selectRole_11" src="/CTT02GamePage/img/selectRole/11.png">
+		<img id="selectRole_12" src="/CTT02GamePage/img/selectRole/12.png">
+		<img id="selectRole_13" src="/CTT02GamePage/img/selectRole/13.png">
+		<img id="selectRole_14" src="/CTT02GamePage/img/selectRole/14.png">
+		<img id="selectRole_15" src="/CTT02GamePage/img/selectRole/15.png">
+		<img id="selectRole_21" src="/CTT02GamePage/img/selectRole/21.png">
+		<img id="selectRole_22" src="/CTT02GamePage/img/selectRole/22.png">
+		<img id="selectRole_23" src="/CTT02GamePage/img/selectRole/23.png">
+		<img id="selectRole_24" src="/CTT02GamePage/img/selectRole/24.png">
+		<img id="selectRole_25" src="/CTT02GamePage/img/selectRole/25.png">
+		<img id="selectRole_31" src="/CTT02GamePage/img/selectRole/31.png">
+		<img id="selectRole_32" src="/CTT02GamePage/img/selectRole/32.png">
+		<img id="selectRole_33" src="/CTT02GamePage/img/selectRole/33.png">
+		<img id="selectRole_34" src="/CTT02GamePage/img/selectRole/34.png">
+		<img id="selectRole_35" src="/CTT02GamePage/img/selectRole/35.png">
+		<img id="selectRole_11_2" src="/CTT02GamePage/img/selectRole/sm/11.png">
+		<img id="selectRole_12_2" src="/CTT02GamePage/img/selectRole/sm/12.png">
+		<img id="selectRole_13_2"	src="/CTT02GamePage/img/selectRole/sm/13.png">
+		<img id="selectRole_14_2" src="/CTT02GamePage/img/selectRole/sm/14.png">
+		<img id="selectRole_15_2"	src="/CTT02GamePage/img/selectRole/sm/15.png">
+		<img id="selectRole_21_2" src="/CTT02GamePage/img/selectRole/sm/21.png">
+		<img id="selectRole_22_2" src="/CTT02GamePage/img/selectRole/sm/22.png">
+		<img id="selectRole_23_2" src="/CTT02GamePage/img/selectRole/sm/23.png">
+		<img id="selectRole_24_2" src="/CTT02GamePage/img/selectRole/sm/24.png">
+		<img id="selectRole_25_2" src="/CTT02GamePage/img/selectRole/sm/25.png">
+		<img id="selectRole_31_2" src="/CTT02GamePage/img/selectRole/sm/31.png">
+		<img id="selectRole_32_2" src="/CTT02GamePage/img/selectRole/sm/32.png">
+		<img id="selectRole_33_2"	src="/CTT02GamePage/img/selectRole/sm/33.png">
+		<img id="selectRole_34_2" src="/CTT02GamePage/img/selectRole/sm/34.png">
+		<img id="selectRole_35_2" src="/CTT02GamePage/img/selectRole/sm/35.png">
+	</div>
+</body>
+</html>
